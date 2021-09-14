@@ -9,9 +9,9 @@
     font-family: Helvetica, sans-serif;
     color: #404244;
 
-    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
 }
 
 .login-card-wrapper {

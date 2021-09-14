@@ -1,0 +1,26 @@
+.header-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100vw - 250px);
+    height: 72px;
+    padding: 24px;
+    background-color: white;
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.header-right-content-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 40%;
+    height: 40%;
+    -o-object-fit: contain;
+       object-fit: contain;
+    border-radius: 100%;
+}

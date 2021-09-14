@@ -1,0 +1,11 @@
+.App {
+    display: flex;
+    background-color: #FAFAFA;
+}
+.header-and-center-container{
+    
+}
+
+.central-content {
+    padding: 24px;
+}
