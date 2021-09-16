@@ -6,7 +6,7 @@ import matador_white_logo from '../../assets/images/MATADOR-WHITE.png'
 
 import {SideBarData} from './SideBarData'; 
 
-const SideBar = ({location,}) => {
+const SideBar = ({location, setCurrentPage}) => {
 
     return (
         <div className="sidebar">
@@ -16,7 +16,7 @@ const SideBar = ({location,}) => {
             </div>
             <ul className="sidebar-nav-item-container">
                 {SideBarData.map((val, key)=>{
-                    return (<NavLink className="sidebar-nav-link" to={val.link} key={key}>
+                    return (<NavLink className="sidebar-nav-link" to={val.link} key={key} onClick={()=>setCurrentPage(val.title)}>
                                 <li id={location.pathname===val.link ? 'sidebar-item-active': ""} className="sidebar-item sidebar-item-active">
                                     <img className="sidebar-item-icon" src={val.icon} alt="sidebar-icon" />
                                     <div className="sidebar-desc">{val.title}</div>

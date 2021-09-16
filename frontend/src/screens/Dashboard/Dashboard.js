@@ -1,24 +1,50 @@
-import React from 'react';
-import './Dashboard.css';
+import React, { useState } from 'react';
+import CardOne from '../../components/Dashboard/CardOne/CardOne';
+import CardTwo from '../../components/Dashboard/CardTwo/CardTwo';
+import DashboardInvestmentsCard from '../../components/Dashboard/DashboardInvestmentsCard/DashboardInvestmentsCard';
+import DashboardProjectsCard from '../../components/Dashboard/DashboardProjectsCard/DashboardProjectsCard';
+import DashboardRevenueCard from '../../components/Dashboard/DashboardRevenueCard/DashboardRevenueCard';
 
-const Dashboard = ({match}) => {
+import Header from '../../components/Header/Header';
+import SideBar from '../../components/SideBar/SideBar';
+import SubNav from '../../components/SubNav/SubNav';
+
+import './Dashboard.css';
+import DoughnutChartCard from './DoughnutChartCard/DoughnutChartCard';
+import DashboardTransactionsCard from '../../components/Dashboard/DashboardTransactionsCard/DashboardTransactionsCard';
+import DashboardInvestorsCard from '../../components/Dashboard/DashboardInvestorsCard/DashboardInvestorsCard';
+import DashboardTotalDepositCard from '../../components/Dashboard/DashboardTotalDepositCard/DashboardTotalDepositCard';
+import DashboardTotalWithdrawalCard from '../../components/Dashboard/DashboardTotalWithdrawalCard/DashboardTotalWithdrawalCard';
+
+const Dashboard = ({match, arrLinks}) => {
+    const [currentPage, setCurrentPage] = useState("Dashboard")
+ 
     return (
         <div className="dashboard">
-            <div className="dashboard-top-items">
-                <div className="dashboard-top-item">1 1</div>
-                <div className="dashboard-top-item">1 2</div>
-                <div className="dashboard-top-item">1 3</div>
-                <div className="dashboard-top-item">2 1</div>
-                <div className="dashboard-top-item">2 2</div>
-                <div className="dashboard-top-item">2 3</div>
-                <div className="dashboard-top-item">3 1</div>
-                <div className="dashboard-top-item">3 2</div>
-            </div>
-            <div className="dashboard-bottom-items">
-                <div className="dashboard-bottom-item">item 1</div>
-                <div className="dashboard-bottom-item"> item 2</div>
-            </div>
+            <SideBar setCurrentPage={setCurrentPage} />
+            
+            <div className="header-and-center-container">
+                <Header />
+                <SubNav currentPage={currentPage} arrLinks={arrLinks} />  
+                <div className="central-content">
+                    <div className="dashboard-top-items">
+                            <CardOne />
+                            <CardTwo />
+                            <DoughnutChartCard />    
+                            <DashboardInvestmentsCard />  
+                            <DashboardRevenueCard />     
+                            <DashboardInvestorsCard />               
+                            <DashboardProjectsCard />
+                            <DashboardTransactionsCard />
+                        </div>
+                        <div className="dashboard-bottom-items">
+                            <DashboardTotalDepositCard />
+                            <DashboardTotalWithdrawalCard />
 
+                        </div>
+                </div>
+
+            </div>
         </div>
     )
 }

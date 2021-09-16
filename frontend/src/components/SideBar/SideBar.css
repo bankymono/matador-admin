@@ -2,6 +2,7 @@
     height:100vh;
     width: 250px;
     background-color: #0E241A;
+    position: fixed;
 }
 
 .sidebar-nav-link{

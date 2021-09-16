@@ -8,7 +8,7 @@ import settings_icon from '../../assets/icons/settings-icon.png';
 
 export const SideBarData = [
     {
-        title:"Home",
+        title:"Dashboard",
         icon:dashboard_icon,
         link:'/dashboard',
     },

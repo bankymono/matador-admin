@@ -12,6 +12,18 @@
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
 }
 
+.header-hamburger:hover{
+    background-color: rgba(56, 167, 135, 0.1);
+}
+
+.header-search-icon:hover{
+    background-color: rgba(56, 167, 135, 0.1);
+}
+
+.header-notification-icon:hover{
+    background-color: rgba(56, 167, 135, 0.1);
+}
+
 .header-right-content-container {
     display: flex;
     align-items: center;

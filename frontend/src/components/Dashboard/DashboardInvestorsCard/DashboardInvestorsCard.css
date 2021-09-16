@@ -1,0 +1,51 @@
+.dashboard-investors-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.dashboard-investors-heading-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+.right-navto-icon{
+    width: 10px;
+    height: 18px;
+}
+
+.dashboard-investors-heading {
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+
+}
+
+.dashboard-investors-value {
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+}
+
+.dashboard-investors-growth-rate-container{
+    display: flex;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.dashboard-investors-growth-rate-container .investors-grwth-percent{
+    font-size: 13px;
+    margin-right: 5px;
+    display: flex;
+}
+
+.increase-color{
+    color: #28A745;
+}
+.drop-color{
+    color: red;
+}
