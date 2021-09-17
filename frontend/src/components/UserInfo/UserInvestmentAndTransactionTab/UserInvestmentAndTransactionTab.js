@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import UserInvestmentsInfoTab from '../UserInvestmentsInfoTab/UserInvestmentsInfoTab';
+import UserTransactionsInfoTab from '../UserTransactionsInfoTab/UserTransactionsInfoTab';
 import './UserInvestmentAndTransactionTab.css'
 
 const UserInvestmentAndTransactionTab = () => {
@@ -19,7 +20,9 @@ const UserInvestmentAndTransactionTab = () => {
                 <div className={toggleState === 1 ? "content active-content" : "content"}>
                     <UserInvestmentsInfoTab />
                 </div>
-                <div className={toggleState === 2 ? "content active-content" : "content"}>Fusce luctus congue pretium. Praesent interdum at ligula dictum varius. Integer sodales aliquet nisl, eget dictum sem ultrices quis. Sed ultrices ex ac nulla hendrerit fringilla. </div>
+                <div className={toggleState === 2 ? "content active-content" : "content"}>
+                    <UserTransactionsInfoTab />
+                </div>
             </div>
 
         </div>
