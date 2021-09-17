@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+  <g id="icon_dropdown_arrow_small" data-name="icon/dropdown arrow/small" transform="translate(0.192 -0.291)">
+    <rect id="Dropdown_Button_Ω_Carot_Down_background" data-name="Dropdown/Button/Ω/Carot/Down background" width="10" height="10" transform="translate(-0.192 0.291)" fill="none"/>
+    <path id="fi-rr-caret-down" d="M6.021,9h6.786a.607.607,0,0,1,.429,1.037L9.844,13.43a.607.607,0,0,1-.859,0L5.592,10.037A.607.607,0,0,1,6.021,9Z" transform="translate(-4.606 -5.71)" fill="#03a678"/>
+  </g>
+</svg>
