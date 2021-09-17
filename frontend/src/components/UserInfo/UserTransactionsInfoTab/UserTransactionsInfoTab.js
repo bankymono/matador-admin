@@ -7,6 +7,7 @@ import Pagination from '../../Pagination/Pagination';
 const UserTransactionsInfoTab = () => {
 
 
+
     return (
         <div>
             <div className="user-transactions-search-header">
