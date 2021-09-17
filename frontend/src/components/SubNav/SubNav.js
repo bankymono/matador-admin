@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 import './SubNav.css';
 
-const SubNav = ({currentPage, arrLinks, rightButton}) => {
+const SubNav = ({currentPage, arrLinks, rightButtons}) => {
     return (
         <div className="subnav-container">
             <div className="subnav-heading">{currentPage}</div>
@@ -19,7 +19,7 @@ const SubNav = ({currentPage, arrLinks, rightButton}) => {
                             </NavLink>
                         </li>))}
                 </ul>
-                {rightButton}
+                {rightButtons}
             </div>
 
         </div>
