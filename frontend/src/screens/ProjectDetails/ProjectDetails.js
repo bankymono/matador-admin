@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './ProjectDetails.css';
 import edit_icon from '../../assets/icons/edit-icon.png';
 import office_building from '../../assets/images/office-building.jpg';
@@ -7,6 +7,51 @@ import ProjectDetailsInfoCard from '../../components/ProjectDetail/ProjectDetail
 
 const ProjectDetails = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const sliderRef = useRef(null);
+    const innerSliderRef = useRef(null);
+
+
+    const [pressed, setPressed] = useState(false);
+    const [startx, setStartx] = useState(null);
+    const [x, setX] = useState(null);
+
+    const checkBoundary = () => {
+        let outer = sliderRef.current.getBoundingClientRect();
+        let inner = innerSliderRef.current.getBoundingClientRect();
+
+        if(parseInt(innerSliderRef.current.style.left) > 0){
+            innerSliderRef.current.style.left = '0px'
+        }else if(inner.right < outer.right){
+            innerSliderRef.current.style.left = `-${inner.width - outer.width}px`
+        }
+    }
+
+    const handleMouseUp = (e) => {
+        setPressed(false)
+        // setMouseMove(false)
+    }
+
+    const handleMouseDown = (e) => {
+        setPressed(true);
+        setStartx(e.clientX - sliderRef.current.getBoundingClientRect().left - innerSliderRef.current.offsetLeft);
+        // console.log('bounding',e.clientX - sliderRef.current.getBoundingClientRect().left )
+    }
+
+    const handleMouseMove= (e) => {
+        
+        if(!pressed) return 
+        // setMouseMove(true)
+        e.preventDefault();
+
+        setX(e.clientX - sliderRef.current.getBoundingClientRect().left);
+
+        innerSliderRef.current.style.left = `${x-startx}px`
+        checkBoundary()
+    }
+
+    useEffect(()=>{
+        // console.log(startx)
+    },[startx])
 
     const closeModal = () =>{
         setIsOpen(false);
@@ -36,10 +81,19 @@ const ProjectDetails = () => {
                         Vivamus ipsum nisi
                     </div>
 
-                    <div className="project-images-container">
-                        <div onClick={()=>setIsOpen(true)} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                        <div onClick={()=>setIsOpen(true)} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                    <div ref={sliderRef} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} className="slider">
+                        <div ref={innerSliderRef} className="project-images-container">
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                            <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                        </div>
                     </div>
+                    
 
                     <div className="project-detail-info-wrapper">
                         <ProjectDetailsInfoCard />
