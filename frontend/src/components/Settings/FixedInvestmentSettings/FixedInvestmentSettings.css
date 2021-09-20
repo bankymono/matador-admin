@@ -1,0 +1,13 @@
+.fixed-investment-settings-container{
+    border-bottom: 1px solid #DEE2E6;
+    margin-bottom: 24px;
+}
+
+.fixed-investment-settings-heading{
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 21px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+

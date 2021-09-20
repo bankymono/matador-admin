@@ -1,0 +1,53 @@
+.settings-container{
+    padding: 24px;
+}
+
+.settings-top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.settings-input-wrapper {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+}
+
+
+.settings-form-input-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+.settings-input{
+    height: 40px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 180px;
+    padding: 12px;
+    outline: none;
+    font-size: 16px;
+}
+
+.settings-input:first-child{
+    margin-right: 16px;
+}
+
+.settings-btn-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    }
+
+.setting-page-btn {
+    padding: 10px 16px;
+    font-size: 16px;
+    background-color: #03A678;
+    border-radius: 4px;
+    color: white;
+    border: none;
+}
