@@ -8,6 +8,16 @@ import Pagination from '../../components/Pagination/Pagination';
 const TransactionsList = () => {
     return (
                 <div className="transactions-list-container">
+
+                    <div className="project-top-nav">
+                        <div>left content</div>
+                        <div className="transactions-right-btn-container">
+                            <button className="transactions-new-btn">New Investment</button>
+                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                        </div>
+
+                    </div>
+
                     <div className="user-transactions-search-header">
                         <div className="search-input-container">
                             <img src={search_icon} alt="search" />

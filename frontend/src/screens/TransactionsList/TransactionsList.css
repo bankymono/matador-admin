@@ -1,7 +1,38 @@
 .transactions-list-container{
-    padding: 16px;
+    padding: 24px;
     background-color: white;
 }
+
+.project-top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+
+.transactions-right-btn-container {
+    display: flex;
+    align-items: center;
+}
+.transactions-new-btn{
+    background-color:#03A678;
+    border: 1px solid  white;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 4px;
+    color:  white;
+    font-size: 16px;
+    margin-right: 24px;
+}
+
+.project-edit-btn-icon{
+    margin-right: 10px;
+
+}
+
+
 .user-transactions-select {
     padding: 9px;
 
