@@ -1,0 +1,17 @@
+.currency-options-btn{
+    display: flex;
+    border: 1px solid #03A678;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.currency-option-item{
+    padding: 10px 16px;
+}
+
+.active-currency-option{
+    background-color: #03A678;
+    color: white;
+}
