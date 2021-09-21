@@ -1,12 +1,10 @@
 import React from 'react';
 import './UserTransactionsInfoTab.css';
 import search_icon from '../../../assets/icons/search-icon-img.png'
-import menu_dots_icon from '../../../assets/icons/menu-dots-icon.png'
 import Pagination from '../../Pagination/Pagination';
+import MoreOptionsMenu from '../../MoreOptionsMenu/MoreOptionsMenu';
 
 const UserTransactionsInfoTab = () => {
-
-
 
     return (
         <div>
@@ -44,7 +42,8 @@ const UserTransactionsInfoTab = () => {
                         <div>cell</div>
                         <div>cell</div>
                     </div>
-                    <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+
+                    <MoreOptionsMenu />
                 </div>
 
                 <div className="user-transactions-info-body">
@@ -56,7 +55,7 @@ const UserTransactionsInfoTab = () => {
                         <div>cell</div>
                         <div>cell</div>
                     </div>
-                    <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                    <MoreOptionsMenu />
                 </div>
 
                 <div className="user-transactions-info-body">
@@ -68,7 +67,7 @@ const UserTransactionsInfoTab = () => {
                         <div>cell</div>
                         <div>cell</div>
                     </div>
-                    <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                    <MoreOptionsMenu />
                 </div>
 
                 <div className="user-transactions-info-body">
@@ -80,7 +79,7 @@ const UserTransactionsInfoTab = () => {
                         <div>cell</div>
                         <div>cell</div>
                     </div>
-                    <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                    <MoreOptionsMenu />
                 </div>
 
                 <div className="user-transactions-info-body">
@@ -92,7 +91,7 @@ const UserTransactionsInfoTab = () => {
                         <div>cell</div>
                         <div>cell</div>
                     </div>
-                    <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                    <MoreOptionsMenu />
                 </div>
 
                 <div className="user-transactions-info-body">
@@ -104,7 +103,7 @@ const UserTransactionsInfoTab = () => {
                         <div>cell</div>
                         <div>cell</div>
                     </div>
-                    <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                    <MoreOptionsMenu />
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
-import React,{useEffect, useRef} from 'react';
-import {Line,Chart} from 'react-chartjs-2';
+import React from 'react';
+import {Line} from 'react-chartjs-2';
 import './DashboardLineChartCard.css';
 
 const DashboardLineChartCard = ({id}) => {

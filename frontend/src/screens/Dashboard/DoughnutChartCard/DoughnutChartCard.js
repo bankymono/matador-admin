@@ -1,7 +1,7 @@
 import React from 'react'
 import './DoughnutChartCard.css'
-import {Doughnut,Chart} from 'react-chartjs-2';
-import DoughnutChartTable from './DoughnutChartTable/DoughnutChartTable'
+import {Doughnut} from 'react-chartjs-2';
+import DoughnutChartTable from './DoughnutChartTable/DoughnutChartTable';
 
 const DoughnutChartCard = () => {
     const data =  {
