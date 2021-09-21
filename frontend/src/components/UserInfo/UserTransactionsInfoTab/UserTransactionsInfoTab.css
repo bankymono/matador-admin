@@ -23,7 +23,7 @@
     justify-content: space-between;
     padding: 14px;
 
-    border: 1px solid #DEE2E6;
+    /* border: 1px solid #DEE2E6; */
 
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
@@ -55,7 +55,7 @@
 }
 
 .user-transactions-info-body-list{
-    border: 1px solid #DEE2E6;
+    /* border: 1px solid #DEE2E6; */
 
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
