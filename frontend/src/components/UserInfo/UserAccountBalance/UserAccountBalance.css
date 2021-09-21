@@ -1,0 +1,66 @@
+.user-account-balance-top-item {
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #DEE2E6;
+    padding:16px;
+    margin-bottom: 16px;
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.user-account-balance-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user-account-balance-heading-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+.right-navto-icon{
+    width: 10px;
+    height: 18px;
+}
+
+.user-account-balance-heading {
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+}
+
+.user-account-balance-value {
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+}
+
+.user-account-balance-growth-rate-container{
+    display: flex;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.user-account-balance-growth-rate-container .user-account-balance-grwth-percent{
+    font-size: 13px;
+    margin-right: 5px;
+    display: flex;
+}
+
+.increase-color{
+    color: #28A745;
+}
+.drop-color{
+    color: red;
+}
+
+.arr-up-icon{
+    width: 10px;
+    height: 10px;
+}

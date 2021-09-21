@@ -12,6 +12,7 @@ import './Settings.css';
 
 const Settings = () => {
     return (
+        
         <div className="settings-container">
 
             <div className="settings-top-nav">

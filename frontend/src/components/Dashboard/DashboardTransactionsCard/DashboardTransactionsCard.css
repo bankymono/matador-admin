@@ -1,0 +1,35 @@
+.dashboard-transactions-card-numbers{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.dashboard-transactions-heading-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.dashboard-transactions-heading {
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+
+}
+
+.dashboard-transactions-card-numbers .desc{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.dashboard-transactions-card-numbers .value{
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+}
+
+.dashboard-transactions-card-numbers .transactions-value-container:nth-child(2){
+    border-left: 1px solid #DEE2E6;
+    padding: 0 12px;
+}

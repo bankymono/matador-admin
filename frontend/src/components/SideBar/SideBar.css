@@ -1,0 +1,63 @@
+.sidebar {
+    height:100vh;
+    width: 250px;
+    background-color: #0E241A;
+    position: fixed;
+}
+
+.sidebar-nav-link{
+    text-decoration: none;
+}
+
+.sidebar-matador-logo-container{
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar-matador-logo{
+    margin-right: 16px;
+}
+
+.sidebar-matador-text {
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'helvetica-neue', sans-serif;
+}
+
+.sidebar-nav-item-container{
+    margin-top:42px;
+}
+
+.sidebar-item {
+    display: flex;
+    color: #86938C;
+    padding: 12px 24px;
+    list-style-type: none;
+    align-items: center;
+}
+
+.sidebar-item-icon {
+    margin-right: 12px;
+}
+
+.sidebar-item:hover .sidebar-item-icon {
+    -webkit-filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1);
+}
+
+.sidebar-desc {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.sidebar-item:hover .sidebar-desc {
+    color: white;
+}
+
+#sidebar-item-active {
+    border-left: 4px solid #03A678;
+    
+}
