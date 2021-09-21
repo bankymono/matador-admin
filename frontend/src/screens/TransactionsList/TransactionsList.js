@@ -1,24 +1,36 @@
 import React from 'react'
 import './TransactionsList.css'
+import MoreOptionsMenu from '../../components/MoreOptionsMenu/MoreOptionsMenu'
 
 import search_icon from '../../assets/icons/search-icon-img.png'
 import menu_dots_icon from '../../assets/icons/menu-dots-icon.png'
 import Pagination from '../../components/Pagination/Pagination';   
+import SideBar from '../../components/SideBar/SideBar';
+import { useState } from 'react';
+import Header from '../../components/Header/Header';
+import SubNav from '../../components/SubNav/SubNav';
 
-const TransactionsList = () => {
+const NewInvBtn = () => {
     return (
+        <div className="txn-lists-new-btn-container">
+            <button className="txn-lists-new-btn">New Investment</button>
+            <MoreOptionsMenu />
+        </div>
+    )
+}
+
+const TransactionsList = ({match, arrLinks}) => {
+    const [currentPage, setCurrentPage] = useState("Transactions");
+
+    return (
+        <div>
+            <SideBar setCurrentPage={setCurrentPage} />
+            <div className="header-and-center-container">
+                <Header />
+                <SubNav currentPage={currentPage} arrLinks={arrLinks} rightButtons={<NewInvBtn />} />
+
                 <div className="transactions-list-container">
-
-                    <div className="project-top-nav">
-                        <div>left content</div>
-                        <div className="transactions-right-btn-container">
-                            <button className="transactions-new-btn">New Investment</button>
-                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
-                        </div>
-
-                    </div>
-
-                    <div className="user-transactions-search-header">
+                    <div className="user-transactions-list-search-header">
                         <div className="search-input-container">
                             <img src={search_icon} alt="search" />
                             <input placeholder="Search" />
@@ -42,7 +54,7 @@ const TransactionsList = () => {
                         </div>
                     </div>
 
-                    <div className="user-transactions-info-body-list">
+                    <div className="user-transactions-list-info-body-list">
                         <div className="user-transactions-info-body">
                             <input type="checkbox" />
                             <div className="user-transactions-info-body-wrapper">
@@ -52,7 +64,7 @@ const TransactionsList = () => {
                                 <div>cell</div>
                                 <div>cell</div>
                             </div>
-                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                            <MoreOptionsMenu />
                         </div>
 
                         <div className="user-transactions-info-body">
@@ -64,7 +76,7 @@ const TransactionsList = () => {
                                 <div>cell</div>
                                 <div>cell</div>
                             </div>
-                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                            <MoreOptionsMenu />
                         </div>
 
                         <div className="user-transactions-info-body">
@@ -76,7 +88,7 @@ const TransactionsList = () => {
                                 <div>cell</div>
                                 <div>cell</div>
                             </div>
-                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+                            <MoreOptionsMenu />
                         </div>
 
                         <div className="user-transactions-info-body">
@@ -88,7 +100,8 @@ const TransactionsList = () => {
                                 <div>cell</div>
                                 <div>cell</div>
                             </div>
-                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+
+                            <MoreOptionsMenu />
                         </div>
 
                         <div className="user-transactions-info-body">
@@ -100,7 +113,8 @@ const TransactionsList = () => {
                                 <div>cell</div>
                                 <div>cell</div>
                             </div>
-                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+
+                            <MoreOptionsMenu />
                         </div>
 
                         <div className="user-transactions-info-body">
@@ -112,7 +126,8 @@ const TransactionsList = () => {
                                 <div>cell</div>
                                 <div>cell</div>
                             </div>
-                            <img className="menu-dots" src={menu_dots_icon} alt="menu-dots" />
+
+                            <MoreOptionsMenu />
                         </div>
                     </div>
 
@@ -120,8 +135,9 @@ const TransactionsList = () => {
                         <div>Showing: <span className="val">100</span></div>
                         <div><Pagination /></div>
                     </div>
-                    
                 </div>
+            </div>
+        </div>
     )
 }
 

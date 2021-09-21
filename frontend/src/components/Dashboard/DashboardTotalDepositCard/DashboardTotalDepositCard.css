@@ -1,0 +1,15 @@
+.dashboard-total-deposits-heading{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.dashboard-total-deposits-value .desc{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.dashboard-total-deposits-value .value{
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+}

@@ -1,13 +1,16 @@
 .transactions-list-container{
-    padding: 24px;
+    margin: 24px;
+    padding: 0px;
     background-color: white;
+    border: 1px solid #DEE2E6;
+    border-radius: 8px;    
 }
 
 .project-top-nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+
 }
 
 
@@ -54,20 +57,22 @@
     font-size: 17px;
 }
 
-.user-transactions-search-header{
+.user-transactions-list-search-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 14px;
 
-    border: 1px solid #DEE2E6;
-
+    /* border: 1px solid #DEE2E6; */
+    background-color: white;
+    border-radius: 8px 8px 0 0;
+    
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
 }
 
-.user-transactions-search-header .search-input-container{
+.user-transactions-list-search-header .search-input-container{
     display: flex;
     padding: 10px;
     border-radius: 8px;
@@ -75,7 +80,7 @@
     border: 1px solid #E0E0E0;
 }
 
-.user-transactions-search-header .search-input-container input {
+.user-transactions-list-search-header .search-input-container input {
     padding: 5px  15px;
     margin-left: 10px;
     font-size: 14px;
@@ -91,12 +96,13 @@
     background-color: #F6F7F8;
 }
 
-.user-transactions-info-body-list{
-    border: 1px solid #DEE2E6;
+.user-transactions-list-info-body-list{
+    /* border-radius: 0 0 8px 8px; */
+    
 
-    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
-    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
-    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    /* box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05); */
+    /* -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05); */
+    /* -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05); */
 }
 
 .user-transactions-info-body{
@@ -107,6 +113,11 @@
     background-color: #fff;
     
 }
+
+/* .user-transactions-info-body:last-child{
+    border-radius: 0 0 8px 8px;
+    
+} */
 
 .user-transactions-info-heading input {
     margin-right: 16px;
@@ -151,4 +162,20 @@
 
 .user-transactions-bottom-pagination-container .val{
     color: #03A678;
+}
+
+.txn-lists-new-btn-container{
+    display: flex;
+}
+
+.txn-lists-new-btn {
+    margin-right: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    padding: 10px 16px;
+    color: white;
+    background-color: #03A678;
+    border: none;
+    border-radius: 4px;
 }
