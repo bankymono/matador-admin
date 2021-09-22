@@ -3,7 +3,6 @@ import './TransactionsList.css'
 import MoreOptionsMenu from '../../components/MoreOptionsMenu/MoreOptionsMenu'
 
 import search_icon from '../../assets/icons/search-icon-img.png'
-import menu_dots_icon from '../../assets/icons/menu-dots-icon.png'
 import Pagination from '../../components/Pagination/Pagination';   
 import SideBar from '../../components/SideBar/SideBar';
 import { useState } from 'react';

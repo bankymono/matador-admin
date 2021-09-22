@@ -8,7 +8,7 @@ const FixedInvestmentSettings = () => {
             <div className="fixed-investment-settings-heading">Fixed Investment</div>
 
             <div className="settings-form-input-item">
-                <div>Minimum investment amount</div>
+                <div className="settings-text-desc">Minimum investment amount</div>
                 <div>
                     <input className='settings-input' />
                     <input className='settings-input' />
@@ -16,7 +16,7 @@ const FixedInvestmentSettings = () => {
             </div>
 
             <div className="settings-form-input-item">
-                <div>Interest rates</div>
+                <div className="settings-text-desc">Interest rates</div>
                 <div>
                     <input className='settings-input' />
                     <input className='settings-input' />

@@ -11,9 +11,11 @@
 
 .settings-input-wrapper {
     display: grid;
-    grid-template-columns: 5fr 4fr;
+    grid-template-columns: 5fr 2fr;
 }
-
+.settings-text-desc{
+    width: 255px;
+}
 
 .settings-form-input-item{
     display: flex;

@@ -8,7 +8,7 @@ const InvestmentSettingsCard = () => {
             <div className="investment-settings-heading">Investment</div>
 
             <div className="settings-form-input-item">
-                <div>Maximum amount withdrawable without verification</div>
+                <div className="settings-text-desc">Maximum amount withdrawable without verification</div>
                 <div>
                     <input className='settings-input' />
                     <input className='settings-input' />
@@ -16,7 +16,7 @@ const InvestmentSettingsCard = () => {
             </div>
 
             <div className="settings-form-input-item">
-                <div>Matador minimum investment amount</div>
+                <div className="settings-text-desc">Matador minimum investment amount</div>
                 <div>
                     <input className='settings-input' />
                     <input className='settings-input' />
@@ -24,7 +24,7 @@ const InvestmentSettingsCard = () => {
             </div>
 
             <div className="settings-form-input-item">
-                <div>Set interest rates for each type of investment</div>
+                <div className="settings-text-desc">Set interest rates for each type of investment</div>
                 <div>
                     <input className='settings-input' />
                     <input className='settings-input' />
