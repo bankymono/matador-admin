@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
+import Settings from './screens/Settings/Settings';
 import TransactionsList from './screens/TransactionsList/TransactionsList';
 import ProjectDetails from './screens/ProjectDetails/ProjectDetails';
 import UserInfo from './screens/UserInfo/UserInfo';
@@ -55,6 +56,15 @@ function App() {
                       {...props} 
                         arrLinks={['home','transactions']}
                         />)}
+                  />
+                <Route 
+                  exact 
+                  path='/settings'
+                  render={(props)=>
+                    (<Settings
+                      {...props} 
+                        arrLinks={['home','settings']}
+                      />)} 
                   />  
             </Switch>   
       </Router>
