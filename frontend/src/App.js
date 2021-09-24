@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
+import UserInfo from './screens/UserInfo/UserInfo';
 
 import Login from './screens/AuthScreens/Login/Login';
 import ChangePassword from './screens/AuthScreens/ChangePassword/ChangePassword';
@@ -25,6 +26,16 @@ function App() {
                       arrLinks={['home']}
                     />)}
                 />
+
+              <Route 
+                exact 
+                path='/investors/info'
+                render={(props)=>
+                  (<UserInfo 
+                    {...props} 
+                      arrLinks={['home','investors','info']}
+                    />)} 
+              />
             </Switch>   
       </Router>
     </div>

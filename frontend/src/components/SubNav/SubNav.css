@@ -4,6 +4,7 @@
 
 .subnav-heading{
     color: #404244;
+    font-weight: 600;
     font-size: 24px;
     line-height: 31.2px;
 }
@@ -38,7 +39,6 @@
 }
 
 .nav-breadcrumbs-item:last-child .nav-breadcrumb-link{
-    font-size: 0.875rem;
     font-family: 'Source Sans Pro';
     text-decoration: none;
     color: #8D8F91;
@@ -47,5 +47,6 @@
 
 .subnav-wrapper{
     display:flex;
-    justify-content:space-between
+    justify-content:space-between;
+    align-items: center;
 }

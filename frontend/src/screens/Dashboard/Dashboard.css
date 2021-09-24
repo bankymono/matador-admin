@@ -30,6 +30,7 @@
 }
 
 .header-and-center-container{
+    background-color: #FAFAFA;
     margin-left: 250px;
     width:calc(100% - 250px)
 }

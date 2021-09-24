@@ -1,5 +1,5 @@
-import React,{useEffect, useRef} from 'react';
-import {Bar,Chart} from 'react-chartjs-2';
+import React from 'react';
+import {Bar} from 'react-chartjs-2';
 import './DashboardBarChartCard.css';
 
 const DashboardBarChartCard = ({id}) => {
