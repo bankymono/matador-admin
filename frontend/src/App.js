@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
+import ProjectDetails from './screens/ProjectDetails/ProjectDetails';
 import UserInfo from './screens/UserInfo/UserInfo';
 
 import Login from './screens/AuthScreens/Login/Login';
@@ -36,6 +37,15 @@ function App() {
                       arrLinks={['home','investors','info']}
                     />)} 
               />
+              <Route 
+                  exact 
+                  path='/projects/id'
+                  render={(props)=>
+                    (<ProjectDetails
+                      {...props} 
+                        arrLinks={['home','projects','project name']}
+                      />)} 
+                  />
             </Switch>   
       </Router>
     </div>

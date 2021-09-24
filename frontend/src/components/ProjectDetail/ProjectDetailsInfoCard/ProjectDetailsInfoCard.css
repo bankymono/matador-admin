@@ -1,0 +1,22 @@
+.project-details-info{
+    display: grid;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.project-details-info .project-details-info-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.project-details-info .detail-type {
+    font-size: 16px;
+    line-height: 24px;
+    color: #8D8F91;
+}
+
+.project-details-info .detail-value {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
