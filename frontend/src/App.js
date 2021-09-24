@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
+import TransactionsList from './screens/TransactionsList/TransactionsList';
 import ProjectDetails from './screens/ProjectDetails/ProjectDetails';
 import UserInfo from './screens/UserInfo/UserInfo';
 
@@ -45,7 +46,16 @@ function App() {
                       {...props} 
                         arrLinks={['home','projects','project name']}
                       />)} 
-                  />
+                />
+                <Route 
+                  exact 
+                  path='/transactions'
+                  render={(props)=>
+                    (<TransactionsList 
+                      {...props} 
+                        arrLinks={['home','transactions']}
+                        />)}
+                  />  
             </Switch>   
       </Router>
     </div>

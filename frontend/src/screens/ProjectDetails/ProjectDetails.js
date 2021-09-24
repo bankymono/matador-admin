@@ -18,7 +18,7 @@ const EditBtn = () => {
 }
 
 const ProjectDetails = ({match, arrLinks}) => {
-    const [currentPage, setCurrentPage] = useState("Investors")
+    const [currentPage, setCurrentPage] = useState("Projects")
     const [isOpen, setIsOpen] = useState(false);
     const sliderRef = useRef(null);
     const innerSliderRef = useRef(null);
