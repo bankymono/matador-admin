@@ -1,3 +1,11 @@
-*{
+* {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family:'helvetica-neue';
+  src: url("./assets/fonts/Helvetica\ Neue\ LT\ 65\ Medium.ttf") format('truetype');
 }
