@@ -1,9 +1,7 @@
 import React from 'react'
 import './ProjectsList.css'
-import MoreOptionsMenu from '../../components/MoreOptionsMenu/MoreOptionsMenu'
 
-import search_icon from '../../assets/icons/search-icon-img.png'
-import Pagination from '../../components/Pagination/Pagination';   
+
 import SideBar from '../../components/SideBar/SideBar';
 import { useState } from 'react';
 import Header from '../../components/Header/Header';
@@ -11,7 +9,7 @@ import SubNav from '../../components/SubNav/SubNav';
 import OngoingAndSoldTab from '../../components/Projects/OngoingAndSoldTab/OngoingAndSoldTab';
 import ProjectsSubNavButton from '../../components/Projects/ProjectsSubNavButton/ProjectsSubNavButton';
 import ProjectListOverviewCard from '../../components/Projects/ProjectsListOverviewCard/ProjectsListOverviewCard';
-// import ProjectsOverviewCard from '../../components/Dashboard/ProjectsOverviewCard/ProjectsOverviewCard';
+
 
 
 

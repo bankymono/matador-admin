@@ -1,50 +1,164 @@
 import React from 'react';
 import { useState } from 'react';
+import ProjectInformation from '../../components/CreateProject/ProjectInformation/ProjectInformation'
+import InvestmentInformation from '../../components/CreateProject/InvestmentInformation/InvestmentInformation'
 import Header from '../../components/Header/Header';
-import CircleInvestmentSettings from '../../components/Settings/CircleInvestmentSettings/CircleInvestmentSettingsCard';
-import EquityInvestmentSettings from '../../components/Settings/EquityInvestmentSettings/EquityInvestmentSettings';
-import FixedInvestmentSettings from '../../components/Settings/FixedInvestmentSettings/FixedInvestmentSettings';
-import GeneralInvestmentSettingsCard from '../../components/Settings/GeneralInvestmentSettings/GeneralInvestmentSettings';
-import InvestmentSettingsCard from '../../components/Settings/InvestmentSettingsCard/InvestmentSettingsCard';
-import MutualInvestmentSettings from '../../components/Settings/MutualInvestmentSettings/MutualInvestmentSettings';
-import SoleInvestmentSettings from '../../components/Settings/SoleInvestmentSettings/SoleInvestmentSettings';
-import TargetInvestmentSettings from '../../components/Settings/TargetInvestmentSettings/TargetInvestmentSettings';
+
 import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
-import './Settings.css';
+import './CreateProject.css';
 
 
-const Settings = ({arrLinks}) => {
-    const [currentPage, setCurrentPage] = useState("Settings");
-    return (
-        <div>
-            <SideBar setCurrentPage={setCurrentPage} />
+const CreateProject = ({arrLinks}) => {
+    const [currentPage, setCurrentPage] = useState("Create Equity Based Project");
+    const [step, setStep] = useState(1);
+    const [newProject, setNewProject] = useState({});
 
-            <div className="header-and-center-container">
-                <Header />
-                <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
-                <div className="settings-container">
+    const [projectInfo, setProjectInfo] = useState({
+            projectName:'',
+            completedTimestamp:'',
+            buildingSize:'',
+            constructedBy:'',
+            description:'',
+            landTitle:'',
+            buildingType:'',
+            projectImages:'',
+            evaluation:'',
+            status:'',
+            amenities:'',
+            totalUnits:'',
+            projectAddress:'',
+            longitude:"",
+            latitude:"",
+        });
 
-                    <div className="settings-input-wrapper">
-                        <div>
-                            <InvestmentSettingsCard />
-                            <CircleInvestmentSettings />
-                            <MutualInvestmentSettings />
-                            <TargetInvestmentSettings />
-                            <EquityInvestmentSettings />
-                            <SoleInvestmentSettings />
-                            <FixedInvestmentSettings />
-                            <GeneralInvestmentSettingsCard />
+    const [projectAmenities, setProjectAmenities] = useState({
+                bedroom:'',
+                bathroom:'',
+                toilet:'',
+                sittingRoom:'',
+                diningRoom:'',
+                kitchenNet:'',
+                laundryRoom:'',
+                kitchenStore:''
+        })
 
-                            <div className="settings-btn-wrapper">
-                                <button className="setting-page-btn">New Investment</button>
-                            </div>
+    const [investmentInfo, setInvestmentInfo] = useState({
+            dividendMaturity:'',
+            fundingEndTimestamp:'',
+            hardCap:'',
+            softCap:'',
+            holdingPeriod:'',
+            incomeStartTimestamp:'',
+            interestRatePerWeek:'',
+            investmentType:'',
+            cashOnCashYield:'',
+            rentalYield:'',
+            pricePerFraction:'',
+            totalFractions:'',
+            bundle:''
+        })
+
+    const [bundleInfo, setBundleInfo] = useState({
+            title:'',
+            size:'',
+            photos:'',
+            deedTitle:'',
+            deedFile:'',
+            price:'',
+            amenities:'',
+            paymentPlan:''
+        })
+
+    const [bundleAmenities, setBundleAmenities] = useState({
+            bedroom:'',
+            bathroom:'',
+            toilet:'',
+            sittingRoom:'',
+            diningRoom:'',
+            kitchenNet:'',
+            laundryRoom:'',
+            kitchenStore:''
+        })
+
+    const [paymentPlan, setPaymentPlan] = useState({
+            initialDepositPercentage:'',
+            initialDepositAmount:'',
+            availablePaymentPeriodInMonths:'',
+            monthlyPayment:''
+        })
+
+    
+    const handleProceedToNextPage= () => {
+        setStep(prevStep => prevStep + 1)
+    }
+
+    const handleProceedToPrevPage= () => {
+        setStep(prevStep => prevStep - 1)
+    }
+
+    const handleProjectInfoFieldChange = () => {
+
+    }
+
+    const handleProjectAmenFieldChange = () => {
+
+    }
+
+    const handleInvestmentInfoFieldChange = () => {
+
+    }
+
+    const handleBundleInfoFieldChange = () => {
+
+    }
+
+    const handleBundleAmenitiesFieldChange = () => {
+
+    }
+
+    const handleBundlePaymentFieldChange = () => {
+
+    }
+
+
+    switch(step){
+        case 1:
+            return (
+                <div className="create-project-outer-wrapper">
+                    <SideBar setCurrentPage={setCurrentPage} />
+        
+                    <div className="header-and-center-container">
+                        <Header />
+                        <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
+                        <div className="create-project-container">
+                            <ProjectInformation
+                                handleProceedToNextPage={handleProceedToNextPage}
+                            />
+        
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    )
+            )
+        case 2:
+            return (
+                <div>
+                    <SideBar setCurrentPage={setCurrentPage} />
+        
+                    <div className="header-and-center-container">
+                        <Header />
+                        <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
+                        <div className="create-project-container">
+                            <InvestmentInformation
+                                handleProceedToPrevPage={handleProceedToPrevPage}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )
+            default: return null
+    }
+
 }
 
-export default Settings
+export default CreateProject
