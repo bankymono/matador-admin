@@ -49,10 +49,14 @@
 }
 
 
-
+.login-recover-link{
+    text-decoration: none;
+}
 .login-forgot-password {
     text-align: right;
     margin-top: 8px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .login-submit-button {

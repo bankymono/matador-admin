@@ -2,6 +2,7 @@ import React from 'react';
 import './RecoverPassword.css';
 
 import matador_logo from '../../../assets/images/MATADOR-LOGO.png';
+import { Link } from 'react-router-dom';
 
 const RecoverPassword = () => {
     return (
@@ -15,7 +16,7 @@ const RecoverPassword = () => {
                     <input className="recover-password-input" type="text" />
                 </div>
 
-                <button className="recover-password-submit-button">Login</button>
+                <Link to="/change-password"><button className="recover-password-submit-button">Login</button></Link>
             </div>
         </div>
 
