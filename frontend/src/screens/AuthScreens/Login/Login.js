@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, NavLink} from 'react-router-dom'
 import './Login.css';
 import matador_logo from '../../../assets/images/MATADOR-LOGO.png';
 
@@ -21,7 +22,7 @@ const Login = () => {
                 </div>
 
 
-                <button className="login-submit-button">Login</button>
+                <Link to="/dashboard"><button className="login-submit-button">Login</button></Link>
             </div>
         </div>
     )
