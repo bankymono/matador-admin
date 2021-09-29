@@ -111,15 +111,19 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
 
                     <div className="create-proj-input-radio-container">
                         <div className="create-radio-item-wrap">
-                            <label className="create-radio-label" htmlFor="create-avail">Available</label>
-                            <div className="create-radio-custom"></div>
-                            <input className="create-radio-input" id="create-avail" type="radio" name="create-avail" />
-                            
+                            <label className="create-radio-label" htmlFor="create-avail"><span>Available</span>
+                                <input className="create-radio-input" id="create-avail" type="radio" name="create-avail" />
+                                <div className="create-radio-custom"></div>                            
+                            </label>
+
                         </div>
 
                         <div className="create-radio-item-wrap">
-                            <label className="create-radio-label" htmlFor="create-avail">Unavailable</label>
-                            <input id="create-avail" type="radio" name="create-avail" />
+                            <label className="create-radio-label" htmlFor="create-unavail"><span>Unavailable</span>
+                                <input className="create-radio-input" id="create-unavail" type="radio" name="create-avail" />
+                                <div className="create-radio-custom"></div>
+                            </label>
+
                         </div>
                     </div>
                 </div>
@@ -175,13 +179,19 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
 
                         <div className="create-proj-input-radio-container">
                             <div className="create-radio-item-wrap">
-                                <label className="create-radio-label" htmlFor="create-avail">Yes</label>
-                                <input id="create-avail" type="radio" name="laundry-room" />
+                                <label className="create-radio-label" htmlFor="create-laund-yes">
+                                    <span>Yes</span>
+                                    <input className="create-radio-input" id="create-laund-yes" type="radio" name="laundry-room" />
+                                    <div className="create-radio-custom"></div>
+                                </label>
                             </div>
 
                             <div className="create-radio-item-wrap">
-                                <label className="create-radio-label" htmlFor="create-avail">No</label>
-                                <input id="create-avail" type="radio" name="laundry-room" />
+                                <label className="create-radio-label" htmlFor="create-laund-no">
+                                    <span>No</span>
+                                    <input className="create-radio-input" id="create-laund-no" type="radio" name="laundry-room" />
+                                    <div className="create-radio-custom"></div>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -191,13 +201,20 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
 
                         <div className="create-proj-input-radio-container">
                             <div className="create-radio-item-wrap">
-                                <label className="create-radio-label" htmlFor="create-avail">Yes</label>
-                                <input id="create-avail" type="radio" name="create-avail" />
+                                <label className="create-radio-label" htmlFor="create-kitch-yes">
+                                    <span>Yes</span>
+                                    <input className="create-radio-input" id="create-kitch-yes" type="radio" name="create-kitch" />
+                                    <div className="create-radio-custom"></div>
+                                </label>
+
                             </div>
 
                             <div className="create-radio-item-wrap">
-                                <label className="create-radio-label" htmlFor="create-avail">No</label>
-                                <input id="create-avail" type="radio" name="create-avail" />
+                                <label className="create-radio-label" htmlFor="create-kitch-no">
+                                    <span>No</span>
+                                    <input className="create-radio-input" id="create-kitch-no" type="radio" name="create-kitch" />
+                                    <div className="create-radio-custom"></div>
+                                </label>
                             </div>
                         </div>
                     </div>

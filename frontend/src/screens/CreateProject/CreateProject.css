@@ -84,7 +84,7 @@
     font-size: 16px;
     line-height: 24px;
     outline: none;
-    padding: 12px;
+    padding: 10px;
     background-color: white;
     width: 270px;   
 }
@@ -115,6 +115,11 @@ div.create-proj-textarea-max {
 }
 
 .create-radio-label{
+
+    display: flex;
+}
+
+.create-radio-label span{
     margin-right: 10px;
 }
 .create-radio-item-wrap{
@@ -126,6 +131,52 @@ div.create-proj-textarea-max {
     width: 20px;
     height: 20px;
 
+}
+
+#create-unavail{
+    width: 20px;
+    height: 20px;
+
+}
+
+#create-laund-yes{
+    width: 20px;
+    height: 20px;
+}
+
+#create-laund-no{
+    width: 20px;
+    height: 20px;
+}
+
+#create-kitch-yes{
+    width: 20px;
+    height: 20px;
+}
+
+#create-kitch-no{
+    width: 20px;
+    height: 20px;
+}
+
+#create-amen-laund-yes{
+    width: 20px;
+    height: 20px;
+}
+
+#create-amen-laund-no{
+    width: 20px;
+    height: 20px;
+}
+
+#create-amen-kitch-yes{
+    width: 20px;
+    height: 20px;
+}
+
+#create-amen-kitch-no{
+    width: 20px;
+    height: 20px;
 }
 
 .create-proj-hr{
@@ -335,9 +386,29 @@ div.create-proj-textarea-max {
 }
 
 .create-radio-custom{
-    width: 1.5em;
-    height: 1.5em;
-    background: red;
+    width: 20px;
+    height: 20px;
+    background: white;
+
+    border: 1px solid #C9C9C9;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.create-radio-custom::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #06A064;
+    display: block ;
+
+    /* /* border: 1px solid #C9C9C9; */
+    border-radius: 50%;
+    transform: scale(0);
+}
+
+.create-radio-input:checked + .create-radio-custom::after{
+    transform: scale(1);
 }
 
 .create-radio-input{

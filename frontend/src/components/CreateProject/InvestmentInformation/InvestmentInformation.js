@@ -255,13 +255,19 @@ const InvestmentInformation = ({handleDeleteBundleImage,fileName,handleFileChang
 
                                         <div className="create-proj-input-radio-container">
                                             <div className="create-radio-item-wrap">
-                                                <label className="create-radio-label" htmlFor="create-avail">Yes</label>
-                                                <input id="create-avail" type="radio" name="laundry-room" />
+                                                <label className="create-radio-label" htmlFor="create-amen-laund-yes">
+                                                    <span>Yes</span>
+                                                    <input className="create-radio-input" id="create-amen-laund-yes" type="radio" name="laundry-room" />
+                                                    <div className="create-radio-custom"></div>
+                                                </label>
                                             </div>
 
                                             <div className="create-radio-item-wrap">
-                                                <label className="create-radio-label" htmlFor="create-avail">No</label>
-                                                <input id="create-avail" type="radio" name="laundry-room" />
+                                                <label className="create-radio-label" htmlFor="create-amen-laund-no">
+                                                    <span>No</span>
+                                                    <input className="create-radio-input" id="create-amen-laund-no" type="radio" name="laundry-room" />
+                                                    <div className="create-radio-custom"></div>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -271,13 +277,20 @@ const InvestmentInformation = ({handleDeleteBundleImage,fileName,handleFileChang
 
                                         <div className="create-proj-input-radio-container">
                                             <div className="create-radio-item-wrap">
-                                                <label className="create-radio-label" htmlFor="create-avail">Yes</label>
-                                                <input id="create-avail" type="radio" name="create-avail" />
+                                                <label className="create-radio-label" htmlFor="create-amen-kitch-yes">
+                                                    <span>Yes</span>
+                                                    <input className="create-radio-input" id="create-amen-kitch-yes" type="radio" name="create-kitch" />
+                                                    <div className="create-radio-custom"></div>
+                                                </label>
+
                                             </div>
 
                                             <div className="create-radio-item-wrap">
-                                                <label className="create-radio-label" htmlFor="create-avail">No</label>
-                                                <input id="create-avail" type="radio" name="create-avail" />
+                                                <label className="create-radio-label" htmlFor="create-amen-kitch-no">
+                                                    <span>No</span>
+                                                    <input className="create-radio-input" id="create-amen-kitch-no" type="radio" name="create-kitch" />
+                                                    <div className="create-radio-custom"></div>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
