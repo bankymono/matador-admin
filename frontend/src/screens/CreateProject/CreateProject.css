@@ -33,6 +33,7 @@
 }
 
 .create-proj-input-container >input{
+    border-radius: 4px;
     height: 40px;
     /* width: 468px; */
     font-size: 16px;
@@ -99,9 +100,18 @@
     margin-bottom: 24px;
 }
 
-input.create-proj-textarea{
+textarea.create-proj-textarea{
     height: 120px;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px;
+    resize: none;
+}
 
+div.create-proj-textarea-max {
+    color: red;
 }
 
 .create-radio-label{
@@ -142,6 +152,7 @@ input.create-proj-textarea{
     line-height: 24px;
     border-radius: 4px;
     margin-right: 16px;
+    cursor: pointer;
 }
 
 .create-proj-btn-container .create-fill-green{
@@ -153,6 +164,7 @@ input.create-proj-textarea{
     font-size: 16px;
     line-height: 24px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .create-proj-images-container{
@@ -279,4 +291,45 @@ input.create-proj-textarea{
     color: #C9C9C9;
     display: flex;
     align-items: center;
+}
+
+.proj-textarea-wrapper{
+    background-color: white;
+    width: 100%;
+    border: 1px solid #E0E0E0;
+}
+
+.proj-new-text-count{
+    color: #BFBFBF;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.create-proj-bundle-select{
+    margin-right: 10px;
+}
+
+.create-proj-bundle-select-wrapper{
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 12px;
+    background-color: #03A678;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.proj-new-accept-img-desc{
+    margin-top: 3px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #8D8F91;
+}
+
+.proj-new-create-btn-container{
+    margin-top: 60px;
 }
