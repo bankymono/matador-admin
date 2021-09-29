@@ -333,3 +333,13 @@ div.create-proj-textarea-max {
 .proj-new-create-btn-container{
     margin-top: 60px;
 }
+
+.create-radio-custom{
+    width: 1.5em;
+    height: 1.5em;
+    background: red;
+}
+
+.create-radio-input{
+    display: none;
+}

@@ -289,8 +289,8 @@ const InvestmentInformation = ({handleDeleteBundleImage,fileName,handleFileChang
 
                             <div className="create-proj-one-field-row">
                                 <div className="create-proj-input-container create-proj-bundle-select-wrapper">
-                                    <input onChange={handleDisplayPaymentPlanForm} type="checkbox"  className="create-proj-bundle-select" id="create-proj-bundle-select" />
-                                    <label htmlFor="create-proj-bundle-select">Include payment plan</label>
+                                    <input onChange={handleDisplayPaymentPlanForm} type="checkbox"  className="create-proj-bundle-select" id="create-proj-bundle-payplan-select" />
+                                    <label htmlFor="create-proj-bundle-payplan-select">Include payment plan</label>
                                 </div>
                             </div>
                         </div>                

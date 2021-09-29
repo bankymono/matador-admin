@@ -112,7 +112,9 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
                     <div className="create-proj-input-radio-container">
                         <div className="create-radio-item-wrap">
                             <label className="create-radio-label" htmlFor="create-avail">Available</label>
-                            <input id="create-avail" type="radio" name="create-avail" />
+                            <div className="create-radio-custom"></div>
+                            <input className="create-radio-input" id="create-avail" type="radio" name="create-avail" />
+                            
                         </div>
 
                         <div className="create-radio-item-wrap">
