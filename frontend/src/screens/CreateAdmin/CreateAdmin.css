@@ -62,10 +62,12 @@
     flex-direction: column;
 }
 
+/* .settings-buttons-tab-container > button {
+    
+} */
 
 .settings-tab-btn{
     display: flex;
-    text-decoration: none;
     align-items: center;
     margin-bottom: 14px;
     padding: 12px 24px;
@@ -73,7 +75,6 @@
     border: none;
     font-size: 18px;
     font-weight: 600;
-    color: #292929;
 }
 
 .settings-tab-btn:last-child{
