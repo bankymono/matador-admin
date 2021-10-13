@@ -10,7 +10,7 @@ import admin_icon from '../../assets/icons/settings-admin.png';
 import update_password_icon from '../../assets/icons/settings-update-password.png';
 import investment_icon from '../../assets/icons/settings-investments.png';
 
-import admin_icon_green from '../../assets/icons/settings-admin-green.png';
+// import admin_icon_green from '../../assets/icons/settings-admin-green.png';
 // import update_password_icon_green from '../../assets/icons/settings-update-password.png';
 
 import { Link } from 'react-router-dom';

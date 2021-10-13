@@ -1,0 +1,41 @@
+.admin-list-comp-wrapper{
+}
+
+.admin-list-comp-wrapper hr {
+    border:1px solid #DEE2E6;
+    margin-bottom: 21px;
+}
+
+.adm-list-heading-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adm-list-heading{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    color: #404244;
+    margin-bottom: 21px;
+}
+
+.adm-list-empty-state-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 89px;
+}
+
+.adm-list-empty-state-img{
+    width: 116px;
+    height: 116px;
+    margin-bottom: 13px;
+}
+
+.adm-list-empty-state-text{
+    color: #8D8F91;
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 32px;
+}

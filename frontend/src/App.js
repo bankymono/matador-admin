@@ -13,7 +13,7 @@ import RecoverPassword from './screens/AuthScreens/RecoverPassword/RecoverPasswo
 import Dashboard from './screens/Dashboard/Dashboard';
 import CreateProject from './screens/CreateProject/CreateProject';
 import CreateAdmin from './screens/CreateAdmin/CreateAdmin';
-import AdminListTemp from './screens/AdminListTemp/AdminListTemp';
+import AdminList from './screens/AdminList/AdminList';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
 
 
@@ -94,7 +94,7 @@ function App() {
                   exact 
                   path='/settings/admin-manager'
                   render={(props)=>
-                    (<AdminListTemp
+                    (<AdminList
                       {...props} 
                         arrLinks={['home','settings','admin manager' ]}
                       />)} 
