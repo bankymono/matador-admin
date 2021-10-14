@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import './Login.css';
 import matador_logo from '../../../assets/images/MATADOR-LOGO.png';
 
@@ -17,11 +18,11 @@ const Login = () => {
                 <div className="login-input-wrapper">
                     <div className="login-label">Password</div>
                     <input className="login-input" type="password" />
-                    <div className="login-forgot-password">forgot password?</div>
+                    <Link className="login-recover-link" to="/recover-password"><div className="login-forgot-password">forgot password?</div></Link>
                 </div>
 
 
-                <button className="login-submit-button">Login</button>
+                <Link to="/dashboard"><button className="login-submit-button">Login</button></Link>
             </div>
         </div>
     )
