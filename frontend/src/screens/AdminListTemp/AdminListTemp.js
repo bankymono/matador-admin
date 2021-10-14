@@ -11,7 +11,7 @@ import SoleInvestmentSettings from '../../components/Settings/SoleInvestmentSett
 import TargetInvestmentSettings from '../../components/Settings/TargetInvestmentSettings/TargetInvestmentSettings';
 import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
-import './Settings.css';
+import './AdminListTemp.css';
 
 import admin_icon from '../../assets/icons/settings-admin.png';
 import update_password_icon from '../../assets/icons/settings-update-password.png';
@@ -27,9 +27,9 @@ import CreateAdminComponent from '../../components/Settings/CreateAdminComponent
 import { Link } from 'react-router-dom';
 
 
-const Settings = ({arrLinks}) => {
+const AdminListTemp = ({arrLinks}) => {
     const [currentPage, setCurrentPage] = useState("Settings");
-    const [switchTab, setSwitchTab] = useState(1);
+    const [switchTab, setSwitchTab] = useState(2);
 
     const toggleTab = (tab) =>{
         setSwitchTab(tab)
@@ -47,13 +47,12 @@ const Settings = ({arrLinks}) => {
                     <div className="settings-input-wrapper">
 
                         <div className="settings-buttons-tab-container">
-
                             <Link to="/settings" className={switchTab === 1 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"}>
                                 <img src={investment_icon} alt="investment" />
                                 <div>Investments</div>
                             </Link>
 
-                            <Link to="/settings/admin-manager" className={switchTab === 2 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
+                            <Link to="/settings/admin-manager"  className={switchTab === 2 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
                                 <img src={admin_icon} alt="admin" />
                                 <div>Admin Manager</div>
                             </Link>
@@ -62,13 +61,10 @@ const Settings = ({arrLinks}) => {
                                 <img src={update_password_icon} alt="update password" />
                                 <div>Update Password</div>
                             </Link>
-
                         </div>
 
                         <div className="settings-pages-content">
-                            <div className={switchTab === 1 ? "settings-content-wrapper settings-content-active" : "settings-content-wrapper"}>
-                                <InvestmentSettingsContainer />
-                            </div>
+                            <Link to="/settings/admin-manager/create-admin">Create Admin</Link>
                         </div>
 
                     </div>
@@ -78,4 +74,4 @@ const Settings = ({arrLinks}) => {
     )
 }
 
-export default Settings
+export default AdminListTemp

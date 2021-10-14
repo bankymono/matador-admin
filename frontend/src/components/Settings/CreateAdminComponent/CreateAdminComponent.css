@@ -1,0 +1,182 @@
+.create-admin-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.create-adm-nav-back{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    margin-bottom: 44px;
+}
+
+
+.create-adm-nav-back .arr-back-icon{
+    margin-right: 14px;
+}
+
+.create-adm-profile-img-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 36px;
+}
+
+.create-profile-holder{
+    background: #EEF5F3;
+    width: 153px;
+    height: 153px;
+    padding: 38px;
+    border-radius: 100%;
+    margin-right: 24px;
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+
+.create-profile-holder-with-img{
+    background: #EEF5F3;
+    width: 153px;
+    height: 153px;
+    border-radius: 100%;
+    margin-right: 24px;
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+
+.create-back-arr-link{
+    color: #292929;
+}
+
+.create-adm-upload-btn {
+    padding: 10px 18px;
+    color: white;
+    background: #03A678;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.create-adm-img-input{
+    display: none;
+}
+
+.create-input-item{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.create-input-item label {
+    flex: 1;
+    text-align: right;
+    font-size: 16px;
+    line-height: 21px;
+    color: #909896;
+    margin-right: 18px;
+}
+
+.create-input-item > input {
+    flex: 5;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 530px;
+    height: 40px;
+    outline: none;
+    padding: 8px;    /* flex: 1; */
+}
+
+.create-input-item > textarea {
+    flex: 5;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 530px;
+    height: 40px;
+    outline: none;
+    padding: 8px;    /* flex: 1; */
+}
+
+.create-input-item > div {
+    flex: 5;
+    border-radius: 4px;
+    width: 530px;
+    height: 40px;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+
+.inp-side-1 label {
+    text-align: right;
+    font-size: 16px;
+    line-height: 21px;
+    color: #909896;
+    margin-right: 18px;
+}
+
+.create-input-item .inp-side-1 input {
+    text-align: center;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 50px;
+    height: 40px;
+    outline: none;
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+.create-input-item .inp-side-1 input:last-child {
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    /* width: 122px; */
+    margin-right: 21px;
+}
+
+.create-adm-select-country-wrapper{
+
+    /* min-width: 150px; */
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+}
+
+.create-adm-country-select{
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    color: #909896;
+    outline: none;
+    flex: 1;
+    padding: 8px;
+    /* width: 30%; */
+}
+
+.create-input-item .inp-side-radio{
+    display: flex;
+}
+
+.create-input-item .inp-side-radio >div{
+    margin-right: 12px;
+}
+
+.create-input-item .adm-role{
+    border: 1px solid #E0E0E0;
+    outline: none;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.create-input-item .create-adm-submit-btn {
+    padding: 10px 18px;
+    color: white;
+    background: #03A678;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    align-self: right;
+}

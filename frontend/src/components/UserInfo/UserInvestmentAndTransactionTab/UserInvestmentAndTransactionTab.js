@@ -9,6 +9,7 @@ const UserInvestmentAndTransactionTab = () => {
     const toggleTab = (tab) =>{
         setToggleState(tab)
     }
+    
     return (
         <div className="user-tabs-container">
             <div className="tabs-controls">

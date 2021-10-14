@@ -12,6 +12,9 @@ import ChangePassword from './screens/AuthScreens/ChangePassword/ChangePassword'
 import RecoverPassword from './screens/AuthScreens/RecoverPassword/RecoverPassword';
 import Dashboard from './screens/Dashboard/Dashboard';
 import CreateProject from './screens/CreateProject/CreateProject';
+import CreateAdmin from './screens/CreateAdmin/CreateAdmin';
+import AdminListTemp from './screens/AdminListTemp/AdminListTemp';
+import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
 
 
 function App() {
@@ -83,7 +86,37 @@ function App() {
                   render={(props)=>
                     (<Settings
                       {...props} 
-                        arrLinks={['home','settings']}
+                        arrLinks={['home','settings','investments']}
+                      />)} 
+                  />  
+
+                <Route 
+                  exact 
+                  path='/settings/admin-manager'
+                  render={(props)=>
+                    (<AdminListTemp
+                      {...props} 
+                        arrLinks={['home','settings','admin manager' ]}
+                      />)} 
+                  />
+
+                <Route 
+                  exact 
+                  path='/settings/admin-manager/create-admin'
+                  render={(props)=>
+                    (<CreateAdmin
+                      {...props} 
+                        arrLinks={['home','settings','admin manager' ]}
+                      />)} 
+                  />  
+
+                <Route 
+                  exact 
+                  path='/settings/admin-manager/update-admin'
+                  render={(props)=>
+                    (<UpdateAdmin
+                      {...props} 
+                        arrLinks={['home','settings','admin manager' ]}
                       />)} 
                   />  
             </Switch>   
