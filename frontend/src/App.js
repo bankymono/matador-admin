@@ -11,6 +11,7 @@ import Login from './screens/AuthScreens/Login/Login';
 import ChangePassword from './screens/AuthScreens/ChangePassword/ChangePassword';
 import RecoverPassword from './screens/AuthScreens/RecoverPassword/RecoverPassword';
 import Dashboard from './screens/Dashboard/Dashboard';
+import CreateProject from './screens/CreateProject/CreateProject';
 
 
 function App() {
@@ -47,6 +48,15 @@ function App() {
                     (<ProjectsList 
                       {...props} 
                         arrLinks={['home','projects']}
+                        />)}
+                  />
+              <Route 
+                  exact 
+                  path='/projects/new'
+                  render={(props)=>
+                    (<CreateProject 
+                      {...props} 
+                        arrLinks={['home','projects', 'new']}
                         />)}
                   />
               <Route 

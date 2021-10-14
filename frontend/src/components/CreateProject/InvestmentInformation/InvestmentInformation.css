@@ -1,0 +1,135 @@
+.create-investment-info-heading{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.create-proj-bundle-select[type="checkbox"]{
+    opacity: 0;
+}
+
+.create-proj-bundle-payplan-select[type="checkbox"]{
+    opacity: 0;
+}
+
+.create-proj-bundle-select[type="checkbox"] + label{
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.create-proj-bundle-select[type="checkbox"] + label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    outline: 1px solid #BCBCBC;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.create-proj-bundle-select[type="checkbox"]:checked + label::after{
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    transform: translate(-50%,-50%);
+    width: 12px;
+    height: 12px;
+    outline: 1  px solid #BCBCBC;
+    background-image: url(../../../assets/icons/checked.png);
+    background-size: contain;
+}
+
+
+
+.create-proj-bundle-select[type="checkbox"] + label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    outline: 1px solid #BCBCBC;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.create-proj-bundle-select[type="checkbox"]:checked + label::after{
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    outline: 1  px solid #BCBCBC;
+    background-image: url(../../../assets/icons/checked.png);
+    background-size: contain;
+}
+
+/* .create-proj-bundle-payplan-select[type="checkbox"]{
+    opacity: 0;
+}
+
+.create-proj-bundle-payplan-select[type="checkbox"] + label{
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.create-proj-bundle-payplan-select[type="checkbox"] + label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    outline: 1px solid #BCBCBC;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.create-proj-bundle-payplan-select[type="checkbox"]:checked + label::after{
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+
+    width: 12px;
+    height: 12px;
+    outline: 1  px solid #BCBCBC;
+    /* background-image: url(../../../assets/icons/checked.png); 
+    background-size: contain;
+}
+
+
+
+.create-proj-bundle-payplan-select[type="checkbox"] + label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    outline: 1px solid #BCBCBC;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.create-proj-bundle-payplan-select[type="checkbox"]:checked + label::after{
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    transform: translate(-50%,-50%);
+    width: 12px;
+    height: 12px;
+    outline: 1  px solid #BCBCBC;
+    background-image: url(../../../assets/icons/checked.png);
+    background-size: contain;
+} */
