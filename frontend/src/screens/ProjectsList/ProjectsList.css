@@ -1,4 +1,4 @@
-.transactions-list-container{
+.projects-list-table-container{
     margin: 24px;
     padding: 0px;
     background-color: white;
@@ -6,19 +6,19 @@
     border-radius: 8px;    
 }
 
-/* .project-top-nav{
+.project-top-nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-} */
+}
 
 
-.transactions-right-btn-container {
+.projects-right-btn-container {
     display: flex;
     align-items: center;
 }
-.transactions-new-btn{
+.projects-new-btn{
     background-color:#03A678;
     border: 1px solid  white;
     display: flex;
@@ -36,7 +36,7 @@
 }
 
 
-.user-transactions-select {
+.user-projects-select {
     padding: 9px;
 
 
@@ -52,12 +52,12 @@
             background-position: right 0px top 51% ;
 }
 
-.user-transactions-select option:hover{
+.user-projects-select option:hover{
     background-color: #03A678;
     font-size: 17px;
 }
 
-.user-transactions-list-search-header{
+.user-projects-list-search-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,7 +72,7 @@
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
 }
 
-.user-transactions-list-search-header .search-input-container{
+.user-projects-list-search-header .search-input-container{
     display: flex;
     padding: 10px;
     border-radius: 8px;
@@ -80,7 +80,7 @@
     border: 1px solid #E0E0E0;
 }
 
-.user-transactions-list-search-header .search-input-container input {
+.user-projects-list-search-header .search-input-container input {
     padding: 5px  15px;
     margin-left: 10px;
     font-size: 14px;
@@ -89,14 +89,14 @@
 
 }
 
-.user-transactions-info-heading{
+.user-projects-info-heading{
     padding: 16px;
     display: flex;
     align-items: center;
     background-color: #F6F7F8;
 }
 
-.user-transactions-list-info-body-list{
+.user-projects-list-info-body-list{
     /* border-radius: 0 0 8px 8px; */
     
 
@@ -105,7 +105,7 @@
     /* -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05); */
 }
 
-.user-transactions-info-body{
+.user-projects-info-body{
     position: relative;
     padding: 16px;
     display: flex;
@@ -114,37 +114,41 @@
     
 }
 
-/* .user-transactions-info-body:last-child{
+/* .user-projects-info-body:last-child{
     border-radius: 0 0 8px 8px;
     
 } */
 
-.user-transactions-info-heading input {
+.projects-center-content-wrapper{
+    padding: 24px;
+}
+
+.user-projects-info-heading input {
     margin-right: 16px;
 }
 
-.user-transactions-info-body input {
+.user-projects-info-body input {
     margin-right: 16px;
 }
 
-.user-transactions-info-body .menu-dots {
+.user-projects-info-body .menu-dots {
     position: absolute;
     right: 16px;
 }
 
-.user-transactions-info-heading-wrapper {
+.user-projects-info-heading-wrapper {
     display: grid;
     grid-template-columns: repeat(5,1fr);
     width: 100%;
 }
 
-.user-transactions-info-body-wrapper {
+.user-projects-info-body-wrapper {
     display: grid;
     grid-template-columns: repeat(5,1fr);
     width: 100%;
 }
 
-.user-transactions-info-heading-item {
+.user-projects-info-heading-item {
     color: #8D8F91;
     text-transform: uppercase;
     font-size: 14px;
@@ -152,7 +156,7 @@
     font-weight: 600;
 }
 
-.user-transactions-bottom-pagination-container{
+.user-projects-bottom-pagination-container{
     padding: 16px;
     display: flex;
     justify-content: space-between;
@@ -160,7 +164,7 @@
     font-size: 16px;
 }
 
-.user-transactions-bottom-pagination-container .val{
+.user-projects-bottom-pagination-container .val{
     color: #03A678;
 }
 
