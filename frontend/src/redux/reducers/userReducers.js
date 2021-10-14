@@ -2,6 +2,10 @@ import {
     ADMIN_LIST_FAIL, 
     ADMIN_LIST_REQUEST, 
     ADMIN_LIST_SUCCESS, 
+    ADMIN_LOGIN_FAIL, 
+    ADMIN_LOGIN_REQUEST, 
+    ADMIN_LOGIN_SUCCESS, 
+    ADMIN_LOGOUT, 
     COUNTRY_LIST_FAIL, 
     COUNTRY_LIST_REQUEST, 
     COUNTRY_LIST_SUCCESS, 
@@ -13,6 +17,26 @@ import {
     SUPER_ADMIN_LIST_REQUEST,
     SUPER_ADMIN_LIST_SUCCESS
 } from "../constants/userConstants";
+
+export const adminLoginReducer = (state={}, action) => {
+    switch(action.type){
+        case ADMIN_LOGIN_REQUEST:
+            return { loading:true }
+
+        case ADMIN_LOGIN_SUCCESS:
+            return { loading: false, adminInfo: action.payload}
+
+        case ADMIN_LOGIN_FAIL:
+            return { loading:false, error: action.payload}
+
+        case ADMIN_LOGOUT:
+            return {}
+            
+        default:
+                return state;
+
+    }
+}
 
 export const countryListReducer = (state={countries:{}, countryLoading:true}, action) => {
     switch(action.type){

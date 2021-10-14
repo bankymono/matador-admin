@@ -7,7 +7,7 @@ const ManagerialAdminList = ({managerialAdmList, loading}) => {
     return (
         <div>
             <div className="super-admin-list">Managerial Admin</div>
-            {loading? <BeatLoader color="#03A678" loading={loading} />:
+            {loading? {/*<BeatLoader color="#03A678" loading={loading} />*/}:
                 managerialAdmList?.map(adm => 
                     <div className="admin-list-item" key={adm.id}>
                         <div className="adm-list-item-prof-info-wrpper">

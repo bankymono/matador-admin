@@ -7,7 +7,7 @@ const SalesAdminList = ({salesAdmList,loading}) => {
     return (
         <div>
             <div className="super-admin-list">Sales Admin</div>
-            {loading? <BeatLoader color="#03A678" loading={loading} />:
+            {loading?  {/*<BeatLoader color="#03A678" loading={loading} />*/}:
                 salesAdmList?.map(adm => 
                     <div className="admin-list-item" key={adm.id}>
                         <div className="adm-list-item-prof-info-wrpper">

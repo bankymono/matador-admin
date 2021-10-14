@@ -43,12 +43,14 @@
 .login-input{
     width: 412px;
     height: 48px;
-    border: 1px solid#E0E0E0;
+    border: 1px solid #E0E0E0;
     outline: none;
     font-size: 1rem;
 }
 
-
+.login-input-error{
+    border: 1px solid red;
+}
 
 .login-forgot-password {
     text-align: right;

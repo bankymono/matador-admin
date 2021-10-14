@@ -83,7 +83,7 @@ const CreateAdminComponent = ({history}) => {
                   history.push('/settings/admin-manager')
               })
         }
-    },[history, success,dispatch])
+    },[history,loading, success,dispatch])
 
 
     // const [adminData, setAdminData] = useState({
@@ -240,7 +240,6 @@ const CreateAdminComponent = ({history}) => {
         && addressIsInvalid === false
             ){
                 const data = {
-                    avatar:selectedProfileImg,
                     password:password,
                     username:username,
                     date_of_birth: `${dateYear}-${dateMonth}-${dateDay}`,
@@ -256,6 +255,9 @@ const CreateAdminComponent = ({history}) => {
                   }
                   if(role !== 'super_admin'){
                       data.role = role;
+                  }
+                  if(selectedProfileImg !== ""){
+                      data.avatar = selectedProfileImg
                   }
 
                 dispatch(createSuperAdmin(data))

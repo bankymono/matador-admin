@@ -37,6 +37,7 @@ const AdminList = () => {
                 {results?.length >= 2 ?<Link className="admin-list-item-btn" to="/settings/admin-manager/create-admin">Create Admin</Link>:null}
             </div> 
             <SuperAdminList />
+
             { results?.length >= 2 ?
             (<>
                 <ManagerialAdminList managerialAdmList={managerialAdmList} loading={loading} />

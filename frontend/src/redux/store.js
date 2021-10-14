@@ -1,16 +1,22 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {adminListReducer, countryListReducer, superAdminCreateReducer, superAdminListReducer} from './reducers/userReducers'
+import {adminListReducer, adminLoginReducer, countryListReducer, superAdminCreateReducer, superAdminListReducer} from './reducers/userReducers'
+
 
 const reducer = combineReducers({
+    adminLogin:adminLoginReducer,
     superAdminList:superAdminListReducer,
     adminList:adminListReducer,
     superAdminCreate:superAdminCreateReducer,
     countryList:countryListReducer
 });
 
-const initialState = {};
+const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')):null;
+
+const initialState = {
+    adminLogin:{ adminInfo:userInfoFromStorage },
+};
 
 const middleware = [thunk];
 
