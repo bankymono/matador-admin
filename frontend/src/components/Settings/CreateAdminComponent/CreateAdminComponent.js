@@ -83,7 +83,7 @@ const CreateAdminComponent = ({history}) => {
                   history.push('/settings/admin-manager')
               })
         }
-    },[history, success])
+    },[history, success,dispatch])
 
 
     // const [adminData, setAdminData] = useState({
@@ -257,7 +257,6 @@ const CreateAdminComponent = ({history}) => {
                   if(role !== 'super_admin'){
                       data.role = role;
                   }
-                // alert('sumbitted')
 
                 dispatch(createSuperAdmin(data))
         }
