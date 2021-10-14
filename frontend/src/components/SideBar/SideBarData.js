@@ -22,13 +22,13 @@ export const SideBarData = [
     {
         title:"Projects",
         icon:projects_icon,
-        link:'/projects',
+        link:'projects/id',
     },
 
     {
         title:"Investors",
         icon:investors_icon,
-        link:'/investors',
+        link:'/investors/info',
     },
 
     {
@@ -44,8 +44,8 @@ export const SideBarData = [
     },
 
     {
-        title:"Setting",
+        title:"Settings",
         icon:settings_icon,
-        link:'/setting',
+        link:'/settings',
     },
 ];

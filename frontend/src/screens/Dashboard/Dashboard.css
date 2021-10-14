@@ -206,3 +206,8 @@
     border-radius: 100%;
     margin-right: 8px;
 }
+
+.dashboard-txn-link{
+    text-decoration: none;
+    color: #404244;
+}
