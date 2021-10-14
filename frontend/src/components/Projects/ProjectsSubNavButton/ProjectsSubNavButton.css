@@ -28,6 +28,7 @@
 }
 
 .projects-subnav-btn {
+    text-decoration: none;
     outline: none;
     margin-right: 16px;
     font-size: 16px;

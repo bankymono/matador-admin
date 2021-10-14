@@ -69,6 +69,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 24px;
+    position: relative;
 }
 
 .create-input-item label {
@@ -122,7 +123,7 @@
     text-align: center;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
-    width: 50px;
+    width: 55px;
     height: 40px;
     outline: none;
     padding: 8px;
@@ -135,6 +136,7 @@
     border-radius: 4px;
     /* width: 122px; */
     margin-right: 21px;
+    padding: 2px;
 }
 
 .create-adm-select-country-wrapper{
@@ -158,6 +160,8 @@
 
 .create-input-item .inp-side-radio{
     display: flex;
+    padding: 12px;
+    border-radius: 4px;
 }
 
 .create-input-item .inp-side-radio >div{
@@ -179,4 +183,43 @@
     border: none;
     cursor: pointer;
     align-self: right;
+}
+.inp-side-radio.error-border{
+    border: 1px solid red;
+}
+
+.adm-role.error-border{
+    border: 1px solid red;
+}
+
+input.error-border{
+    border: 1px solid red;
+}
+.inp-side-1 input.error-border:last-child{
+    border: 1px solid red;
+}
+
+.inp-side-1 input.error-border{
+    border: 1px solid red;
+}
+
+textarea.error-border{
+    border: 1px solid red;
+}
+
+
+.input-err-msg{
+    color: red;
+    position: absolute;
+    bottom: -35%;
+    right: 0%;
+    font-size: 12px;
+}
+
+.dob_input{
+    position: relative;
+}
+
+.create-adm-country-select.error-border{
+    border: 1px solid red;   
 }

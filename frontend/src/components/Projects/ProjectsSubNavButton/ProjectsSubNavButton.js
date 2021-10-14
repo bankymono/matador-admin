@@ -2,6 +2,7 @@ import React from 'react';
 import './ProjectsSubNavButton.css';
 
 import plus_icon from '../../../assets/icons/fi-rr-plus.png';
+import { Link } from 'react-router-dom';
 
 const ProjectsSubNavButton = () => {
     return (
@@ -11,7 +12,7 @@ const ProjectsSubNavButton = () => {
                 <option>equity based</option>
                 <option>loan based</option>
             </select>
-            <button className="projects-subnav-btn"><img src={plus_icon} alt="create" /><div>New Project</div></button>
+            <Link to="/projects/new" className="projects-subnav-btn"><img src={plus_icon} alt="create" /><div>New Project</div></Link>
         </div>
     )
 }
