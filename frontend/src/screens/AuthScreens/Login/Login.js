@@ -24,28 +24,33 @@ const Login = ({history}) => {
     const {loading, error, adminInfo} = adminLogin;
 
     useEffect(()=>{
-        if(adminInfo && adminInfo.status){
-            Swal.fire({
-                icon: 'success',
-                title: 'Login Successful',
-                showConfirmButton: false,
-                timer: 2000
-              }).then(()=>{
-                  history.push('/dashboard')
-              })
-        }
-    },[adminInfo, history])
+        if(adminInfo){
+            history.push('/')
+        } 
+    },[adminInfo,error,history])
+
 
     const formik = useFormik({
         initialValues:{
             email:'',
             password:''
         },
-        onSubmit: values => {
+        onSubmit: async values => {
 
-            dispatch(login(values.email,values.password))
-
+            await dispatch(login(values.email,values.password))
+            
         },
+
+        //     Swal.fire({
+        //         icon: 'success',
+        //         title: 'Login Successful',
+        //         showConfirmButton: false,
+        //         timer: 2000
+        //       }).then(()=>{
+        //           history.push('/')
+        //       })
+
+        // },,
         validationSchema,
     })
 
@@ -80,6 +85,7 @@ const Login = ({history}) => {
                             />
                         <div className="login-forgot-password">forgot password?</div>
                     </div>
+                    {error ? <div className="login-error-msg">Invalid email or password</div>: null}
                     <button type="submit" className="login-submit-button">{loading ? <ClipLoader size={12} />: <span>Login</span>}</button>
                 </form>
             </div>

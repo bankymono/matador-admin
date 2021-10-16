@@ -6,7 +6,7 @@ import place_hldr_img from '../../../../assets/images/placeholder-profile-img.pn
 const ManagerialAdminList = ({managerialAdmList, loading}) => {
     return (
         <div>
-            <div className="super-admin-list">Managerial Admin</div>
+            {managerialAdmList.length > 0 ? <div className="super-admin-list">Managerial Admin</div>:null}
             {loading? {/*<BeatLoader color="#03A678" loading={loading} />*/}:
                 managerialAdmList?.map(adm => 
                     <div className="admin-list-item" key={adm.id}>
@@ -21,7 +21,7 @@ const ManagerialAdminList = ({managerialAdmList, loading}) => {
                     </div>                        
                 )
             }
-            <div className="admin-list-item">
+            {/* <div className="admin-list-item">
                 <div className="adm-list-item-prof-info-wrpper">
                     <img className="adm-list-item-thumbnail" src={place_hldr_img} alt="placeholder-img" />
                     <div className="adm-list-item-prof-info">
@@ -30,8 +30,8 @@ const ManagerialAdminList = ({managerialAdmList, loading}) => {
                     </div>
                 </div>
                 <Link className="admin-list-item-btn" to="/settings/admin-manager/update-admin">Manage Account</Link>
-            </div>
-            <hr />
+            </div> */}
+            {managerialAdmList.length > 0   ?         <hr />:null}
         </div>
     )
 }

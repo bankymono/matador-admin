@@ -1,7 +1,7 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {adminListReducer, adminLoginReducer, countryListReducer, superAdminCreateReducer, superAdminListReducer} from './reducers/userReducers'
+import {adminCreateReducer, adminListReducer, adminLoginReducer, countryListReducer, superAdminCreateReducer, superAdminListReducer} from './reducers/userReducers'
 
 
 const reducer = combineReducers({
@@ -9,6 +9,7 @@ const reducer = combineReducers({
     superAdminList:superAdminListReducer,
     adminList:adminListReducer,
     superAdminCreate:superAdminCreateReducer,
+    adminCreate:adminCreateReducer,
     countryList:countryListReducer
 });
 

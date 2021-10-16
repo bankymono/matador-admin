@@ -23,7 +23,7 @@ const SuperAdminList = () => {
             {loading
             ? <BeatLoader color="#03A678" loading={loading} />
             :(<>
-                {results?.lenghth > 0 ? <div className="super-admin-list">Super Admin</div>: null}
+                {results.length > 0 ? <div className="super-admin-list">Super Admin</div>: null}
                 {results.map( supAdm => (
                     <div className="admin-list-item" key={supAdm.id}>
                     <div className="adm-list-item-prof-info-wrpper">

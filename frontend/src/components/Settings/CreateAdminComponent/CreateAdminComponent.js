@@ -9,7 +9,7 @@ import profile_placeholder from '../../../assets/images/create-profile-placehold
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { createSuperAdmin, listCountries } from '../../../redux/actions/userActions'
+import { createAdmin, createSuperAdmin, listCountries } from '../../../redux/actions/userActions'
 import { ClipLoader } from 'react-spinners'
 
 const CreateAdminComponent = ({history}) => {
@@ -18,6 +18,9 @@ const CreateAdminComponent = ({history}) => {
     const dispatch = useDispatch()
     const superAdminCreate = useSelector(state => state.superAdminCreate);
     const {superAdmin, success, loading, error} = superAdminCreate
+
+    const adminCreate = useSelector(state => state.adminCreate);
+    const {admin, admSuccess, admLoading, admError} = adminCreate
 
     const countryList = useSelector(state => state.countryList)
     const {countries, countryError, countryLoading} = countryList
@@ -73,7 +76,7 @@ const CreateAdminComponent = ({history}) => {
 
     useEffect(()=>{
         dispatch(listCountries())
-        if(success){
+        if(success || admSuccess){
             Swal.fire({
                 icon: 'success',
                 title: 'Admin Created Successfully',
@@ -83,7 +86,7 @@ const CreateAdminComponent = ({history}) => {
                   history.push('/settings/admin-manager')
               })
         }
-    },[history,loading, success,dispatch])
+    },[history,loading, success,admSuccess, dispatch])
 
 
     // const [adminData, setAdminData] = useState({
@@ -253,14 +256,18 @@ const CreateAdminComponent = ({history}) => {
                     address: address,
                     country: country
                   }
+                  if(selectedProfileImg !== ""){
+                    data.avatar = selectedProfileImg
+                    }
                   if(role !== 'super_admin'){
                       data.role = role;
-                  }
-                  if(selectedProfileImg !== ""){
-                      data.avatar = selectedProfileImg
+                      dispatch(createAdmin(data))
+                  }else{
+                    dispatch(createSuperAdmin(data))
                   }
 
-                dispatch(createSuperAdmin(data))
+
+
         }
 
     }
@@ -472,7 +479,7 @@ const CreateAdminComponent = ({history}) => {
 
                 <div className="create-input-item">
                     <div></div>
-                    <button onClick={handleSubmit} className="create-adm-submit-btn" >{loading ? <ClipLoader size={12} />:<span>Create Admin</span>}</button>                    
+                    <button onClick={handleSubmit} className="create-adm-submit-btn" >{loading || admLoading ? <ClipLoader size={12} />:<span>Create Admin</span>}</button>                    
                 </div>
 
 

@@ -22,11 +22,13 @@ const AdminList = () => {
 
     useEffect(() => {
         dispatch(listAdmins())
-        if(results){
-            setManagerialAdmList(results.filter(adm => adm.role && adm.role === 'managerial_admin'))
-            setSalesAdmList(results.filter(adm => adm.role && adm.role === 'sales_admin'))
+        
+        // if(results){
+        //     setManagerialAdmList(results.filter(adm => adm.role && adm.role === 'managerial_admin'))
+        //     setSalesAdmList(results.filter(adm => adm.role && adm.role === 'sales_admin'))
 
-        }
+        // }
+        
     }, [dispatch]);
 
 
@@ -34,14 +36,14 @@ const AdminList = () => {
         <div className="admin-list-comp-wrapper">
             <div className="adm-list-heading-wrapper"> 
                 <div className="adm-list-heading">Admin Manager</div>
-                {results?.length >= 2 ?<Link className="admin-list-item-btn" to="/settings/admin-manager/create-admin">Create Admin</Link>:null}
+                {results?.length >= 1 ?<Link className="admin-list-item-btn" to="/settings/admin-manager/create-admin">Create Admin</Link>:null}
             </div> 
             <SuperAdminList />
 
-            { results?.length >= 2 ?
+            { results?.length >=1 ?
             (<>
-                <ManagerialAdminList managerialAdmList={managerialAdmList} loading={loading} />
-                <SalesAdminList salesAdmList={salesAdmList} loading={loading} />
+                <ManagerialAdminList managerialAdmList={results.filter(adm => adm.role && adm.role === 'managerial_admin')} loading={loading} />
+                <SalesAdminList salesAdmList={results.filter(adm => adm.role && adm.role === 'sales_admin')} loading={loading} />
                 </>)
             :
             (<div className="adm-list-empty-state-container">
