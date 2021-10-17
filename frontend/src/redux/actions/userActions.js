@@ -162,7 +162,7 @@ export const listAdmins = () => async (dispatch) => {
             payload:data
         })
 
-        // console.log('adm list', data)
+        console.log('adm list', data)
 
     } catch (error) {
         // dispatch({

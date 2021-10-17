@@ -26,51 +26,51 @@ const CreateAdminComponent = ({history}) => {
     const {countries, countryError, countryLoading} = countryList
 
     const [dateDay, setDateDay] = useState('');
-    const [dateDayIsInvalid, setDateDayIsInvalid] = useState('');
+    const [dateDayError, setDateDayError] = useState('');
 
     const [dateMonth, setDateMonth] = useState('');
-    const [dateMonthIsInvalid, setDateMonthIsInvalid] = useState('');
+    const [dateMonthError, setDateMonthError] = useState('');
 
     const [dateYear, setDateYear] = useState('');
-    const [dateYearIsInvalid, setDateYearIsInvalid] = useState('');
+    const [dateYearError, setDateYearError] = useState('');
 
     const [dateIsInvalid, setDateIsInvalid] = useState('');
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [passwordIsInvalid, setPasswordIsInvalid] = useState('');
-    const [confirmPasswordIsInvalid, setConfirmPasswordIsInvalid] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [passwordMisMatch, setPasswordMisMatch] = useState('');
 
     const [username, setUserName] = useState('');
-    const [usernameIsInvalid, setUserNameIsInvalid] = useState('');
+    const [usernameError, setUserNameError] = useState('');
 
     const [email, setEmail] = useState('');
-    const [emailIsInvalid, setEmailIsInvalid] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     const [firstName, setFirstName] = useState('');
-    const [firstNameIsInvalid, setFirstNameIsInvalid] = useState('');
+    const [firstNameError, setFirstNameError] = useState('');
 
     const [lastName, setLastName] = useState('');
-    const [lastNameIsInvalid, setLastNameIsInvalid] = useState('');
+    const [lastNameError, setLastNameError] = useState('');
 
     const [middleName, setMiddleName] = useState('');
-    const [middleNameIsInvalid, setMiddleNameIsInvalid] = useState('');
+    const [middleNameError, setMiddleNameError] = useState('');
 
     const [phone, setPhone] = useState('');
-    const [phoneIsInvalid, setPhoneIsInvalid] = useState('');
+    const [phoneError, setPhoneError] = useState('');
 
     const [gender, setGender] = useState('');
-    const [genderIsInvalid, setGenderIsInvalid] = useState('');
+    const [genderError, setGenderError] = useState('');
 
     const [address, setAddress] = useState('');
-    const [addressIsInvalid, setAddressIsInvalid] = useState('');
+    const [addressError, setAddressError] = useState('');
 
     const [country, setCountry] = useState(1);
-    const [countryIsInvalid, setCountryIsInvalid] = useState('');
+    const [countryInputError, setCountryInputError] = useState('');
 
     const [role, setRole] = useState('');
-    const [roleIsInvalid, setRoleIsInvalid] = useState('');
+    const [roleError, setRoleError] = useState('');
 
     // const [avatar, setAvatar] = useState('');
 
@@ -86,24 +86,12 @@ const CreateAdminComponent = ({history}) => {
                   history.push('/settings/admin-manager')
               })
         }
-    },[history,loading, success,admSuccess, dispatch])
+    },[history,
+        loading, 
+        success,admSuccess, 
+        dispatch
+])
 
-
-    // const [adminData, setAdminData] = useState({
-    //     password:"",
-    //     username:"",
-    //     bvn: "",
-    //     date_of_birth: "",
-    //     email: "",
-    //     first_name: "",
-    //     last_name: "",
-    //     middle_name: "",
-    //     phone: "",
-    //     status: true,
-    //     gender: "",
-    //     address: "",
-    //     country: ""
-    //   })
 
     
     const encodeFileToBase64 = (file) => {
@@ -128,120 +116,17 @@ const CreateAdminComponent = ({history}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('got here first')
+        let isValid = validateInputs()
+        
+        console.log('got here second')
+        // console.log(usernameIsInvalid, firstNameIsInvalid,lastNameIsInvalid,
+        //     middleNameIsInvalid,emailIsInvalid, passwordIsInvalid, confirmPasswordIsInvalid,
+        //     'p-match',passwordMisMatch,phoneIsInvalid,dateDayIsInvalid,dateMonthIsInvalid,dateYearIsInvalid,
+        //     roleIsInvalid,addressIsInvalid
+        //     )
 
-        if(username.trim() === '') {
-            setUserNameIsInvalid(true)
-        }else{
-            setUserNameIsInvalid(false);
-        }
-
-        if(firstName.trim() === ''){
-            setFirstNameIsInvalid(true);
-        } else{
-            setFirstNameIsInvalid(false);
-        }
-
-        if(lastName.trim() === ''){
-            setLastNameIsInvalid(true);
-        }else{
-            setLastNameIsInvalid(false);
-        }
-
-        if(middleName.trim() === '') {
-            setMiddleNameIsInvalid(true);
-        }else{
-            setMiddleNameIsInvalid(false);
-        }
-
-        if(email.trim() === ''){
-            setEmailIsInvalid(true)
-        }else{
-            setEmailIsInvalid(false)
-        }
-
-        if(password.trim() === ''){
-            setPasswordIsInvalid(true)
-        }else{
-            setPasswordIsInvalid(false)
-        }
-
-        if(confirmPassword.trim() === ''){
-            setConfirmPasswordIsInvalid(true)
-        }else{
-            setConfirmPasswordIsInvalid(false)
-        }
-
-        if(password !== confirmPassword){
-            setPasswordMisMatch(true)
-        }else{
-            setPasswordMisMatch(false)
-        }
-
-        if(phone === '' || phone === 0){
-            setPhoneIsInvalid(true)
-        }else{
-            setPhoneIsInvalid(false)
-        }
-
-        if(dateDay.trim() === ''){
-            setDateDayIsInvalid(true)
-        }else{
-            setDateDayIsInvalid(false)
-        }
-
-        if(dateMonth.trim() === ''){
-            setDateMonthIsInvalid(true)
-        }else{
-            setDateMonthIsInvalid(false)
-        }
-
-        if(dateYear.trim() === ''){
-            setDateYearIsInvalid(true)
-        }else{
-            setDateYearIsInvalid(false)
-        }
-
-        // if(gender === ''){
-        //     setGenderIsInvalid(true)
-        // }else{
-        //     setGenderIsInvalid(false)
-        // }
-
-        if(role === ''){
-            setRoleIsInvalid(true)
-        }else{
-            setRoleIsInvalid(false)
-        }
-
-        if(address.trim() === ''){
-            setAddressIsInvalid(true)
-        }else{
-            setAddressIsInvalid(false)
-        }
-
-        // if(country.trim() === ''){
-        //     setCountryIsInvalid(true)
-        // }else{
-        //     setCountryIsInvalid(false)
-        // }
-
-        if(
-            usernameIsInvalid === false 
-        && firstNameIsInvalid === false
-        && lastNameIsInvalid === false
-        && middleNameIsInvalid === false
-        && emailIsInvalid === false
-        && passwordIsInvalid === false
-        && confirmPasswordIsInvalid === false
-        && passwordMisMatch === false
-        && passwordMisMatch === false
-        && phoneIsInvalid === false
-        && dateDayIsInvalid === false
-        && dateMonthIsInvalid === false
-        && dateYearIsInvalid === false
-        && roleIsInvalid === false
-        && addressIsInvalid === false
-            ){
+                console.log('got here third')
                 const data = {
                     password:password,
                     username:username,
@@ -259,80 +144,195 @@ const CreateAdminComponent = ({history}) => {
                   if(selectedProfileImg !== ""){
                     data.avatar = selectedProfileImg
                     }
-                  if(role !== 'super_admin'){
-                      data.role = role;
-                      dispatch(createAdmin(data))
-                  }else{
-                    dispatch(createSuperAdmin(data))
-                  }
+                    if(isValid){
+                        if(role !== 'super_admin'){
+                            data.role = role;
+                            dispatch(createAdmin(data))
+                            console.log('got here')
+                        }else{
+                          dispatch(createSuperAdmin(data))
+                        }            
+                    }
 
-
-
-        }
 
     }
+
+    const validateInputs = () => {
+        let usernameError = '';
+        let firstNameError = '';
+        let lastNameError = '';
+        let middleNameError = '';
+        let emailError = '';
+        let passwordError = '';
+        let confirmPasswordError = '';
+        let passwordMisMatch = '';
+        let addressError = '';
+        let phoneError = '';
+        let dateDayError = '';
+        let dateMonthError = '';
+        let dateYearError = '';
+        let roleError = '';
+
+        if(username.trim() === '') {
+            usernameError="Field is required";
+        }
+
+        if(firstName.trim() === ''){
+            firstNameError="Field is required";
+        }
+
+        if(lastName.trim() === ''){
+            lastNameError = "Field is required";
+        }
+
+        if(middleName.trim() === '') {
+            middleNameError = "Field is required";
+        }
+
+        if(email.trim() === ''){
+            emailError = "Field is required";
+        }
+
+        if(password.trim() === ''){
+            passwordError="Field is required";
+        }
+
+        if(confirmPassword.trim() === ''){
+            confirmPasswordError="Field is required";
+        }
+
+        if(password !== confirmPassword){
+            passwordMisMatch = "Password mismatch";
+        }
+
+        if(phone === '' || phone === 0){
+            phoneError="Field is required";
+        }
+
+        if(dateDay.trim() === ''){
+            dateDayError="Field is required";
+        }
+
+        if(dateMonth.trim() === ''){
+            dateMonthError = "Field is required";
+        }
+
+        if(dateYear.trim() === ''){
+            dateYearError="Field is required";
+        }
+
+
+        if(role === ''){
+            roleError = "Field is required";
+        }
+
+        if(address.trim() === ''){
+            addressError="Field is required";
+        }
+
+        if(
+            firstNameError 
+        || lastNameError
+        || middleNameError
+        || emailError
+        || usernameError
+        || passwordError
+        || confirmPasswordError
+        || passwordMisMatch
+        || addressError
+        || dateDayError
+        || dateMonthError
+        || dateYearError
+        || phoneError
+        || roleError){
+            setFirstNameError(firstNameError)
+            setLastNameError(lastNameError)
+            setUserNameError(usernameError)
+            setMiddleNameError(middleNameError)
+            setPasswordError(passwordError)
+            setEmailError(emailError)
+            setConfirmPasswordError(confirmPasswordError)
+            setPasswordMisMatch(passwordMisMatch)
+            setAddressError(addressError)
+            setDateDayError(dateDayError)
+            setDateMonthError(dateMonthError)
+            setDateYearError(dateYearError)
+            setPhoneError(phoneError)
+            setRoleError(roleError)
+            return false;
+        }
+        
+        return true;
+    }
+    // const handleBlur = () => {
+    //     if(password === confirmPassword){
+    //         setPasswordMisMatch(false)
+    //     }else{
+    //         setPasswordMisMatch(true)
+    //     }
+    // }
 
     const handleChange = (e) => {
         switch(e.target.name){
             case 'username':
-                setUserNameIsInvalid(false);
+                setUserNameError('');
                 setUserName(e.target.value);
                 break;
             case 'first-name':
-                setFirstNameIsInvalid(false);
+                setPasswordError('');
                 setFirstName(e.target.value);
                 break;
             case 'last-name':
-                setLastNameIsInvalid(false);
+                setLastNameError('');
                 setLastName(e.target.value);
                 break;
             case 'middle-name':
-                setMiddleNameIsInvalid(false);
+                setMiddleNameError('');
                 setMiddleName(e.target.value);
                 break;
             case 'email':
-                setEmailIsInvalid(false);
+                setEmailError('');
                 setEmail(e.target.value);
                 break;
             case 'password':
-                setPasswordIsInvalid(false);
+                setPasswordError('');
                 setPassword(e.target.value);
                 break;
             case 'c-password':
-                setConfirmPasswordIsInvalid(false);
+                setConfirmPasswordError('');
                 setConfirmPassword(e.target.value);
+                if(password === confirmPassword) setPasswordMisMatch('')
                 break;
             case 'phone':
-                setPhoneIsInvalid(false);
+                setPhoneError('');
                 setPhone(e.target.value);
                 break;
             case 'day':
-                setDateDayIsInvalid(false);
+                setDateDayError('');
                 setDateDay(e.target.value);
                 break;
             case 'month':
-                setDateMonthIsInvalid(false);
+                setDateMonthError('');
                 setDateMonth(e.target.value);
                 break;
             case 'year':
-                setDateYearIsInvalid(false);
+                setDateYearError('');
                 setDateYear(e.target.value);
                 break;
             case 'gender':
-                setGenderIsInvalid(false);
                 setGender(e.target.value);
                 break;
             case 'role':
-                setRoleIsInvalid(false);
+                setRoleError('');
                 setRole(e.target.value);
                 break;
             case 'address':
-                setAddressIsInvalid(false);
+                setAddressError('');
                 setAddress(e.target.value);
                 break;
 
             case 'country':
-                setCountryIsInvalid(false);
+                setCountryInputError('');
                 setCountry(e.target.value);
                 break;
 
@@ -347,6 +347,8 @@ const CreateAdminComponent = ({history}) => {
                 <Link className="create-back-arr-link" to="/settings/admin-manager"><AiOutlineArrowLeft className="arr-back-icon" /></Link>
                 <div>Create Admin</div>
             </div>
+
+            <form onSubmit={handleSubmit}>
 
             <div className="create-adm-profile-img-wrapper">
                 {
@@ -364,53 +366,53 @@ const CreateAdminComponent = ({history}) => {
             <div className="create-adm-form-wrapper">
                 <div className="create-input-item">
                     <label>Username</label>
-                    <input name="username" value={username} onChange={handleChange} type="text" className={usernameIsInvalid === true ?"error-border":""} />
-                    {usernameIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
+                    <input name="username" value={username} onChange={handleChange} type="text" className={usernameError ?"error-border":""} />
+                    {usernameError  ? <span className="input-err-msg">{usernameError}</span>: null}
                 </div>
 
 
                 <div className="create-input-item">
                     <label>First Name</label>
-                    <input name="first-name" value={firstName} onChange={handleChange} type="text" className={firstNameIsInvalid === true ?"error-border":""} />
-                    {firstNameIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
+                    <input name="first-name" value={firstName} onChange={handleChange} type="text" className={firstNameError ?"error-border":""} />
+                    {firstNameError ? <span className="input-err-msg">{firstNameError}</span>: null}
                 </div>
 
                 <div className="create-input-item">
                     <label>Last Name</label>
-                    <input name="last-name" value={lastName} onChange={handleChange} type="text" className={lastNameIsInvalid === true ?"error-border":""}/>
-                    {lastNameIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
+                    <input name="last-name" value={lastName} onChange={handleChange} type="text" className={lastNameError ?"error-border":""}/>
+                    {lastNameError ? <span className="input-err-msg">{lastNameError}</span>: null}
                 </div>
 
                 <div className="create-input-item">
                     <label>Middle Name</label>
-                    <input name='middle-name' value={middleName} onChange={handleChange} type="text" className={middleNameIsInvalid === true ?"error-border":""}/>
-                    {middleNameIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
+                    <input name='middle-name' value={middleName} onChange={handleChange} type="text" className={middleNameError ?"error-border":""}/>
+                    {middleNameError ? <span className="input-err-msg">{middleNameError}</span>: null}
                 </div>
 
                 <div className="create-input-item">
                     <label>Email</label>
-                    <input name="email" value={email} onChange={handleChange} type="email" className={emailIsInvalid === true ?"error-border":""}/>
-                    {emailIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
+                    <input name="email" value={email} onChange={handleChange} type="email" className={emailError ?"error-border":""}/>
+                    {emailError ? <span className="input-err-msg">{emailError}</span>: null}
                 </div>
 
                 <div className="create-input-item">
                     <label>Password</label>
-                    <input name="password" value={password} onChange={handleChange} type="password" className={passwordIsInvalid === true  || passwordMisMatch===true?"error-border":""}/>
-                    {passwordIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
-                    {passwordMisMatch === true ? <span className="input-err-msg">Password Mismatch</span>: null}
+                    <input name="password" value={password} onChange={handleChange} type="password" className={passwordError  || passwordMisMatch ?"error-border":""}/>
+                    {passwordError ? <span className="input-err-msg">{passwordError}</span>: null}
+                    {passwordMisMatch ? <span className="input-err-msg">{passwordMisMatch}</span>: null}
                 </div>
 
                 <div className="create-input-item">
                     <label>Confirm Password</label>
-                    <input name="c-password" value={confirmPassword} onChange={handleChange} type="password" className={confirmPasswordIsInvalid === true|| passwordMisMatch===true ?"error-border":""}/>
-                    {confirmPasswordIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
-                    {passwordMisMatch === true ? <span className="input-err-msg">Password Mismatch</span>: null}
+                    <input name="c-password" value={confirmPassword} onChange={handleChange} type="password" className={confirmPasswordError|| passwordMisMatch ?"error-border":""}/>
+                    {confirmPasswordError  ? <span className="input-err-msg">{confirmPasswordError}</span>: null}
+                    {passwordMisMatch ? <span className="input-err-msg">{passwordMisMatch}</span>: null}
                 </div>
 
                 <div className="create-input-item">
                     <label>Phone</label>
-                    <input name="phone" value={phone} onChange={handleChange} type="tel" className={phoneIsInvalid === true ?"error-border":""}/>
-                    {phoneIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
+                    <input name="phone" value={phone} onChange={handleChange} type="tel" className={phoneError ?"error-border":""}/>
+                    {phoneError ? <span className="input-err-msg">{phoneError}</span>: null}
                 </div>
 
                 <div className="create-input-item">
@@ -418,25 +420,18 @@ const CreateAdminComponent = ({history}) => {
                     <div>
                         <div className="dob_input">
                             <div className="inp-side-1">
-                                <input name="day" value={dateDay} onChange={handleChange} type="number" placeholder="DD" className={dateDayIsInvalid === true ?"error-border":""} />
-                                <input name="month" value={dateMonth} onChange={handleChange} type="number" placeholder="MM" className={dateMonthIsInvalid === true ?"error-border":""}/>
-                                <input name="year" value={dateYear}onChange={handleChange} type="number" placeholder="YYYY" className={dateYearIsInvalid === true ?"error-border":""}/>
+                                <input name="day" value={dateDay} onChange={handleChange} type="number" placeholder="DD" className={dateDayError ?"error-border":""} />
+                                <input name="month" value={dateMonth} onChange={handleChange} type="number" placeholder="MM" className={dateMonthError ?"error-border":""}/>
+                                <input name="year" value={dateYear}onChange={handleChange} type="number" placeholder="YYYY" className={dateYearError ?"error-border":""}/>
                             </div>
                         </div>
 
 
                         <div className="create-adm-select-country-wrapper">
                             <label>Country</label>
-                            <select name="country" value={country} onChange={handleChange} className={countryIsInvalid === true ? "adm-role error-border" : "adm-role"} >
+                            <select name="country" value={country} onChange={handleChange} className={countryInputError ? "adm-role error-border" : "adm-role"} >
                                 {countryLoading === false ? countries?.country.map(el => (<option key={el.id} value={el.id}>{el.name}</option>)): null}
                             </select>
-                            {/* <CountryDropdown 
-                                value={country}
-                                onChange={(val) => {
-                                    setCountry(val)
-                                    setCountryIsInvalid(false)
-                                }}
-                                className= "create-adm-country-select" /> */}
                         </div>
                     </div>
                 </div>
@@ -459,7 +454,7 @@ const CreateAdminComponent = ({history}) => {
 
                         <div className="create-adm-select-country-wrapper">
                             <label>Admin Role</label>
-                            <select name="role" value={role} onChange={handleChange} className={roleIsInvalid === true ? "adm-role error-border" : "adm-role"} >
+                            <select name="role" value={role} onChange={handleChange} className={roleError ? "adm-role error-border" : "adm-role"} >
                                 <option value="">Select Admin role</option>
                                 <option value="super_admin">Super Admin</option>
                                 <option value="managerial_admin">Managerial Admin</option>
@@ -473,17 +468,18 @@ const CreateAdminComponent = ({history}) => {
 
                 <div className="create-input-item">
                     <label>Address</label>
-                    <textarea name="address" value={address} onChange={handleChange} className={addressIsInvalid === true ?"error-border":""}></textarea>
-                    {addressIsInvalid === true ? <span className="input-err-msg">Field is required</span>: null}
+                    <textarea name="address" value={address} onChange={handleChange} className={addressError ?"error-border":""}></textarea>
+                    {addressError ? <span className="input-err-msg">{addressError}</span>: null}
                 </div>
 
                 <div className="create-input-item">
                     <div></div>
-                    <button onClick={handleSubmit} className="create-adm-submit-btn" >{loading || admLoading ? <ClipLoader size={12} />:<span>Create Admin</span>}</button>                    
+                    <button type='submit' className="create-adm-submit-btn" >{loading || admLoading ? <ClipLoader size={12} />:<span>Create Admin</span>}</button> 
                 </div>
 
 
             </div>
+            </form>
         </div>
     )
 }
