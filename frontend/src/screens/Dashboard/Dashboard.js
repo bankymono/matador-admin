@@ -15,6 +15,7 @@ import DashboardTransactionsCard from '../../components/Dashboard/DashboardTrans
 import DashboardInvestorsCard from '../../components/Dashboard/DashboardInvestorsCard/DashboardInvestorsCard';
 import DashboardTotalDepositCard from '../../components/Dashboard/DashboardTotalDepositCard/DashboardTotalDepositCard';
 import DashboardTotalWithdrawalCard from '../../components/Dashboard/DashboardTotalWithdrawalCard/DashboardTotalWithdrawalCard';
+import { Link } from 'react-router-dom';
 
 const Dashboard = ({match, arrLinks}) => {
     const [currentPage, setCurrentPage] = useState("Dashboard")
@@ -33,9 +34,9 @@ const Dashboard = ({match, arrLinks}) => {
                             <DoughnutChartCard />    
                             <DashboardInvestmentsCard />  
                             <DashboardRevenueCard />     
-                            <DashboardInvestorsCard />               
-                            <DashboardProjectsCard />
-                            <DashboardTransactionsCard />
+                            <Link className="dashboard-txn-link" to="/investors/info"><DashboardInvestorsCard /></Link>               
+                            <Link className="dashboard-txn-link" to="/projects/id"><DashboardProjectsCard /></Link>
+                            <Link className="dashboard-txn-link" to="/transactions"><DashboardTransactionsCard /></Link>
                         </div>
                         <div className="dashboard-bottom-items">
                             <DashboardTotalDepositCard />

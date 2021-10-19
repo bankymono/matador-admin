@@ -48,13 +48,20 @@
     font-size: 1rem;
 }
 
+
 .login-input-error{
     border: 1px solid red;
+}
+
+.login-recover-link{
+    text-decoration: none;
 }
 
 .login-forgot-password {
     text-align: right;
     margin-top: 8px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .login-submit-button {
