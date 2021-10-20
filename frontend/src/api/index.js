@@ -13,7 +13,7 @@ const headers = {
 };
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
+    baseURL: process.env.REACT_APP_BASE_URL || 'https://matador-api.herokuapp.com/v1',
     headers
 })
 const {getState, dispatch} = store

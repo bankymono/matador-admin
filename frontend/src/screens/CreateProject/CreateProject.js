@@ -15,7 +15,7 @@ import './CreateProject.css';
 const CreateProject = ({arrLinks}) => {
     const history = useHistory();
 
-    const temporaryToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0OTEyOTQ1LCJqdGkiOiIzZDg4OGYzOTJkYTE0MTk3ODJhOWJlYzQzYWQ3ZmJjOCIsInVzZXJfaWQiOjF9.ZD-Y0cI_P6uZ8w7k-GDtc7LJW7__tIcoCf1AfxP0p3c";
+    const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
     const BASE_API_URL = "https://matador-api.herokuapp.com/v1";
 
     const [selectedProjectImages, setSelectedProjectImages] = useState([])
@@ -207,7 +207,7 @@ const CreateProject = ({arrLinks}) => {
                     data,
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${temporaryToken}`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )
@@ -358,7 +358,7 @@ const CreateProject = ({arrLinks}) => {
                     url: BASE_API_URL + "/investment/building-type",
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${temporaryToken}`
+                        'Authorization': `Bearer ${token}`
                     }
                 });
                 setBuildingTypes(res.data.data);
@@ -374,7 +374,7 @@ const CreateProject = ({arrLinks}) => {
                     url: BASE_API_URL + "/investment/land-title",
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${temporaryToken}`
+                        'Authorization': `Bearer ${token}`
                     }
                 });
 
