@@ -15,7 +15,7 @@ const ProjectInformation = (
     handleProjectImageChange, selectedProjectImages, newProject, 
     handleSelectedAmenities, cancelProjectCreation, fetchedAmenities,
     selectedAmenities, setAmenityAmount, removeAmenity, landTitles,
-    buildingTypes}
+    buildingTypes, statuses}
     ) => {
 
     const [usedText, setUsedText] = useState(0)
@@ -159,40 +159,23 @@ const ProjectInformation = (
                     </div>
                 </div>
 
-                <div className="create-proj-input-radio-wrapper">
-                    <div className="create-proj-radio-label" htmlFor="proj-name">Status</div>
-
-                    <div className="create-proj-input-radio-container">
-                        <div className="create-radio-item-wrap">
-                            <label className="create-radio-label" htmlFor="create-avail"><span>Available</span>
-                                <input 
-                                    className="create-radio-input" id="create-avail" 
-                                    type="radio" name="create-avail" 
-                                    onChange={
-                                        (e) => setNewProject({...newProject, status: "Available"})
-                                    }
-                                    checked={newProject.status === "Available" ? true : false}/>
-                                <div className="create-radio-custom"></div>                            
-                            </label>
-
-                        </div>
-
-                        <div className="create-radio-item-wrap">
-                            <label className="create-radio-label" htmlFor="create-unavail"><span>Unavailable</span>
-                                <input 
-                                    className="create-radio-input" id="create-unavail" 
-                                    type="radio" name="create-avail" 
-                                    onChange={
-                                        (e) => setNewProject({...newProject, status: "Unavailable"})
-                                    }
-                                    checked={newProject.status === "Unavailable" ? true : false}/>
-                                <div className="create-radio-custom"></div>
-                            </label>
-
-                        </div>
+                <div className="create-proj-input-container">
+                    <label className="create-proj-input-label" htmlFor="proj-name">Status</label>
+                        <select className="select"
+                            onChange={
+                                (e) => setNewProject({...newProject, status: e.target.value})
+                            } 
+                        >
+                            <option value="">Select Project Status</option>
+                            {
+                                statuses.map(status => (
+                                    <option value={status.id} key={status.name}>{status.name}</option>
+                                    )
+                                )
+                            }
+                        </select>
                     </div>
                 </div>
-            </div>
             
 
             <div className="create-proj-hr" />

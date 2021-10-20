@@ -38,6 +38,7 @@ const CreateProject = ({arrLinks}) => {
     const [selectedBundleAmenities, setSelectedBundleAmenities] = useState([]);
     const [bundles, setBundles] = useState([]);
     const [payment_plan, setPaymentPlan] = useState([]);
+    const [statuses, setStatuses] = useState([]);
     const [currentBundle, setCurrentBundle] = useState(null);
     
     //At the point of clicking next, please add the selected images to the new project
@@ -383,10 +384,28 @@ const CreateProject = ({arrLinks}) => {
             }
         }
 
+        const fetchProjectStatuses = async () => {
+            try{
+                const res = await axios({
+                    method: 'GET',
+                    url: BASE_API_URL + "/investment/project-status",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                setStatuses(res.data.data);
+            }catch(error){
+                console.log(error);
+            }
+        }
+
         fetchAmenities();
         fetchInvestmentTypes();
         fetchBuildingTypes();
         fetchLandTitles();
+        fetchProjectStatuses();
     }, [])
 
     switch(step){
@@ -415,6 +434,7 @@ const CreateProject = ({arrLinks}) => {
                                 removeAmenity={removeAmenity}
                                 landTitles={landTitles}
                                 buildingTypes={buildingTypes}
+                                statuses={statuses}
                             />
         
                         </div>
