@@ -10,7 +10,7 @@ import SubNav from '../../components/SubNav/SubNav';
 import { createProject } from '../../redux/actions/userActions'
 import axios from 'axios';
 import './CreateProject.css';
-
+import { toast } from 'react-toastify';
 
 const CreateProject = ({arrLinks}) => {
     const history = useHistory();
@@ -197,8 +197,6 @@ const CreateProject = ({arrLinks}) => {
             payment_plan: payment_plan_clone.length ? payment_plan_clone : undefined
         };
         
-        console.log(data);
-        
         try{
             const res = await axios(
                 {
@@ -211,8 +209,8 @@ const CreateProject = ({arrLinks}) => {
                     }
                 }
             )
-
-            console.log(res.data);
+            
+            toast("Project Created Successfully!");
 
             setNewProject({});
             setBundles([]);
@@ -226,6 +224,7 @@ const CreateProject = ({arrLinks}) => {
             setCurrentBundle(null);
             history.push("/projects");
         }catch(error){
+            toast(error.response.data.message || "An error occured");
             console.log(error.response);
         }
     }
