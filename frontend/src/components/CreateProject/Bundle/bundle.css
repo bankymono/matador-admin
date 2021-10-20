@@ -1,0 +1,39 @@
+.add-new-bundle{
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: lightgreen;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.flex-row{
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+}
+
+.collapse-and-show{
+    margin-right: 20px;
+    color: #03A678;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.delete{
+    color: rgb(233, 6, 6);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.small-heading{
+    font-size: 1.2rem;
+}
+
+.show{
+    display: block;
+}
+
+.none{
+    display: none;
+}

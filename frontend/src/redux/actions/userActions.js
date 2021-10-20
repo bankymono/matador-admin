@@ -9,11 +9,14 @@ import {
     SUPER_ADMIN_CREATE_COMPLETE,
     SUPER_ADMIN_CREATE_FAIL,
     SUPER_ADMIN_CREATE_REQUEST,
-        SUPER_ADMIN_CREATE_SUCCESS,
-        SUPER_ADMIN_LIST_FAIL, 
-        SUPER_ADMIN_LIST_REQUEST, 
-        SUPER_ADMIN_LIST_SUCCESS,
-        
+    SUPER_ADMIN_CREATE_SUCCESS,
+    SUPER_ADMIN_LIST_FAIL, 
+    SUPER_ADMIN_LIST_REQUEST, 
+    SUPER_ADMIN_LIST_SUCCESS,
+    PROJECT_CREATE_COMPLETE,
+    PROJECT_CREATE_FAIL,
+    PROJECT_CREATE_REQUEST,
+    PROJECT_CREATE_SUCCESS,
     } from "../constants/userConstants";
     dotenv.config();
 
@@ -146,5 +149,40 @@ export const createSuperAdmin = (superAdmin) => async (dispatch) => {
         //     ? error.response.data.message
         //     : error.message,
         // })
+    }
+}
+
+const temporaryToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NDY4NTQzLCJqdGkiOiJmODNkNzhhM2M4NjE0OTYyOTAzYmU4ODBlYTgxNWQwMSIsInVzZXJfaWQiOjF9.ZjhiKYlEf3q9E00Ckkf8RHsEZC37LDrYdEUEeyJaHdY";
+const BASE_API_URL = "https://matador-api.herokuapp.com/v1";
+
+export const createProject = (project) => async (dispatch) => {
+    try {
+        dispatch({
+            type: PROJECT_CREATE_REQUEST
+        })
+
+        const config = {
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${temporaryToken}`
+            },
+        }
+        const {data} = await axios.post(
+            BASE_API_URL + '/investment/project/', project,
+            config
+        )
+        dispatch({
+            type:PROJECT_CREATE_SUCCESS,
+            payload:data
+        })
+
+        dispatch({
+            type:PROJECT_CREATE_COMPLETE
+        })
+
+        return 'Success';
+    } catch (error) {
+        console.log('create project error', error.response);
+        return 'Error';
     }
 }

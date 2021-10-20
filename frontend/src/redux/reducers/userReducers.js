@@ -11,7 +11,11 @@ import {
     SUPER_ADMIN_CREATE_SUCCESS, 
     SUPER_ADMIN_LIST_FAIL, 
     SUPER_ADMIN_LIST_REQUEST,
-    SUPER_ADMIN_LIST_SUCCESS
+    SUPER_ADMIN_LIST_SUCCESS,
+    PROJECT_CREATE_COMPLETE,
+    PROJECT_CREATE_REQUEST,
+    PROJECT_CREATE_FAIL,
+    PROJECT_CREATE_SUCCESS
 } from "../constants/userConstants";
 
 export const countryListReducer = (state={countries:{}, countryLoading:true}, action) => {
@@ -71,6 +75,34 @@ export const superAdminCreateReducer = (state={success:false}, action) => {
                 success:false,
             }
         case SUPER_ADMIN_CREATE_FAIL:
+            return {
+                loading:false,
+                error:action.payload,
+            }
+
+        default:
+            return state
+    }
+}
+
+export const projectCreateReducer = (state={success:false}, action) => {
+    switch(action.type){
+        case PROJECT_CREATE_REQUEST:
+            return {
+                loading:true
+            }
+        case PROJECT_CREATE_SUCCESS:
+            return {
+                loading:false,
+                success:true,
+                project:action.payload
+            }
+        case PROJECT_CREATE_COMPLETE:
+            return {
+                loading:false,
+                success:false,
+            }
+        case PROJECT_CREATE_FAIL:
             return {
                 loading:false,
                 error:action.payload,
