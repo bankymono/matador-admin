@@ -124,6 +124,8 @@ const CreateProject = ({arrLinks}) => {
     }
 
     const handleProceedToPrevPage = async () => {
+        toast("Please wait...");
+        
         //Set Bundle Amenities
         const bundlesClone = [...bundles];
         const payment_plan_clone = [...payment_plan];
