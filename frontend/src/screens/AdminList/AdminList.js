@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Header from '../../components/Header/Header';
 import SideBar from '../../components/SideBar/SideBar';
@@ -16,8 +16,6 @@ import { Link } from 'react-router-dom';
 const AdminListTemp = ({arrLinks}) => {
     const [currentPage, setCurrentPage] = useState("Settings");
     const [switchTab, setSwitchTab] = useState(2);
-
-
 
     // const toggleTab = (tab) =>{
     //     setSwitchTab(tab)

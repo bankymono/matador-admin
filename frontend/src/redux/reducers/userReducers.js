@@ -1,7 +1,18 @@
 import { 
+    ADMIN_CREATE_COMPLETE,
+    ADMIN_CREATE_FAIL,
+    ADMIN_CREATE_REQUEST,
+    ADMIN_CREATE_SUCCESS,
     ADMIN_LIST_FAIL, 
     ADMIN_LIST_REQUEST, 
     ADMIN_LIST_SUCCESS, 
+    ADMIN_LOGIN_FAIL, 
+    ADMIN_LOGIN_REQUEST, 
+    ADMIN_LOGIN_SUCCESS, 
+    ADMIN_LOGOUT, 
+    ADMIN_REFRESH_TOKEN_FAIL, 
+    ADMIN_REFRESH_TOKEN_REQUEST, 
+    ADMIN_REFRESH_TOKEN_SUCCESS, 
     COUNTRY_LIST_FAIL, 
     COUNTRY_LIST_REQUEST, 
     COUNTRY_LIST_SUCCESS, 
@@ -17,6 +28,42 @@ import {
     PROJECT_CREATE_FAIL,
     PROJECT_CREATE_SUCCESS
 } from "../constants/userConstants";
+
+export const adminLoginReducer = (state={}, action) => {
+    switch(action.type){
+        case ADMIN_LOGIN_REQUEST:
+            return { loading:true }
+
+        case ADMIN_LOGIN_SUCCESS:
+            return { loading: false, adminInfo: action.payload}
+
+        case ADMIN_LOGIN_FAIL:
+            return { loading:false, error: action.payload}
+
+        case ADMIN_REFRESH_TOKEN_REQUEST:
+            return {
+                ...state,
+                loading:true,
+            }
+
+        case ADMIN_REFRESH_TOKEN_SUCCESS:
+            return {
+                adminInfo:action.payload,
+                loading:false
+            }
+
+        case ADMIN_REFRESH_TOKEN_FAIL:
+            return { ...state, loading:false, error: action.payload}
+
+        case ADMIN_LOGOUT:
+            return {}
+            
+        default:
+                return state;
+
+    }
+}
+
 
 export const countryListReducer = (state={countries:{}, countryLoading:true}, action) => {
     switch(action.type){
@@ -85,27 +132,27 @@ export const superAdminCreateReducer = (state={success:false}, action) => {
     }
 }
 
-export const projectCreateReducer = (state={success:false}, action) => {
+export const adminCreateReducer = (state={admSuccess:false}, action) => {
     switch(action.type){
-        case PROJECT_CREATE_REQUEST:
+        case ADMIN_CREATE_REQUEST:
             return {
-                loading:true
+                admLoading:true
             }
-        case PROJECT_CREATE_SUCCESS:
+        case ADMIN_CREATE_SUCCESS:
             return {
-                loading:false,
-                success:true,
-                project:action.payload
+                admLoading:false,
+                admSuccess:true,
+                admin:action.payload
             }
-        case PROJECT_CREATE_COMPLETE:
+        case ADMIN_CREATE_COMPLETE:
             return {
-                loading:false,
-                success:false,
+                admLoading:false,
+                admSuccess:false,
             }
-        case PROJECT_CREATE_FAIL:
+        case ADMIN_CREATE_FAIL:
             return {
-                loading:false,
-                error:action.payload,
+                admLoading:false,
+                admError:action.payload,
             }
 
         default:
