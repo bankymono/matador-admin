@@ -4,6 +4,7 @@ import projects_icon from '../../assets/icons/projects-icon.png';
 import investors_icon from '../../assets/icons/investors-icon.png';
 import rewards_icon from '../../assets/icons/rewards-icon.png';
 import transactions_icon from '../../assets/icons/transactions-icon.png';
+import accounts_icon from '../../assets/icons/accounts_icon.png';
 import settings_icon from '../../assets/icons/settings-icon.png';
 
 export const SideBarData = [
@@ -41,6 +42,11 @@ export const SideBarData = [
         title:"Transactions",
         icon:transactions_icon,
         link:'/transactions',
+    },
+    {
+        title:"Accounts",
+        icon:accounts_icon,
+        link:'/accounts',
     },
 
     {

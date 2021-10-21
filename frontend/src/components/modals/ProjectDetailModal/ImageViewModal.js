@@ -14,7 +14,6 @@ const ImageViewModal = ({open,onClose}) => {
                 <div>
                 <img onClick={(event)=> event.stopPropagation()} className="project-detail-modal-img" src={project_image} alt="building"/>
                 </div>
-
             </div>
         </>,
         document.getElementById('modal-portal')

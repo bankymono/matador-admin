@@ -16,6 +16,7 @@ import CreateAdmin from './screens/CreateAdmin/CreateAdmin';
 import AdminList from './screens/AdminList/AdminList';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
 import { useDispatch, useSelector } from 'react-redux';
+import Accounts from './screens/Accounts/Accounts';
 
 
 function App() {
@@ -164,6 +165,16 @@ function App() {
                     (<UpdateAdmin
                       {...props} 
                         arrLinks={['home','settings','admin manager' ]}
+                      />)} 
+                  /> 
+
+                <Route 
+                  exact 
+                  path='/accounts'
+                  render={(props)=>
+                    (<Accounts
+                      {...props} 
+                        arrLinks={['home','Accounts / Deposit Method' ]}
                       />)} 
                   />  
             </Switch>   

@@ -116,17 +116,10 @@ const CreateAdminComponent = ({history}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('got here first')
+        
         let isValid = validateInputs()
         
-        console.log('got here second')
-        // console.log(usernameIsInvalid, firstNameIsInvalid,lastNameIsInvalid,
-        //     middleNameIsInvalid,emailIsInvalid, passwordIsInvalid, confirmPasswordIsInvalid,
-        //     'p-match',passwordMisMatch,phoneIsInvalid,dateDayIsInvalid,dateMonthIsInvalid,dateYearIsInvalid,
-        //     roleIsInvalid,addressIsInvalid
-        //     )
 
-                console.log('got here third')
                 const data = {
                     password:password,
                     username:username,
@@ -264,13 +257,6 @@ const CreateAdminComponent = ({history}) => {
         
         return true;
     }
-    // const handleBlur = () => {
-    //     if(password === confirmPassword){
-    //         setPasswordMisMatch(false)
-    //     }else{
-    //         setPasswordMisMatch(true)
-    //     }
-    // }
 
     const handleChange = (e) => {
         switch(e.target.name){
