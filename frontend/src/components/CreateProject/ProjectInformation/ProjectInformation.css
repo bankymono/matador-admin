@@ -5,3 +5,68 @@
     margin-bottom: 25px;
 }
 
+.amenities-section{
+    margin-bottom: 20px;
+    background-color: rgb(228, 241, 245);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 75%;
+}
+
+.amenities-section h2{
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.select{
+    height: 40px;
+    border: 1px solid #E0E0E0;
+}
+
+.amenities-section select{
+    width: 100%;
+    border: 1px solid grey;
+    height: 40px;
+}
+
+.amenities-section select:focus{
+    outline: none;
+}
+
+.selected-amenity{
+    background-color: rgb(228, 241, 245);
+    margin-bottom: 10px;
+    width: 40%;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.selected-amenity input{
+    height: 90%;
+    width: 120px;
+    text-align: center;
+    border: 1px solid grey;
+    margin-right: 20px;
+}
+
+.selected-amenity input:focus{
+    outline: none;
+}
+
+.amenity-amount-and-delete{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.amenity-amount-and-delete strong{
+    color: red;
+    font-weight: normal;
+    cursor: pointer;
+}

@@ -17,6 +17,9 @@ import AdminList from './screens/AdminList/AdminList';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   const dispatch = useDispatch()
@@ -25,6 +28,7 @@ function App() {
   
   return (
     <div className="App">
+      <ToastContainer/>
       <Router>
             <Switch>
               
