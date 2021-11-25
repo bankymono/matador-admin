@@ -53,7 +53,8 @@ function App() {
                 render={(props)=>
                   adminInfo ?
                   (<Dashboard 
-                    {...props} 
+                    {...props}
+                    adminInfo = {adminInfo} 
                       arrLinks={['home']}
                     />)
                   :(<Redirect

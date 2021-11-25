@@ -1,14 +1,15 @@
 import React from 'react';
+import { numberWithComma } from '../../../redux/numberFormatter';
 import DashboardLineChartCard from '../DashboardLineChartCard/DashboardLineChartCard';
 import './DashboardTotalDepositCard.css';
 
-const DashboardTotalDepositCard = () => {
+const DashboardTotalDepositCard = ({depositData}) => {
     return (
         <div className="dashboard-bottom-item">
             <div className="dashboard-total-deposits-heading">
                 <div className="dashboard-total-deposits-value">
                     <div className="desc">Total Deposits</div>
-                    <div className="value">₦36,254<sup>.00</sup></div>
+                    <div className="value">{numberWithComma(depositData.count)}<sup>.00</sup></div>
                 </div>
                 <select className="dashboard-select">
                         <option>All time</option>

@@ -3,7 +3,7 @@ import './DoughnutChartCard.css'
 import {Doughnut} from 'react-chartjs-2';
 import DoughnutChartTable from './DoughnutChartTable/DoughnutChartTable';
 
-const DoughnutChartCard = () => {
+const DoughnutChartCard = ({assetAllocationData}) => { 
     const data =  {
         labels:false,
         datasets:[{
@@ -22,11 +22,11 @@ const DoughnutChartCard = () => {
 
     return (
             <div className="dashboard-top-item dougnut-chart-card">
-                <div className="doughnut-card-heading-text">Asset Allocaion</div>
+                <div className="doughnut-card-heading-text">Asset Allocation</div>
                 <div className="doughnut-chart">
-                   <Doughnut   redraw={false} data={data} options={options} />
+                   <Doughnut  data={assetAllocationData} redraw={false} data={data} options={options} />
                 </div>
-                <DoughnutChartTable />
+                <DoughnutChartTable assetAllocationData={assetAllocationData} />
             </div>
     )
 }

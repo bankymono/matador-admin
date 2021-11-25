@@ -17,9 +17,9 @@ import DashboardTotalDepositCard from '../../components/Dashboard/DashboardTotal
 import DashboardTotalWithdrawalCard from '../../components/Dashboard/DashboardTotalWithdrawalCard/DashboardTotalWithdrawalCard';
 import { Link } from 'react-router-dom';
 
-const Dashboard = ({match, arrLinks}) => {
+const Dashboard = ({match, arrLinks, adminInfo}) => {
     const [currentPage, setCurrentPage] = useState("Dashboard")
- 
+    console.log('info', adminInfo);
     return (
         <div className="dashboard">
             <SideBar setCurrentPage={setCurrentPage} />
@@ -29,18 +29,18 @@ const Dashboard = ({match, arrLinks}) => {
                 <SubNav currentPage={currentPage} arrLinks={arrLinks} />  
                 <div className="central-content">
                     <div className="dashboard-top-items">
-                            <CardOne />
-                            <CardTwo />
-                            <DoughnutChartCard />    
+                            <CardOne currentRatio={adminInfo.current_ratio} />
+                            <CardTwo paystackBalance={adminInfo.paystack_balance} />
+                            <DoughnutChartCard assetAllocationData={adminInfo.asset_allocation_data} />    
                             <DashboardInvestmentsCard />  
-                            <DashboardRevenueCard />     
-                            <Link className="dashboard-txn-link" to="/investors/info"><DashboardInvestorsCard /></Link>               
-                            <Link className="dashboard-txn-link" to="/projects/id"><DashboardProjectsCard /></Link>
-                            <Link className="dashboard-txn-link" to="/transactions"><DashboardTransactionsCard /></Link>
+                            <DashboardRevenueCard revenueData={adminInfo.revenue} />     
+                            <Link className="dashboard-txn-link" to="/investors/info"><DashboardInvestorsCard investorData={adminInfo.investors_count} /></Link>               
+                            <Link className="dashboard-txn-link" to="/projects/id"><DashboardProjectsCard projectsData={adminInfo.projects} /></Link>
+                            <Link className="dashboard-txn-link" to="/transactions"><DashboardTransactionsCard transactionsData={adminInfo.transactions} /></Link>
                         </div>
                         <div className="dashboard-bottom-items">
-                            <DashboardTotalDepositCard />
-                            <DashboardTotalWithdrawalCard />
+                            <DashboardTotalDepositCard depositData={adminInfo.deposits} />
+                            <DashboardTotalWithdrawalCard withdrawalData={adminInfo.withdrawals} />
 
                         </div>
                 </div>
