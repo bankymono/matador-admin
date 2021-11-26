@@ -12,6 +12,7 @@ import ChangePassword from './screens/AuthScreens/ChangePassword/ChangePassword'
 import RecoverPassword from './screens/AuthScreens/RecoverPassword/RecoverPassword';
 import Dashboard from './screens/Dashboard/Dashboard';
 import CreateProject from './screens/CreateProject/CreateProject';
+import CreateProjectTwo from './screens/CreateProjectTwo/CreateProjectTwo';
 import CreateAdmin from './screens/CreateAdmin/CreateAdmin';
 import AdminList from './screens/AdminList/AdminList';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
@@ -95,7 +96,21 @@ function App() {
                   path='/projects/new'
                   render={(props)=>
                     adminInfo ?
-                    (<CreateProject 
+                    (<CreateProjectTwo 
+                      {...props} 
+                        arrLinks={['home','projects', 'new']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+                <Route 
+                  exact 
+                  path='/projects/new-2'
+                  render={(props)=>
+                    adminInfo ?
+                    (<CreateProject
                       {...props} 
                         arrLinks={['home','projects', 'new']}
                         />)
