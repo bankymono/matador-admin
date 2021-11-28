@@ -45,7 +45,7 @@ const DoughnutChartCard = ({assetAllocationData}) => {
                    <Doughnut redraw={redraw} data={data} options={options} />
                 </div>
                 <DoughnutChartTable assetAllocationData={assetAllocationData} />
-                <div onClick={()=>resetData()}>redraw doughnut button</div>
+                {/* <div onClick={()=>resetData()}>redraw doughnut button</div> */}
             </div>
     )
 }
