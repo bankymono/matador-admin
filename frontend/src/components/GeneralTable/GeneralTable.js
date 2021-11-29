@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './GeneralTable.css';
 import search_icon from '../../assets/icons/search-icon-img.png'
 import Pagination from '../Pagination/Pagination';
 import MoreOptionsMenu from '../MoreOptionsMenu/MoreOptionsMenu';
 
 const GeneralTable = ({ headList, bodyList }) => {
+    const [currentPageNumber, setCurrentPageNumber] = useState(1);
+    const [usersPerPage] = useState(1);
+    const paginate = (pageNumber) => setCurrentPageNumber(pageNumber);
 
+    const indexOfLastUser = currentPageNumber * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers =()=>{
+        const list = bodyList.length ? 
+                bodyList.slice(indexOfFirstUser, indexOfLastUser) : 
+                [''].slice(indexOfFirstUser, indexOfLastUser);
+                return list
+    } 
+    
     return (
         <div>
             <div className="general-table-search-header">
@@ -35,7 +47,7 @@ const GeneralTable = ({ headList, bodyList }) => {
 
                 {
                     bodyList ?
-                        bodyList.map((body, index) => 
+                        currentUsers().map((body, index) => 
                         <div key={index} className="general-table-info-body">
                             <input type="checkbox" />
                             <div className="general-table-info-body-wrapper">
@@ -51,7 +63,14 @@ const GeneralTable = ({ headList, bodyList }) => {
 
             <div className="general-table-bottom-pagination-container">
                 <div>Showing: <span className="val">100</span></div>
-                <div><Pagination /></div>
+                <div>
+                    <Pagination 
+                        usersPerPage={usersPerPage}
+                        currentPage={currentPageNumber}
+                        listLength={bodyList.length} 
+                        paginate={paginate} 
+                    />
+                </div>
             </div>
 
         </div>
