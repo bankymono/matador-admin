@@ -71,7 +71,7 @@
     display: flex;
     align-items: center;
     background-color: #fff;
-    
+    cursor: pointer;
 }
 
 .general-table-info-heading input {

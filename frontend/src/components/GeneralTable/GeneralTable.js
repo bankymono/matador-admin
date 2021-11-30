@@ -4,26 +4,34 @@ import search_icon from '../../assets/icons/search-icon-img.png'
 import Pagination from '../Pagination/Pagination';
 import MoreOptionsMenu from '../MoreOptionsMenu/MoreOptionsMenu';
 
-const GeneralTable = ({ headList, bodyList }) => {
+const GeneralTable = ({ headList, bodyList, handleCellClick }) => {
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
-    const [usersPerPage] = useState(1);
+    const [usersPerPage] = useState(5);
+    const [duplicatedList, setDuplicatedList] = useState(bodyList);
     const paginate = (pageNumber) => setCurrentPageNumber(pageNumber);
 
     const indexOfLastUser = currentPageNumber * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers =()=>{
-        const list = bodyList.length ? 
-                bodyList.slice(indexOfFirstUser, indexOfLastUser) : 
+        const list = duplicatedList.length ? 
+                duplicatedList.slice(indexOfFirstUser, indexOfLastUser) : 
                 [''].slice(indexOfFirstUser, indexOfLastUser);
                 return list
-    } 
-    
+    }
+    const handleSearch=(event)=>{
+        let value = event.target.value.toLowerCase();
+        let result = [];
+        result = bodyList.filter((data) => {
+            return data.name.toLowerCase().search(value) !== -1;
+            });
+        setDuplicatedList(result);
+    }
     return (
         <div>
             <div className="general-table-search-header">
                 <div className="search-input-container">
                     <img src={search_icon} alt="search" />
-                    <input placeholder="Search" />
+                    <input placeholder="Search" onChange={handleSearch} />
                 </div>
 
                 <select className="general-table-select">
@@ -46,9 +54,9 @@ const GeneralTable = ({ headList, bodyList }) => {
             <div className="general-table-info-body-list">
 
                 {
-                    bodyList ?
+                    duplicatedList ?
                         currentUsers().map((body, index) => 
-                        <div key={index} className="general-table-info-body">
+                        <div key={index} className="general-table-info-body" onClick={()=>{handleCellClick(body)}}>
                             <input type="checkbox" />
                             <div className="general-table-info-body-wrapper">
                                 <div>{body.name}</div>
@@ -62,12 +70,12 @@ const GeneralTable = ({ headList, bodyList }) => {
             </div>
 
             <div className="general-table-bottom-pagination-container">
-                <div>Showing: <span className="val">100</span></div>
+                <div>Showing: <span className="val">{currentPageNumber}/{Math.ceil(duplicatedList.length / usersPerPage)}</span></div>
                 <div>
                     <Pagination 
                         usersPerPage={usersPerPage}
                         currentPage={currentPageNumber}
-                        listLength={bodyList.length} 
+                        listLength={duplicatedList.length} 
                         paginate={paginate} 
                     />
                 </div>
