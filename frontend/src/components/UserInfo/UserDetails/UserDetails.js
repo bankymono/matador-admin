@@ -2,7 +2,7 @@ import React from 'react';
 import './UserDetails.css';
 import profile_img from '../../../assets/images/profile-image-random-2.jpg';
 
-const UserDetails = () => {
+const UserDetails = ({userInfo}) => {
     return (
         <div className="user-details-container">
 
@@ -17,22 +17,22 @@ const UserDetails = () => {
                     <div className="user-details-item">
                         <div className="user-details-item-cell">
                             <div className="detail-type">First name</div>
-                            <div className="detail-text">Ahmed</div>
+                            <div className="detail-text">{userInfo.firstname}</div>
                         </div>
                         <div className="user-details-item-cell">
                             <div className="detail-type">Last name</div>
-                            <div className="detail-text">Ahmed</div>
+                            <div className="detail-text">{userInfo.lastname}</div>
                         </div>
                     </div>
 
                     <div className="user-details-item">
                         <div className="user-details-item-cell">
                             <div className="detail-type">Nick name</div>
-                            <div className="detail-text">Ahmed</div>
+                            <div className="detail-text">{userInfo.nick}</div>
                         </div>
                         <div className="user-details-item-cell">
                             <div className="detail-type">Phone number</div>
-                            <div className="detail-text">09099923999</div>
+                            <div className="detail-text">{userInfo.number}</div>
                         </div>
                     </div>
 
