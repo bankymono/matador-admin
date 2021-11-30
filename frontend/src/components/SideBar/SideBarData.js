@@ -11,7 +11,7 @@ export const SideBarData = [
     {
         title:"Dashboard",
         icon:dashboard_icon,
-        link:'/dashboard',
+        link:'/',
     },
 
     {
@@ -23,7 +23,7 @@ export const SideBarData = [
     {
         title:"Projects",
         icon:projects_icon,
-        link:'projects/id',
+        link:'/projects/id',
     },
 
     {

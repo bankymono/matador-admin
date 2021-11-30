@@ -2,7 +2,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
 }
 
 .create-proj-bundle-select[type="checkbox"]{

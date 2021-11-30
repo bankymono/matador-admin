@@ -1,25 +1,92 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ProjectInformation.css';
 import {IoCloseOutline} from 'react-icons/io5';
 import {AiOutlineClose, AiOutlinePlus} from 'react-icons/ai';
-import {RiUploadCloudFill} from 'react-icons/ri';
-import {RiCalendarEventFill} from 'react-icons/ri';
-
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 
-import rand from '../../../assets/random_img.jpg';
 
-const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, handleProjectImageChange, selectedProjectImages}) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { listAmenities, listBuildingTypes, listLandTitles, listProjectCategories, listProjectStatuses } from '../../../redux/actions/projectActions';
+
+
+const ProjectInformation = ({
+        projectInfo, handleProjectInfoFieldChange, handleDeleteProjectImage, 
+        handleProceedToNextPage, handleProjectImageChange, selectedProjectImages, 
+        selectedProjectImagesError,
+        handleProjectAmenitiesFieldChange,
+        projectAmenitiesForm,
+        setProjectAmenitiesForm,
+        projectAmenitiesFormErrors,
+        setProjectAmenitiesFormErrors
+    }) => {
+    
+    const dispatch = useDispatch();
+    const landTitleList = useSelector(state => state.landTitleList);
+    const buildingTypeList = useSelector(state => state.buildingTypeList);
+    const projectCategoryList = useSelector(state => state.projectCategoryList);
+    const projectStatusList = useSelector(state => state.projectStatusList);
+    const amenityList = useSelector(state => state.amenityList);
+
+    const {landTitles, landTitleError, landTitleLoading} = landTitleList
+    const {buildingTypes, buildingTypeError, buildingTypeLoading} = buildingTypeList
+    const {projectCategories, projectCategoryError, projectCategoryLoading} = projectCategoryList
+    const {projectStatuses, projectStatusError, projectStatusLoading} = projectStatusList
+    const {amenities, amenityError, amenityLoading} = amenityList;
+
 
     const [usedText, setUsedText] = useState(0)
     const MAX_CHARS = 250;
 
     const handleInput = (e) => {
-
         setUsedText(e.target.value.length);
 
     }
+
+
+
+    useEffect(() => {
+        dispatch(listLandTitles())
+        dispatch(listBuildingTypes())
+        dispatch(listProjectCategories())
+        dispatch(listProjectStatuses())
+        dispatch(listAmenities())
+    }, [dispatch])
+
+    const handleAmenitiesValueChange = (index,event) => {
+            event.preventDefault();
+            event.persist();
+
+            setProjectAmenitiesForm(prev => {
+
+                return prev.map((item,i) => {
+                    if(i !== index){
+                        return item;
+                    }
+
+                    setProjectAmenitiesFormErrors(prev => {
+                        let newArr = [...prev]
+        
+                        newArr[i][Object.keys(newArr[i])] = null;
+        
+                        return newArr;
+                    })
+    
+                    return {
+                        ...item,
+                        [event.target.name]:event.target.value
+                    }
+                })
+            });
+        
+    }
+
+    const handleRemoveAmenitiesInput = (index,event) => {
+        event.preventDefault();
+
+        setProjectAmenitiesForm(prev=>prev.filter((item,i) => i !== index))
+        setProjectAmenitiesFormErrors(prev=>prev.filter((item,i) => i !== index))
+    }
+
     return (
         <div>
             <div className="create-project-info-heading">Project Information</div>
@@ -27,24 +94,30 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Project name</label>
-                    <input type="text" />
+                    <input className={projectInfo.projectNameInputError?"error-border":""} type="text" name='projectName' value={projectInfo.projectName} onChange={handleProjectInfoFieldChange} />
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Completed timestamp</label>
-                    <input type="date" />
+                    <input 
+                    className={projectInfo.completedTimestampInputError?"error-border":""}
+                    type="date" name="completedTimestamp" value={projectInfo.completedTimestamp} onChange={handleProjectInfoFieldChange} />
                 </div>
             </div>
 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Building size</label>
-                    <input type="text" />
+                    <input 
+                    className={projectInfo.buildingSizeInputError?"error-border":""}
+                    type="text" name="buildingSize" value={projectInfo.buildingSize} onChange={handleProjectInfoFieldChange}/>
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Constructed By</label>
-                    <input type="text" />
+                    <input 
+                    className={projectInfo.constructedByInputError?"error-border":""}
+                    type="text" name="constructedBy" value={projectInfo.constructedBy} onChange={handleProjectInfoFieldChange}/>
                 </div>
             </div>
 
@@ -52,7 +125,13 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Description</label>
                     <div className="proj-textarea-wrapper">
-                        <textarea maxLength="250" onInput={handleInput} className="create-proj-textarea" type="textarea"></textarea>
+                        <textarea 
+                            className={projectInfo.descriptionInputError?"create-proj-textarea error-border":"create-proj-textarea"}
+                            maxLength="250" 
+                            onInput={handleInput} 
+                            type="textarea"
+                            name="description" value={projectInfo.description} onChange={handleProjectInfoFieldChange}
+                            ></textarea>
                         <div className={ usedText >= 240 ? "proj-new-text-count create-proj-textarea-max" : "proj-new-text-count"}>{`${usedText}/250`}</div>
                     </div>
                 </div>
@@ -61,21 +140,32 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Land title</label>
-                    <select type="text">
-                        <option>Select One</option>
-                        <option>option one</option>
-                        <option>option one</option>
-                        <option>option one</option>
+                    <select 
+                    className={projectInfo.landTitleInputError?"error-border":""}
+                        name="landTitle" 
+                        value={projectInfo.landTitle} 
+                        onChange={handleProjectInfoFieldChange} 
+                        type="text"
+                        // className={projectInfo.landTitleInputError ? "error-border" : ""}
+                        >
+                            <option value="">Select One</option>
+                            {landTitleLoading === false ? landTitles.data.map(el =>(
+                                <option key={el.id} value={el.id}>{el.name}</option>
+                            )):null}
+
                     </select>
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Building type</label>
-                    <select type="text">
-                        <option>Select One</option>
-                        <option>option one</option>
-                        <option>option one</option>
-                        <option>option one</option>
+                    <select type="text"
+                    className={projectInfo.buildingTypeInputError?"error-border":""}
+                    name="buildingType" value={projectInfo.buildingType} onChange={handleProjectInfoFieldChange}
+                    >
+                        <option value="">Select One</option>
+                        {buildingTypeLoading === false ? buildingTypes.data.map(el =>(
+                            <option key={el.id} value={el.id}>{el.name}</option>
+                        )):null}
                     </select>
                 </div>
             </div>
@@ -83,21 +173,27 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Project category</label>
-                    <select type="text">
-                        <option>Select One</option>
-                        <option>option one</option>
-                        <option>option one</option>
-                        <option>option one</option>
+                    <select type="text"
+                        className={projectInfo.projectCategoryInputError?"error-border":""}
+                        name="projectCategory" value={projectInfo.projectCategory} onChange={handleProjectInfoFieldChange}
+                    >
+                        <option value="">Select One</option>
+                        {projectCategoryLoading === false ? projectCategories.data.map(el =>(
+                            <option key={el.id} value={el.id}>{el.name}</option>
+                        )):null}
                     </select>
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Project status</label>
-                    <select type="text">
-                        <option>Select One</option>
-                        <option>option one</option>
-                        <option>option one</option>
-                        <option>option one</option>
+                    <select type="text"
+                    className={projectInfo.projectStatusInputError?"error-border":""}
+                        name="projectStatus" value={projectInfo.projectStatus} onChange={handleProjectInfoFieldChange}
+                    >
+                        <option value="">Select One</option>
+                        {projectStatusLoading === false ? projectStatuses.data.map(el =>(
+                            <option key={el.id} value={el.id}>{el.name}</option>
+                        )):null}
                     </select>
                 </div>
             </div>
@@ -106,7 +202,7 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Project images</label>
                     <div>
-                        <div className="create-proj-images-container">
+                        <div className={selectedProjectImagesError ? "create-proj-images-container error-border":"create-proj-images-container"}>
                             {
                                 selectedProjectImages.map((image, index) => {
                                     return (
@@ -135,29 +231,15 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container eval-field-wrapper">
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Evaluation</label>
-                    <div className="create-proj-input-with-prefix"><span className="create-proj-input-prefix">N</span><input type="text" /></div>
+                    <div className="create-proj-input-with-prefix"><span className="create-proj-input-prefix">N</span><input 
+                    className={projectInfo.evaluationInputError?"error-border":""}
+                    type="text"
+                    name="evaluation" value={projectInfo.evaluation} onChange={handleProjectInfoFieldChange}
+                    /></div>
                 </div>
 
                 <div className="create-proj-input-radio-wrapper">
-                    {/* <div className="create-proj-radio-label" htmlFor="proj-name">Status</div> */}
-
-                    {/* <div className="create-proj-input-radio-container">
-                        <div className="create-radio-item-wrap">
-                            <label className="create-radio-label" htmlFor="create-avail"><span>Available</span>
-                                <input className="create-radio-input" id="create-avail" type="radio" name="create-avail" />
-                                <div className="create-radio-custom"></div>                            
-                            </label>
-
-                        </div>
-
-                        <div className="create-radio-item-wrap">
-                            <label className="create-radio-label" htmlFor="create-unavail"><span>Unavailable</span>
-                                <input className="create-radio-input" id="create-unavail" type="radio" name="create-avail" />
-                                <div className="create-radio-custom"></div>
-                            </label>
-
-                        </div>
-                    </div> */}
+                   
                 </div>
             </div>
             
@@ -168,24 +250,34 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Total units</label>
-                    <input type="text" />
+                    <input 
+                    className={projectInfo.totalUnitsInputError?"error-border":""}
+                    type="text" name="totalUnits" value={projectInfo.totalUnits} onChange={handleProjectInfoFieldChange}/>
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Project address</label>
-                    <input type="text" />
+                    <input 
+                    className={projectInfo.projectAddressInputError?"error-border":""}
+                    type="text" name="projectAddress" value={projectInfo.projectAddress} onChange={handleProjectInfoFieldChange}/>
                 </div>
             </div>
 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Longitude</label>
-                    <input type="text" />
+                    <input type="text"
+                    className={projectInfo.longitudeInputError?"error-border":""}
+                    name="longitude" value={projectInfo.longitude} onChange={handleProjectInfoFieldChange}
+                    />
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Latitude</label>
-                    <input type="text" />
+                    <input type="text"
+                    className={projectInfo.latitudeInputError?"error-border":""}
+                    name="latitude" value={projectInfo.latitude} onChange={handleProjectInfoFieldChange}
+                    />
                 </div>
             </div>
 
@@ -194,18 +286,39 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
             <div className="create-project-info-heading">Amenities</div>
 
             <div className="create-proj-one-field-row amenities-and-its-lists-container">
-
+                            {JSON.stringify(projectAmenitiesForm)}
+                            {JSON.stringify(projectAmenitiesFormErrors)}
                 <div className="create-proj-amenities-container">
                     <div className="add-amenity-label">Add Amenity</div>
-                    <select className="amenity-select">
-                        <option className="amen-option">Amenity one</option>
-                        <option className="amen-option">Amenity two</option>
-                        <option className="amen-option">Amenity three</option>
+                    <select className={projectInfo.amenitiesSelectInputError ? "amenity-select error-border":"amenity-select"}
+                    name="buildingSize" value={projectInfo.amenitiesSelect} onChange={handleProjectAmenitiesFieldChange}
+                    >
+                        <option value="">Select One</option>
+                        {amenityLoading === false ? amenities.data.map(el =>(
+                            <option key={el.id} value={el.name}>{el.name}</option>
+                        )):null}
                     </select>
                 </div>
 
                 <div className="amenities-list-wrapper">
-                    <div  className="amenities-item">
+                    {
+                        projectAmenitiesForm.map((item,index) => (
+                            <div key={`item-${index}`} className="amenities-item">
+                                <div className="amenities-name">{Object.keys(item)}</div>
+                                <div className="amenities-amt-input-container">
+                                    {/* {console.log('wgat is this',)} */}
+                                    <input 
+                                        name={Object.keys(item)}
+                                        value={Object.values(item)}
+                                        className={Object.values(projectAmenitiesFormErrors[index])[0]? "error-border":""}
+                                        onChange={(event) => handleAmenitiesValueChange(index,event)}
+                                        type="text" placeholder="Input Amount"/>
+                                    <button onClick={(event) => handleRemoveAmenitiesInput(index,event)}><span>Delete</span><AiOutlineClose /></button>
+                                </div>
+                            </div>                            
+                        ))
+                    }
+                    {/* <div  className="amenities-item">
                         <div className="amenities-name">Bedrooms</div>
                         <div className="amenities-amt-input-container">
                             <input type="text" placeholder="Input Amount"/>
@@ -234,7 +347,7 @@ const ProjectInformation = ({handleDeleteProjectImage, handleProceedToNextPage, 
                             <input type="text" placeholder="Input Amount" />
                             <button><span>Delete</span><AiOutlineClose /></button>
                         </div>
-                    </div>
+                    </div> */}
                     
                 </div>
             </div>

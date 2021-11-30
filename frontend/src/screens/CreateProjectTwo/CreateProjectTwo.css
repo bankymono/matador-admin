@@ -332,6 +332,7 @@ div.create-proj-textarea-max {
     border: 1px solid #BFBFBF;
 }
 
+
 .create-proj-preview-img-wrapper{
     margin-bottom: 5px;
     position: relative;
@@ -404,6 +405,8 @@ div.create-proj-textarea-max {
     outline: none;
     padding: 5px;
 }
+
+
 
 .proj-file-save-container{
     border: 1px solid #06A064;
@@ -597,6 +600,7 @@ div.create-proj-textarea-max {
     font-weight: 600;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 
 .bundle-inputs-summarized .controls-wrapper .expand-collapse-btn{
@@ -605,6 +609,7 @@ div.create-proj-textarea-max {
     font-weight: 600;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 
 
@@ -629,7 +634,6 @@ div.create-proj-textarea-max {
 }
 
 .create-investment-info-heading.bundle-amenities-heading{
-    /* background: red; */
     margin-bottom: 0px;
 }
 
@@ -758,4 +762,42 @@ div.create-proj-textarea-max {
     font-weight: 600;
     outline: none;
     border: none;
+}
+
+.create-project-container select.error-border{
+    border: 1px solid red;   
+}
+
+.create-proj-images-container.error-border{
+    border: 1px solid red;
+}
+
+.amenities-and-its-lists-container .amenities-list-wrapper .amenities-item .amenities-amt-input-container > input.error-border{
+    border: 1px solid red;
+    /* background-color: pink; */
+    /* margin-top: 40px; */
+    
+    /* back */
+}
+
+
+.title-and-collapse-btn-wrapper{
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bundle-form-wrapper .title-and-collapse-btn-wrapper .expand-collapse-btn{
+    
+    color: #03A678;
+    /* background: none; */
+    font-weight: 600;
+    outline: none;
+    border: none;
+    cursor: pointer;   
+}
+
+.create-proj-input-with-suffix.error-border{
+    border: 1px solid red;
 }

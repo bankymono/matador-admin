@@ -1,39 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const PaymentPlan = () => {
+const PaymentPlan = ({
+    handleRemovePaymentPlan,
+    theIndex,
+    item,
+    handlePaymentPlanInputChange,
+    paymentPlanLength
+}) => {
+
+    const [showPaymentPlanForm, setShowPaymentPlanForm] = useState(false);
+
     return (
             <div className="payment-plan-inputs-wrapper">
-
-            <div className="payplan-inputs-summarized">
-                <div className="content-details">
-                    <div className="content-details-item">
-                        <div className="mini-heading">Initial Deposit %</div>
-                        <div className="mini-desc">10%</div>
+                {
+                    !showPaymentPlanForm && !(theIndex === (paymentPlanLength - 1)) ?(
+                        <div className="payplan-inputs-summarized">
+                        <div className="content-details">
+                            <div className="content-details-item">
+                                <div className="mini-heading">Initial Deposit %</div>
+                                <div className="mini-desc">10%</div>
+                            </div>
+        
+                            <div className="content-details-item">
+                                <div className="mini-heading">Initial Deposit Amount</div>
+                                <div className="mini-desc">450,000</div>
+                            </div>
+        
+                            <div className="content-details-item">
+                                <div className="mini-heading">Available Payment Period in Months</div>
+                                <div className="mini-desc">12</div>
+                            </div>
+        
+                            <div className="content-details-item">
+                                <div className="mini-heading">Monthly Payment</div>
+                                <div className="mini-desc">120,000</div>
+                            </div>
+                        </div>
+                        
+                        <div className="controls-wrapper">
+                            <button className="delete-btn">Delete</button>
+                            <button className="expand-collapse-btn">Expand</button>
+                        </div>
                     </div>
 
-                    <div className="content-details-item">
-                        <div className="mini-heading">Initial Deposit Amount</div>
-                        <div className="mini-desc">450,000</div>
-                    </div>
+                    ):null
+                }
 
-                    <div className="content-details-item">
-                        <div className="mini-heading">Available Payment Period in Months</div>
-                        <div className="mini-desc">12</div>
-                    </div>
-
-                    <div className="content-details-item">
-                        <div className="mini-heading">Monthly Payment</div>
-                        <div className="mini-desc">120,000</div>
-                    </div>
-                </div>
-                
-                <div className="controls-wrapper">
-                    <button className="delete-btn">Delete</button>
-                    <button className="expand-collapse-btn">Expand</button>
-                </div>
-            </div>
-
-                <div className="proj-new-payment-plan-form-wrapper">
+                {
+                    showPaymentPlanForm || (theIndex === (paymentPlanLength - 1)) ?(
+                        <div className="proj-new-payment-plan-form-wrapper">
                         <div className="create-investment-info-heading">Payment Plan</div>
 
                         <div className="create-proj-two-fields-row payplan-input-container">
@@ -60,7 +75,13 @@ const PaymentPlan = () => {
                             </div>
 
                         </div>
-                </div>
+                </div>                           
+                    ):null
+                }
+
+
+
+
             </div>
     )
 }
