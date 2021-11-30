@@ -21,7 +21,6 @@ const User = ({match, arrLinks}) => {
     ]
     const [currentPage, setCurrentPage] = useState("Investors")
     const handleCellClick=(emittedData)=>{
-        console.log(emittedData);
         history.push(`/investors/info?investorId=${emittedData.id}`);
         // redirect to userInfo;
     }
