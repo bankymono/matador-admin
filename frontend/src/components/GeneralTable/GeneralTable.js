@@ -22,7 +22,7 @@ const GeneralTable = ({ headList, bodyList, handleCellClick }) => {
         let value = event.target.value.toLowerCase();
         let result = [];
         result = bodyList.filter((data) => {
-            return data.name.toLowerCase().search(value) !== -1;
+            return data.first_name.toLowerCase().search(value) !== -1 || data.last_name.toLowerCase().search(value) !== -1;
             });
         setDuplicatedList(result);
     }
@@ -59,11 +59,11 @@ const GeneralTable = ({ headList, bodyList, handleCellClick }) => {
                         <div key={index} className="general-table-info-body" onClick={()=>{handleCellClick(body)}}>
                             <input type="checkbox" />
                             <div className="general-table-info-body-wrapper">
-                                <div>{body.name}</div>
-                                <div>{body.amount}</div>
-                                <div>{body.duration}</div>
-                                <div>{body.durationLeft}</div>
-                                <div>{body.startDate}</div>
+                                <div>{`${body.first_name? body.first_name : ''} ${body.last_name? body.last_name : ''}`}</div>
+                                <div>{body.amount? body.amount : 'N/A'}</div>
+                                <div>{body.duration? body.duration : 'N/A'}</div>
+                                <div>{body.durationLeft? body.durationLeft : 'N/A'}</div>
+                                <div>{body.startDate? body.startDate : 'N/A'}</div>
                             </div>
                             <MoreOptionsMenu />
                         </div>) : <div className="general-table-info-body-wrapper">Empty List</div>}
