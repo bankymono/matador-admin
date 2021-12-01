@@ -34,9 +34,11 @@ const DashboardInvestmentsCard = () => {
     const [redrawSecondChart, setRedrawSecondChart] = useState(false);
     const [firstChartData, setFirstChartData] = useState(allTimeForFirstChart());
     const [secondChartData, setSecondChartData] = useState(allTimeForSecondChart());
+
     const setOptionsForFirstChart = (option) => {
         let selectedOption = option.target.value;
         setRedrawFirstChart(false);
+        setRedrawSecondChart(false);
         let newData={...firstChartData};
         switch (selectedOption) {
             case 'allTimeForFirstChart':
@@ -54,11 +56,13 @@ const DashboardInvestmentsCard = () => {
                 setFirstChartData(allTimeForFirstChart());
                 break;
         }
+        
         return setRedrawFirstChart(true);
     }
     const setOptionsForSecondChart = (option) => {
         let selectedOption = option.target.value;
         setRedrawSecondChart(false);
+        setRedrawFirstChart(false);
         let newData={...secondChartData};
         switch (selectedOption) {
             case 'allTimeForSecondChart':
