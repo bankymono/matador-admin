@@ -375,7 +375,6 @@ export const validateBundleAmenities = (bundleAmenities, bundleAmenitiesErrors, 
 export const validateArrayOfObjects = (arrayToBeValidated) => {
     let valid = []
     arrayToBeValidated.forEach((obj)=>{
-        console.log(obj);
         Object.keys(obj).forEach((field)=>{
             return obj[`${field}`] === '' || !obj[`${field}`] ?
             valid.push(obj[`${field}`]) : null;

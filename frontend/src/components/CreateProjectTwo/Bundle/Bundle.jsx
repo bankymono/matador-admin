@@ -178,7 +178,8 @@ const Bundle = ({
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Deed file</label>
 
                                 <div className={selectedFileError ? "create-proj-input-with-suffix error-border" : "create-proj-input-with-suffix"}>
-                                    <div className="create-proj-file-disp">{fileName}</div>
+                                    <div className="create-proj-file-disp">{item.deedFile? `Deed File Selected (${theIndex + 1})` : 'No file chosen'}</div>
+
                                     <div className={"proj-file-save-container"}>
                                         <input onChange={(e)=>handleFileChange(theIndex, e)} className="proj-file-save" type="file" id="proj-file-save" />
 

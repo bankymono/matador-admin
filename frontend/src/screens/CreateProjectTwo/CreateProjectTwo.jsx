@@ -75,7 +75,7 @@ const CreateProject = ({arrLinks}) => {
                 .then(result =>{
                     setProjectBundlesInfo(prev=> {
                         return prev.map((item, idx)=>{
-                            if(idx !== index){
+                            if(prev.length !== 1 && idx !== prev.length - 1){
                                 return item
                             }
                             setSelectedBundleImagesError('');
@@ -102,7 +102,7 @@ const CreateProject = ({arrLinks}) => {
                 .then(result =>{
                     setProjectBundlesInfo(prev=> {
                         return prev.map((item, idx)=>{
-                            if(idx !== index){
+                            if(prev.length !== 1 && idx !== prev.length - 1){
                                 return item
                             }
                             setSelectedFileError('');
@@ -137,8 +137,6 @@ const CreateProject = ({arrLinks}) => {
             deedTitle:"",
             price:"",
             amenitiesSelect:"",
-
-            
             titleError:"",
             sizeError:"",
             deedTitleError:"",
@@ -161,9 +159,6 @@ const CreateProject = ({arrLinks}) => {
                 )
 
             if(isValidated && isBundleAmenitiesValid){
-                setSelectedFile('')
-                setFileName('')
-                setSelectedBundleImages([])
                 setProjectBundlesInfo(prev=> {
                     return prev.map((item, id)=>{
                         if(prev.length !== 1 && id !== prev.length - 1){
@@ -172,8 +167,7 @@ const CreateProject = ({arrLinks}) => {
 
                         return {
                             ...item,
-                            deedFile: selectedFile,
-                            bundlePhotos:[...selectedBundleImages]
+                            
                         }
                     })
                 })
@@ -242,24 +236,7 @@ const CreateProject = ({arrLinks}) => {
                 )
             
             if(isValidated && isBundleAmenitiesValid){
-                // initialBundleState.deedFile = selectedFile;
-                // initialBundleState.selectedBundleImages = [...selectedBundleImages]
-                setSelectedFile('')
-                setFileName('')
-                setSelectedBundleImages([])
-                setProjectBundlesInfo(prev=> {
-                    return prev.map((item, id)=>{
-                        if(prev.length !== 1 && id !== prev.length - 1){
-                            return item
-                        }
-
-                        return {
-                            ...item,
-                            deedFile: selectedFile,
-                            bundlePhotos:[...selectedBundleImages]
-                        }
-                    })
-                })
+                
                 // setProjectBundlesInfo(prev=> [...prev, initialBundleState])
             }
         }else if(includeBundle && includePaymentPlan){
