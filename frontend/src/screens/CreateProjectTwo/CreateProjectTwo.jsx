@@ -9,7 +9,7 @@ import SubNav from '../../components/SubNav/SubNav';
 import './CreateProjectTwo.css';
 
 import {initialProjectBundlesInfo, initialProjectInfoState, initialProjectInvestmentInfoState} from '../../components/CreateProjectTwo/initialVariables';
-import { validateProjectInfoFields, validateProjectAmenities, validateProjectInvestmentInfoFields } from '../../components/CreateProjectTwo/validationFunctions';
+import { validateProjectInfoFields, validateProjectAmenities, validateProjectInvestmentInfoFields, validateBundleInfoFields, validateBundleAmenities, validateArrayOfObjects } from '../../components/CreateProjectTwo/validationFunctions';
 
 
 const CreateProject = ({arrLinks}) => {
@@ -23,7 +23,8 @@ const CreateProject = ({arrLinks}) => {
     
     const [selectedBundleImages, setSelectedBundleImages] = useState([]);
     const [selectedBundleImagesError, setSelectedBundleImagesError] = useState('');
-
+    const [bundleAmenities, setBundleAmenities] = useState([])
+    const [bundleAmenitiesErrors, setBundleAmenitiesErrors] = useState([])
 
     const [selectedFile, setSelectedFile] = useState('');
     const [selectedFileError, setSelectedFileError] = useState('');
@@ -52,43 +53,71 @@ const CreateProject = ({arrLinks}) => {
         setSelectedProjectImages(prev => [...prev.filter((image, index) => id !== index)])
     } 
 
-    const handleDeleteBundleImage = (id) => {
-        setSelectedBundleImages(prev => [...prev.filter((image, index) => id !== index)])
+    const handleDeleteBundleImage = (bundleId, imageId) => {
+        let result = projectBundlesInfo[bundleId].bundlePhotos.filter((image, index) => index !== imageId);
+        setProjectBundlesInfo(prev=> {
+            return prev.map((item, idx)=>{
+                if(idx !== bundleId){
+                    return item
+                }
+                return {
+                    ...item,
+                    bundlePhotos: result
+                }
+            })
+        })
     } 
 
-    const handleBundleImageChange = (e) => {
-        
-        if(e && e.target.files){
-
-            for ( let file of e.target.files){
+    const handleBundleImageChange = (index, event) => {
+        if(event && event.target.files){
+            for ( let file of event.target.files){
                 encodeFileToBase64(file)
                 .then(result =>{
-                    setSelectedBundleImages(prev => [...prev, result])
+                    setProjectBundlesInfo(prev=> {
+                        return prev.map((item, idx)=>{
+                            if(idx !== index){
+                                return item
+                            }
+                            setSelectedBundleImagesError('');
+                            return {
+                                ...item,
+                                bundlePhotos: item.bundlePhotos? [...item.bundlePhotos, result] : [result]
+                            }
+                        })
+                    })    
                 })
             }
-
-            setSelectedBundleImagesError('');
+            
         }
         else{
-            setSelectedBundleImages([])
+            setSelectedBundleImages([]);
         }
 
     }
 
-    const handleFileChange = async (e) => {
-        
-        if(e && e.target.files){
-                setFileName(e.target.files[0].name)
-                encodeFileToBase64(e.target.files[0])
+    const handleFileChange = async (index, event) => {
+        if(event && event.target.files){
+                setFileName(event.target.files[0].name)
+                encodeFileToBase64(event.target.files[0])
                 .then(result =>{
-                    setSelectedFile(result)
-
-                    setSelectedFileError('')
+                    setProjectBundlesInfo(prev=> {
+                        return prev.map((item, idx)=>{
+                            if(idx !== index){
+                                return item
+                            }
+                            setSelectedFileError('');
+                            return {
+                                ...item,
+                                deedFile: result
+                            }
+                        })
+                    })
                 })
         }
         else{
             setSelectedFile('')
         }
+
 
     }
 
@@ -100,7 +129,60 @@ const CreateProject = ({arrLinks}) => {
             reader.onerror = error => reject(error)
         })
     }
+    const handleAddBundle = (e) => {
+        e.preventDefault();
+        const initialBundleState = {
+            title:"",
+            size:"",
+            deedTitle:"",
+            price:"",
+            amenitiesSelect:"",
 
+            
+            titleError:"",
+            sizeError:"",
+            deedTitleError:"",
+            priceError:"",
+            amenitiesSelectError:""
+        }
+        if(projectBundlesInfo.length === 0){
+            setProjectBundlesInfo(prev=> [...prev, initialBundleState])
+        }else{
+            let isValidated = validateBundleInfoFields(
+                bundleAmenities,
+                projectBundlesInfo,
+                setProjectBundlesInfo,
+                );
+
+            let isBundleAmenitiesValid = validateBundleAmenities(
+                bundleAmenities,
+                bundleAmenitiesErrors,
+                setBundleAmenitiesErrors
+                )
+
+            if(isValidated && isBundleAmenitiesValid){
+                setSelectedFile('')
+                setFileName('')
+                setSelectedBundleImages([])
+                setProjectBundlesInfo(prev=> {
+                    return prev.map((item, id)=>{
+                        if(prev.length !== 1 && id !== prev.length - 1){
+                            return item
+                        }
+
+                        return {
+                            ...item,
+                            deedFile: selectedFile,
+                            bundlePhotos:[...selectedBundleImages]
+                        }
+                    })
+                })
+                setProjectBundlesInfo(prev=> [...prev, initialBundleState])
+            }
+
+        }
+
+    }
 
     const [projectInfo, setProjectInfo] = useState(initialProjectInfoState);
     const [projectInvestmentInfo, setProjectInvestmentInfo] = useState(initialProjectInvestmentInfoState);
@@ -127,10 +209,12 @@ const CreateProject = ({arrLinks}) => {
             setProjectAmenitiesFormErrors
             )
 
-        // if(isProjectInfoValid && isProjectAmenitiesValid){
+        if(isProjectInfoValid && isProjectAmenitiesValid){
             setFormStep(prevStep => prevStep + 1)
             window.scrollTo(0,0);
-        // }
+        }else{
+            alert('there are invalid fields');
+        }
 
     }
 
@@ -138,11 +222,59 @@ const CreateProject = ({arrLinks}) => {
         e.preventDefault();
         let isProjectInvestmentsInfoValid = validateProjectInvestmentInfoFields(
             projectInvestmentInfo,
-            setProjectInvestmentInfo)
+            setProjectInvestmentInfo);
+            console.log( {projectBundlesInfo, selectedFile, selectedBundleImages} );
+        if(includeBundle && projectBundlesInfo.length === 0) {
+            alert('Bundle section is checked hence, must be completed');
+        }
+        if(includeBundle && projectBundlesInfo.length > 0){
+            // let isProjectBundlesInfoValid = validateArrayOfObjects(projectBundlesInfo);
+            let isValidated = validateBundleInfoFields(
+                bundleAmenities,
+                projectBundlesInfo,
+                setProjectBundlesInfo,
+                );
+
+            let isBundleAmenitiesValid = validateBundleAmenities(
+                bundleAmenities,
+                bundleAmenitiesErrors,
+                setBundleAmenitiesErrors
+                )
+            
+            if(isValidated && isBundleAmenitiesValid){
+                // initialBundleState.deedFile = selectedFile;
+                // initialBundleState.selectedBundleImages = [...selectedBundleImages]
+                setSelectedFile('')
+                setFileName('')
+                setSelectedBundleImages([])
+                setProjectBundlesInfo(prev=> {
+                    return prev.map((item, id)=>{
+                        if(prev.length !== 1 && id !== prev.length - 1){
+                            return item
+                        }
+
+                        return {
+                            ...item,
+                            deedFile: selectedFile,
+                            bundlePhotos:[...selectedBundleImages]
+                        }
+                    })
+                })
+                // setProjectBundlesInfo(prev=> [...prev, initialBundleState])
+            }
+        }else if(includeBundle && includePaymentPlan){
+            // action here 
+            
+        }
+
 
             if(isProjectInvestmentsInfoValid){
                 alert('validation worked!!!')
             }
+            else{
+                alert('check invalid fields')
+            }
+        
     }
 
     const handleProceedToPrevPage= () => {
@@ -444,6 +576,11 @@ const CreateProject = ({arrLinks}) => {
                                 selectedFileError={selectedFileError}
                                 setSelectedFileError={setSelectedFileError}
                                 setSelectedFile={setSelectedFile}
+                                bundleAmenities={bundleAmenities}
+                                setBundleAmenities={setBundleAmenities}
+                                handleAddBundle={handleAddBundle}
+                                bundleAmenitiesErrors={bundleAmenitiesErrors}
+                                setBundleAmenitiesErrors={setBundleAmenitiesErrors}
                             />
                         </div>
                     </div>
@@ -453,5 +590,4 @@ const CreateProject = ({arrLinks}) => {
     }
 
 }
-
 export default CreateProject

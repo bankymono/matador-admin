@@ -241,34 +241,28 @@ export const validateBundleInfoFields = (
     let fileError = '';
     let bundleImagesError = '';
     let amenitiesSelectError = '';
-
+        console.log(projectBundlesInfo);
     let {title, size, deedTitle, price, amenitiesSelect} = projectBundlesInfo[projectBundlesInfo.length - 1]
 
-    if(title.trim() === ''){
+    if(!title || title.trim()===''){
         titleError = "Field is required"
     }
 
-    if(size.trim() === ''){
+    if(!size || size.trim() === ''){
         sizeError = "Field is required"
     }
 
-    if(deedTitle.trim() === ''){
+    if(!deedTitle || deedTitle.trim() === ''){
         deedTitleError = 'Field is required'
     }
 
-    if(price.trim() === ''){
+    if(!price || price.trim() === ''){
         priceError = "Field is required"
     }
 
-    if(selectedFile.trim() === ""){
-        fileError = 'Field is required'
-    }
+    
 
-    if(selectedBundleImages.length === 0){
-        bundleImagesError = 'At least one image is required';
-    }
-
-    if(bundleAmenities.length === 0 && amenitiesSelect.trim() === ""){
+    if(bundleAmenities && bundleAmenities.length === 0 && amenitiesSelect.trim() === ""){
         amenitiesSelectError= "Field is required"
     }
 
@@ -291,8 +285,12 @@ export const validateBundleInfoFields = (
             })
         })
 
-        setSelectedFileError(fileError)
-        setSelectedBundleImagesError(bundleImagesError)
+        if(setSelectedFileError){
+            setSelectedFileError(fileError);
+        }
+        if(setSelectedBundleImagesError){
+            setSelectedBundleImagesError(bundleImagesError)
+        }
 
         return false;
     }
@@ -373,3 +371,16 @@ export const validateBundleAmenities = (bundleAmenities, bundleAmenitiesErrors, 
 
     return true;
 }
+
+export const validateArrayOfObjects = (arrayToBeValidated) => {
+    let valid = []
+    arrayToBeValidated.forEach((obj)=>{
+        console.log(obj);
+        Object.keys(obj).forEach((field)=>{
+            return obj[`${field}`] === '' || !obj[`${field}`] ?
+            valid.push(obj[`${field}`]) : null;
+        });
+        return valid;
+    });
+    return valid;
+}  

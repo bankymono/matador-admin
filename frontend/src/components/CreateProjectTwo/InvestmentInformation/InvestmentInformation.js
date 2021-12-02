@@ -14,16 +14,14 @@ import rand from '../../../assets/random_img.jpg';
 import Amenities from '../Amenities/Amenities';
 import Bundle from '../Bundle/Bundle';
 import PaymentPlan from '../PaymentPlan/PaymentPlan';
-import { validateBundleAmenities, validateBundleInfoFields, validatePaymentPlanInfoFields } from '../validationFunctions';
+import { validatePaymentPlanInfoFields } from '../validationFunctions';
 
 const InvestmentInformation = ({
     projectPaymentPlansInfo,
     setProjectPaymentPlansInfo,
     selectedBundleImagesError,
     setSelectedBundleImagesError,
-    selectedFile,
-    setSelectedFile,
-    setFileName,
+    
     selectedFileError,
     setSelectedFileError,
     projectBundlesInfo,
@@ -34,16 +32,21 @@ const InvestmentInformation = ({
     handleDeleteBundleImage,fileName,handleFileChange, handleBundleImageChange, 
     selectedBundleImages, 
     setSelectedBundleImages,
+    handleAddBundle,
+    bundleAmenities,
+    setBundleAmenities,
+    bundleAmenitiesErrors,
+    setBundleAmenitiesErrors,
     handleProceedToPrevPage, setIncludeBundle, setIncludePaymentPlan, includeBundle, includePaymentPlan}) => {
+    
 
-
-    const [bundleAmenities, setBundleAmenities] = useState([])
-    const [bundleAmenitiesErrors, setBundleAmenitiesErrors] = useState([])
+    // const [bundleAmenities, setBundleAmenities] = useState([])
 
     const handleDisplayBundleForm = (e) => {
         if(e.target.checked === false){
             setIncludePaymentPlan(false);
             handleBundleImageChange()
+            setProjectBundlesInfo([]);
         }
 
         setIncludeBundle(e.target.checked)
@@ -64,6 +67,7 @@ const InvestmentInformation = ({
 
     // }
     const handleBundleAmenitiesFieldChange = (e, index) => {
+        console.log(e.target.value)
         setProjectBundlesInfo(prev=>{
             return prev.map((item,id)=>{
                 if(id !== index){
@@ -72,7 +76,7 @@ const InvestmentInformation = ({
 
                 return {
                     ...item,
-                    amenitiesSelect:'',
+                    amenitiesSelect: [],
                     amenitiesSelectError:''
                 }
             })
@@ -91,71 +95,6 @@ const InvestmentInformation = ({
         setBundleAmenities(prev => ([...prev, amenitiesFormState]));
         setBundleAmenitiesErrors(prev => ([...prev, amenitiesErrors]));
 
-
-    }
-
-    const handleAddBundle = (e) => {
-        e.preventDefault();
-        const initialBundleState = {
-            title:"",
-            size:"",
-            deedTitle:"",
-            price:"",
-            amenitiesSelect:"",
-
-            
-            titleError:"",
-            sizeError:"",
-            deedTitleError:"",
-            priceError:"",
-            amenitiesSelectError:""
-        }
-
-
-
-        if(projectBundlesInfo.length === 0){
-            setProjectBundlesInfo(prev=> [...prev, initialBundleState])
-        }else{
-            let isValidated = validateBundleInfoFields(
-                bundleAmenities,
-                projectBundlesInfo,
-                setProjectBundlesInfo,
-                selectedFile,
-                setSelectedFileError,
-                selectedBundleImages,
-
-                setSelectedBundleImagesError
-                );
-
-            let isBundleAmenitiesValid = validateBundleAmenities(
-                bundleAmenities,
-                bundleAmenitiesErrors,
-                setBundleAmenitiesErrors
-                )
-
-            if(isValidated && isBundleAmenitiesValid){
-                // initialBundleState.deedFile = selectedFile;
-                // initialBundleState.selectedBundleImages = [...selectedBundleImages]
-                setSelectedFile('')
-                setFileName('')
-                setSelectedBundleImages([])
-                setProjectBundlesInfo(prev=> {
-                    return prev.map((item, id)=>{
-                        if(prev.length !== 1 && id !== prev.length - 1){
-                            return item
-                        }
-
-                        return {
-                            ...item,
-                            deedFile: selectedFile,
-                            bundlePhotos:[...selectedBundleImages]
-                        }
-                    })
-                })
-                setProjectBundlesInfo(prev=> [...prev, initialBundleState])
-            }
-
-        }
 
     }
 
@@ -193,22 +132,6 @@ const InvestmentInformation = ({
 
 
             if(isValidated){
-                // initialBundleState.deedFile = selectedFile;
-                // initialBundleState.selectedBundleImages = [...selectedBundleImages]
-               
-                // setProjectPaymentPlansInfo(prev=> {
-                //     return prev.map((item, id)=>{
-                //         if(prev.length !== 1 && id !== prev.length - 1){
-                //             return item
-                //         }
-
-                //         return {
-                //             ...item,
-                //             deedFile: selectedFile,
-                //             bundlePhotos:[...selectedBundleImages]
-                //         }
-                //     })
-                // })
                 setProjectPaymentPlansInfo(prev=> [...prev, initialPaymentPlanState])
             }
 
@@ -223,7 +146,7 @@ const InvestmentInformation = ({
          })
     }
 
-    const handleBundleInputChange = (index,event) => {
+    const handleBundleInputChange = (index, event) => {
         event.preventDefault();
         event.persist();
 
@@ -412,7 +335,6 @@ const InvestmentInformation = ({
                     <label htmlFor="create-proj-bundle-select">Include bundle</label>
                 </div>
             </div>
-            {JSON.stringify(projectBundlesInfo)}
             {
                 
                 includeBundle ? 
@@ -427,12 +349,13 @@ const InvestmentInformation = ({
                                 item={item}
                                 handleBundleInputChange={handleBundleInputChange}
                                 bundleLength={projectBundlesInfo.length}
+                                projectBundlesInfo={projectBundlesInfo}
                                 handleDeleteBundleImage={handleDeleteBundleImage}
-                                fileName={fileName} 
+                                fileName={fileName}
                                 handleFileChange={handleFileChange}
                                 handleBundleImageChange={handleBundleImageChange}
-                                selectedBundleImages={selectedBundleImages}      
-                                selectedFileError={selectedFileError}     
+                                selectedBundleImages={selectedBundleImages}
+                                selectedFileError={selectedFileError}
                                 selectedBundleImagesError={selectedBundleImagesError}        
                                 handleBundleAmenitiesFieldChange={handleBundleAmenitiesFieldChange} 
                                 bundleAmenities={bundleAmenities}
