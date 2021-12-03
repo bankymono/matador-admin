@@ -237,12 +237,14 @@ export const validateBundleInfoFields = (
     let titleError = '';
     let sizeError = '';
     let deedTitleError = '';
+    let deedFileError = '';
+    let bundlePhotosError = '';
     let priceError = '';
     let fileError = '';
     let bundleImagesError = '';
     let amenitiesSelectError = '';
         console.log(projectBundlesInfo);
-    let {title, size, deedTitle, price, amenitiesSelect} = projectBundlesInfo[projectBundlesInfo.length - 1]
+    let {title, size, deedTitle, deedFile, price, amenitiesSelect, bundlePhotos} = projectBundlesInfo[projectBundlesInfo.length - 1]
 
     if(!title || title.trim()===''){
         titleError = "Field is required"
@@ -254,6 +256,14 @@ export const validateBundleInfoFields = (
 
     if(!deedTitle || deedTitle.trim() === ''){
         deedTitleError = 'Field is required'
+    }
+
+    if(!deedFile || deedFile.trim() === '' ){
+        deedFileError = 'Field is required'
+    }
+
+    if(!bundlePhotos || (bundlePhotos && bundlePhotos.length === 0)){
+        bundlePhotosError = 'Field is required'
     }
 
     if(!price || price.trim() === ''){
@@ -279,8 +289,10 @@ export const validateBundleInfoFields = (
                     sizeError,
                     titleError,
                     deedTitleError,
+                    deedFileError,
                     priceError,
-                    amenitiesSelectError
+                    amenitiesSelectError,
+                    bundlePhotosError
                 }
             })
         })

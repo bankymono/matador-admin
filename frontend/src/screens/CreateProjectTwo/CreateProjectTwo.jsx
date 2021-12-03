@@ -53,74 +53,6 @@ const CreateProject = ({arrLinks}) => {
         setSelectedProjectImages(prev => [...prev.filter((image, index) => id !== index)])
     } 
 
-    const handleDeleteBundleImage = (bundleId, imageId) => {
-        let result = projectBundlesInfo[bundleId].bundlePhotos.filter((image, index) => index !== imageId);
-        setProjectBundlesInfo(prev=> {
-            return prev.map((item, idx)=>{
-                if(idx !== bundleId){
-                    return item
-                }
-                return {
-                    ...item,
-                    bundlePhotos: result
-                }
-            })
-        })
-    } 
-
-    const handleBundleImageChange = (index, event) => {
-        if(event && event.target.files){
-            for ( let file of event.target.files){
-                encodeFileToBase64(file)
-                .then(result =>{
-                    setProjectBundlesInfo(prev=> {
-                        return prev.map((item, idx)=>{
-                            if(prev.length !== 1 && idx !== prev.length - 1){
-                                return item
-                            }
-                            setSelectedBundleImagesError('');
-                            return {
-                                ...item,
-                                bundlePhotos: item.bundlePhotos? [...item.bundlePhotos, result] : [result]
-                            }
-                        })
-                    })    
-                })
-            }
-            
-        }
-        else{
-            setSelectedBundleImages([]);
-        }
-
-    }
-
-    const handleFileChange = async (index, event) => {
-        if(event && event.target.files){
-                setFileName(event.target.files[0].name)
-                encodeFileToBase64(event.target.files[0])
-                .then(result =>{
-                    setProjectBundlesInfo(prev=> {
-                        return prev.map((item, idx)=>{
-                            if(prev.length !== 1 && idx !== prev.length - 1){
-                                return item
-                            }
-                            setSelectedFileError('');
-                            return {
-                                ...item,
-                                deedFile: result
-                            }
-                        })
-                    })
-                })
-        }
-        else{
-            setSelectedFile('')
-        }
-
-
-    }
-
     const encodeFileToBase64 = (file) => {
         return new Promise((resolve, reject)=> {
             var reader = new FileReader();
@@ -137,6 +69,10 @@ const CreateProject = ({arrLinks}) => {
             deedTitle:"",
             price:"",
             amenitiesSelect:"",
+            bundlePhotos: "",
+            deedFile: "",
+            deedFileError: "",
+            bundlePhotosError: "",
             titleError:"",
             sizeError:"",
             deedTitleError:"",
@@ -539,11 +475,8 @@ const CreateProject = ({arrLinks}) => {
                                 selectedFile={selectedFile}
                                 selectedBundleImages ={selectedBundleImages}      
                                 setSelectedBundleImages={setSelectedBundleImages} 
-                                handleBundleImageChange={handleBundleImageChange} 
-                                handleDeleteBundleImage={handleDeleteBundleImage}
                                 fileName={fileName}
                                 setFileName={setFileName}
-                                handleFileChange={handleFileChange}                        
                                 includeBundle={includeBundle} 
                                 setIncludeBundle = {setIncludeBundle}
                                 includePaymentPlan = {includePaymentPlan} 

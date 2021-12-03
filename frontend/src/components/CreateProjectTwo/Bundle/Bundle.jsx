@@ -138,7 +138,7 @@ const Bundle = ({
                             <div className="create-proj-input-container">
                                 <label className="create-proj-input-label" htmlFor="proj-name">Photos</label>
                                 <div>
-                                    <div className={selectedBundleImagesError ? "create-proj-images-container error-border" : "create-proj-images-container"}>
+                                    <div className={item.bundlePhotosError ? "create-proj-images-container error-border" : "create-proj-images-container"}>
                                         {
                                             projectBundlesInfo[theIndex].bundlePhotos?
                                             projectBundlesInfo[theIndex].bundlePhotos.map((image, index) => {
@@ -156,7 +156,10 @@ const Bundle = ({
                                         <div className="proj-add-img-wrapper">
                                             <label className="proj-add-img-label" htmlFor="proj-add-img">
                                                 <AiOutlinePlus className="proj-add-img" /></label>
-                                            <input onChange={(e)=>{handleBundleImageChange(theIndex, e)}} multiple id="proj-add-img" className="proj-add-img-input" type="file" accept="image/png, image/jpeg, image/jpg" />
+                                            <input onChange={(e)=>{handleBundleInputChange(theIndex, e)}} 
+                                            multiple 
+                                            id="proj-add-img" name={`bundlePhotoUpload`} 
+                                            className="proj-add-img-input" type="file" accept="image/png, image/jpeg, image/jpg" />
                                         </div>
 
                                     </div>
@@ -177,7 +180,7 @@ const Bundle = ({
                             <div className="create-proj-input-container">
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Deed file</label>
 
-                                <div className={selectedFileError ? "create-proj-input-with-suffix error-border" : "create-proj-input-with-suffix"}>
+                                <div className={item.deedFileError ? "create-proj-input-with-suffix error-border" : "create-proj-input-with-suffix"}>
                                     <div className="create-proj-file-disp">{item.deedFile? `Deed File Selected (${theIndex + 1})` : 'No file chosen'}</div>
 
                                     <div className={"proj-file-save-container"}>

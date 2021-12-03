@@ -20,18 +20,14 @@ const InvestmentInformation = ({
     projectPaymentPlansInfo,
     setProjectPaymentPlansInfo,
     selectedBundleImagesError,
-    setSelectedBundleImagesError,
-    
     selectedFileError,
-    setSelectedFileError,
     projectBundlesInfo,
     setProjectBundlesInfo,
     handleSubmit,
     projectInvestmentInfo,
     handleProjectInvestmentInfoFieldChange,
-    handleDeleteBundleImage,fileName,handleFileChange, handleBundleImageChange, 
+   fileName, 
     selectedBundleImages, 
-    setSelectedBundleImages,
     handleAddBundle,
     bundleAmenities,
     setBundleAmenities,
@@ -145,24 +141,111 @@ const InvestmentInformation = ({
              return prev.filter((item) =>item !== prev[index] )
          })
     }
+    const encodeFileToBase64 = (file) => {
+        return new Promise((resolve, reject)=> {
+            var reader = new FileReader();
+            reader.readAsDataURL(file)
+            reader.onload = () => resolve(reader.result)
+            reader.onerror = error => reject(error)
+        })
+    }
+    const handleFileChange = async (index, event) => {
+        console.log('index', index);
+        if(event && event.target.files){
+                encodeFileToBase64(event.target.files[0])
+                .then(result =>{
+                    setProjectBundlesInfo(prev=> {
+                        return prev.map((item, idx)=>{
+                            if(idx !== index){
+                                return item
+                            }
+                            return {
+                                ...item,
+                                deedFile: result,
+                                deedFileError: ''
+                            }
+                        })
+                    })
+                })
+        }
+    }
+    const handleDeleteBundleImage = (bundleId, imageId) => {
+        let result = projectBundlesInfo[bundleId].bundlePhotos.filter((image, index) => index !== imageId);
+        setProjectBundlesInfo(prev=> {
+            return prev.map((item, idx)=>{
+                if(idx !== bundleId){
+                    return item
+                }
+                return {
+                    ...item,
+                    bundlePhotos: result,
+                    bundlePhotosError: result.length !== 0? '' : 'Field is required'
+                }
+            })
+        })
+    } 
+
+    const handleBundleImageChange = (index, event) => {
+        console.log(index)
+        if(event && event.target.files){
+            for ( let file of event.target.files){
+                encodeFileToBase64(file)
+                .then(result =>{
+                    setProjectBundlesInfo(prev=> {
+                        return prev.map((item, idx)=>{
+                            if(index  !== idx){
+                                return item
+                            }
+                            return {
+                                ...item,
+                                bundlePhotos: item.bundlePhotos? [...item.bundlePhotos, result] : [result],
+                                bundlePhotosError: ''
+                            }
+                        })
+                    })    
+                })
+            }
+            
+        }
+        else{
+            setProjectBundlesInfo(prev=> {
+                return prev.map((item, idx)=>{
+                    if(prev.length !== 1 && idx !== prev.length - 1){
+                        return item
+                    }
+                    return {
+                        ...item,
+                        bundlePhotos: [],
+                        bundlePhotosError: 'Field is required'
+                    }
+                })
+            })
+        }
+
+    }
 
     const handleBundleInputChange = (index, event) => {
         event.preventDefault();
         event.persist();
-
-        setProjectBundlesInfo(prev => {
-            return prev.map((item, i) =>{
-                if(i !== index){
-                    return item
-                }
-
-                return {
-                    ...item,
-                    [event.target.name]:event.target.value,
-                    [`${event.target.name}Error`]:""
-                }
-            } )
-        })
+        console.log(index, event.target.name);
+        if(event.target.name !== 'bundlePhotoUpload'){
+            setProjectBundlesInfo(prev => {
+                return prev.map((item, i) =>{
+                    if(i !== index){
+                        return item
+                    }
+    
+                    return {
+                        ...item,
+                        [event.target.name]:event.target.value,
+                        [`${event.target.name}Error`]:""
+                    }
+                } )
+            })
+        }else{
+            handleBundleImageChange(index, event);
+        }
+        
     }
 
     const handlePaymentPlanInputChange = (index,event) => {
