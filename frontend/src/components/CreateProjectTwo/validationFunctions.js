@@ -272,8 +272,14 @@ export const validateBundleInfoFields = (
 
     
 
-    if(bundleAmenities && bundleAmenities.length === 0 && amenitiesSelect.trim() === ""){
+    if( amenitiesSelect && amenitiesSelect.length === 0 ){
         amenitiesSelectError= "Field is required"
+    }else if(amenitiesSelect && amenitiesSelect.length > 0){
+        amenitiesSelect.forEach((amenity) => {
+            if(!amenity.value || amenity.value.trim() === ''){
+            return amenitiesSelectError= "Field is required"
+            }
+        })
     }
 
     if(titleError || sizeError || deedTitleError || priceError || fileError || bundleImagesError || amenitiesSelectError){

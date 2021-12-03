@@ -68,7 +68,7 @@ const CreateProject = ({arrLinks}) => {
             size:"",
             deedTitle:"",
             price:"",
-            amenitiesSelect:"",
+            amenitiesSelect: [],
             bundlePhotos: "",
             deedFile: "",
             deedFileError: "",
