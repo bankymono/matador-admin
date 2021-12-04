@@ -3,7 +3,6 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 import { RiUploadCloudFill } from 'react-icons/ri';
-import TempImg from '../../../assets/images/office-building.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { listAmenities } from '../../../redux/actions/projectActions';
 import './Bundle.css'
@@ -30,7 +29,7 @@ const Bundle = ({
 
     const dispatch = useDispatch();
     const amenityList = useSelector(state => state.amenityList);
-    const { amenities, amenityError, amenityLoading } = amenityList;
+    const { amenities, amenityLoading } = amenityList;
 
     useEffect(() => {
         dispatch(listAmenities())
@@ -164,7 +163,7 @@ const Bundle = ({
                                         <div className="add-amenity-label">Add Amenity</div>
                                         <select
                                             className={item.amenitiesSelectError ? "amenity-select error-border" : "amenity-select"}
-                                            value={item.amenitiesSelect}
+                                            // value={item.amenitiesSelect}
                                             onChange={(e) => handleBundleAmenitiesFieldChange(e, theIndex)}
                                         >
                                             <option className="amen-option">Select One</option>

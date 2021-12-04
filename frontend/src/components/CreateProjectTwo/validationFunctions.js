@@ -231,9 +231,8 @@ export const validateProjectInvestmentInfoFields = (projectInvestmentInfo, setPr
 }
 
 export const validateBundleInfoFields = (
-    bundleAmenities,
-    projectBundlesInfo, setProjectBundlesInfo, selectedFile, setSelectedFileError,
-    selectedBundleImages, setSelectedBundleImagesError) => {
+    projectBundlesInfo, setProjectBundlesInfo
+    ) => {
     let titleError = '';
     let sizeError = '';
     let deedTitleError = '';
@@ -243,8 +242,13 @@ export const validateBundleInfoFields = (
     let fileError = '';
     let bundleImagesError = '';
     let amenitiesSelectError = '';
-        console.log(projectBundlesInfo);
-    let {title, size, deedTitle, deedFile, price, amenitiesSelect, bundlePhotos} = projectBundlesInfo[projectBundlesInfo.length - 1]
+    let {title, 
+        size, 
+        deedTitle, 
+        deedFile, 
+        price, 
+        amenitiesSelect, 
+        bundlePhotos} = projectBundlesInfo[projectBundlesInfo.length - 1]
 
     if(!title || title.trim()===''){
         titleError = "Field is required"
@@ -303,12 +307,7 @@ export const validateBundleInfoFields = (
             })
         })
 
-        if(setSelectedFileError){
-            setSelectedFileError(fileError);
-        }
-        if(setSelectedBundleImagesError){
-            setSelectedBundleImagesError(bundleImagesError)
-        }
+        
 
         return false;
     }
@@ -333,7 +332,7 @@ export const validatePaymentPlanInfoFields = (
     }
 
     if(initialDepositAmount.trim() === ''){
-        initialDepositAmount = "Field is required"
+        initialDepositAmountError = "Field is required"
     }
 
     if(availablePaymentPeriod.trim() === ''){

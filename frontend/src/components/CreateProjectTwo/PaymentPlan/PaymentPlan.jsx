@@ -8,81 +8,77 @@ const PaymentPlan = ({
     paymentPlanLength
 }) => {
 
-    const [showPaymentPlanForm, setShowPaymentPlanForm] = useState(false);
+    const [showPaymentPlanForm, setShowPaymentPlanForm] = useState(true);
 
     return (
-            <div className="payment-plan-inputs-wrapper">
-                {
-                    !showPaymentPlanForm && !(theIndex === (paymentPlanLength - 1)) ?(
-                        <div className="payplan-inputs-summarized">
-                        <div className="content-details">
-                            <div className="content-details-item">
-                                <div className="mini-heading">Initial Deposit %</div>
-                                <div className="mini-desc">10%</div>
-                            </div>
-        
-                            <div className="content-details-item">
-                                <div className="mini-heading">Initial Deposit Amount</div>
-                                <div className="mini-desc">450,000</div>
-                            </div>
-        
-                            <div className="content-details-item">
-                                <div className="mini-heading">Available Payment Period in Months</div>
-                                <div className="mini-desc">12</div>
-                            </div>
-        
-                            <div className="content-details-item">
-                                <div className="mini-heading">Monthly Payment</div>
-                                <div className="mini-desc">120,000</div>
-                            </div>
-                        </div>
-                        
-                        <div className="controls-wrapper">
-                            <button className="delete-btn">Delete</button>
-                            <button className="expand-collapse-btn">Expand</button>
-                        </div>
-                    </div>
-
-                    ):null
-                }
-
-                {
-                    showPaymentPlanForm || (theIndex === (paymentPlanLength - 1)) ?(
-                        <div className="proj-new-payment-plan-form-wrapper">
-                        <div className="create-investment-info-heading">Payment Plan</div>
+        <div className="payment-plan-inputs-wrapper">
+            <div className="title-and-collapse-btn-wrapper proj-new-payment-plan-form-wrapper">
+                <div className="create-investment-info-heading">Payment Plan</div>
+                <div>
+                <button onClick={(e) => handleRemovePaymentPlan(e, theIndex)} 
+                    className="bundle-delete-btn">Delete</button>
+                <button onClick={() => setShowPaymentPlanForm(!showPaymentPlanForm)} 
+                    className="expand-collapse-btn">
+                    {showPaymentPlanForm ? 'Collapse' : 'Expand'}</button>
+                </div>
+                
+            </div>
+            {
+                showPaymentPlanForm ? (
+                    <div className="proj-new-payment-plan-form-wrapper">
 
                         <div className="create-proj-two-fields-row payplan-input-container">
                             <div className="create-proj-input-container">
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Initial deposit percentage</label>
-                                <div className="create-proj-input-with-prefix"><span className="create-proj-input-prefix">%</span><input type="text" /></div>
+                                <div className="create-proj-input-with-prefix">
+                                    <span className="create-proj-input-prefix">%</span>
+                                    <input type="text" name="initialDepositPercent"
+                                        value={item.initialDepositPercent}
+                                        className={item.initialDepositPercentError ? "error-border" : ""}
+                                        onChange={(e) => handlePaymentPlanInputChange(theIndex, e)} />
+                                </div>
                             </div>
 
                             <div className="create-proj-input-container">
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Initial deposit amount</label>
-                                <div className="create-proj-input-with-prefix"><span className="create-proj-input-prefix">N</span><input type="text" /></div>
+                                <div className="create-proj-input-with-prefix">
+                                    <span className="create-proj-input-prefix">N</span>
+                                    <input type="text" name="initialDepositAmount"
+                                        value={item.initialDepositAmount}
+                                        className={item.initialDepositAmountError ? "error-border" : ""}
+                                        onChange={(e) => handlePaymentPlanInputChange(theIndex, e)}/>
+                                    </div>
                             </div>
                         </div>
 
                         <div className="create-proj-two-fields-row payplan-input-container">
                             <div className="create-proj-input-container">
                                 <label className="create-proj-input-label" htmlFor="proj-name">Available payment period in months</label>
-                                <input type="text" />
+                                <input type="text" name="availablePaymentPeriod"
+                                        value={item.availablePaymentPeriod}
+                                        className={item.availablePaymentPeriodError ? "error-border" : ""}
+                                        onChange={(e) => handlePaymentPlanInputChange(theIndex, e)} />
                             </div>
 
                             <div className="create-proj-input-container">
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Monthly payment</label>
-                                <div className="create-proj-input-with-prefix"><span className="create-proj-input-prefix">N</span><input type="text" /></div>
+                                <div className="create-proj-input-with-prefix">
+                                    <span className="create-proj-input-prefix">N</span>
+                                    <input type="text"name="monthlyPayment"
+                                        value={item.monthlyPayment}
+                                        className={item.monthlyPaymentError ? "error-border" : ""}
+                                        onChange={(e) => handlePaymentPlanInputChange(theIndex, e)} /></div>
                             </div>
 
                         </div>
-                </div>                           
-                    ):null
-                }
+                    </div>
+                ) : null
+            }
 
 
 
 
-            </div>
+        </div>
     )
 }
 

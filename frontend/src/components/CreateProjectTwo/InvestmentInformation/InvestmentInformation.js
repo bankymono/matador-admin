@@ -122,15 +122,11 @@ const InvestmentInformation = ({
             initialDepositAmount: "",
             availablePaymentPeriod: "",
             monthlyPayment: "",
-
-
             initialDepositPercentError: "",
             initialDepositAmountError: "",
             availablePaymentPeriodError: "",
             monthlyPaymentError: "",
         }
-
-
 
         if (projectPaymentPlansInfo.length === 0) {
             setProjectPaymentPlansInfo(prev => [...prev, initialPaymentPlanState])
@@ -139,7 +135,6 @@ const InvestmentInformation = ({
                 projectPaymentPlansInfo,
                 setProjectPaymentPlansInfo
             );
-
 
             if (isValidated) {
                 setProjectPaymentPlansInfo(prev => [...prev, initialPaymentPlanState])
@@ -164,7 +159,6 @@ const InvestmentInformation = ({
         })
     }
     const handleFileChange = async (index, event) => {
-        console.log('index', index);
         if (event && event.target.files) {
             encodeFileToBase64(event.target.files[0])
                 .then(result => {
@@ -200,7 +194,6 @@ const InvestmentInformation = ({
     }
 
     const handleBundleImageChange = (index, event) => {
-        console.log(index)
         if (event && event.target.files) {
             for (let file of event.target.files) {
                 encodeFileToBase64(file)
@@ -261,7 +254,6 @@ const InvestmentInformation = ({
     const handlePaymentPlanInputChange = (index, event) => {
         event.preventDefault();
         event.persist();
-
         setProjectPaymentPlansInfo(prev => {
             return prev.map((item, i) => {
                 if (i !== index) {
@@ -459,8 +451,6 @@ const InvestmentInformation = ({
                                     setBundleAmenities={setBundleAmenities}
                                 />))
                         }
-
-
                         <button onClick={handleAddBundle} className="create-proj-add-more-buton"><span>Add Bundle</span><MdAddBox className="add-more-icon" /></button>
                     </div>
                     : null
@@ -485,7 +475,6 @@ const InvestmentInformation = ({
                         {
                             projectPaymentPlansInfo.map((item, index) => (
                                 <PaymentPlan
-
                                     handleRemovePaymentPlan={handleRemovePaymentPlan}
                                     key={`item-${index}`}
                                     theIndex={index}

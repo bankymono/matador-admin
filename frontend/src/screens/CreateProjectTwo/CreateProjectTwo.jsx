@@ -8,19 +8,25 @@ import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
 import './CreateProjectTwo.css';
 
-import {initialProjectBundlesInfo, initialProjectInfoState, initialProjectInvestmentInfoState} from '../../components/CreateProjectTwo/initialVariables';
-import { validateProjectInfoFields, validateProjectAmenities, validateProjectInvestmentInfoFields, validateBundleInfoFields, validateBundleAmenities, validateArrayOfObjects } from '../../components/CreateProjectTwo/validationFunctions';
+import { initialProjectInfoState, initialProjectInvestmentInfoState } from '../../components/CreateProjectTwo/initialVariables';
+import {
+    validateProjectInfoFields,
+    validateProjectAmenities,
+    validateProjectInvestmentInfoFields,
+    validateBundleInfoFields,
+    validatePaymentPlanInfoFields
+} from '../../components/CreateProjectTwo/validationFunctions';
 
 
-const CreateProject = ({arrLinks}) => {
+const CreateProject = ({ arrLinks }) => {
     const [currentPage, setCurrentPage] = useState("Create Equity Based Project");
 
     // for changing the page of the form
-    const [formStep, setFormStep] = useState(1); 
+    const [formStep, setFormStep] = useState(1);
 
     const [selectedProjectImages, setSelectedProjectImages] = useState([]);
     const [selectedProjectImagesError, setSelectedProjectImagesError] = useState('');
-    
+
     const [selectedBundleImages, setSelectedBundleImages] = useState([]);
     const [selectedBundleImagesError, setSelectedBundleImagesError] = useState('');
     const [bundleAmenities, setBundleAmenities] = useState([])
@@ -28,91 +34,6 @@ const CreateProject = ({arrLinks}) => {
 
     const [selectedFile, setSelectedFile] = useState('');
     const [selectedFileError, setSelectedFileError] = useState('');
-    
-    const [fileName, setFileName] = useState([]);
-
-
-    const [includeBundle, setIncludeBundle] = useState(false);
-    const [includePaymentPlan, setIncludePaymentPlan] = useState(false);
-
-
-    const handleProjectImageChange = (e) => {
-        if(e.target.files){
-
-            for ( let file of e.target.files){
-                encodeFileToBase64(file)
-                .then(result =>{
-                    setSelectedProjectImages(prev => [...prev, result])
-                })
-            }
-            setSelectedProjectImagesError('');
-        }
-    }
-
-    const handleDeleteProjectImage = (id) => {
-        setSelectedProjectImages(prev => [...prev.filter((image, index) => id !== index)])
-    } 
-
-    const encodeFileToBase64 = (file) => {
-        return new Promise((resolve, reject)=> {
-            var reader = new FileReader();
-            reader.readAsDataURL(file)
-            reader.onload = () => resolve(reader.result)
-            reader.onerror = error => reject(error)
-        })
-    }
-    const handleAddBundle = (e) => {
-        e.preventDefault();
-        const initialBundleState = {
-            title:"",
-            size:"",
-            deedTitle:"",
-            price:"",
-            amenitiesSelect: [],
-            bundlePhotos: "",
-            deedFile: "",
-            deedFileError: "",
-            bundlePhotosError: "",
-            titleError:"",
-            sizeError:"",
-            deedTitleError:"",
-            priceError:"",
-            amenitiesSelectError:""
-        }
-        if(projectBundlesInfo.length === 0){
-            setProjectBundlesInfo(prev=> [...prev, initialBundleState])
-        }else{
-            let isValidated = validateBundleInfoFields(
-                bundleAmenities,
-                projectBundlesInfo,
-                setProjectBundlesInfo,
-                );
-
-            let isBundleAmenitiesValid = validateBundleAmenities(
-                bundleAmenities,
-                bundleAmenitiesErrors,
-                setBundleAmenitiesErrors
-                )
-
-            if(isValidated && isBundleAmenitiesValid){
-                setProjectBundlesInfo(prev=> {
-                    return prev.map((item, id)=>{
-                        if(prev.length !== 1 && id !== prev.length - 1){
-                            return item
-                        }
-
-                        return {
-                            ...item,
-                            
-                        }
-                    })
-                })
-                setProjectBundlesInfo(prev=> [...prev, initialBundleState])
-            }
-
-        }
-
-    }
 
     const [projectInfo, setProjectInfo] = useState(initialProjectInfoState);
     const [projectInvestmentInfo, setProjectInvestmentInfo] = useState(initialProjectInvestmentInfoState);
@@ -122,27 +43,105 @@ const CreateProject = ({arrLinks}) => {
     const [projectAmenitiesForm, setProjectAmenitiesForm] = useState([])
     const [projectAmenitiesFormErrors, setProjectAmenitiesFormErrors] = useState([])
 
+    const [fileName, setFileName] = useState([]);
 
-    
-    const handleProceedToNextPage= (e) => {
+
+    const [includeBundle, setIncludeBundle] = useState(false);
+    const [includePaymentPlan, setIncludePaymentPlan] = useState(false);
+
+
+    const handleProjectImageChange = (e) => {
+        if (e.target.files) {
+
+            for (let file of e.target.files) {
+                encodeFileToBase64(file)
+                    .then(result => {
+                        setSelectedProjectImages(prev => [...prev, result])
+                    })
+            }
+            setSelectedProjectImagesError('');
+        }
+    }
+
+    const handleDeleteProjectImage = (id) => {
+        setSelectedProjectImages(prev => [...prev.filter((image, index) => id !== index)])
+    }
+
+    const encodeFileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            var reader = new FileReader();
+            reader.readAsDataURL(file)
+            reader.onload = () => resolve(reader.result)
+            reader.onerror = error => reject(error)
+        })
+    }
+    const handleAddBundle = (e) => {
+        e.preventDefault();
+        const initialBundleState = {
+            title: "",
+            size: "",
+            deedTitle: "",
+            price: "",
+            amenitiesSelect: [],
+            bundlePhotos: "",
+            deedFile: "",
+            deedFileError: "",
+            bundlePhotosError: "",
+            titleError: "",
+            sizeError: "",
+            deedTitleError: "",
+            priceError: "",
+            amenitiesSelectError: ""
+        }
+        if (projectBundlesInfo.length === 0) {
+            setProjectBundlesInfo(prev => [...prev, initialBundleState])
+        } else {
+            let isValidated = validateBundleInfoFields(
+                projectBundlesInfo,
+                setProjectBundlesInfo,
+            );
+
+            if (isValidated) {
+                setProjectBundlesInfo(prev => {
+                    return prev.map((item, id) => {
+                        if (prev.length !== 1 && id !== prev.length - 1) {
+                            return item
+                        }
+
+                        return {
+                            ...item,
+
+                        }
+                    })
+                })
+                setProjectBundlesInfo(prev => [...prev, initialBundleState])
+            }
+
+        }
+
+    }
+
+
+
+    const handleProceedToNextPage = (e) => {
         e.preventDefault();
         let isProjectInfoValid = validateProjectInfoFields(
-            projectInfo, 
-            setProjectInfo, 
+            projectInfo,
+            setProjectInfo,
             projectAmenitiesForm,
             selectedProjectImages,
-            setSelectedProjectImagesError) 
+            setSelectedProjectImagesError)
 
         let isProjectAmenitiesValid = validateProjectAmenities(
             projectAmenitiesForm,
             projectAmenitiesFormErrors,
             setProjectAmenitiesFormErrors
-            )
+        )
 
-        if(isProjectInfoValid && isProjectAmenitiesValid){
+        if (isProjectInfoValid && isProjectAmenitiesValid) {
             setFormStep(prevStep => prevStep + 1)
-            window.scrollTo(0,0);
-        }else{
+            window.scrollTo(0, 0);
+        } else {
             alert('there are invalid fields');
         }
 
@@ -150,49 +149,52 @@ const CreateProject = ({arrLinks}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(
+            {
+                projectInvestmentInfo,
+                projectInfo,
+                projectBundlesInfo,
+                projectPaymentPlansInfo
+            });
         let isProjectInvestmentsInfoValid = validateProjectInvestmentInfoFields(
             projectInvestmentInfo,
             setProjectInvestmentInfo);
-            console.log( {projectBundlesInfo, selectedFile, selectedBundleImages} );
-        if(includeBundle && projectBundlesInfo.length === 0) {
-            alert('Bundle section is checked hence, must be completed');
-        }
-        if(includeBundle && projectBundlesInfo.length > 0){
-            // let isProjectBundlesInfoValid = validateArrayOfObjects(projectBundlesInfo);
-            let isValidated = validateBundleInfoFields(
-                bundleAmenities,
+        let isProjectBundlesInfoValid = projectBundlesInfo.length !==0 ? validateBundleInfoFields(
                 projectBundlesInfo,
                 setProjectBundlesInfo,
-                );
+            )
+        : false;
+        let isProjectPaymentPlansInfoValid = projectPaymentPlansInfo.length !== 0 ? validatePaymentPlanInfoFields(
+                projectPaymentPlansInfo,
+                setProjectPaymentPlansInfo
+            )
+        : false;
 
-            let isBundleAmenitiesValid = validateBundleAmenities(
-                bundleAmenities,
-                bundleAmenitiesErrors,
-                setBundleAmenitiesErrors
-                )
-            
-            if(isValidated && isBundleAmenitiesValid){
-                
-                // setProjectBundlesInfo(prev=> [...prev, initialBundleState])
-            }
-        }else if(includeBundle && includePaymentPlan){
-            // action here 
-            
+
+        if (!isProjectInvestmentsInfoValid) {
+            alert('Investment has invalid fields');
+        } else if (isProjectInvestmentsInfoValid && !includeBundle) {
+            console.log('good to go without bundle');
+            //api call without bundle
+        } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length === 0) {
+            alert('Bundle section is checked hence, must be completed');
+        } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !isProjectBundlesInfoValid) {
+            alert('Bundle contains invalid fields');
+        } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !includePaymentPlan) {
+            alert('You are yet to include payment plan');
+        } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && includePaymentPlan && projectPaymentPlansInfo.length===0) {
+            alert('please add a payment plan');
+        } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && includePaymentPlan && projectPaymentPlansInfo.length > 0 && !isProjectPaymentPlansInfoValid) {
+            alert('Payment plan has invalid field');
+        } else {
+            alert('good to go with bundles')
+            console.log('good to go with bundles');
         }
-
-
-            if(isProjectInvestmentsInfoValid){
-                alert('validation worked!!!')
-            }
-            else{
-                alert('check invalid fields')
-            }
-        
     }
 
-    const handleProceedToPrevPage= () => {
+    const handleProceedToPrevPage = () => {
         setFormStep(prevStep => prevStep - 1)
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     const handleProjectInfoFieldChange = (e) => {
@@ -200,129 +202,129 @@ const CreateProject = ({arrLinks}) => {
 
         setProjectInfo(prev => ({
             ...prev,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         }))
 
 
-        switch(e.target.name){
+        switch (e.target.name) {
             case 'projectName':
                 setProjectInfo(prev => ({
                     ...prev,
-                    projectNameInputError:''
+                    projectNameInputError: ''
                 }))
                 break;
             case 'completedTimestamp':
                 setProjectInfo(prev => ({
                     ...prev,
-                    completedTimestampInputError:''
+                    completedTimestampInputError: ''
                 }))
                 break;
             case 'buildingSize':
                 setProjectInfo(prev => ({
                     ...prev,
-                    buildingSizeInputError:''
+                    buildingSizeInputError: ''
                 }))
                 break;
             case 'constructedBy':
                 setProjectInfo(prev => ({
                     ...prev,
-                    constructedByInputError:''
+                    constructedByInputError: ''
                 }))
                 break;
             case 'description':
                 setProjectInfo(prev => ({
                     ...prev,
-                    descriptionInputError:''
+                    descriptionInputError: ''
                 }))
                 break;
             case 'landTitle':
                 setProjectInfo(prev => ({
                     ...prev,
-                    landTitleInputError:''
+                    landTitleInputError: ''
                 }))
                 break;
             case 'buildingType':
                 setProjectInfo(prev => ({
                     ...prev,
-                    buildingTypeInputError:''
+                    buildingTypeInputError: ''
                 }))
                 break;
 
             case 'projectCategory':
                 setProjectInfo(prev => ({
                     ...prev,
-                    projectCategoryInputError:''
+                    projectCategoryInputError: ''
                 }))
                 break;
 
             case 'projectStatus':
                 setProjectInfo(prev => ({
                     ...prev,
-                    projectStatusInputError:''
+                    projectStatusInputError: ''
                 }))
                 break;
 
             case 'evaluation':
                 setProjectInfo(prev => ({
                     ...prev,
-                    evaluationInputError:''
+                    evaluationInputError: ''
                 }))
                 break;
-                
+
             case 'totalUnits':
                 setProjectInfo(prev => ({
                     ...prev,
-                    totalUnitsInputError:''
+                    totalUnitsInputError: ''
                 }))
                 break;
 
             case 'projectAddress':
                 setProjectInfo(prev => ({
                     ...prev,
-                    projectAddressInputError:''
+                    projectAddressInputError: ''
                 }))
                 break;
 
             case 'longitude':
                 setProjectInfo(prev => ({
                     ...prev,
-                    longitudeInputError:''
+                    longitudeInputError: ''
                 }))
                 break;
 
             case 'latitude':
                 setProjectInfo(prev => ({
                     ...prev,
-                    latitudeInputError:''
+                    latitudeInputError: ''
                 }))
                 break;
 
             case 'amenitiesSelect':
                 setProjectInfo(prev => ({
                     ...prev,
-                    amenitiesSelectInputError:''
+                    amenitiesSelectInputError: ''
                 }))
                 break;
             default:
-                    return null
+                return null
         }
 
     }
 
 
     const handleProjectAmenitiesFieldChange = (e) => {
-        setProjectInfo(prev=>({
+        setProjectInfo(prev => ({
             ...prev,
-            amenitiesSelect:'',
-            amenitiesSelectInputError:''
+            amenitiesSelect: '',
+            amenitiesSelectInputError: ''
         }))
 
         const amenitiesFormState = {
-            [e.target.value]:"",
+            [e.target.value]: "",
         }
 
         const amenitiesErrors = {
-            [e.target.value]:null
+            [e.target.value]: null
         }
 
         setProjectAmenitiesForm(prev => ([...prev, amenitiesFormState]));
@@ -337,85 +339,85 @@ const CreateProject = ({arrLinks}) => {
 
         setProjectInvestmentInfo(prev => ({
             ...prev,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         }))
 
 
-        switch(e.target.name){
+        switch (e.target.name) {
             case 'dividendMaturity':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    dividendMaturityInputError:''
+                    dividendMaturityInputError: ''
                 }))
                 break;
             case 'fundingEndTimestamp':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    fundingEndTimestampInputError:''
+                    fundingEndTimestampInputError: ''
                 }))
                 break;
             case 'hardCap':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    hardCapInputError:''
+                    hardCapInputError: ''
                 }))
                 break;
             case 'softCap':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    softCapInputError:''
+                    softCapInputError: ''
                 }))
                 break;
             case 'holdingPeriod':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    holdingPeriodInputError:''
+                    holdingPeriodInputError: ''
                 }))
                 break;
             case 'incomeTimestamp':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    incomeTimestampInputError:''
+                    incomeTimestampInputError: ''
                 }))
                 break;
             case 'interestRatePerWeek':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    interestRatePerWeekInputError:''
+                    interestRatePerWeekInputError: ''
                 }))
                 break;
 
             case 'rentalYield':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    rentalYieldInputError:''
+                    rentalYieldInputError: ''
                 }))
                 break;
 
             case 'cashOnCashYield':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    cashOnCashYieldInputError:''
+                    cashOnCashYieldInputError: ''
                 }))
                 break;
 
             case 'totalFractions':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    totalFractionsInputError:''
+                    totalFractionsInputError: ''
                 }))
                 break;
-                
+
             case 'pricePerFraction':
                 setProjectInvestmentInfo(prev => ({
                     ...prev,
-                    pricePerFractionInputError:''
+                    pricePerFractionInputError: ''
                 }))
                 break;
 
 
             default:
-                    return null
+                return null
         }
 
     }
@@ -423,15 +425,15 @@ const CreateProject = ({arrLinks}) => {
 
 
 
-    switch(formStep){
+    switch (formStep) {
         case 1:
             return (
                 <div className="create-project-outer-wrapper">
                     <SideBar setCurrentPage={setCurrentPage} />
-        
+
                     <div className="header-and-center-container">
                         <Header />
-                        <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
+                        <SubNav currentPage={currentPage} arrLinks={arrLinks} />
                         <div className="create-project-container">
                             <ProjectInformation
                                 projectInfo={projectInfo}
@@ -442,13 +444,13 @@ const CreateProject = ({arrLinks}) => {
                                 setProjectAmenitiesFormErrors={setProjectAmenitiesFormErrors}
                                 handleProjectAmenitiesFieldChange={handleProjectAmenitiesFieldChange}
 
-                                selectedProjectImages ={selectedProjectImages}
+                                selectedProjectImages={selectedProjectImages}
                                 selectedProjectImagesError={selectedProjectImagesError}
                                 handleDeleteProjectImage={handleDeleteProjectImage}
                                 handleProjectImageChange={handleProjectImageChange}
                                 handleProceedToNextPage={handleProceedToNextPage}
                             />
-        
+
                         </div>
                     </div>
                 </div>
@@ -457,10 +459,10 @@ const CreateProject = ({arrLinks}) => {
             return (
                 <div className="create-project-outer-wrapper">
                     <SideBar setCurrentPage={setCurrentPage} />
-        
+
                     <div className="header-and-center-container">
                         <Header />
-                        <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
+                        <SubNav currentPage={currentPage} arrLinks={arrLinks} />
                         <div className="create-project-container">
                             <InvestmentInformation
                                 projectInvestmentInfo={projectInvestmentInfo}
@@ -471,16 +473,16 @@ const CreateProject = ({arrLinks}) => {
                                 setProjectPaymentPlansInfo={setProjectPaymentPlansInfo}
                                 selectedBundleImagesError={selectedBundleImagesError}
                                 setSelectedBundleImagesError={setSelectedBundleImagesError}
-                                
+
                                 selectedFile={selectedFile}
-                                selectedBundleImages ={selectedBundleImages}      
-                                setSelectedBundleImages={setSelectedBundleImages} 
+                                selectedBundleImages={selectedBundleImages}
+                                setSelectedBundleImages={setSelectedBundleImages}
                                 fileName={fileName}
                                 setFileName={setFileName}
-                                includeBundle={includeBundle} 
-                                setIncludeBundle = {setIncludeBundle}
-                                includePaymentPlan = {includePaymentPlan} 
-                                setIncludePaymentPlan = {setIncludePaymentPlan}
+                                includeBundle={includeBundle}
+                                setIncludeBundle={setIncludeBundle}
+                                includePaymentPlan={includePaymentPlan}
+                                setIncludePaymentPlan={setIncludePaymentPlan}
                                 handleProceedToPrevPage={handleProceedToPrevPage}
                                 handleSubmit={handleSubmit}
                                 selectedFileError={selectedFileError}
@@ -496,7 +498,7 @@ const CreateProject = ({arrLinks}) => {
                     </div>
                 </div>
             )
-            default: return null
+        default: return null
     }
 
 }
