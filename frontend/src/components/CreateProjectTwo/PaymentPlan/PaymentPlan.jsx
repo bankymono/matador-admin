@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import './PaymentPlan.css';
 const PaymentPlan = ({
     handleRemovePaymentPlan,
     theIndex,
