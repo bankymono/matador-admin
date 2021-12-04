@@ -2,7 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {adminCreateReducer, adminListReducer, adminLoginReducer, countryListReducer, superAdminCreateReducer, superAdminListReducer} from './reducers/userReducers'
-import { amenityListReducer, buildingTypeListReducer, landTitleListReducer, projectCategoryListReducer, projectStatusListReducer } from './reducers/projectReducers';
+import { amenityListReducer, buildingTypeListReducer, equityInvestmentListReducer, landTitleListReducer, projectCategoryListReducer, projectStatusListReducer } from './reducers/projectReducers';
 
 
 const reducer = combineReducers({
@@ -18,7 +18,8 @@ const reducer = combineReducers({
     buildingTypeList:buildingTypeListReducer,
     projectCategoryList:projectCategoryListReducer,
     projectStatusList:projectStatusListReducer,
-    amenityList:amenityListReducer
+    amenityList:amenityListReducer,
+    equityInvestmentList:equityInvestmentListReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;

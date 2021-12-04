@@ -2,7 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv'
 import api from '../../api';
 
-import { AMENITY_LIST_FAIL, AMENITY_LIST_REQUEST, AMENITY_LIST_SUCCESS, BUILDING_TYPE_LIST_FAIL, BUILDING_TYPE_LIST_REQUEST, BUILDING_TYPE_LIST_SUCCESS, LAND_TITLE_LIST_FAIL, LAND_TITLE_LIST_REQUEST, LAND_TITLE_LIST_SUCCESS, PROJECT_CATEGORY_LIST_FAIL, PROJECT_CATEGORY_LIST_REQUEST, PROJECT_CATEGORY_LIST_SUCCESS, PROJECT_STATUS_LIST_FAIL, PROJECT_STATUS_LIST_REQUEST, PROJECT_STATUS_LIST_SUCCESS } from "../constants/projectConstants"
+import { AMENITY_LIST_FAIL, AMENITY_LIST_REQUEST, AMENITY_LIST_SUCCESS, BUILDING_TYPE_LIST_FAIL, BUILDING_TYPE_LIST_REQUEST, BUILDING_TYPE_LIST_SUCCESS, EQUITY_INVESTMENT_LIST_FAIL, EQUITY_INVESTMENT_LIST_REQUEST, EQUITY_INVESTMENT_LIST_SUCCESS, LAND_TITLE_LIST_FAIL, LAND_TITLE_LIST_REQUEST, LAND_TITLE_LIST_SUCCESS, PROJECT_CATEGORY_LIST_FAIL, PROJECT_CATEGORY_LIST_REQUEST, PROJECT_CATEGORY_LIST_SUCCESS, PROJECT_STATUS_LIST_FAIL, PROJECT_STATUS_LIST_REQUEST, PROJECT_STATUS_LIST_SUCCESS } from "../constants/projectConstants"
 
 export const listLandTitles = () => async (dispatch) => {
     
@@ -114,6 +114,29 @@ export const listAmenities = () => async (dispatch) => {
         dispatch({
             type:AMENITY_LIST_FAIL,
             payload:error.response
+        })
+    }
+}
+
+export const listEquityInvestment = () => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: EQUITY_INVESTMENT_LIST_REQUEST
+        })
+
+
+        const {data} = await api.get('/investment/user-investment')
+
+        dispatch({
+            type: EQUITY_INVESTMENT_LIST_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: EQUITY_INVESTMENT_LIST_FAIL,
+            payload: error.response
         })
     }
 }

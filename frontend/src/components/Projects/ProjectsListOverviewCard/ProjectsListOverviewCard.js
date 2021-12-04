@@ -7,7 +7,7 @@ const ProjectListOverviewCard = () => {
     return (
         <div className="projects-list-overview-card-container">
             <div className="projects-overview-card-heading-container">
-                <div className="projects-overview-card-heading">Projects</div>
+                <div className="projects-overview-card-heading">All Projects</div>
             </div>
 
             <div>
@@ -17,10 +17,10 @@ const ProjectListOverviewCard = () => {
                         <div className="value">54,000</div>
                     </div>
 
-                    <div className="projects-value-container">
+                    {/* <div className="projects-value-container">
                         <div className="desc">Revenue Guaranteed</div>
                         <div className="value">₦36,254</div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

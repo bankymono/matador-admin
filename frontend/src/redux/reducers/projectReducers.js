@@ -1,4 +1,4 @@
-import { AMENITY_LIST_FAIL, AMENITY_LIST_REQUEST, AMENITY_LIST_SUCCESS, BUILDING_TYPE_LIST_FAIL, BUILDING_TYPE_LIST_REQUEST, BUILDING_TYPE_LIST_SUCCESS, LAND_TITLE_LIST_FAIL, LAND_TITLE_LIST_REQUEST, LAND_TITLE_LIST_SUCCESS, PROJECT_CATEGORY_LIST_FAIL, PROJECT_CATEGORY_LIST_REQUEST, PROJECT_CATEGORY_LIST_SUCCESS, PROJECT_STATUS_LIST_FAIL, PROJECT_STATUS_LIST_REQUEST, PROJECT_STATUS_LIST_SUCCESS } from "../constants/projectConstants";
+import { AMENITY_LIST_FAIL, AMENITY_LIST_REQUEST, AMENITY_LIST_SUCCESS, BUILDING_TYPE_LIST_FAIL, BUILDING_TYPE_LIST_REQUEST, BUILDING_TYPE_LIST_SUCCESS, EQUITY_INVESTMENT_LIST_FAIL, EQUITY_INVESTMENT_LIST_REQUEST, EQUITY_INVESTMENT_LIST_SUCCESS, LAND_TITLE_LIST_FAIL, LAND_TITLE_LIST_REQUEST, LAND_TITLE_LIST_SUCCESS, PROJECT_CATEGORY_LIST_FAIL, PROJECT_CATEGORY_LIST_REQUEST, PROJECT_CATEGORY_LIST_SUCCESS, PROJECT_STATUS_LIST_FAIL, PROJECT_STATUS_LIST_REQUEST, PROJECT_STATUS_LIST_SUCCESS } from "../constants/projectConstants";
 
 export const landTitleListReducer = (state={landTitles:{}, landTitleLoading:true}, action) => {
     switch(action.type){
@@ -62,6 +62,19 @@ export const amenityListReducer = (state={amenities:{}, amenityLoading:true}, ac
             return { amenityLoading: false, amenities: action.payload}
         case AMENITY_LIST_FAIL:
             return { amenityLoading:false, amenityError: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const equityInvestmentListReducer = (state={equityInvestments:{}, eqLoading:true}, action) => {
+    switch(action.type){
+        case EQUITY_INVESTMENT_LIST_REQUEST:
+            return { equityInvestments:{}, eqLoading:true }
+        case EQUITY_INVESTMENT_LIST_SUCCESS:
+            return { eqLoading: false, equityInvestments: action.payload}
+        case EQUITY_INVESTMENT_LIST_FAIL:
+            return { eqLoading:false, eqError: action.payload}
         default:
             return state;
     }

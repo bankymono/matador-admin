@@ -1,0 +1,56 @@
+.equity-based-projects-list-overview-card-container {
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #DEE2E6;
+    padding:16px;
+    margin-bottom: 16px;
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.equity-based-projects-overview-card-numbers{
+    /* display: grid; */
+    /* grid-template-columns: repeat(2,1fr); */
+    display: flex;
+    justify-content: space-between;
+}
+
+.equity-based-projects-overview-card-heading-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.equity-based-projects-overview-card-heading {
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+
+}
+
+.equity-based-projects-overview-card-numbers .desc{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.equity-based-projects-overview-card-numbers .value{
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+}
+
+.equity-based-projects-value-container{
+    border-left: 1px solid #DEE2E6;
+    flex: 1;
+    padding: 0 12px;
+}
+
+
+.equity-based-projects-overview-card-numbers .equity-based-projects-value-container:nth-child(1){
+    border-left: none;
+    padding: 0 0px;
+}
