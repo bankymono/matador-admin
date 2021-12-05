@@ -32,7 +32,7 @@ const PaymentPlan = ({
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Initial deposit percentage</label>
                                 <div className="create-proj-input-with-prefix">
                                     <span className="create-proj-input-prefix">%</span>
-                                    <input type="text" name="initialDepositPercent"
+                                    <input type="number" name="initialDepositPercent"
                                         value={item.initialDepositPercent}
                                         className={item.initialDepositPercentError ? "error-border" : ""}
                                         onChange={(e) => handlePaymentPlanInputChange(theIndex, e)} />
@@ -43,7 +43,7 @@ const PaymentPlan = ({
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Initial deposit amount</label>
                                 <div className="create-proj-input-with-prefix">
                                     <span className="create-proj-input-prefix">N</span>
-                                    <input type="text" name="initialDepositAmount"
+                                    <input type="number" name="initialDepositAmount"
                                         value={item.initialDepositAmount}
                                         className={item.initialDepositAmountError ? "error-border" : ""}
                                         onChange={(e) => handlePaymentPlanInputChange(theIndex, e)}/>
@@ -54,7 +54,7 @@ const PaymentPlan = ({
                         <div className="create-proj-two-fields-row payplan-input-container">
                             <div className="create-proj-input-container">
                                 <label className="create-proj-input-label" htmlFor="proj-name">Available payment period in months</label>
-                                <input type="text" name="availablePaymentPeriod"
+                                <input type="number" name="availablePaymentPeriod"
                                         value={item.availablePaymentPeriod}
                                         className={item.availablePaymentPeriodError ? "error-border" : ""}
                                         onChange={(e) => handlePaymentPlanInputChange(theIndex, e)} />
@@ -64,7 +64,7 @@ const PaymentPlan = ({
                                 <label className="create-proj-input-label" htmlFor="proj-img-name">Monthly payment</label>
                                 <div className="create-proj-input-with-prefix">
                                     <span className="create-proj-input-prefix">N</span>
-                                    <input type="text"name="monthlyPayment"
+                                    <input type="number"name="monthlyPayment"
                                         value={item.monthlyPayment}
                                         className={item.monthlyPaymentError ? "error-border" : ""}
                                         onChange={(e) => handlePaymentPlanInputChange(theIndex, e)} /></div>
@@ -74,9 +74,6 @@ const PaymentPlan = ({
                     </div>
                 ) : null
             }
-
-
-
 
         </div>
     )

@@ -40,7 +40,7 @@ const Bundle = ({
             {
                 <div className="bundle-form-wrapper">
                     <div className="title-and-collapse-btn-wrapper">
-                        <div className="create-investment-info-heading">Bundle ({theIndex})</div>
+                        <div className="create-investment-info-heading">Bundle ({theIndex + 1})</div>
                         <div className="controls-wrapper">
                             <button onClick={(e) => handleRemoveBundle(e, theIndex)} className="bundle-delete-btn">Delete</button>
                             <button onClick={() => setShowBundleForm(!showBundleForm)} className="expand-collapse-btn">{showBundleForm ? 'Collapse' : 'Expand'}</button>
@@ -60,7 +60,7 @@ const Bundle = ({
 
                                     <div className="create-proj-input-container">
                                         <label className="create-proj-input-label" htmlFor="proj-name">Size</label>
-                                        <input type="text" name="size"
+                                        <input type="number" name="size"
                                             className={item.sizeError ? "error-border" : ""}
                                             value={item.size}
                                             onChange={(e) => handleBundleInputChange(theIndex, e)} />
@@ -144,7 +144,7 @@ const Bundle = ({
                                             <input name="price"
                                                 className={item.priceError ? "error-border" : ""}
                                                 value={item.price}
-                                                onChange={(e) => handleBundleInputChange(theIndex, e)} type="text" /></div>
+                                                onChange={(e) => handleBundleInputChange(theIndex, e)} type="number" /></div>
                                     </div>
 
                                     <div className="create-proj-input-container">
@@ -184,9 +184,9 @@ const Bundle = ({
                                                             value={item.value}
                                                             className={!item.value ? "error-border" : ""}
                                                             onChange={(event) => handleBundleAmenitiesValueChange(theIndex ,index, event.target.value)}
-                                                            type="text" placeholder="Input Amount" 
+                                                            type="number" placeholder="Input Amount" 
                                                         />
-                                                        <button onClick={(event) => handleRemoveBundleAmenitiesInput(theIndex ,index)}><span>Delete</span><AiOutlineClose /></button>
+                                                        <button onClick={() => handleRemoveBundleAmenitiesInput(theIndex ,index)}><span>Delete</span><AiOutlineClose /></button>
                                                     </div>
                                                 </div>
                                             )):

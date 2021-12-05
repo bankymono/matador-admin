@@ -144,51 +144,169 @@ const CreateProject = ({ arrLinks }) => {
         } else {
             alert('there are invalid fields');
         }
-
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(
-            {
-                projectInvestmentInfo,
-                projectInfo,
-                projectBundlesInfo,
-                projectPaymentPlansInfo
-            });
+        // console.log(
+        //     {
+        //         projectInfo,
+        //         projectInvestmentInfo,
+        //         projectBundlesInfo,
+        //         projectPaymentPlansInfo
+        //     });
         let isProjectInvestmentsInfoValid = validateProjectInvestmentInfoFields(
             projectInvestmentInfo,
             setProjectInvestmentInfo);
-        let isProjectBundlesInfoValid = projectBundlesInfo.length !==0 ? validateBundleInfoFields(
-                projectBundlesInfo,
-                setProjectBundlesInfo,
-            )
-        : false;
+        let isProjectBundlesInfoValid = projectBundlesInfo.length !== 0 ? validateBundleInfoFields(
+            projectBundlesInfo,
+            setProjectBundlesInfo,
+        )
+            : false;
         let isProjectPaymentPlansInfoValid = projectPaymentPlansInfo.length !== 0 ? validatePaymentPlanInfoFields(
-                projectPaymentPlansInfo,
-                setProjectPaymentPlansInfo
-            )
-        : false;
+            projectPaymentPlansInfo,
+            setProjectPaymentPlansInfo
+        )
+            : false;
 
 
         if (!isProjectInvestmentsInfoValid) {
             alert('Investment has invalid fields');
         } else if (isProjectInvestmentsInfoValid && !includeBundle) {
-            console.log('good to go without bundle');
             //api call without bundle
+            let data = {
+                ...projectInfo,
+                ...projectInvestmentInfo,
+                ...projectBundlesInfo,
+                ...projectPaymentPlansInfo
+            }
+            console.log('good to go without bundle', data);
+
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length === 0) {
             alert('Bundle section is checked hence, must be completed');
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !isProjectBundlesInfoValid) {
             alert('Bundle contains invalid fields');
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !includePaymentPlan) {
             alert('You are yet to include payment plan');
-        } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && includePaymentPlan && projectPaymentPlansInfo.length===0) {
+        } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && includePaymentPlan && projectPaymentPlansInfo.length === 0) {
             alert('please add a payment plan');
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && includePaymentPlan && projectPaymentPlansInfo.length > 0 && !isProjectPaymentPlansInfoValid) {
             alert('Payment plan has invalid field');
         } else {
-            alert('good to go with bundles')
-            console.log('good to go with bundles');
+            //api call with bundle
+            let projectInvestmentInfoWithoutError = {};
+            let projectInfoWithoutError = {};
+            let projectBundlesInfoWithoutError = [];
+            let projectPaymentPlansInfoWithoutError = [];
+
+            // Remove error keys from project info
+            Object.keys(projectInfo)
+                .forEach(((field) => {
+                    if (!field.toLocaleLowerCase().includes('error')) {
+                        if (field === 'projectName') {
+                            return projectInfoWithoutError[`name`] = projectInfo[`${field}`];
+                        } else if (field === '') {
+                            return projectInfoWithoutError[`name`] = projectInfo[`${field}`];
+                        } else {
+                            return projectInfoWithoutError[`${field}`] = projectInfo[`${field}`];
+                        }
+                    }
+                    return projectInfoWithoutError;
+                }));
+            // Remove error keys from investmentInfo
+            Object.keys(projectInvestmentInfo)
+                .forEach(((field) => {
+                    if (!field.toLocaleLowerCase().includes('error')) {
+                        if (field === 'dividendMaturity') {
+                            return projectInvestmentInfoWithoutError[`dividend_maturity_in_months`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'fundingEndTimestamp') {
+                            return projectInvestmentInfoWithoutError[`funding_end_timestamp`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'hardCap') {
+                            return projectInvestmentInfoWithoutError[`hard_cap`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'softCap') {
+                            return projectInvestmentInfoWithoutError[`soft_cap`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'holdingPeriod') {
+                            return projectInvestmentInfoWithoutError[`holding_period_in_months`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'incomeTimestamp') {
+                            return projectInvestmentInfoWithoutError[`income_start_timestamp`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'interestRatePerWeek') {
+                            return projectInvestmentInfoWithoutError[`interest_rate_per_week`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'rentalYield') {
+                            return projectInvestmentInfoWithoutError[`rental_yield`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'cashOnCashYield') {
+                            return projectInvestmentInfoWithoutError[`cash_on_cash_yield`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'totalFractions') {
+                            return projectInvestmentInfoWithoutError[`total_fractions`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'pricePerFraction') {
+                            return projectInvestmentInfoWithoutError[`price_per_fraction`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'totalUnits') {
+                            return projectInvestmentInfoWithoutError[`total_units`] = projectInvestmentInfo[`${field}`];
+                        } else {
+                            return projectInvestmentInfoWithoutError[`${field}`] = projectInvestmentInfo[`${field}`];
+                        }
+                    }
+                    return projectInvestmentInfoWithoutError;
+                }));
+            // Remove error keys from bundlesInfo
+            projectBundlesInfo.forEach((bundle) => {
+                let eachBundle = {}
+
+                Object.keys(bundle)
+                    .forEach(((field) => {
+                        if (!field.toLocaleLowerCase().includes('error')) {
+                            if (field === 'amenitiesSelect') {
+                                return eachBundle['amenities'] = bundle[`${field}`];
+                            } else if (field === 'bundlePhotos') {
+                                eachBundle['photos'] = []
+                                bundle.bundlePhotos.forEach((photo, index) => {
+                                    return eachBundle['photos'].push({
+                                        id: index + 1,
+                                        photo: photo,
+                                        created_at: `${new Date().toLocaleString()}`
+                                    })
+                                })
+                            } else if (field === 'deedTitle') {
+                                return eachBundle['deed_title'] = bundle[`${field}`];
+                            } else if (field === 'deedFile') {
+                                return eachBundle['deed_file'] = bundle[`${field}`];
+                            }
+                            else {
+                                return eachBundle[`${field}`] = bundle[`${field}`];
+                            }
+                        }
+                    }));
+                return projectBundlesInfoWithoutError.push(eachBundle);
+            })
+
+            // Remove error keys from paymentPlansInfo
+            projectPaymentPlansInfo.forEach((plan) => {
+                let eachPaymentPlan = {}
+
+                Object.keys(plan)
+                    .forEach(((field) => {
+                        if (!field.toLocaleLowerCase().includes('error')) {
+                            console.log(field);
+                            if (field === 'initialDepositPercent') {
+                                return eachPaymentPlan[`initial_deposit_in_percentage`] = plan[`${field}`];
+                            } else if (field === 'initialDepositAmount') {
+                                return eachPaymentPlan[`initial_deposit_in_value`] = plan[`${field}`];
+                            } else if (field === 'monthlyPayment') {
+                                return eachPaymentPlan[`monthly_payment`] = plan[`${field}`];
+                            } else if (field === 'availablePaymentPeriod') {
+                                return eachPaymentPlan[`payment_period_in_months`] = plan[`${field}`];
+                            }
+                        }
+                    }));
+                return projectPaymentPlansInfoWithoutError.push(eachPaymentPlan);
+            })
+            let data = {
+                ...projectInfoWithoutError,
+                ...projectInvestmentInfoWithoutError,
+                bundle: projectBundlesInfoWithoutError,
+                payment_plan: projectPaymentPlansInfoWithoutError
+            }
+            console.log('good to go with bundle', data);
+
         }
     }
 

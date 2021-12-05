@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
-import { RiCalendarEventFill, RiUploadCloudFill } from 'react-icons/ri';
+import React from 'react';
 import { MdAddBox } from 'react-icons/md'
 import './InvestmentInformation.css';
 
 
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 
 
 
-import rand from '../../../assets/random_img.jpg';
 
-import Amenities from '../Amenities/Amenities';
 import Bundle from '../Bundle/Bundle';
 import PaymentPlan from '../PaymentPlan/PaymentPlan';
 import { validatePaymentPlanInfoFields } from '../validationFunctions';
@@ -54,13 +50,6 @@ const InvestmentInformation = ({
         setIncludePaymentPlan(e.target.checked)
     }
 
-    const goBackToPrevPage = (e) => {
-        e.preventDefault();
-        handleProceedToPrevPage();
-    }
-
-
-    // }
     const handleBundleAmenitiesFieldChange = (e, index) => {
         setProjectBundlesInfo(prev => {
             return prev.map((item, id) => {
@@ -275,15 +264,15 @@ const InvestmentInformation = ({
 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
-                    <label className="create-proj-input-label" htmlFor="proj-name">Dividend maturity</label>
+                    <label className="create-proj-input-label" htmlFor="proj-name">Dividend maturity (in months)</label>
                     <input className={projectInvestmentInfo.dividendMaturityInputError ? "error-border" : ""}
-                        type="text" name="dividendMaturity" value={projectInvestmentInfo.dividendMaturity}
+                        type="number" name="dividendMaturity" value={projectInvestmentInfo.dividendMaturity}
                         onChange={handleProjectInvestmentInfoFieldChange} />
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Funding end timestamp</label>
-                    <input type="text"
+                    <input type="date"
                         className={projectInvestmentInfo.fundingEndTimestampInputError ? "error-border" : ""}
                         name="fundingEndTimestamp"
                         value={projectInvestmentInfo.fundingEndTimestamp}
@@ -295,7 +284,7 @@ const InvestmentInformation = ({
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Hard cap</label>
-                    <input type="text"
+                    <input type="number"
                         className={projectInvestmentInfo.hardCapInputError ? "error-border" : ""}
 
                         name="hardCap"
@@ -306,7 +295,7 @@ const InvestmentInformation = ({
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Soft cap</label>
-                    <input type="text"
+                    <input type="number"
                         className={projectInvestmentInfo.softCapInputError ? "error-border" : ""}
 
                         name="softCap"
@@ -345,7 +334,7 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Interest rate per week</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">%</span>
-                        <input type="text"
+                        <input type="number"
                             className={projectInvestmentInfo.interestRatePerWeekInputError ? "error-border" : ""}
 
                             name="interestRatePerWeek"
@@ -358,7 +347,7 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Rental yield</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">N</span>
-                        <input type="text"
+                        <input type="number"
                             className={projectInvestmentInfo.rentalYieldInputError ? "error-border" : ""}
 
                             name="rentalYield"
@@ -373,7 +362,7 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Cash on cash yield</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">N</span>
-                        <input type="text"
+                        <input type="number"
                             className={projectInvestmentInfo.cashOnCashYieldInputError ? "error-border" : ""}
 
                             name="cashOnCashYield"
@@ -384,7 +373,7 @@ const InvestmentInformation = ({
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Total fractions</label>
-                    <input type="text"
+                    <input type="number"
                         className={projectInvestmentInfo.totalFractionsInputError ? "error-border" : ""}
 
                         name="totalFractions"
@@ -399,9 +388,8 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Price per fraction</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">N</span>
-                        <input type="text"
+                        <input type="number"
                             className={projectInvestmentInfo.pricePerFractionInputError ? "error-border" : ""}
-
                             name="pricePerFraction"
                             value={projectInvestmentInfo.pricePerFraction}
                             onChange={handleProjectInvestmentInfoFieldChange}
