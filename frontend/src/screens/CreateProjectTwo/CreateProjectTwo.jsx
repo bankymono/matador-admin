@@ -16,7 +16,7 @@ import {
     validateBundleInfoFields,
     validatePaymentPlanInfoFields
 } from '../../components/CreateProjectTwo/validationFunctions';
-
+import { useSelector } from 'react-redux';
 
 const CreateProject = ({ arrLinks }) => {
     const [currentPage, setCurrentPage] = useState("Create Equity Based Project");
@@ -48,7 +48,7 @@ const CreateProject = ({ arrLinks }) => {
 
     const [includeBundle, setIncludeBundle] = useState(false);
     const [includePaymentPlan, setIncludePaymentPlan] = useState(false);
-
+    const user = useSelector(state => state.adminLogin);
 
     const handleProjectImageChange = (e) => {
         if (e.target.files) {
@@ -125,6 +125,7 @@ const CreateProject = ({ arrLinks }) => {
 
     const handleProceedToNextPage = (e) => {
         e.preventDefault();
+
         let isProjectInfoValid = validateProjectInfoFields(
             projectInfo,
             setProjectInfo,
@@ -148,13 +149,6 @@ const CreateProject = ({ arrLinks }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(
-        //     {
-        //         projectInfo,
-        //         projectInvestmentInfo,
-        //         projectBundlesInfo,
-        //         projectPaymentPlansInfo
-        //     });
         let isProjectInvestmentsInfoValid = validateProjectInvestmentInfoFields(
             projectInvestmentInfo,
             setProjectInvestmentInfo);
@@ -194,6 +188,7 @@ const CreateProject = ({ arrLinks }) => {
             alert('Payment plan has invalid field');
         } else {
             //api call with bundle
+            console.log(projectInfo)
             let projectInvestmentInfoWithoutError = {};
             let projectInfoWithoutError = {};
             let projectBundlesInfoWithoutError = [];
@@ -202,14 +197,21 @@ const CreateProject = ({ arrLinks }) => {
             // Remove error keys from project info
             Object.keys(projectInfo)
                 .forEach(((field) => {
-                    if (!field.toLocaleLowerCase().includes('error')) {
-                        if (field === 'projectName') {
-                            return projectInfoWithoutError[`name`] = projectInfo[`${field}`];
-                        } else if (field === '') {
-                            return projectInfoWithoutError[`name`] = projectInfo[`${field}`];
-                        } else {
-                            return projectInfoWithoutError[`${field}`] = projectInfo[`${field}`];
-                        }
+                    if (!field.toLocaleLowerCase().includes('error')) {                 
+                            if(field==='projectName'){
+                                return projectInfoWithoutError['name'] = projectInfo[`${field}`];
+                            }else if(field === 'amenitiesSelect'){
+                                return projectInfoWithoutError['amenities'] = projectAmenitiesForm;
+                            }else if(field === 'projectCategory'){
+                                return projectInfoWithoutError['category'] = projectInfo[`${field}`];
+                            }else if(field === 'projectStatus'){
+                                return projectInfoWithoutError['status'] = projectInfo[`${field}`];
+                            }else if(field === 'projectAddress'){
+                                return projectInfoWithoutError['location_description'] = projectInfo[`${field}`];
+                            }else{
+                                return projectInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInfo[`${field}`];                                
+                            }
+
                     }
                     return projectInfoWithoutError;
                 }));
@@ -219,30 +221,12 @@ const CreateProject = ({ arrLinks }) => {
                     if (!field.toLocaleLowerCase().includes('error')) {
                         if (field === 'dividendMaturity') {
                             return projectInvestmentInfoWithoutError[`dividend_maturity_in_months`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'fundingEndTimestamp') {
-                            return projectInvestmentInfoWithoutError[`funding_end_timestamp`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'hardCap') {
-                            return projectInvestmentInfoWithoutError[`hard_cap`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'softCap') {
-                            return projectInvestmentInfoWithoutError[`soft_cap`] = projectInvestmentInfo[`${field}`];
                         } else if (field === 'holdingPeriod') {
                             return projectInvestmentInfoWithoutError[`holding_period_in_months`] = projectInvestmentInfo[`${field}`];
                         } else if (field === 'incomeTimestamp') {
                             return projectInvestmentInfoWithoutError[`income_start_timestamp`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'interestRatePerWeek') {
-                            return projectInvestmentInfoWithoutError[`interest_rate_per_week`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'rentalYield') {
-                            return projectInvestmentInfoWithoutError[`rental_yield`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'cashOnCashYield') {
-                            return projectInvestmentInfoWithoutError[`cash_on_cash_yield`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'totalFractions') {
-                            return projectInvestmentInfoWithoutError[`total_fractions`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'pricePerFraction') {
-                            return projectInvestmentInfoWithoutError[`price_per_fraction`] = projectInvestmentInfo[`${field}`];
-                        } else if (field === 'totalUnits') {
-                            return projectInvestmentInfoWithoutError[`total_units`] = projectInvestmentInfo[`${field}`];
                         } else {
-                            return projectInvestmentInfoWithoutError[`${field}`] = projectInvestmentInfo[`${field}`];
+                            return projectInvestmentInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInvestmentInfo[`${field}`];
                         }
                     }
                     return projectInvestmentInfoWithoutError;
@@ -250,7 +234,6 @@ const CreateProject = ({ arrLinks }) => {
             // Remove error keys from bundlesInfo
             projectBundlesInfo.forEach((bundle) => {
                 let eachBundle = {}
-
                 Object.keys(bundle)
                     .forEach(((field) => {
                         if (!field.toLocaleLowerCase().includes('error')) {
@@ -265,13 +248,8 @@ const CreateProject = ({ arrLinks }) => {
                                         created_at: `${new Date().toLocaleString()}`
                                     })
                                 })
-                            } else if (field === 'deedTitle') {
-                                return eachBundle['deed_title'] = bundle[`${field}`];
-                            } else if (field === 'deedFile') {
-                                return eachBundle['deed_file'] = bundle[`${field}`];
-                            }
-                            else {
-                                return eachBundle[`${field}`] = bundle[`${field}`];
+                            }else {
+                                return eachBundle[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = bundle[`${field}`];
                             }
                         }
                     }));
@@ -285,7 +263,6 @@ const CreateProject = ({ arrLinks }) => {
                 Object.keys(plan)
                     .forEach(((field) => {
                         if (!field.toLocaleLowerCase().includes('error')) {
-                            console.log(field);
                             if (field === 'initialDepositPercent') {
                                 return eachPaymentPlan[`initial_deposit_in_percentage`] = plan[`${field}`];
                             } else if (field === 'initialDepositAmount') {
@@ -317,13 +294,59 @@ const CreateProject = ({ arrLinks }) => {
 
     const handleProjectInfoFieldChange = (e) => {
         e.preventDefault();
-
-        setProjectInfo(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }))
-
-
+        if(e.target.name === 'landTitle'){
+            setProjectInfo(prev => ({
+                ...prev,
+                [e.target.name]: {
+                    name: e.target.value,
+                    created_by: {
+                        first_name: user.adminInfo.user.first_name,
+                        last_name : user.adminInfo.user.last_name
+                    },
+                    last_updated_by : null,
+                    description: "This land comes with a c of o"
+                },
+            }))
+        }else if(e.target.name === 'buildingType'){
+            setProjectInfo(prev => ({
+                ...prev,
+                [e.target.name]: {
+                    name: e.target.value,
+                    created_by: {
+                        first_name: user.adminInfo.user.first_name,
+                        last_name : user.adminInfo.user.last_name
+                    },
+                }
+            }))
+        } else if(e.target.name === 'projectCategory'){
+            setProjectInfo(prev => ({
+                ...prev,
+                [e.target.name]: {
+                    name: e.target.value,
+                    created_by: {
+                        first_name: user.adminInfo.user.first_name,
+                        last_name : user.adminInfo.user.last_name
+                    },
+                }
+            }))
+        }else if(e.target.name === 'projectStatus'){
+            setProjectInfo(prev => ({
+                ...prev,
+                [e.target.name]: {
+                    name: e.target.value,
+                    created_by: {
+                        first_name: user.adminInfo.user.first_name,
+                        last_name : user.adminInfo.user.last_name
+                    },
+                }
+            }))
+        }else{
+            setProjectInfo(prev => ({
+                ...prev,
+                [e.target.name]: e.target.value
+            }))
+        }
+        
         switch (e.target.name) {
             case 'projectName':
                 setProjectInfo(prev => ({

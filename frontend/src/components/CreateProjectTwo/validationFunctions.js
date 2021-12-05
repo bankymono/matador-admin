@@ -46,19 +46,19 @@ export const validateProjectInfoFields = (projectInfo, setProjectInfo , projectA
             descriptionInputError = 'Field is required'
         }
 
-        if(landTitle.trim() === ''){
+        if(!landTitle || landTitle.name.trim() === ''){
             landTitleInputError = 'Field is required'
         }
 
-        if(buildingType.trim() === ''){
+        if(!buildingType || buildingType.name.trim() === ''){
             buildingTypeInputError = 'Field is required'
         }
 
-        if(projectCategory.trim() === ''){
+        if(!projectCategory || projectCategory.name.trim() === ''){
             projectCategoryInputError = 'Field is required'
         }
 
-        if(projectStatus.trim() === ''){
+        if(!projectStatus || projectStatus.name.trim() === ''){
             projectStatusInputError = 'Field is required'
         }
 

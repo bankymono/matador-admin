@@ -167,7 +167,7 @@ const Bundle = ({
                                             onChange={(e) => handleBundleAmenitiesFieldChange(e, theIndex)}
                                         >
                                             <option className="amen-option">Select One</option>
-                                            {amenityLoading === false ? amenities.data.map(el => (
+                                            {amenityLoading === false && amenities ? amenities.data.map(el => (
                                                 <option key={el.id} value={el.name}>{el.name}</option>
                                             )) : null}
                                         </select>

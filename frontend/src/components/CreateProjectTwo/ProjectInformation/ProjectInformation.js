@@ -100,7 +100,7 @@ const ProjectInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-name">Completed timestamp</label>
                     <input 
                     className={projectInfo.completedTimestampInputError?"error-border":""}
-                    type="date" name="completedTimestamp" value={projectInfo.completedTimestamp} onChange={handleProjectInfoFieldChange} />
+                    type="datetime-local" name="completedTimestamp" value={projectInfo.completedTimestamp} onChange={handleProjectInfoFieldChange} />
                 </div>
             </div>
 
@@ -144,14 +144,14 @@ const ProjectInformation = ({
                     <select 
                     className={projectInfo.landTitleInputError?"error-border":""}
                         name="landTitle" 
-                        value={projectInfo.landTitle} 
+                        value={projectInfo.landTitle.name} 
                         onChange={handleProjectInfoFieldChange} 
                         type="text"
                         // className={projectInfo.landTitleInputError ? "error-border" : ""}
                         >
                             <option value="">Select One</option>
                             {landTitleLoading === false ? landTitles.data.map(el =>(
-                                <option key={el.id} value={el.id}>{el.name}</option>
+                                <option key={el.id} value={el.name}>{el.name}</option>
                             )):null}
 
                     </select> : <select name="landTitle" className={projectInfo.landTitleInputError?"error-border":""}><option>Please wait</option></select>}
@@ -163,11 +163,11 @@ const ProjectInformation = ({
                     { buildingTypes && buildingTypes.data?
                     <select type="text"
                     className={projectInfo.buildingTypeInputError?"error-border":""}
-                    name="buildingType" value={projectInfo.buildingType} onChange={handleProjectInfoFieldChange}
+                    name="buildingType" value={projectInfo.buildingType.name} onChange={handleProjectInfoFieldChange}
                     >
                         <option value="">Select One</option>
                         {buildingTypeLoading === false ? buildingTypes.data.map(el =>(
-                            <option key={el.id} value={el.id}>{el.name}</option>
+                            <option key={el.id} value={el.name}>{el.name}</option>
                         )):null}
                     </select>
                     : <select className={projectInfo.buildingTypeInputError?"error-border":""}><option>Please wait</option></select>}
@@ -181,11 +181,11 @@ const ProjectInformation = ({
                     projectCategories && projectCategories.data ? 
                     <select type="text"
                         className={projectInfo.projectCategoryInputError?"error-border":""}
-                        name="projectCategory" value={projectInfo.projectCategory} onChange={handleProjectInfoFieldChange}
+                        name="projectCategory" value={projectInfo.projectCategory.name} onChange={handleProjectInfoFieldChange}
                     >
                         <option value="">Select One</option>
                         {projectCategoryLoading === false ? projectCategories.data.map(el =>(
-                            <option key={el.id} value={el.id}>{el.name}</option>
+                            <option key={el.id} value={el.name}>{el.name}</option>
                         )):null}
                     </select>
                     : <select className={projectInfo.projectCategoryInputError?"error-border":""}><option>Please wait</option></select>
@@ -198,11 +198,11 @@ const ProjectInformation = ({
                     projectStatuses && projectStatuses.data?
                     <select type="text"
                     className={projectInfo.projectStatusInputError?"error-border":""}
-                        name="projectStatus" value={projectInfo.projectStatus} onChange={handleProjectInfoFieldChange}
+                        name="projectStatus" value={projectInfo.projectStatus.name} onChange={handleProjectInfoFieldChange}
                     >
                         <option value="">Select One</option>
                         {projectStatusLoading === false ? projectStatuses.data.map(el =>(
-                            <option key={el.id} value={el.id}>{el.name}</option>
+                            <option key={el.id} value={el.name}>{el.name}</option>
                         )):null}
                     </select>
                     : <select className={projectInfo.projectStatusInputError?"error-border":""}><option>Please wait</option></select>
