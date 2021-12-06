@@ -8,10 +8,9 @@ const AllProjects = () => {
     return (
         <>
             <div className="all-projects-stat-wrapper">
-            <ProjectListOverviewCard />
-            <ProjectListOverviewCardTwo />
-            <ProjectListOverviewCardTwo />
-            {/* <ProjectListOverviewCard /> */}
+                <ProjectListOverviewCard />
+                <ProjectListOverviewCardTwo />
+                <ProjectListOverviewCardTwo />
             </div>
 
             <OngoingAndSoldTab />  

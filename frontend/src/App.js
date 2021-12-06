@@ -23,6 +23,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Investments from './screens/Investments/Investments';
 import FixedIncomeInvestment from './screens/FixedIncomeInvestment/FixedIncomeInvestments';
+import EquityInvestment from './screens/EquityInvestment/EquityInvestment';
 
 
 function App() {
@@ -72,6 +73,20 @@ function App() {
                   (<Investments 
                     {...props} 
                       arrLinks={['home','investments']}
+                    />)
+                  :(<Redirect
+                    to="/login"
+                   />)
+                  }
+                />
+
+                <Route 
+                  exact path="/investments/equity" 
+                  render={(props)=>
+                  adminInfo ?
+                  (<EquityInvestment 
+                    {...props} 
+                      arrLinks={['home','investments', 'equity investment']}
                     />)
                   :(<Redirect
                     to="/login"
