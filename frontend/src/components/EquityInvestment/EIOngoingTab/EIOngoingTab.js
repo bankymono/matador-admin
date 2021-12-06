@@ -20,15 +20,13 @@ const EIOngoingTab = ({eqLoading, eqError, equityInvestments}) => {
 
     return (
         <>
-
             <div>
                 {eqLoading ? null : <ReusableTable 
                     columnsConfig={COLUMNS} 
                     columnsConfig2={COLUMNS2} 
                     dataConfig={MOCK_DATA} 
                     dataConfig2={equityInvestments} 
-                />}
-            
+                />}  
 
             <div className="e-i-ongoing-bottom-pagination-container">
                 <div>Showing: <span className="val">100</span></div>
