@@ -8,9 +8,10 @@ import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
 import './CreateProjectTwo.css';
 
-import { 
-    initialProjectInfoState, 
-    initialProjectInvestmentInfoState } from '../../components/CreateProjectTwo/initialVariables';
+import {
+    initialProjectInfoState,
+    initialProjectInvestmentInfoState
+} from '../../components/CreateProjectTwo/initialVariables';
 import {
     validateProjectInfoFields,
     validateProjectAmenities,
@@ -42,7 +43,7 @@ const CreateProject = ({ arrLinks }) => {
     const [fileName, setFileName] = useState([]);
     const [includeBundle, setIncludeBundle] = useState(false);
     const [includePaymentPlan, setIncludePaymentPlan] = useState(false);
-    
+
     const user = useSelector(state => state.adminLogin);
     const dispatch = useDispatch();
 
@@ -134,6 +135,7 @@ const CreateProject = ({ arrLinks }) => {
             setFormStep(prevStep => prevStep + 1)
             window.scrollTo(0, 0);
         } else {
+            console.log(isProjectAmenitiesValid, isProjectInfoValid)
             alert('there are invalid fields');
         }
     }
@@ -163,32 +165,32 @@ const CreateProject = ({ arrLinks }) => {
             // Remove error keys from project info
             Object.keys(projectInfo)
                 .forEach(((field) => {
-                    if(selectedProjectImages){
+                    if (selectedProjectImages) {
                         let photos = [];
-                        selectedProjectImages.forEach((photo, index)=>{
-                            photos.push({
-                                id : index + 1,
-                                photo: photo,
-                                created_at: `${new Date().toLocaleString()}`
-                            });
+                        selectedProjectImages.forEach((photo, index) => {
+                            photos.push(
+                                photo
+                            );
                         });
                         projectInfoWithoutError['photos'] = photos;
                     }
                     if (!field.toLocaleLowerCase().includes('error')) {
-                                             
-                            if(field==='projectName'){
-                                return projectInfoWithoutError['name'] = projectInfo[`${field}`];
-                            }else if(field === 'amenitiesSelect'){
-                                return projectInfoWithoutError['amenities'] = projectAmenitiesForm;
-                            }else if(field === 'projectCategory'){
-                                return projectInfoWithoutError['category'] = projectInfo[`${field}`];
-                            }else if(field === 'projectStatus'){
-                                return projectInfoWithoutError['status'] = projectInfo[`${field}`];
-                            }else if(field === 'projectAddress'){
-                                return projectInfoWithoutError['location_description'] = projectInfo[`${field}`];
-                            }else{
-                                return projectInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInfo[`${field}`];                                
-                            }
+
+                        if (field === 'projectName') {
+                            return projectInfoWithoutError['name'] = projectInfo[`${field}`];
+                        } else if (field === 'amenitiesSelect') {
+                            return projectInfoWithoutError['amenities'] = projectAmenitiesForm;
+                        } else if (field === 'projectCategory') {
+                            return projectInfoWithoutError['category'] = projectInfo[`${field}`]['id'];
+                        } else if (field === 'projectStatus') {
+                            return projectInfoWithoutError['status'] = projectInfo[`${field}`];
+                        } else if (field === 'projectAddress') {
+                            return projectInfoWithoutError['location_description'] = projectInfo[`${field}`];
+                        } else if (field === 'buildingSize') {
+                            return projectInfoWithoutError['building_size'] = projectInfo[`${field}`] + 'sqm';
+                        } else {
+                            return projectInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInfo[`${field}`];
+                        }
                     }
                     return projectInfoWithoutError;
                 }));
@@ -208,9 +210,9 @@ const CreateProject = ({ arrLinks }) => {
                     }
                     return projectInvestmentInfoWithoutError;
                 }));
-            
-            // console.log('good to go without bundle', {...projectInfoWithoutError, ...projectInvestmentInfoWithoutError});
-                dispatch(createProject({...projectInfoWithoutError, ...projectInvestmentInfoWithoutError}));
+            console.log('data', { ...projectInfoWithoutError, ...projectInvestmentInfoWithoutError });
+            dispatch(createProject({ ...projectInfoWithoutError, ...projectInvestmentInfoWithoutError }));
+
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length === 0) {
             alert('Bundle section is checked hence, must be completed');
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !isProjectBundlesInfoValid) {
@@ -231,32 +233,28 @@ const CreateProject = ({ arrLinks }) => {
             // Remove error keys from project info
             Object.keys(projectInfo)
                 .forEach(((field) => {
-                    if(selectedProjectImages){
+                    if (selectedProjectImages) {
                         let photos = [];
-                        selectedProjectImages.forEach((photo, index)=>{
-                            photos.push({
-                                id : index + 1,
-                                photo: photo,
-                                created_at: `${new Date().toLocaleString()}`
-                            });
+                        selectedProjectImages.forEach((photo, index) => {
+                            photos.push(photo);
                         });
                         projectInfoWithoutError['photos'] = photos;
                     }
                     if (!field.toLocaleLowerCase().includes('error')) {
-                                             
-                            if(field==='projectName'){
-                                return projectInfoWithoutError['name'] = projectInfo[`${field}`];
-                            }else if(field === 'amenitiesSelect'){
-                                return projectInfoWithoutError['amenities'] = projectAmenitiesForm;
-                            }else if(field === 'projectCategory'){
-                                return projectInfoWithoutError['category'] = projectInfo[`${field}`];
-                            }else if(field === 'projectStatus'){
-                                return projectInfoWithoutError['status'] = projectInfo[`${field}`];
-                            }else if(field === 'projectAddress'){
-                                return projectInfoWithoutError['location_description'] = projectInfo[`${field}`];
-                            }else{
-                                return projectInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInfo[`${field}`];                                
-                            }
+
+                        if (field === 'projectName') {
+                            return projectInfoWithoutError['name'] = projectInfo[`${field}`];
+                        } else if (field === 'amenitiesSelect') {
+                            return projectInfoWithoutError['amenities'] = projectAmenitiesForm;
+                        } else if (field === 'projectCategory') {
+                            return projectInfoWithoutError['category'] = projectInfo[`${field}`]['id'];
+                        } else if (field === 'projectStatus') {
+                            return projectInfoWithoutError['status'] = projectInfo[`${field}`];
+                        } else if (field === 'projectAddress') {
+                            return projectInfoWithoutError['location_description'] = projectInfo[`${field}`];
+                        } else {
+                            return projectInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInfo[`${field}`];
+                        }
 
                     }
                     return projectInfoWithoutError;
@@ -288,17 +286,15 @@ const CreateProject = ({ arrLinks }) => {
                             } else if (field === 'bundlePhotos') {
                                 eachBundle['photos'] = []
                                 bundle.bundlePhotos.forEach((photo, index) => {
-                                    return eachBundle['photos'].push({
-                                        id: index + 1,
-                                        photo: photo,
-                                        created_at: `${new Date().toLocaleString()}`
-                                    })
+                                    return eachBundle['photos'].push(
+                                        photo
+                                    )
                                 })
-                            }else {
+                            } else {
                                 return eachBundle[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = bundle[`${field}`];
                             }
                         }
-                    }));        
+                    }));
                 return projectBundlesInfoWithoutError.push(eachBundle);
             })
 
@@ -325,10 +321,11 @@ const CreateProject = ({ arrLinks }) => {
             let data = {
                 ...projectInfoWithoutError,
                 ...projectInvestmentInfoWithoutError,
-                bundle: projectBundlesInfoWithoutError,
+                bundles: projectBundlesInfoWithoutError,
                 payment_plan: projectPaymentPlansInfoWithoutError
             }
             // console.log('good to go with bundle', data);
+            dispatch(createProject(data));
 
         }
     }
@@ -340,59 +337,40 @@ const CreateProject = ({ arrLinks }) => {
 
     const handleProjectInfoFieldChange = (e) => {
         e.preventDefault();
-        if(e.target.name === 'landTitle'){
+        if (e.target.name === 'landTitle') {
             setProjectInfo(prev => ({
                 ...prev,
-                [e.target.name]: {
-                    name: e.target.value,
-                    created_by: {
-                        first_name: user.adminInfo.user.first_name,
-                        last_name : user.adminInfo.user.last_name
-                    },
-                    last_updated_by : null,
-                    description: "This land comes with a c of o"
-                },
+                [e.target.name]: e.target.value,
             }))
-        }else if(e.target.name === 'buildingType'){
+        } else if (e.target.name === 'buildingType') {
+            setProjectInfo(prev => ({
+                ...prev,
+                [e.target.name]: e.target.value
+            }))
+        } else if (e.target.name === 'projectCategory') {
             setProjectInfo(prev => ({
                 ...prev,
                 [e.target.name]: {
-                    name: e.target.value,
+                    name: e.target.value.split(' ')[0],
+                    id: e.target.value.split(' ')[1],
                     created_by: {
                         first_name: user.adminInfo.user.first_name,
-                        last_name : user.adminInfo.user.last_name
+                        last_name: user.adminInfo.user.last_name
                     },
                 }
             }))
-        } else if(e.target.name === 'projectCategory'){
+        } else if (e.target.name === 'projectStatus') {
             setProjectInfo(prev => ({
                 ...prev,
-                [e.target.name]: {
-                    name: e.target.value,
-                    created_by: {
-                        first_name: user.adminInfo.user.first_name,
-                        last_name : user.adminInfo.user.last_name
-                    },
-                }
+                [e.target.name]: e.target.value
             }))
-        }else if(e.target.name === 'projectStatus'){
-            setProjectInfo(prev => ({
-                ...prev,
-                [e.target.name]: {
-                    name: e.target.value,
-                    created_by: {
-                        first_name: user.adminInfo.user.first_name,
-                        last_name : user.adminInfo.user.last_name
-                    },
-                }
-            }))
-        }else{
+        } else {
             setProjectInfo(prev => ({
                 ...prev,
                 [e.target.name]: e.target.value
             }))
         }
-        
+
         switch (e.target.name) {
             case 'projectName':
                 setProjectInfo(prev => ({
@@ -507,15 +485,26 @@ const CreateProject = ({ arrLinks }) => {
         }))
 
         const amenitiesFormState = {
-            [e.target.value]: "",
+            name: e.target.value,
+            value: ''
         }
 
-        const amenitiesErrors = {
-            [e.target.value]: null
+        const amenitiesErrors = ''
+        if (projectAmenitiesForm.length !== 0) {
+            let setNewAmenity = true;
+            projectAmenitiesForm.forEach(amenity => {
+                if (amenity.name === e.target.value) {
+                    setNewAmenity = false;
+                }
+            });
+            if (setNewAmenity) {
+                setProjectAmenitiesForm(prev => ([...prev, amenitiesFormState]));
+                setProjectAmenitiesFormErrors(prev => ([...prev, amenitiesErrors]));
+            }
+        } else {
+            setProjectAmenitiesForm([amenitiesFormState]);
+            setProjectAmenitiesFormErrors([amenitiesErrors]);
         }
-
-        setProjectAmenitiesForm(prev => ([...prev, amenitiesFormState]));
-        setProjectAmenitiesFormErrors(prev => ([...prev, amenitiesErrors]));
 
 
     }

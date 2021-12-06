@@ -46,19 +46,18 @@ export const validateProjectInfoFields = (projectInfo, setProjectInfo , projectA
             descriptionInputError = 'Field is required'
         }
 
-        if(!landTitle || landTitle.name.trim() === ''){
+        if(!landTitle || landTitle.trim() === ''){
             landTitleInputError = 'Field is required'
         }
 
-        if(!buildingType || buildingType.name.trim() === ''){
+        if(!buildingType || !buildingType){
             buildingTypeInputError = 'Field is required'
         }
-
-        if(!projectCategory || projectCategory.name.trim() === ''){
+        if(!projectCategory || !projectCategory.name.trim() === ''){
             projectCategoryInputError = 'Field is required'
         }
 
-        if(!projectStatus || projectStatus.name.trim() === ''){
+        if(!projectStatus || !projectStatus.trim() === ''){
             projectStatusInputError = 'Field is required'
         }
 
@@ -123,21 +122,25 @@ export const validateProjectInfoFields = (projectInfo, setProjectInfo , projectA
 
 export const validateProjectAmenities = (projectAmenitiesForm, projectAmenitiesFormErrors, setProjectAmenitiesFormErrors) => {
     let amenitiesErrors = [...projectAmenitiesFormErrors];
+    let raiseFlag = false;
+    if(projectAmenitiesForm){
+        projectAmenitiesForm.forEach((amenity, index)=>{
+            if(!amenity.value){
+                console.log('in here')
+                
+                amenitiesErrors[index] = 'Field is required';
+                setProjectAmenitiesFormErrors(amenitiesErrors)
+                return raiseFlag=true;
+            }
 
-    for(let i = 0; i < projectAmenitiesForm.length; ++i){
-        if(Object.values(projectAmenitiesForm[i])[0] === ""){
-            amenitiesErrors[i][Object.keys(projectAmenitiesForm[i])] = "Field is required"
-        }
+        })
+        if(raiseFlag){
+            return false
+        }else{
+            return true
+        } 
     }
 
-    if(amenitiesErrors.some((item)=>{
-        return (Object.values(item)[0] !== null);
-    })){
-        setProjectAmenitiesFormErrors(amenitiesErrors)
-        return false;
-    }
-
-    return true;
 }
 
 

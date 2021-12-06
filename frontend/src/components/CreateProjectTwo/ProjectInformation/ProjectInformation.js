@@ -54,7 +54,6 @@ const ProjectInformation = ({
     const handleAmenitiesValueChange = (index,event) => {
             event.preventDefault();
             event.persist();
-
             setProjectAmenitiesForm(prev => {
 
                 return prev.map((item,i) => {
@@ -65,18 +64,16 @@ const ProjectInformation = ({
                     setProjectAmenitiesFormErrors(prev => {
                         let newArr = [...prev]
         
-                        newArr[i][Object.keys(newArr[i])] = null;
+                        newArr[i] = null;
         
                         return newArr;
                     })
-    
+                    let newItem = {name: item.name, value: event.target.value}
                     return {
-                        ...item,
-                        [event.target.name]:event.target.value
+                        ...newItem
                     }
                 })
             });
-        
     }
 
     const handleRemoveAmenitiesInput = (index,event) => {
@@ -144,14 +141,14 @@ const ProjectInformation = ({
                     <select 
                     className={projectInfo.landTitleInputError?"error-border":""}
                         name="landTitle" 
-                        value={projectInfo.landTitle.name} 
+                        value={projectInfo.landTitle} 
                         onChange={handleProjectInfoFieldChange} 
                         type="text"
                         // className={projectInfo.landTitleInputError ? "error-border" : ""}
                         >
                             <option value="">Select One</option>
                             {landTitleLoading === false ? landTitles.data.map(el =>(
-                                <option key={el.id} value={el.name}>{el.name}</option>
+                                <option key={el.id} value={el.id}>{el.name}</option>
                             )):null}
 
                     </select> : <select name="landTitle" className={projectInfo.landTitleInputError?"error-border":""}><option>Please wait</option></select>}
@@ -163,11 +160,11 @@ const ProjectInformation = ({
                     { buildingTypes && buildingTypes.data?
                     <select type="text"
                     className={projectInfo.buildingTypeInputError?"error-border":""}
-                    name="buildingType" value={projectInfo.buildingType.name} onChange={handleProjectInfoFieldChange}
+                    name="buildingType" value={projectInfo.buildingType} onChange={handleProjectInfoFieldChange}
                     >
                         <option value="">Select One</option>
                         {buildingTypeLoading === false ? buildingTypes.data.map(el =>(
-                            <option key={el.id} value={el.name}>{el.name}</option>
+                            <option key={el.id} value={el.id}>{el.name}</option>
                         )):null}
                     </select>
                     : <select className={projectInfo.buildingTypeInputError?"error-border":""}><option>Please wait</option></select>}
@@ -181,11 +178,11 @@ const ProjectInformation = ({
                     projectCategories && projectCategories.data ? 
                     <select type="text"
                         className={projectInfo.projectCategoryInputError?"error-border":""}
-                        name="projectCategory" value={projectInfo.projectCategory.name} onChange={handleProjectInfoFieldChange}
+                        name="projectCategory" value={`${projectInfo.projectCategory.name} ${projectInfo.projectCategory.id}`} onChange={handleProjectInfoFieldChange}
                     >
                         <option value="">Select One</option>
                         {projectCategoryLoading === false ? projectCategories.data.map(el =>(
-                            <option key={el.id} value={el.name}>{el.name}</option>
+                            <option key={el.id} value={`${el.name} ${el.id}`}>{el.name}</option>
                         )):null}
                     </select>
                     : <select className={projectInfo.projectCategoryInputError?"error-border":""}><option>Please wait</option></select>
@@ -198,11 +195,11 @@ const ProjectInformation = ({
                     projectStatuses && projectStatuses.data?
                     <select type="text"
                     className={projectInfo.projectStatusInputError?"error-border":""}
-                        name="projectStatus" value={projectInfo.projectStatus.name} onChange={handleProjectInfoFieldChange}
+                        name="projectStatus" value={projectInfo.projectStatus} onChange={handleProjectInfoFieldChange}
                     >
                         <option value="">Select One</option>
                         {projectStatusLoading === false ? projectStatuses.data.map(el =>(
-                            <option key={el.id} value={el.name}>{el.name}</option>
+                            <option key={el.id} value={el.id}>{el.name}</option>
                         )):null}
                     </select>
                     : <select className={projectInfo.projectStatusInputError?"error-border":""}><option>Please wait</option></select>
@@ -314,22 +311,22 @@ const ProjectInformation = ({
                 </div>
 
                 <div className="amenities-list-wrapper">
-                    {
+                    {   projectAmenitiesForm?
                         projectAmenitiesForm.map((item,index) => (
                             <div key={`item-${index}`} className="amenities-item">
-                                <div className="amenities-name">{Object.keys(item)}</div>
+                                <div className="amenities-name">{item.name}</div>
                                 <div className="amenities-amt-input-container">
-                                    {/* {console.log('wgat is this',)} */}
                                     <input 
-                                        name={Object.keys(item)}
-                                        value={Object.values(item)}
-                                        className={Object.values(projectAmenitiesFormErrors[index])[0]? "error-border":""}
-                                        onChange={(event) => handleAmenitiesValueChange(index,event)}
+                                        name={item.name}
+                                         
+                                        className={!item.value? "error-border":""}
+                                        onChange={(event) => handleAmenitiesValueChange(index, event)}
                                         type="number" placeholder="Input Amount"/>
                                     <button onClick={(event) => handleRemoveAmenitiesInput(index,event)}><span>Delete</span><AiOutlineClose /></button>
                                 </div>
                             </div>                            
                         ))
+                        : null
                     }
                     {/* <div  className="amenities-item">
                         <div className="amenities-name">Bedrooms</div>

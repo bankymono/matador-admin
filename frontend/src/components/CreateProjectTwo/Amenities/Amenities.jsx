@@ -1,5 +1,5 @@
 import React from 'react'
-import {AiOutlineClose, AiOutlinePlus} from 'react-icons/ai';
+import {AiOutlineClose} from 'react-icons/ai';
 
 const Amenities = () => {
     return (

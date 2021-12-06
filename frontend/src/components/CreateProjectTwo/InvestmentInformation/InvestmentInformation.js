@@ -51,6 +51,7 @@ const InvestmentInformation = ({
     }
 
     const handleBundleAmenitiesFieldChange = (e, index) => {
+        
         setProjectBundlesInfo(prev => {
             return prev.map((item, id) => {
                 if (id !== index) {
@@ -272,7 +273,7 @@ const InvestmentInformation = ({
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Funding end timestamp</label>
-                    <input type="date"
+                    <input type="datetime-local"
                         className={projectInvestmentInfo.fundingEndTimestampInputError ? "error-border" : ""}
                         name="fundingEndTimestamp"
                         value={projectInvestmentInfo.fundingEndTimestamp}
@@ -308,18 +309,30 @@ const InvestmentInformation = ({
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Holding period</label>
-                    <input type='date'
+                    <select
                         className={projectInvestmentInfo.holdingPeriodInputError ? "error-border" : ""}
-
                         name="holdingPeriod"
                         value={projectInvestmentInfo.holdingPeriod}
                         onChange={handleProjectInvestmentInfoFieldChange}
-                    />
+                    >   <option >Select number of months for holding</option>
+                        <option value = {1}>1</option>
+                        <option value = {2}>2</option>
+                        <option value = {3}>3</option>
+                        <option value = {4}>4</option>
+                        <option value = {5}>5</option>
+                        <option value = {6}>6</option>
+                        <option value = {7}>7</option>
+                        <option value = {8}>8</option>
+                        <option value = {9}>9</option>
+                        <option value = {10}>10</option>
+                        <option value = {11}>11</option>
+                        <option value = {12}>12</option>
+                    </select>
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Income start timestamp</label>
-                    <input type='date'
+                    <input type="datetime-local"
                         className={projectInvestmentInfo.incomeTimestampInputError ? "error-border" : ""}
 
                         name="incomeTimestamp"
