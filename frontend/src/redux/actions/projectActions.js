@@ -1,8 +1,28 @@
-import axios from 'axios';
-import dotenv from 'dotenv'
+// import axios from 'axios';
+// import dotenv from 'dotenv'
 import api from '../../api';
 
-import { AMENITY_LIST_FAIL, AMENITY_LIST_REQUEST, AMENITY_LIST_SUCCESS, BUILDING_TYPE_LIST_FAIL, BUILDING_TYPE_LIST_REQUEST, BUILDING_TYPE_LIST_SUCCESS, LAND_TITLE_LIST_FAIL, LAND_TITLE_LIST_REQUEST, LAND_TITLE_LIST_SUCCESS, PROJECT_CATEGORY_LIST_FAIL, PROJECT_CATEGORY_LIST_REQUEST, PROJECT_CATEGORY_LIST_SUCCESS, PROJECT_STATUS_LIST_FAIL, PROJECT_STATUS_LIST_REQUEST, PROJECT_STATUS_LIST_SUCCESS } from "../constants/projectConstants"
+import { 
+    AMENITY_LIST_FAIL, 
+    AMENITY_LIST_REQUEST, 
+    AMENITY_LIST_SUCCESS, 
+    BUILDING_TYPE_LIST_FAIL, 
+    BUILDING_TYPE_LIST_REQUEST, 
+    BUILDING_TYPE_LIST_SUCCESS, 
+    LAND_TITLE_LIST_FAIL, 
+    LAND_TITLE_LIST_REQUEST, 
+    LAND_TITLE_LIST_SUCCESS, 
+    PROJECT_CATEGORY_LIST_FAIL, 
+    PROJECT_CATEGORY_LIST_REQUEST, 
+    PROJECT_CATEGORY_LIST_SUCCESS, 
+    PROJECT_STATUS_LIST_FAIL, 
+    PROJECT_STATUS_LIST_REQUEST, 
+    PROJECT_STATUS_LIST_SUCCESS,
+    PROJECT_CREATE_COMPLETE, 
+    PROJECT_CREATE_FAIL, 
+    PROJECT_CREATE_REQUEST, 
+    PROJECT_CREATE_SUCCESS, 
+ } from "../constants/projectConstants"
 
 export const listLandTitles = () => async (dispatch) => {
     
@@ -27,7 +47,6 @@ export const listLandTitles = () => async (dispatch) => {
         console.log('land_title_list_error',error, error.response);
     }
 }
-
 
 export const listBuildingTypes = () => async (dispatch) => {
     
@@ -113,6 +132,31 @@ export const listAmenities = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type:AMENITY_LIST_FAIL,
+            payload:error.response
+        })
+    }
+}
+
+export const createProject = (project) => async (dispatch) => {
+    try {
+        dispatch({
+            type: PROJECT_CREATE_REQUEST
+        })
+
+        const {data} = await api.post('/investment/project', project)
+        dispatch({
+            type:PROJECT_CREATE_SUCCESS,
+            payload:data
+        })
+
+        dispatch({
+            type:PROJECT_CREATE_COMPLETE
+        })
+        console.log('create project', data);
+    } catch (error) {
+        console.log('create project error', error.response)
+        dispatch({
+            type:PROJECT_CREATE_FAIL,
             payload:error.response
         })
     }

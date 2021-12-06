@@ -8,7 +8,9 @@ import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
 import './CreateProjectTwo.css';
 
-import { initialProjectInfoState, initialProjectInvestmentInfoState } from '../../components/CreateProjectTwo/initialVariables';
+import { 
+    initialProjectInfoState, 
+    initialProjectInvestmentInfoState } from '../../components/CreateProjectTwo/initialVariables';
 import {
     validateProjectInfoFields,
     validateProjectAmenities,
@@ -16,39 +18,33 @@ import {
     validateBundleInfoFields,
     validatePaymentPlanInfoFields
 } from '../../components/CreateProjectTwo/validationFunctions';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { createProject } from '../../redux/actions/projectActions';
 
 const CreateProject = ({ arrLinks }) => {
     const [currentPage, setCurrentPage] = useState("Create Equity Based Project");
-
     // for changing the page of the form
     const [formStep, setFormStep] = useState(1);
-
     const [selectedProjectImages, setSelectedProjectImages] = useState([]);
     const [selectedProjectImagesError, setSelectedProjectImagesError] = useState('');
-
     const [selectedBundleImages, setSelectedBundleImages] = useState([]);
     const [selectedBundleImagesError, setSelectedBundleImagesError] = useState('');
     const [bundleAmenities, setBundleAmenities] = useState([])
     const [bundleAmenitiesErrors, setBundleAmenitiesErrors] = useState([])
-
     const [selectedFile, setSelectedFile] = useState('');
     const [selectedFileError, setSelectedFileError] = useState('');
-
     const [projectInfo, setProjectInfo] = useState(initialProjectInfoState);
     const [projectInvestmentInfo, setProjectInvestmentInfo] = useState(initialProjectInvestmentInfoState);
     const [projectBundlesInfo, setProjectBundlesInfo] = useState([]);
     const [projectPaymentPlansInfo, setProjectPaymentPlansInfo] = useState([]);
-
     const [projectAmenitiesForm, setProjectAmenitiesForm] = useState([])
     const [projectAmenitiesFormErrors, setProjectAmenitiesFormErrors] = useState([])
-
     const [fileName, setFileName] = useState([]);
-
-
     const [includeBundle, setIncludeBundle] = useState(false);
     const [includePaymentPlan, setIncludePaymentPlan] = useState(false);
+    
     const user = useSelector(state => state.adminLogin);
+    const dispatch = useDispatch();
 
     const handleProjectImageChange = (e) => {
         if (e.target.files) {
@@ -62,11 +58,9 @@ const CreateProject = ({ arrLinks }) => {
             setSelectedProjectImagesError('');
         }
     }
-
     const handleDeleteProjectImage = (id) => {
         setSelectedProjectImages(prev => [...prev.filter((image, index) => id !== index)])
     }
-
     const encodeFileToBase64 = (file) => {
         return new Promise((resolve, reject) => {
             var reader = new FileReader();
@@ -120,9 +114,6 @@ const CreateProject = ({ arrLinks }) => {
         }
 
     }
-
-
-
     const handleProceedToNextPage = (e) => {
         e.preventDefault();
 
@@ -146,7 +137,6 @@ const CreateProject = ({ arrLinks }) => {
             alert('there are invalid fields');
         }
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         let isProjectInvestmentsInfoValid = validateProjectInvestmentInfoFields(
@@ -163,19 +153,64 @@ const CreateProject = ({ arrLinks }) => {
         )
             : false;
 
-
         if (!isProjectInvestmentsInfoValid) {
             alert('Investment has invalid fields');
         } else if (isProjectInvestmentsInfoValid && !includeBundle) {
             //api call without bundle
-            let data = {
-                ...projectInfo,
-                ...projectInvestmentInfo,
-                ...projectBundlesInfo,
-                ...projectPaymentPlansInfo
-            }
-            console.log('good to go without bundle', data);
+            let projectInvestmentInfoWithoutError = {};
+            let projectInfoWithoutError = {};
 
+            // Remove error keys from project info
+            Object.keys(projectInfo)
+                .forEach(((field) => {
+                    if(selectedProjectImages){
+                        let photos = [];
+                        selectedProjectImages.forEach((photo, index)=>{
+                            photos.push({
+                                id : index + 1,
+                                photo: photo,
+                                created_at: `${new Date().toLocaleString()}`
+                            });
+                        });
+                        projectInfoWithoutError['photos'] = photos;
+                    }
+                    if (!field.toLocaleLowerCase().includes('error')) {
+                                             
+                            if(field==='projectName'){
+                                return projectInfoWithoutError['name'] = projectInfo[`${field}`];
+                            }else if(field === 'amenitiesSelect'){
+                                return projectInfoWithoutError['amenities'] = projectAmenitiesForm;
+                            }else if(field === 'projectCategory'){
+                                return projectInfoWithoutError['category'] = projectInfo[`${field}`];
+                            }else if(field === 'projectStatus'){
+                                return projectInfoWithoutError['status'] = projectInfo[`${field}`];
+                            }else if(field === 'projectAddress'){
+                                return projectInfoWithoutError['location_description'] = projectInfo[`${field}`];
+                            }else{
+                                return projectInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInfo[`${field}`];                                
+                            }
+                    }
+                    return projectInfoWithoutError;
+                }));
+            // Remove error keys from investmentInfo
+            Object.keys(projectInvestmentInfo)
+                .forEach(((field) => {
+                    if (!field.toLocaleLowerCase().includes('error')) {
+                        if (field === 'dividendMaturity') {
+                            return projectInvestmentInfoWithoutError[`dividend_maturity_in_months`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'holdingPeriod') {
+                            return projectInvestmentInfoWithoutError[`holding_period_in_months`] = projectInvestmentInfo[`${field}`];
+                        } else if (field === 'incomeTimestamp') {
+                            return projectInvestmentInfoWithoutError[`income_start_timestamp`] = projectInvestmentInfo[`${field}`];
+                        } else {
+                            return projectInvestmentInfoWithoutError[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = projectInvestmentInfo[`${field}`];
+                        }
+                    }
+                    return projectInvestmentInfoWithoutError;
+                }));
+            
+            // console.log('good to go without bundle', {...projectInfoWithoutError, ...projectInvestmentInfoWithoutError});
+                dispatch(createProject({...projectInfoWithoutError, ...projectInvestmentInfoWithoutError}));
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length === 0) {
             alert('Bundle section is checked hence, must be completed');
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !isProjectBundlesInfoValid) {
@@ -188,7 +223,6 @@ const CreateProject = ({ arrLinks }) => {
             alert('Payment plan has invalid field');
         } else {
             //api call with bundle
-            console.log(projectInfo)
             let projectInvestmentInfoWithoutError = {};
             let projectInfoWithoutError = {};
             let projectBundlesInfoWithoutError = [];
@@ -197,7 +231,19 @@ const CreateProject = ({ arrLinks }) => {
             // Remove error keys from project info
             Object.keys(projectInfo)
                 .forEach(((field) => {
-                    if (!field.toLocaleLowerCase().includes('error')) {                 
+                    if(selectedProjectImages){
+                        let photos = [];
+                        selectedProjectImages.forEach((photo, index)=>{
+                            photos.push({
+                                id : index + 1,
+                                photo: photo,
+                                created_at: `${new Date().toLocaleString()}`
+                            });
+                        });
+                        projectInfoWithoutError['photos'] = photos;
+                    }
+                    if (!field.toLocaleLowerCase().includes('error')) {
+                                             
                             if(field==='projectName'){
                                 return projectInfoWithoutError['name'] = projectInfo[`${field}`];
                             }else if(field === 'amenitiesSelect'){
@@ -252,7 +298,7 @@ const CreateProject = ({ arrLinks }) => {
                                 return eachBundle[`${field.replace(/[A-Z]/g, "_$&").toLowerCase()}`] = bundle[`${field}`];
                             }
                         }
-                    }));
+                    }));        
                 return projectBundlesInfoWithoutError.push(eachBundle);
             })
 
@@ -282,7 +328,7 @@ const CreateProject = ({ arrLinks }) => {
                 bundle: projectBundlesInfoWithoutError,
                 payment_plan: projectPaymentPlansInfoWithoutError
             }
-            console.log('good to go with bundle', data);
+            // console.log('good to go with bundle', data);
 
         }
     }

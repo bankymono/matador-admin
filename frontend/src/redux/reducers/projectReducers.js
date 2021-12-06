@@ -1,4 +1,24 @@
-import { AMENITY_LIST_FAIL, AMENITY_LIST_REQUEST, AMENITY_LIST_SUCCESS, BUILDING_TYPE_LIST_FAIL, BUILDING_TYPE_LIST_REQUEST, BUILDING_TYPE_LIST_SUCCESS, LAND_TITLE_LIST_FAIL, LAND_TITLE_LIST_REQUEST, LAND_TITLE_LIST_SUCCESS, PROJECT_CATEGORY_LIST_FAIL, PROJECT_CATEGORY_LIST_REQUEST, PROJECT_CATEGORY_LIST_SUCCESS, PROJECT_STATUS_LIST_FAIL, PROJECT_STATUS_LIST_REQUEST, PROJECT_STATUS_LIST_SUCCESS } from "../constants/projectConstants";
+import { 
+    AMENITY_LIST_FAIL, 
+    AMENITY_LIST_REQUEST, 
+    AMENITY_LIST_SUCCESS, 
+    BUILDING_TYPE_LIST_FAIL, 
+    BUILDING_TYPE_LIST_REQUEST, 
+    BUILDING_TYPE_LIST_SUCCESS, 
+    LAND_TITLE_LIST_FAIL, 
+    LAND_TITLE_LIST_REQUEST, 
+    LAND_TITLE_LIST_SUCCESS, 
+    PROJECT_CATEGORY_LIST_FAIL, 
+    PROJECT_CATEGORY_LIST_REQUEST, 
+    PROJECT_CATEGORY_LIST_SUCCESS, 
+    PROJECT_STATUS_LIST_FAIL, 
+    PROJECT_STATUS_LIST_REQUEST, 
+    PROJECT_STATUS_LIST_SUCCESS,
+    PROJECT_CREATE_COMPLETE, 
+    PROJECT_CREATE_FAIL, 
+    PROJECT_CREATE_REQUEST, 
+    PROJECT_CREATE_SUCCESS,
+} from "../constants/projectConstants";
 
 export const landTitleListReducer = (state={landTitles:{}, landTitleLoading:true}, action) => {
     switch(action.type){
@@ -64,5 +84,33 @@ export const amenityListReducer = (state={amenities:{}, amenityLoading:true}, ac
             return { amenityLoading:false, amenityError: action.payload}
         default:
             return state;
+    }
+}
+
+export const projectCreateReducer = (state={projectSuccess:false}, action) => {
+    switch(action.type){
+        case PROJECT_CREATE_REQUEST:
+            return {
+                projectLoading:true
+            }
+        case PROJECT_CREATE_SUCCESS:
+            return {
+                projectLoading:false,
+                projectSuccess:true,
+                project: action.payload
+            }
+        case PROJECT_CREATE_COMPLETE:
+            return {
+                projectLoading:false,
+                projectSuccess:false,
+            }
+        case PROJECT_CREATE_FAIL:
+            return {
+                projectLoading:false,
+                projectError:action.payload,
+            }
+
+        default:
+            return state
     }
 }
