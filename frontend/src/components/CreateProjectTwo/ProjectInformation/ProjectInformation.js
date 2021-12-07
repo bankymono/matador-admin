@@ -11,7 +11,10 @@ import { listAmenities, listBuildingTypes, listLandTitles, listProjectCategories
 
 const ProjectInformation = ({
         projectInfo, handleProjectInfoFieldChange, handleDeleteProjectImage, 
-        handleProceedToNextPage, handleProjectImageChange, selectedProjectImages, 
+        handleProceedToNextPage, 
+        backToProjectPage,
+        handleProjectImageChange, 
+        selectedProjectImages, 
         selectedProjectImagesError,
         handleProjectAmenitiesFieldChange,
         projectAmenitiesForm,
@@ -369,7 +372,7 @@ const ProjectInformation = ({
                 </div>
 
                 <div className="create-proj-input-container create-proj-btn-container">
-                    <button className="create-outline-green">Cancel</button>
+                    <button className="create-outline-green" onClick={backToProjectPage}>Cancel</button>
                     <button onClick={handleProceedToNextPage} className="create-fill-green">Next</button>
                 </div>
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import ProjectInformation from '../../components/CreateProjectTwo/ProjectInformation/ProjectInformation'
 import InvestmentInformation from '../../components/CreateProjectTwo/InvestmentInformation/InvestmentInformation'
 import Header from '../../components/Header/Header';
+import Swal from 'sweetalert2';
 
 import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
@@ -19,7 +20,9 @@ import {
     validateBundleInfoFields,
     validatePaymentPlanInfoFields
 } from '../../components/CreateProjectTwo/validationFunctions';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createProject } from '../../redux/actions/projectActions';
 
 const CreateProject = ({ arrLinks }) => {
@@ -44,9 +47,49 @@ const CreateProject = ({ arrLinks }) => {
     const [includeBundle, setIncludeBundle] = useState(false);
     const [includePaymentPlan, setIncludePaymentPlan] = useState(false);
 
-    const user = useSelector(state => state.adminLogin);
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();    
     const dispatch = useDispatch();
+    const user = useSelector(state => state.adminLogin);
+    const projectCreate = useSelector(state => state.projectCreate);
+    const {projectLoading, requested, project, projectSuccess, projectError } = projectCreate;
 
+    useEffect(()=>{
+        setLoading(false);
+        if(projectSuccess && loading){
+            Swal.fire({
+                icon: 'success',
+                title: 'Project Created Successfully',
+                showConfirmButton: false,
+                timer: 2000
+              }).then(()=>{
+                  history.push('/projects');
+              })
+        }else if(projectError && loading && projectError.status === 400){
+            Swal.fire({
+                icon: 'error',
+                title: 'project with this name already exists.',
+                showConfirmButton: false,
+                timer: 3000
+              })
+        }else if(projectError && projectError.status === 500 && loading){
+            Swal.fire({
+                icon: 'error',
+                title: 'Unable to create project.',
+                showConfirmButton: false,
+                timer: 3000
+              })
+        }
+    },[ 
+        history,
+        dispatch,
+        loading,
+        projectLoading, 
+        project,
+        projectSuccess,
+        projectError,
+        requested
+])
     const handleProjectImageChange = (e) => {
         if (e.target.files) {
 
@@ -135,11 +178,19 @@ const CreateProject = ({ arrLinks }) => {
             setFormStep(prevStep => prevStep + 1)
             window.scrollTo(0, 0);
         } else {
-            console.log(isProjectAmenitiesValid, isProjectInfoValid)
-            alert('there are invalid fields');
+            Swal.fire({
+                icon: 'error',
+                title: 'There are invlid fields!',
+                showConfirmButton: false,
+                timer: 2000
+              })
         }
     }
+    const backToProjectPage=()=>{
+        history.push('/projects');
+    }
     const handleSubmit = (e) => {
+        setLoading(true);
         e.preventDefault();
         let isProjectInvestmentsInfoValid = validateProjectInvestmentInfoFields(
             projectInvestmentInfo,
@@ -156,7 +207,12 @@ const CreateProject = ({ arrLinks }) => {
             : false;
 
         if (!isProjectInvestmentsInfoValid) {
-            alert('Investment has invalid fields');
+            Swal.fire({
+                icon: 'error',
+                title: 'There are invalid fields!',
+                showConfirmButton: false,
+                timer: 3000
+              })
         } else if (isProjectInvestmentsInfoValid && !includeBundle) {
             //api call without bundle
             let projectInvestmentInfoWithoutError = {};
@@ -210,19 +266,44 @@ const CreateProject = ({ arrLinks }) => {
                     }
                     return projectInvestmentInfoWithoutError;
                 }));
-            console.log('data', { ...projectInfoWithoutError, ...projectInvestmentInfoWithoutError });
-            dispatch(createProject({ ...projectInfoWithoutError, ...projectInvestmentInfoWithoutError }));
+
+            dispatch(createProject({ ...projectInfoWithoutError, ...projectInvestmentInfoWithoutError }))
 
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length === 0) {
-            alert('Bundle section is checked hence, must be completed');
+            Swal.fire({
+                icon: 'error',
+                title: 'Bundle section is checked but not filled!',
+                showConfirmButton: false,
+                timer: 2000
+              })
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !isProjectBundlesInfoValid) {
-            alert('Bundle contains invalid fields');
+            Swal.fire({
+                icon: 'error',
+                title: 'Bundle contains invalid field(s)',
+                showConfirmButton: false,
+                timer: 2000
+              })
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && !includePaymentPlan) {
-            alert('You are yet to include payment plan');
+            Swal.fire({
+                icon: 'error',
+                title: 'You are yet to include payment plan!',
+                showConfirmButton: false,
+                timer: 2000
+              })
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && includePaymentPlan && projectPaymentPlansInfo.length === 0) {
-            alert('please add a payment plan');
+            Swal.fire({
+                icon: 'error',
+                title: 'please add a payment plan',
+                showConfirmButton: false,
+                timer: 2000
+              })
         } else if (isProjectInvestmentsInfoValid && includeBundle && projectBundlesInfo.length > 0 && includePaymentPlan && projectPaymentPlansInfo.length > 0 && !isProjectPaymentPlansInfoValid) {
-            alert('Payment plan has invalid field');
+            Swal.fire({
+                icon: 'error',
+                title: 'payment plan has invalid fields',
+                showConfirmButton: false,
+                timer: 2000
+              })
         } else {
             //api call with bundle
             let projectInvestmentInfoWithoutError = {};
@@ -324,13 +405,11 @@ const CreateProject = ({ arrLinks }) => {
                 bundles: projectBundlesInfoWithoutError,
                 payment_plan: projectPaymentPlansInfoWithoutError
             }
-            // console.log('good to go with bundle', data);
             dispatch(createProject(data));
-
         }
     }
 
-    const handleProceedToPrevPage = () => {
+    const backToPrevPage = (e) => {
         setFormStep(prevStep => prevStep - 1)
         window.scrollTo(0, 0);
     }
@@ -625,6 +704,7 @@ const CreateProject = ({ arrLinks }) => {
                                 handleDeleteProjectImage={handleDeleteProjectImage}
                                 handleProjectImageChange={handleProjectImageChange}
                                 handleProceedToNextPage={handleProceedToNextPage}
+                                backToProjectPage={backToProjectPage}
                             />
 
                         </div>
@@ -659,7 +739,7 @@ const CreateProject = ({ arrLinks }) => {
                                 setIncludeBundle={setIncludeBundle}
                                 includePaymentPlan={includePaymentPlan}
                                 setIncludePaymentPlan={setIncludePaymentPlan}
-                                handleProceedToPrevPage={handleProceedToPrevPage}
+                                backToPrevPage={backToPrevPage}
                                 handleSubmit={handleSubmit}
                                 selectedFileError={selectedFileError}
                                 setSelectedFileError={setSelectedFileError}
@@ -669,6 +749,7 @@ const CreateProject = ({ arrLinks }) => {
                                 handleAddBundle={handleAddBundle}
                                 bundleAmenitiesErrors={bundleAmenitiesErrors}
                                 setBundleAmenitiesErrors={setBundleAmenitiesErrors}
+                                loading={loading}
                             />
                         </div>
                     </div>

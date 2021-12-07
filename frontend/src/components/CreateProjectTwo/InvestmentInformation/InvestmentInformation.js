@@ -11,6 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Bundle from '../Bundle/Bundle';
 import PaymentPlan from '../PaymentPlan/PaymentPlan';
 import { validatePaymentPlanInfoFields } from '../validationFunctions';
+import { ClipLoader } from 'react-spinners';
 
 const InvestmentInformation = ({
     projectPaymentPlansInfo,
@@ -29,7 +30,13 @@ const InvestmentInformation = ({
     setBundleAmenities,
     bundleAmenitiesErrors,
     setBundleAmenitiesErrors,
-    handleProceedToPrevPage, setIncludeBundle, setIncludePaymentPlan, includeBundle, includePaymentPlan }) => {
+    backToPrevPage, 
+    setIncludeBundle, 
+    setIncludePaymentPlan, 
+    includeBundle, 
+    includePaymentPlan,
+    loading
+ }) => {
 
 
     // const [bundleAmenities, setBundleAmenities] = useState([])
@@ -502,8 +509,8 @@ const InvestmentInformation = ({
                 </div>
 
                 <div className="create-proj-input-container create-proj-btn-container">
-                    <button className="create-outline-green">Cancel</button>
-                    <button onClick={handleSubmit} className="create-fill-green">Create</button>
+                    <button className="create-outline-green" onClick={backToPrevPage}>Cancel</button>
+                    <button onClick={handleSubmit} className="create-fill-green">{loading ? <ClipLoader size={12} />: 'Create'}</button>
                 </div>
 
             </div>

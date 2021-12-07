@@ -87,27 +87,31 @@ export const amenityListReducer = (state={amenities:{}, amenityLoading:true}, ac
     }
 }
 
-export const projectCreateReducer = (state={projectSuccess:false}, action) => {
+export const projectCreateReducer = (state={requested: false, projectSuccess:false, projectLoading: true}, action) => {
     switch(action.type){
         case PROJECT_CREATE_REQUEST:
             return {
-                projectLoading:true
+                projectLoading:true,
+                requested: true
             }
         case PROJECT_CREATE_SUCCESS:
             return {
+                requested: true,
                 projectLoading:false,
                 projectSuccess:true,
-                project: action.payload
+                project: action.payloaded
             }
         case PROJECT_CREATE_COMPLETE:
             return {
                 projectLoading:false,
                 projectSuccess:false,
+                requested: true
             }
         case PROJECT_CREATE_FAIL:
             return {
                 projectLoading:false,
                 projectError:action.payload,
+                requested: true
             }
 
         default:

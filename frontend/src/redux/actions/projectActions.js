@@ -152,9 +152,7 @@ export const createProject = (project) => async (dispatch) => {
         dispatch({
             type:PROJECT_CREATE_COMPLETE
         })
-        console.log('create project', data);
     } catch (error) {
-        console.log('create project error', error.response)
         dispatch({
             type:PROJECT_CREATE_FAIL,
             payload:error.response
