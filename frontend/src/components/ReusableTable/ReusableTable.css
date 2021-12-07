@@ -78,3 +78,9 @@
             background-repeat: no-repeat;
             background-position: right 0px top 51% ;
 }
+
+.reusable-table-link{
+    text-decoration: none;
+    width: 100%;
+    background-color: red;
+}
