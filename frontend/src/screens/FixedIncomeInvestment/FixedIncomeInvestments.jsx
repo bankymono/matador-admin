@@ -12,6 +12,7 @@ import FixedIncomeTypeCard from '../../components/FixedIncomeInvestment/FixedInc
 import FIDoughnutChartCard from '../../components/FixedIncomeInvestment/FIDoughnutChartCard/FIDoughnutChartCard';
 import FIBarChartCard from '../../components/FixedIncomeInvestment/FIBarChartCard/FIBarChartCard';
 import FILiquidationCard from '../../components/FixedIncomeInvestment/FILiquidationCard/FILiquidationCard';
+import { Link } from 'react-router-dom';
 
 
 const FixedIncomeInvestment = ({arrLinks}) => {
@@ -27,11 +28,12 @@ const FixedIncomeInvestment = ({arrLinks}) => {
                 <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
                 <div className="f-i-i-container">
                     <div className="f-i-i-wrapper">
-
-                        <FixedIncomeTypeCard
-                            typeText="Sole"
-                            icon = {soleIcon}
-                        />
+                        <Link className="f-i-link" to='/investments/fixed-income/sole'>
+                            <FixedIncomeTypeCard
+                                typeText="Sole"
+                                icon = {soleIcon}
+                            />
+                        </Link>
 
                         <FixedIncomeTypeCard
                             typeText="Circle"

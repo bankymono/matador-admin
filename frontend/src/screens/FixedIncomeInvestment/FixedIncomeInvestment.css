@@ -100,3 +100,8 @@
     grid-column: 2 / span 2;
     
 }
+
+
+.f-i-i-container .f-i-link{
+    text-decoration: none;
+}

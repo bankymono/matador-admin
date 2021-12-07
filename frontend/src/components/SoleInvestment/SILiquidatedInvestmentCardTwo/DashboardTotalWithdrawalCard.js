@@ -16,7 +16,7 @@ const DashboardTotalWithdrawalCard = () => {
                         <option>option 3</option>
                     </select>
             </div>
-            <DashboardLineChartCard id={1} label="total withdrawal" />
+            <DashboardLineChartCard id={1} />
         </div>
     )
 }
