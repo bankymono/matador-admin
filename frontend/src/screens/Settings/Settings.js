@@ -53,12 +53,28 @@ const Settings = ({arrLinks}) => {
                                 <div>Investments</div>
                             </Link>
 
-                            <Link to="/settings/admin-manager" className={switchTab === 2 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
+                            <Link to="/settings/market-place" className={switchTab === 2 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
+                                <img src={admin_icon} alt="admin" />
+                                <div>Market Place</div>
+                            </Link>
+
+                            <Link to="/settings/rewards" className={switchTab === 3 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
+                                <img src={admin_icon} alt="admin" />
+                                <div>Rewards</div>
+                            </Link>
+
+                            <Link to="/settings/interest-rate" className={switchTab === 4 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
+                                <img src={admin_icon} alt="admin" />
+                                <div>Interest Rate</div>
+                            </Link>
+
+
+                            <Link to="/settings/admin-manager" className={switchTab === 5 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
                                 <img src={admin_icon} alt="admin" />
                                 <div>Admin Manager</div>
                             </Link>
 
-                            <Link to="/settings/update-password" className={switchTab === 3 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
+                            <Link to="/settings/update-password" className={switchTab === 6 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
                                 <img src={update_password_icon} alt="update password" />
                                 <div>Update Password</div>
                             </Link>
