@@ -12,7 +12,6 @@ import MarketplaceComponent from '../../components/Settings/MarketplaceComponent
 const MarketPlace = ({ arrLinks }) => {
     const [currentPage, setCurrentPage] = useState("Settings");
 
-
     return (
         <div>
             <SideBar setCurrentPage={setCurrentPage} />
@@ -23,7 +22,7 @@ const MarketPlace = ({ arrLinks }) => {
                 <div className="settings-container">
 
                     <div className="settings-input-wrapper">
-                        <SettingsSidenavComponent />
+                        <SettingsSidenavComponent activeLink={2} />
                         <div className="settings-pages-content">
                             <div className="settings-content-wrapper settings-content-active">
                                 <MarketplaceComponent />
