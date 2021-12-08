@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom';
 const SoleFI = ({setIsOpen, open, onClose}) => {
     const location = useLocation()
     const [selectedProfileImg, setSelectedProfileImg] = useState('')
+    
     console.log('locationnnn', location.search.split('=')[1])
     // location.search ? Number(location.search.split('=')[1]) : 1;
     const encodeFileToBase64 = (file) => {

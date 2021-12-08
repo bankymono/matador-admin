@@ -11,15 +11,18 @@ import {COLUMNS, COLUMNS2} from './columns';
 import Pagination from '../../Pagination/Pagination';
 import ReusableTable from '../../ReusableTable/ReusableTable';
 import SoleFI from '../../modals/SoleFIModal/SoleFI';
+import { useHistory } from 'react-router-dom';
 
 const SIOngoingTab = ({eqLoading, eqError, equityInvestments}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const history = useHistory()
 
     const columns = useMemo(() => COLUMNS, []);
     const data = useMemo(() => MOCK_DATA, []);
 
     const closeModal = () =>{
         setIsOpen(false);
+        history.push(`/investments/fixed-income/sole`)
     }
 
     return (
