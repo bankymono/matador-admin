@@ -3,16 +3,25 @@ import ReactDom from 'react-dom';
 import './VIDDetails.css';
 
 import close_icon from '../../../assets/icons/close-icon.png';
-import upload_icon from '../../../assets/icons/create-deposit-img-upload.png'
-import { Field, Form, Formik } from 'formik';
 import { useLocation } from 'react-router-dom';
+// verification_detail_img
+import ver_detail_img from '../../../assets/images/verification_detail_img.png'
+import { useEffect } from 'react';
 
 const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
     const location = useLocation()
     const [selectedProfileImg, setSelectedProfileImg] = useState('')
+    const [dummyUnVerified, setDummyUnVerified] = useState(true);
     
     console.log('locationnnn', location.search.split('=')[1])
     console.log('VerId', verId)
+    useEffect(()=>{
+        if(open)
+        document.body.style.overflow = 'hidden'
+        else{
+            document.body.style.overflow = 'scroll'
+        }
+    })
     // location.search ? Number(location.search.split('=')[1]) : 1;
     const encodeFileToBase64 = (file) => {
         return new Promise((resolve, reject)=> {
@@ -49,24 +58,24 @@ const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
                             </div>
 
                             <div>
-                                <button>Verify</button>
-                                <button>Mark Unverified</button>
+                                {dummyUnVerified ? <button className="verify-btn">Verify</button>:
+                                <button className="unverify-btn">Mark Unverified</button>}
                             </div>
                         </div>
 
-                        <div>
-                            <img src="" alt="" />
+                        <div className="v-id-details-second-content">
+                            <img className="v-id-detail-img" src={ver_detail_img} alt="ver" />
                         </div>
 
-                        <div>
-                            <div>
-                                <div>Verification Status</div>
-                                <div>Unverified</div>
+                        <div className="v-id-details-third-content">
+                            <div className="verification-stat-detail">
+                                <div className="desc">Verification Status</div>
+                                <div className="value"><span>Unverified</span></div>
                             </div>
 
-                            <div>
-                                <div>Document Type</div>
-                                <div>Driver's License</div>
+                            <div className="verification-type-detail">
+                                <div className="desc">Document Type</div>
+                                <div className="value">Driver's License</div>
                             </div>
                         </div>
 
