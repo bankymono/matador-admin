@@ -25,6 +25,7 @@ import Investments from './screens/Investments/Investments';
 import FixedIncomeInvestment from './screens/FixedIncomeInvestment/FixedIncomeInvestments';
 import EquityInvestment from './screens/EquityInvestment/EquityInvestment';
 import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
+import VerificationIdList from './screens/VerificationIdList/VerificationIdList';
 
 
 function App() {
@@ -200,6 +201,21 @@ function App() {
                     (<TransactionsList 
                       {...props} 
                         arrLinks={['home','transactions']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+
+                <Route 
+                  exact 
+                  path='/id-verification'
+                  render={(props)=>
+                    adminInfo ?
+                    (<VerificationIdList  
+                      {...props} 
+                        arrLinks={['home','ID verification']}
                         />)
                         :(<Redirect
                           to="/login"

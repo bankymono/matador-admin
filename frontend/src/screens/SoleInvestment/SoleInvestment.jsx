@@ -54,10 +54,7 @@ const SoleInvestment = ({arrLinks}) => {
                         <SILiquidatedInvestmentCard />
 
                     </div>
-                    <div className="dashboard-bottom-items">
 
-
-                        </div>
 
                     <SIOngoingAndSoldTab />
 
