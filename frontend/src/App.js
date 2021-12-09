@@ -60,6 +60,7 @@ function App() {
               adminInfo ?
                 (<Dashboard
                   {...props}
+                  adminInfo={adminInfo}
                   arrLinks={['home']}
                 />)
                 : (<Redirect
