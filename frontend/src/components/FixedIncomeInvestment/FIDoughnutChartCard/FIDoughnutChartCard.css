@@ -1,0 +1,43 @@
+.fi-doughnut-card-heading-text{
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+}
+
+.fi-doughnut-chart {
+    margin-bottom: 16px;
+}
+
+
+
+.fi-doughnut-data-table-heading{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 21px;
+    color: #8D8F91;
+    text-transform: uppercase;
+    padding: 14px 0;
+    border-bottom: 1px solid #DEE2E6;
+}
+
+
+
+.fi-doughnut-data-table-row {
+    display: grid;
+    gap:20px;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+
+    font-size: 16px;
+    line-height: 24px;
+    padding: 14px 0;
+}
+
+.fi-doughnut-row-first-col-item {
+    display: flex;
+    align-items: center;
+}

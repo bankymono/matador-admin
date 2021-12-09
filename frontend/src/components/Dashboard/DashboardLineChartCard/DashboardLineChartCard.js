@@ -2,12 +2,12 @@ import React from 'react';
 import {Line} from 'react-chartjs-2';
 import './DashboardLineChartCard.css';
 
-const DashboardLineChartCard = ({id}) => {
+const DashboardLineChartCard = ({id,label}) => {
 
     const data =  {
             labels:['Jan', 'Feb', 'March', 'Apr', 'May'],
             datasets:[{
-                label:"Total Deposits('000)",
+                label:label,
                 data:[3, 2, 3, 0, 10],
                 borderColor: 'rgba(73, 163, 123, 1)',
                 // backgroundColor: 'rgba(255, 89, 32, 0.2)',
