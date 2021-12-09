@@ -18,7 +18,8 @@ import MarketPlace from './screens/MarketPlace/MarketPlace';
 import Rewards from './screens/Rewards/Rewards';
 import InterestRate from './screens/InterestRate/InterestRate';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
-import { useDispatch, useSelector } from 'react-redux';
+import UpdatePassword from './screens/UpdatePassword/UpdatePassword';
+import { useSelector } from 'react-redux';
 import Accounts from './screens/Accounts/Accounts';
 
 import { ToastContainer } from "react-toastify";
@@ -26,9 +27,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const adminLogin = useSelector(state => state.adminLogin);
-  const { loading, error, adminInfo } = adminLogin;
+  const { adminInfo } = adminLogin;
 
   return (
     <div className="App">
@@ -201,6 +202,15 @@ function App() {
             (<UpdateAdmin
               {...props}
               arrLinks={['home', 'settings', 'admin manager']}
+            />)}
+          />
+          <Route
+            exact
+            path='/settings/update-password'
+            render={(props) =>
+            (<UpdatePassword
+              {...props}
+              arrLinks={['home', 'settings', 'update password']}
             />)}
           />
 
