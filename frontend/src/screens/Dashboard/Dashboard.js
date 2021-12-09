@@ -35,7 +35,7 @@ const Dashboard = ({match, arrLinks}) => {
                             <DashboardInvestmentsCard />  
                             <DashboardRevenueCard />     
                             <Link className="dashboard-txn-link" to="/investors/info"><DashboardInvestorsCard /></Link>               
-                            <Link className="dashboard-txn-link" to="/projects/id"><DashboardProjectsCard /></Link>
+                            <Link className="dashboard-txn-link" to="/projects"><DashboardProjectsCard /></Link>
                             <Link className="dashboard-txn-link" to="/transactions"><DashboardTransactionsCard /></Link>
                         </div>
                         <div className="dashboard-bottom-items">

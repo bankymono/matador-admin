@@ -17,7 +17,7 @@ const DashboardTotalDepositCard = () => {
                     </select>
             </div>
 
-            <DashboardLineChartCard />
+            <DashboardLineChartCard label="Total Deposits" />
         </div>
     )
 }
