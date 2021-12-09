@@ -23,6 +23,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Investments from './screens/Investments/Investments';
 import FixedIncomeInvestment from './screens/FixedIncomeInvestment/FixedIncomeInvestments';
+import EquityInvestment from './screens/EquityInvestment/EquityInvestment';
+import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 
 
 function App() {
@@ -48,7 +50,7 @@ function App() {
                    />)
                   }
                 />
-              {/* <Route exact path="/login" component={Login} /> */}
+
               <Route exact path="/change-password" component={ChangePassword} />
               <Route exact path="/recover-password" component={RecoverPassword} />
               <Route 
@@ -78,13 +80,41 @@ function App() {
                    />)
                   }
                 />
-                                <Route 
+
+                <Route 
+                  exact path="/investments/equity" 
+                  render={(props)=>
+                  adminInfo ?
+                  (<EquityInvestment 
+                    {...props} 
+                      arrLinks={['home','investments', 'equity investment']}
+                    />)
+                  :(<Redirect
+                    to="/login"
+                   />)
+                  }
+                />
+                <Route 
                   exact path="/investments/fixed-income" 
                   render={(props)=>
                   adminInfo ?
                   (<FixedIncomeInvestment 
                     {...props} 
                       arrLinks={['home','investments','fixed income']}
+                    />)
+                  :(<Redirect
+                    to="/login"
+                   />)
+                  }
+                />
+
+                <Route 
+                  exact path="/investments/fixed-income/sole" 
+                  render={(props)=>
+                  adminInfo ?
+                  (<SoleInvestment 
+                    {...props} 
+                      arrLinks={['home','investments','fixed income', "sole"]}
                     />)
                   :(<Redirect
                     to="/login"

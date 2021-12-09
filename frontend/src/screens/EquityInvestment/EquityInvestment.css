@@ -1,0 +1,10 @@
+.e-i-stat-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.e-i-center-content-wrapper{
+    padding: 24px;
+    min-height: 100vh;
+}

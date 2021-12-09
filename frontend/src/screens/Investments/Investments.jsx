@@ -23,7 +23,7 @@ const Investments = ({arrLinks}) => {
                 <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
                 <div className="investments-container">
                     <div className="investments-wrapper">
-                        <Link to="/" className="investments-link">
+                        <Link to="/investments/equity" className="investments-link">
                         <div className="investment-type-card">
                             <img src={eq_img} alt=""  />    
 

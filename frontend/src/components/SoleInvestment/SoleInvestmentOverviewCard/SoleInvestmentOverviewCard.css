@@ -1,0 +1,67 @@
+.s-i-list-overview-card-two-container {
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #DEE2E6;
+    padding:16px;
+    /* margin-bottom: 25px; */
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.s-i-overview-card-two-numbers{
+    /* display: grid; */
+    /* grid-template-columns: repeat(2,1fr); */
+    display: flex;
+    justify-content: space-between;
+    /* background-color: red; */
+    flex-direction:column ;
+    height: 100%;
+    /* height: 100%; */
+}
+
+.p-list-two-s-i-value-container{
+    margin-bottom: 25px;
+}
+
+.p-list-two-s-i-value-container:last-child{
+    margin-bottom: 0px;
+}
+
+.s-i-overview-card-two-heading-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 55px; */
+}
+
+.s-i-overview-card-two-heading {
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+}
+
+.s-i-overview-card-two-numbers .desc{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.s-i-overview-card-two-numbers .value{
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+}
+
+/* .s-i-value-container{
+    border-left: 1px solid #DEE2E6;
+    flex: 1;
+    padding: 0 12px;
+} */
+
+
+.s-i-overview-card-two-numbers .s-i-value-container:nth-child(1){
+    border-left: none;
+    padding: 0 0px;
+}
