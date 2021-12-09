@@ -15,6 +15,7 @@ import CreateProject from './screens/CreateProject/CreateProject';
 import CreateAdmin from './screens/CreateAdmin/CreateAdmin';
 import AdminList from './screens/AdminList/AdminList';
 import MarketPlace from './screens/MarketPlace/MarketPlace';
+import Rewards from './screens/Rewards/Rewards';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
 import { useDispatch, useSelector } from 'react-redux';
 import Accounts from './screens/Accounts/Accounts';
@@ -150,6 +151,15 @@ function App() {
             (<MarketPlace
               {...props}
               arrLinks={['home', 'settings', 'market place']}
+            />)}
+          />
+          <Route
+            exact
+            path='/settings/rewards'
+            render={(props) =>
+            (<Rewards
+              {...props}
+              arrLinks={['home', 'settings', 'rewards']}
             />)}
           />
 

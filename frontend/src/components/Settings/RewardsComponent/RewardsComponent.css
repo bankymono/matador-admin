@@ -1,0 +1,41 @@
+.rewards-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80vh;
+}
+.rewards-field{
+    display: flex;
+    width: 100%;
+}
+.rewards-field label{
+    width: 40%;
+    text-align: right;
+    font-size: 16px;
+    line-height: 21px;
+    color: #909896;
+    margin-right: 24px
+}
+.rewards-field input{
+    width: 60%;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 530px;
+    height: 40px;
+    outline: none;
+    padding: 8px;
+}
+.marketplace-select-field{
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 530px;
+    height: 40px;
+    outline: none;
+    padding: 8px;
+}
+.divide{
+    border-top: 2px solid #E0E0E0
+}
+.marketplace-btn{
+    justify-content: right;
+}
