@@ -2,23 +2,46 @@ import React, { useState } from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
+import './InterestRateComponent.css';
 
-const InterestRateComponent =()=>{
+const sections = [
+    {
+        titleHead: 'daily interest rate', fieldText: 'months', name: 'daily',
+        fields: [{ name: 'daily-input-one' }, { name: 'daily-input-two' },
+        { name: 'daily-input-three' }, { name: 'daily-input-two' },
+        { name: 'daily-input-one' }, { name: 'daily-input-two' }, { name: 'daily-input-one' }, { name: 'daily-input-two' }]
+    },
+    {
+        titleHead: 'weekly interest rate', fieldText: 'months', name: 'weekly',
+        fields: [{ name: 'weekly-input-one' }, { name: 'weekly-input-two' },
+        { name: 'daily-input-three' }, { name: 'daily-input-two' },
+        { name: 'daily-input-one' }, { name: 'daily-input-two' }, { name: 'daily-input-one' }, { name: 'daily-input-two' }]
+    },
+    {
+        titleHead: 'monthly interest rate', fieldText: 'months', name: 'monthly',
+        fields: [{ name: 'monthly-input-one' }, { name: 'monthly-input-two' },
+        { name: 'daily-input-three' }, { name: 'daily-input-two' },
+        { name: 'daily-input-one' }, { name: 'daily-input-two' }, { name: 'daily-input-one' }, { name: 'daily-input-two' }
+        ]
+    },
+]
+const InterestRateComponent = () => {
+
     const [rewardsData, setRewardsData] = useState({});
     const [loading, setLoading] = useState(false);
-    const handleRewardsField =(e) =>{
+    const handleRewardsField = (e) => {
         let name = e.target.name;
         let value = e.target.value;
         setRewardsData(prev => {
             prev[`${name}`] = value;
-            return {...prev};
+            return { ...prev };
         })
     }
-    const handleRewardsUpdate = () =>{
+    const handleRewardsUpdate = () => {
         //Request api update to market period
         setLoading(true);
-        
-        setInterval(console.log(rewardsData), 3000);
+
+        setInterval(() => { (console.log(rewardsData)); setLoading(false) }, 5000);
     }
     return (
         <div className="create-admin-container">
@@ -26,45 +49,40 @@ const InterestRateComponent =()=>{
                 <Link className="create-back-arr-link" to="/settings">
                     <AiOutlineArrowLeft className="arr-back-icon" />
                 </Link>
-                <div>Rewards</div>
+                <div>Interest Rate</div>
+            </div>
+            <div className="interest-wrapper">
+                {
+                    sections.map((section, index) => {
+                        return <div>
+                            <div className="sectionOne">
+                                <div className="section-title">{section.titleHead}</div>
+                                <div className="section-content">
+                                    {section.fields.map((field, fieldIndex) =>
+                                        <div className="first-field">
+                                            <label>
+                                                {fieldIndex === 0 ? <span>&nbsp;&nbsp;</span> : null}
+                                                {fieldIndex === 1 ? <span>&nbsp;&nbsp;</span> : null}
+                                                {(fieldIndex + 1) * 3} {section.fieldText} interest rate
+                                            </label>
+                                            <input
+                                                name={section.name + fieldIndex}
+                                                placeholder="Enter rate"
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="section-divider"></div>
+
+                        </div>
+                    })
+                }
+                <div className="interest-btn">
+                    <button className="update-adm-save-btn">Save Changes</button>
+                </div>
             </div>
 
-            <div className="rewards-wrapper">
-                <div className="create-input-item">
-                    <label>Point per referral</label>
-                    <input type="text" name="ppr" onChange={handleRewardsField} />
-                </div>
-                <div className="create-input-item">
-                    <label>Point per investment</label>
-                    <input type="text" name="ppi" onChange={handleRewardsField} />
-                </div>
-                <div className="create-input-item">
-                    <label>Point per gift purchase</label>
-                    <input type="text" name="ppgp" onChange={handleRewardsField} />
-                </div>
-                <div className="create-input-item">
-                    <label>Minimum point withdrawable</label>
-                    <input type="text" name="mpw" onChange={handleRewardsField} />
-                </div>
-                <div className="create-input-item">
-                    <label>Value per point</label>
-                    <input type="text" name="vpp" onChange={handleRewardsField} />
-                </div>
-                <div className="create-input-item">
-                    <label>Cent to Dollars value in percentage</label>
-                    <input type="text" name="cdv" onChange={handleRewardsField} />
-                </div>
-                <div>
-                <div className="create-input-item divide"></div>
-                <div className="create-input-item">
-                    <div className="marketplace-btn">
-                        <button className="update-adm-save-btn" onClick={handleRewardsUpdate}>{loading? <span><ClipLoader size={12} /> please wait</span> :'Save Changes'}</button>
-                    </div>
-
-                </div>
-                </div>
-
-            </div>
         </div>
     )
 }

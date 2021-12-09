@@ -1,0 +1,52 @@
+.interest-wrapper{
+    width: 90%;
+}
+.section-title{
+    text-transform: uppercase;
+    color: #03A678;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+.section-content{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+.section-content .first-field{
+    margin-bottom: 24px;
+}
+.section-content .first-field:nth-child(odd){
+    margin-right: 40px;
+}
+.section-content label{
+    color: #909896;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 18px;
+}
+.section-content input{
+    width: 113px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    padding-left: 6px;
+    outline: none;
+    color: #C9C9C9;
+}
+.section-divider{
+    margin-top: 38px;
+    margin-bottom: 7px;
+    border-top: 2px solid #E0E0E0;
+}
+.interest-btn{
+    display: flex;
+    justify-content: right;
+    margin-top: 24px;
+}
