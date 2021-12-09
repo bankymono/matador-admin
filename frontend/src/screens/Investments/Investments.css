@@ -1,0 +1,82 @@
+.investments-container{
+    padding: 24px;
+}
+
+.investments-wrapper {
+    /* padding: 24px 70px 24px 13px; */
+    
+    min-height: 100vh;
+    border-radius: 8px;
+
+    display: grid;
+    gap: 24px;
+    grid-template-columns:repeat(2, 1fr);
+    
+
+}
+
+.investments-wrapper .investment-type-card{
+    background-color: #fff;
+    height: 200px;
+    border-radius: 8px;
+    border: 1px solid #DEE2E6;
+
+    box-shadow: 0px 1px 4px 0px rgba(222, 226, 230,1);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.investments-wrapper .investment-type-card:hover{
+    background-color: #03A678;
+    cursor: pointer;
+}
+
+.investments-wrapper .investment-type-card .text-and-icon{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    color: #404244;
+}
+
+.investments-wrapper .investment-type-card:hover .text-and-icon{
+    color: #fff;
+}
+
+.investments-wrapper .investment-type-card .main-text{
+    font-weight: 600;
+    font-size: 18px;
+    /* line-height: 21px; */
+}
+
+.investments-wrapper .investment-type-card .sub-text{
+    /* font-weight: 600; */
+    font-size: 14px;
+    color: #8D8F91;
+}
+
+.investments-wrapper .investment-type-card:hover .sub-text{
+    /* font-weight: 600; */
+    /* font-size: 14px; */
+    color: #fff;
+}
+
+.investments-wrapper .investment-type-card .text-and-icon .iv-icon{
+    color: #03A678;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.investments-wrapper .investment-type-card:hover .text-and-icon .iv-icon{
+    color: #fff;
+}
+
+.investments-wrapper .investments-link{
+    text-decoration: none;
+}

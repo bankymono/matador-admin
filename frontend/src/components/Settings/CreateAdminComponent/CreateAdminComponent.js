@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
-import './CreateAdminComponent.css'
-import {CountryDropdown} from 'react-country-region-selector'
-import Swal from 'sweetalert2'
+import './CreateAdminComponent.css';
+import Swal from 'sweetalert2';
 
 
-import profile_placeholder from '../../../assets/images/create-profile-placeholder.png'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { createAdmin, createSuperAdmin, listCountries } from '../../../redux/actions/userActions'
-import { ClipLoader } from 'react-spinners'
+import profile_placeholder from '../../../assets/images/create-profile-placeholder.png';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { createAdmin, createSuperAdmin, listCountries } from '../../../redux/actions/userActions';
+import { ClipLoader } from 'react-spinners';
+
 
 const CreateAdminComponent = ({history}) => {
     const [selectedProfileImg, setSelectedProfileImg] = useState('')
@@ -265,7 +265,7 @@ const CreateAdminComponent = ({history}) => {
                 setUserName(e.target.value);
                 break;
             case 'first-name':
-                setPasswordError('');
+                setFirstNameError('');
                 setFirstName(e.target.value);
                 break;
             case 'last-name':
@@ -353,7 +353,7 @@ const CreateAdminComponent = ({history}) => {
                 <div className="create-input-item">
                     <label>Username</label>
                     <input name="username" value={username} onChange={handleChange} type="text" className={usernameError ?"error-border":""} />
-                    {usernameError  ? <span className="input-err-msg">{usernameError}</span>: null}
+                        {usernameError  ? <span className="input-err-msg">{usernameError}</span>: null}
                 </div>
 
 

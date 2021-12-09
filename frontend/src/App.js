@@ -12,6 +12,7 @@ import ChangePassword from './screens/AuthScreens/ChangePassword/ChangePassword'
 import RecoverPassword from './screens/AuthScreens/RecoverPassword/RecoverPassword';
 import Dashboard from './screens/Dashboard/Dashboard';
 import CreateProject from './screens/CreateProject/CreateProject';
+import CreateProjectTwo from './screens/CreateProjectTwo/CreateProjectTwo';
 import CreateAdmin from './screens/CreateAdmin/CreateAdmin';
 import AdminList from './screens/AdminList/AdminList';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
@@ -20,6 +21,8 @@ import Accounts from './screens/Accounts/Accounts';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Investments from './screens/Investments/Investments';
+import FixedIncomeInvestment from './screens/FixedIncomeInvestment/FixedIncomeInvestments';
 
 
 function App() {
@@ -62,6 +65,33 @@ function App() {
                   }
                 />
 
+                <Route 
+                  exact path="/investments" 
+                  render={(props)=>
+                  adminInfo ?
+                  (<Investments 
+                    {...props} 
+                      arrLinks={['home','investments']}
+                    />)
+                  :(<Redirect
+                    to="/login"
+                   />)
+                  }
+                />
+                                <Route 
+                  exact path="/investments/fixed-income" 
+                  render={(props)=>
+                  adminInfo ?
+                  (<FixedIncomeInvestment 
+                    {...props} 
+                      arrLinks={['home','investments','fixed income']}
+                    />)
+                  :(<Redirect
+                    to="/login"
+                   />)
+                  }
+                />
+
               <Route 
                 exact 
                 path='/investors/info'
@@ -95,7 +125,21 @@ function App() {
                   path='/projects/new'
                   render={(props)=>
                     adminInfo ?
-                    (<CreateProject 
+                    (<CreateProjectTwo 
+                      {...props} 
+                        arrLinks={['home','projects', 'new']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+                <Route 
+                  exact 
+                  path='/projects/new-2'
+                  render={(props)=>
+                    adminInfo ?
+                    (<CreateProject
                       {...props} 
                         arrLinks={['home','projects', 'new']}
                         />)
