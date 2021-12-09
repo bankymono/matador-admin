@@ -38,11 +38,7 @@ export const login = (email, password) => async (dispatch) => {
             type:ADMIN_LOGIN_REQUEST
         })
 
-        // const config = {
-        //     headers:{
-        //         'Content-Type':'application/json'
-        //     },
-        // }
+
 
         const {data} = await api.post('/user/admin-login',{email, password})
         dispatch({
@@ -50,7 +46,7 @@ export const login = (email, password) => async (dispatch) => {
             payload:data
         })
 
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('mtdX', JSON.stringify(data))
         
     } catch (error) {
         dispatch({
@@ -79,7 +75,7 @@ export const getNewToken = () => async (dispatch,getState) => {
             payload:adminInfo
         })
 
-        localStorage.setItem('userInfo', JSON.stringify(adminInfo))
+        localStorage.setItem('mtdX', JSON.stringify(adminInfo))
         return;        
     } catch (error) {
         dispatch({
@@ -90,7 +86,7 @@ export const getNewToken = () => async (dispatch,getState) => {
 }
 
 export const logout = () => async (dispatch) => {
-    localStorage.removeItem('userInfo');
+    localStorage.removeItem('mtdX');
     dispatch({
         type:ADMIN_LOGOUT
     })

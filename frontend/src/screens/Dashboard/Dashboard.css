@@ -194,6 +194,12 @@
     background-color: #33A02C;
 }
 
+.dot-color-pink {
+    background-color: #FB9A99;
+}
+
+
+
 .doughnut-row-first-col-item {
     display: flex;
     align-items: center;

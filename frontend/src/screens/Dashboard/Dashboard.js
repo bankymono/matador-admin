@@ -33,10 +33,10 @@ const Dashboard = ({match, arrLinks, adminInfo}) => {
                             <CardTwo paystackBalance={adminInfo.paystack_balance} />
                             <DoughnutChartCard assetAllocationData={adminInfo.asset_allocation_data} />    
                             <DashboardInvestmentsCard />  
-                            <DashboardRevenueCard revenueData={adminInfo.revenue} />     
-                            <Link className="dashboard-txn-link" to="/investors/info"><DashboardInvestorsCard investorData={adminInfo.investors_count} /></Link>               
-                            <Link className="dashboard-txn-link" to="/projects/id"><DashboardProjectsCard projectsData={adminInfo.projects} /></Link>
-                            <Link className="dashboard-txn-link" to="/transactions"><DashboardTransactionsCard transactionsData={adminInfo.transactions} /></Link>
+                            <DashboardRevenueCard />     
+                            <Link className="dashboard-txn-link" to="/investors/info"><DashboardInvestorsCard /></Link>               
+                            <Link className="dashboard-txn-link" to="/projects"><DashboardProjectsCard /></Link>
+                            <Link className="dashboard-txn-link" to="/transactions"><DashboardTransactionsCard /></Link>
                         </div>
                         <div className="dashboard-bottom-items">
                             <DashboardTotalDepositCard depositData={adminInfo.deposits} />
