@@ -1,6 +1,6 @@
 .s-f-i-container{
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: rgba(14, 36, 26, 0.7);
     display: flex;
@@ -14,7 +14,7 @@
 .s-f-i-input-wrapper{
     background: white;
     border-radius: 8px;
-    min-width: 500px;
+    min-width: 85vw;
     position: absolute;
     top: 50vh;
     transform: translateY(-50%);
@@ -35,80 +35,19 @@
     cursor: pointer;
 }
 
-.s-f-i-form-wrapper{
-    padding: 0 34px;
-}
-
-.s-f-i-mtd-image-upload-wrapper{
-    background: #FAFAFA;
-    border: 1px dashed #E0E0E0;
-    border-radius: 4px;
+.s-f-i-detail-wrapper{
+    margin: 0 auto;
+    width: 80%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 17px 0;
-    margin-bottom: 18px;
 }
 
-.s-f-i-mtd-image-upload{
-    margin-bottom: 18px;
-    width: 50px;
-    height: 50px;
-    -o-object-fit: cover;
-       object-fit: cover;
-    border-radius: 100%;
+.s-f-i-detail-wrapper .detail-card-one{
+    flex: 1;
+    background-color: peachpuff;
 }
 
-.s-f-i-mtd-upload-btn {
-    padding: 10px 18px;
-    color: white;
-    background: #03A678;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
+.s-f-i-detail-wrapper .detail-card-two{
+    flex: 2;
+    background-color: pink;
 }
 
-.s-f-i-mtd-img-input{
-    display: none;
-}
-
-.s-f-i-mtd-input-wrapper{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
-}
-
-.s-f-i-mtd-label{
-    margin-bottom: 8px;
-    line-height: 21px;
-}
-
-.s-f-i-mtd-input{
-    border: 1px solid #E0E0E0;
-    border-radius: 4px;
-    height: 40px;
-    outline: none;
-}
-
-textarea.s-f-i-mtd-input{
-    resize: none;
-}
-
-.s-f-i-mtd-modal-btn{
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-    padding: 10px 16px;
-    color: white;
-    background-color: #03A678;
-    border: none;
-    border-radius: 4px;   
-    align-self: center;
-    margin-bottom: 35px;
-}
-
-.s-f-i-mtd-form-content{
-    display: flex;
-    flex-direction: column;
-}

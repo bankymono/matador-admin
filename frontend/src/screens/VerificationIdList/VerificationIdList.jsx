@@ -15,19 +15,20 @@ import './VerificationIdList.css'
 const VerificationIdList = ({arrLinks}) => {
     const [currentPage, setCurrentPage] = useState("ID Verification");
     const [newArrLinks,setNewArrLinks] = useState([...arrLinks]);
-
+    const [isVerList,setIsVerList] = useState(false);
 
     useEffect(()=>{
         setNewArrLinks(prev => {
             return prev.map((str,id)=>{
                 if(prev.length - 1 === id){
-                    return str + " / Unverified"
+                    let tempStr = "ID verification";
+                    return isVerList ? tempStr + " / Verified" : tempStr + " / Unverified"
                 }
 
                 return str
             })
         })
-    },[arrLinks])
+    },[arrLinks, isVerList])
 
     return (
         <div>
@@ -41,7 +42,9 @@ const VerificationIdList = ({arrLinks}) => {
                 />
 
                 <div className="v-id-list-center-content-wrapper">
-                    <VIDTabs />
+                    <VIDTabs
+                        setIsVerList={setIsVerList}
+                    />
                 </div>
             </div>
         </div>

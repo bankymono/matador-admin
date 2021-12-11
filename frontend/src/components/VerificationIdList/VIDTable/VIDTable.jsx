@@ -7,14 +7,17 @@ import search_icon from '../../../assets/icons/search-icon-img.png'
 import './VIDTable.css';
 import { Link, useHistory } from 'react-router-dom';
 
-const VIDTable = ({columnsConfig, dataConfig, setIsOpen, setVerId, verId}) => {
+const VIDTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOpen, setVerId, verId}) => {
     const history = useHistory()
-    const columns = useMemo(() => columnsConfig, [columnsConfig]);
-    const data = useMemo(() => dataConfig, [dataConfig]);
+    const columns2 = useMemo(() => columnsConfig, [columnsConfig]);
+    const columns = useMemo(() => columnsConfig2, [columnsConfig2]);
+    const data2 = useMemo(() => dataConfig, [dataConfig]);
+    const data = useMemo(() => dataConfig2, [dataConfig2]);
     const [verified, setVerified] = useState(false);
     // const [open, setIsOpen]
     const handleViewClick = (id) => {
         setVerId(id);
+        console.log('id', id)
         setIsOpen(true);
         // history.push(`/investments/fixed-income/sole?sole_id=${id}`)
     }
@@ -91,7 +94,7 @@ const VIDTable = ({columnsConfig, dataConfig, setIsOpen, setVerId, verId}) => {
                             {
 
                                 row.cells.map((cell)=>{
-                                    return <td {...cell.getCellProps()}><span className={verified ? "verified" : ""}>{cell.render('Cell')}</span></td>
+                                    return <td {...cell.getCellProps()}><span className={row.original.status === "verified" ? "verified" : ""}>{cell.render('Cell')}</span></td>
                                 })
                             }
                             {/* <td className="more-menu-button"><MoreOptionsMenu /></td> */}
