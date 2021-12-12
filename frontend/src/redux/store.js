@@ -20,6 +20,7 @@ import {
 import { 
         equityInvestmentStatReducer,
         adminSettingsReducer,
+        adminSettingsRewardUpdateReducer,
     } from './reducers/investmentsReducer';
 
 
@@ -42,6 +43,7 @@ const reducer = combineReducers({
     //investment-related-reducers
     equityInvestmentStatData: equityInvestmentStatReducer,
     adminSettings: adminSettingsReducer,
+    adminRewardSettingsUpdate: adminSettingsRewardUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;

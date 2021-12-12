@@ -213,49 +213,71 @@ function App() {
             exact
             path='/settings'
             render={(props) =>
-            (<Settings
-              {...props}
-              arrLinks={['home', 'settings', 'investments']}
-            />)}
+              adminInfo ?
+                (<Settings
+                  {...props}
+                  arrLinks={['home', 'settings', 'investment']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route
             exact
             path='/settings/market-place'
             render={(props) =>
-            (<MarketPlace
+            (adminInfo?
+            <MarketPlace
               {...props}
               arrLinks={['home', 'settings', 'market place']}
-            />)}
+            /> :
+            <Redirect to="/login" />)}
           />
           <Route
             exact
             path='/settings/rewards'
             render={(props) =>
-            (<Rewards
-              {...props}
-              arrLinks={['home', 'settings', 'rewards']}
-            />)}
+              adminInfo ?
+                (<Rewards
+                  {...props}
+                  arrLinks={['home', 'settings', 'reward']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route
             exact
             path='/settings/interest-rate'
             render={(props) =>
-            (<InterestRate
-              {...props}
-              arrLinks={['home', 'settings', 'interest rate']}
-            />)}
+              adminInfo ?
+                (<InterestRate
+                  {...props}
+                  arrLinks={['home', 'settings', 'interest rate']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route
             exact
             path='/settings/admin-manager'
             render={(props) =>
-            (<AdminList
-              {...props}
-              arrLinks={['home', 'settings', 'admin manager']}
-            />)}
+              adminInfo ?
+                (<AdminList
+                  {...props}
+                  arrLinks={['home', 'settings', 'admin manager']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route
@@ -264,7 +286,7 @@ function App() {
             render={(props) =>
             (<CreateAdmin
               {...props}
-              arrLinks={['home', 'settings', 'admin manager']}
+              arrLinks={['home', 'settings', 'admin-manager', 'create']}
             />)}
           />
 
@@ -272,19 +294,29 @@ function App() {
             exact
             path='/settings/admin-manager/update-admin'
             render={(props) =>
-            (<UpdateAdmin
-              {...props}
-              arrLinks={['home', 'settings', 'admin manager']}
-            />)}
+              adminInfo ?
+                (<UpdateAdmin
+                  {...props}
+                  arrLinks={['home', 'settings', 'admin manager', 'update']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
           <Route
             exact
             path='/settings/update-password'
             render={(props) =>
-            (<UpdatePassword
-              {...props}
-              arrLinks={['home', 'settings', 'update password']}
-            />)}
+              adminInfo ?
+                (<UpdatePassword
+                  {...props}
+                  arrLinks={['home', 'settings', 'update password']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route

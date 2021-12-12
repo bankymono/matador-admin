@@ -1,4 +1,12 @@
-import { ADMIN_SETTINGS_FAIL, ADMIN_SETTINGS_REQUEST, ADMIN_SETTINGS_SUCCESS, EQUITY_INVESTMENT_STAT_FAIL, EQUITY_INVESTMENT_STAT_REQUEST, EQUITY_INVESTMENT_STAT_SUCCESS } from "../constants/investmentsContants";
+import { 
+    ADMIN_SETTINGS_FAIL, 
+    ADMIN_SETTINGS_REQUEST, 
+    ADMIN_SETTINGS_REWARD_UPDATE_SUCCESS,
+    ADMIN_SETTINGS_REWARD_UPDATE_FAIL, 
+    ADMIN_SETTINGS_SUCCESS, 
+    EQUITY_INVESTMENT_STAT_FAIL, 
+    EQUITY_INVESTMENT_STAT_REQUEST, 
+    EQUITY_INVESTMENT_STAT_SUCCESS } from "../constants/investmentsContants";
 
 
 export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, eqInvStatLoading:true}, action) => {
@@ -15,7 +23,6 @@ export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, eqIn
 }
 
 export const adminSettingsReducer = (state={settingsRequest: false, settingsData: null, settingsFail: false}, action)=>{
-    console.log('settings reducer', action.payload);
     switch(action.type){
         case ADMIN_SETTINGS_REQUEST:
             return {settingsRequest: action.payload, settingsData: null, settingsFail: false};
@@ -25,5 +32,16 @@ export const adminSettingsReducer = (state={settingsRequest: false, settingsData
             return {settingsRequest: true, settingsData: null, settingsFail: action.payload};
         default:
             return state;
+    }
+}
+
+export const adminSettingsRewardUpdateReducer = (state={}, action)=>{
+    switch(action.type){
+        case ADMIN_SETTINGS_REWARD_UPDATE_SUCCESS:
+            return {rewardUpdateSuccess: true, rewardUpdateFail: false};
+        case ADMIN_SETTINGS_REWARD_UPDATE_FAIL:
+            return {rewardUpdateSuccess: false, rewardUpdateFail: true}
+        default:
+            return state
     }
 }
