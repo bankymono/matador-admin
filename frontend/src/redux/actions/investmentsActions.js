@@ -67,10 +67,7 @@ export const updateSettingsReward = (updateData)=> async(dispatch)=>{
             payload: data.data
         })
 
-        console.log('settings data', data)
-
     } catch (error) {
-        console.log('called to place error');
         dispatch({
             type:ADMIN_SETTINGS_REWARD_UPDATE_FAIL,
             payload: error
