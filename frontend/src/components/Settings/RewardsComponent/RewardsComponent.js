@@ -43,7 +43,7 @@ const RewardsComponent = () => {
             setSubmissionLoading(false);
         }else if(rewardUpdateSuccess && submissionLoading){
             Swal.fire({
-                icon: 'error',
+                icon: 'success',
                 title: 'Rewards settings updated successfully',
                 showConfirmButton: false,
                 timer: 2000
