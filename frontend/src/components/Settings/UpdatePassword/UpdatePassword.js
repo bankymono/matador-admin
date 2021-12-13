@@ -32,15 +32,15 @@ const UpdatePassword = () => {
                 <div className="section-content">
                     <div className="password-field">
                         <label>Current Password</label>
-                        <input name="oldPassword" placeholder="Enter current password" onChange={handlePasswordDataChange}  />
+                        <input name="oldPassword" type="password" placeholder="Enter current password" onChange={handlePasswordDataChange}  />
                     </div>
                     <div className="password-field">
                         <label>New Password</label>
-                        <input name="newPassword" placeholder="Enter new password" onChange={handlePasswordDataChange} />
+                        <input name="newPassword" type="password" placeholder="Enter new password" onChange={handlePasswordDataChange} />
                     </div>
                     <div className="password-field">
                         <label>Confirm New Password</label>
-                        <input name="confirmNewPassword" placeholder="Confirm new password" onChange={handlePasswordDataChange} />
+                        <input name="confirmNewPassword" type="password" placeholder="Confirm new password" onChange={handlePasswordDataChange} />
                     </div>
                 </div>
                 <div className="section-divider"></div>

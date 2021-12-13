@@ -29,8 +29,9 @@
     font-size: 18px;
     font-weight: 600;
     margin-right: 18px;
+    text-align: right;
 }
-.section-content input{
+.section-content input, select{
     width: 113px;
     height: 40px;
     background: #FFFFFF;
