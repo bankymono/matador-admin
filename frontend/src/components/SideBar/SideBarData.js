@@ -6,7 +6,9 @@ import rewards_icon from '../../assets/icons/rewards-icon.png';
 import transactions_icon from '../../assets/icons/transactions-icon.png';
 import accounts_icon from '../../assets/icons/accounts_icon.png';
 import settings_icon from '../../assets/icons/settings-icon.png';
+import id_verification_icon from '../../assets/icons/id_verification.png';
 
+import {BiBookAlt} from 'react-icons/bi'
 export const SideBarData = [
     {
         title:"Dashboard",
@@ -47,6 +49,12 @@ export const SideBarData = [
         title:"Accounts",
         icon:accounts_icon,
         link:'/accounts',
+    },
+
+    {
+        title:"ID Verification",
+        icon: transactions_icon,
+        link:'/id-verification',
     },
 
     {
