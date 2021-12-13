@@ -274,13 +274,13 @@ export const createProject = (project) => async (dispatch) => {
 }
 
 
-export const listVerificationId = () => async (dispatch) => {
+export const listVerificationId = (status) => async (dispatch) => {
     try {
         dispatch({
             type: VERIFICATION_ID_LIST_REQUEST
         })
-
-        const {data} = await api.get('/user/verify-verification_id')
+        console.log('status', status)
+        const {data} = await api.get(`/user/verify-verification_id?status=${status}`)
 
         dispatch({
             type:VERIFICATION_ID_LIST_SUCCESS,
@@ -323,13 +323,13 @@ export const getVerificationIdDetail = (id) => async (dispatch) => {
 }
 
 
-export const verifyVerificationId = (verifyData) => async (dispatch) => {
+export const verifyVerificationId = (id,verifyData) => async (dispatch) => {
     try {
         dispatch({
             type: VERIFICATION_ID_VERIFY_REQUEST
         })
 
-        const {data} = await api.post('/user/admin', verifyData);
+        const {data} = await api.patch(`/user/verify-verification_id/${id}`, verifyData);
 
         dispatch({
             type:VERIFICATION_ID_VERIFY_SUCCESS,

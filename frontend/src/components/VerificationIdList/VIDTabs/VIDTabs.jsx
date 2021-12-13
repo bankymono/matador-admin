@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import VeriList from '../VeriList/VeriList';
 import EquityBasedSoldTab from '../EquityBasedSoldTab/EquityBasedSoldTab';
 import './VIDTabs.css';
@@ -8,6 +8,7 @@ import './VIDTabs.css';
 // import { listVerificationId } from '../../../redux/actions/userActions';
 
 const VIDTabs = ({
+    isVerList,
     setIsVerList
 }) => {
     const [toggleState, setToggleState] = useState(1);
@@ -21,6 +22,10 @@ const VIDTabs = ({
         setToggleState(tab)
     }
 
+    // useEffect(()=> {
+
+    // },[toggleState])
+
     return (
         <div className="v-id-tabs-container">
             <div className="tabs-controls">
@@ -31,12 +36,12 @@ const VIDTabs = ({
             <div className="tabs-content">
                 <div className={toggleState === 1 ? "content active-content" : "content"}>
                     <VeriList
-                        veriType={false} 
+                        veriType={isVerList} 
                     />
                 </div>
                 <div className={toggleState === 2 ? "content active-content" : "content"}>
                     <VeriList
-                        veriType={true} 
+                        veriType={isVerList} 
                     />
                 </div>
             </div>

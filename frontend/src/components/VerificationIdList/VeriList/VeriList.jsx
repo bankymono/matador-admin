@@ -29,9 +29,14 @@ const VeriList = ({veriType}) => {
 
 
     useEffect(()=>{
-        dispatch(listVerificationId());
+        if(veriType){
+            dispatch(listVerificationId("True"));            
+        }else{
+            dispatch(listVerificationId("False"));  
+        }
 
-    }, [dispatch])
+
+    }, [dispatch, veriType])
 
     useEffect(()=>{
         if(verifyIdLoading === false && !verificationIdError){
@@ -40,9 +45,11 @@ const VeriList = ({veriType}) => {
     }, [verifyIdLoading,verificationIdError, verificationIds, verId])
 
     const constructObject = (verificationIds) => {
-        let unVerified = verificationIds.results.filter(verid => verid.status === false)
-        let verified = verificationIds.results.filter(verid => verid.status === true)
-        let newArr = unVerified.map(verid => {
+
+        // let unVerified = verificationIds.results.filter(verid => verid.status === false);
+        // let verified = verificationIds.results.filter(verid => verid.status === true);
+
+        let newArr = verificationIds.results.map(verid => {
             return({
                 id:verid.id,
                 full_name: verid.user.first_name + " " +  verid.user.last_name,
@@ -80,7 +87,6 @@ const VeriList = ({veriType}) => {
             </div>
             <VIDDetails verId={verId} setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} />
         </div>
-
 
         </>
         

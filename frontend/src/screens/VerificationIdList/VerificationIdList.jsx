@@ -43,6 +43,7 @@ const VerificationIdList = ({arrLinks}) => {
 
                 <div className="v-id-list-center-content-wrapper">
                     <VIDTabs
+                        isVerList={isVerList}
                         setIsVerList={setIsVerList}
                     />
                 </div>
