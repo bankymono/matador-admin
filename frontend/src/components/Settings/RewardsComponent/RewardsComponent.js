@@ -68,10 +68,8 @@ const RewardsComponent = () => {
             max_withdrawable_without_verification: adminSettings.settingsData.investment.max_withdrawable_without_verification,
             platform_minimum_investment: adminSettings.settingsData.investment.platform_minimum_investment
         }
-        console.log('update', update);
         dispatch(updateSettingsReward(update));
         setSubmissionLoading(true);
-        // updateSettingsReward(rewardsData);
     }
     return (
         <div className="create-admin-container">

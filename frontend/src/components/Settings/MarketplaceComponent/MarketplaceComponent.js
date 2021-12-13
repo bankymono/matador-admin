@@ -1,33 +1,69 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import Swal from 'sweetalert2';
 import './MarketplaceComponent.css'
 
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { getSettings } from '../../../redux/actions/investmentsActions';
-import { BeatLoader } from 'react-spinners';
+import { getSettings, updateSettingsReward } from '../../../redux/actions/investmentsActions';
+import { BeatLoader, ClipLoader } from 'react-spinners';
 
 const MarketplaceComponent = () => {
     const dispatch = useDispatch();
     const adminSettings = useSelector(state => state.adminSettings);
-    const [marketPeriod, setMarketPeriod] = useState(null);
+    const adminRewardSettingsUpdate = useSelector(state=> state.adminRewardSettingsUpdate)
+    const {rewardUpdateSuccess, rewardUpdateFail} = adminRewardSettingsUpdate;
 
+    const [marketPeriod, setMarketPeriod] = useState(null);
+    const [submissionLoading, setSubmissionLoading] = useState(false);
     useEffect(() => {
             dispatch(getSettings());
     }, []);
     const setData=()=>{
         if(!marketPeriod && adminSettings.settingsData){
-            setMarketPeriod(adminSettings.settingsData.marketplace.buyer_max_period_in_hours);
+            setMarketPeriod({...adminSettings.settingsData.marketplace});
         }
     }
     
     const handleMarketplaceSelectChange =(e) =>{
-        setMarketPeriod(e.target.value);
+        let name = e.target.name;
+        console.log(e.target.value);
+        let value = parseInt(e.target.value);
+        let data = {};
+        data[`${name}`] = value;
+        setMarketPeriod({...data})
     }
     const handleMarketplaceUpdate = () =>{
         //Request api update to market period
-        console.log(marketPeriod);
+        let update = {
+            ...marketPeriod,
+            max_withdrawable_without_verification: adminSettings.settingsData.investment.max_withdrawable_without_verification,
+            platform_minimum_investment: adminSettings.settingsData.investment.platform_minimum_investment
+        }
+        console.log('update', update)
+        dispatch(updateSettingsReward(update));
+        setSubmissionLoading(true);
+        
     }
+    useEffect(()=>{
+        if(rewardUpdateFail && submissionLoading){
+            Swal.fire({
+                icon: 'error',
+                title: 'Unable to update settings',
+                showConfirmButton: false,
+                timer: 2000
+              });
+            setSubmissionLoading(false);
+        }else if(rewardUpdateSuccess && submissionLoading){
+            Swal.fire({
+                icon: 'success',
+                title: 'Rewards settings updated successfully',
+                showConfirmButton: false,
+                timer: 2000
+              });
+            setSubmissionLoading(false);
+        }
+    }, [dispatch, rewardUpdateFail, rewardUpdateSuccess, submissionLoading]);
     return (
         
         <div className="create-admin-container">
@@ -38,12 +74,11 @@ const MarketplaceComponent = () => {
                 <div>Marketplace</div>
             </div>
             {adminSettings.settingsData? setData() : null }
-
-            {adminSettings.settingsData?
+            {marketPeriod?
                 <div className="marketplace-wrapper">
                 <div className="create-input-item">
                     <label>Buyer maximum <br/> period in hours</label>
-                    <select className="marketplace-select-field" value={marketPeriod} onChange={handleMarketplaceSelectChange}>
+                    <select className="marketplace-select-field" name="buyer_max_period_in_hours" value={marketPeriod.buyer_max_period_in_hours} onChange={handleMarketplaceSelectChange}>
                         <option>Select hours</option>
                         <option value={1}>1 hour</option>
                         <option value={2}>2 hours</option>
@@ -75,7 +110,7 @@ const MarketplaceComponent = () => {
                 <div className="create-input-item divide"></div>
                 <div className="create-input-item">
                     <div className="marketplace-btn">
-                        <button className="update-adm-save-btn" onClick={handleMarketplaceUpdate}>Save Changes</button>
+                        <button className="update-adm-save-btn" onClick={handleMarketplaceUpdate}>{submissionLoading? <span><ClipLoader size={12} /> please wait</span> :'Save Changes'}</button>
                     </div>
                 </div>
                 </div>
