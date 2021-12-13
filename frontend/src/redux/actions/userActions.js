@@ -38,6 +38,7 @@ import {
     VERIFICATION_ID_VERIFY_SUCCESS,
     VERIFICATION_ID_VERIFY_COMPLETE,
     VERIFICATION_ID_VERIFY_FAIL,
+    VERIFICATION_ID_DETAIL_CLEAR,
     } from "../constants/userConstants";
 dotenv.config();
 
@@ -322,6 +323,11 @@ export const getVerificationIdDetail = (id) => async (dispatch) => {
     }
 }
 
+export const clearVerificationIdDetail = () => async (dispatch) => {
+    dispatch({
+        type: VERIFICATION_ID_DETAIL_CLEAR
+    })
+}
 
 export const verifyVerificationId = (id,verifyData) => async (dispatch) => {
     try {

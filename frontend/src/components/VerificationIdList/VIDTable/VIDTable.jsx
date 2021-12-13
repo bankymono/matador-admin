@@ -17,9 +17,8 @@ const VIDTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOp
     // const [open, setIsOpen]
     const handleViewClick = (id) => {
         setVerId(id);
-        console.log('id', id)
         setIsOpen(true);
-        // history.push(`/investments/fixed-income/sole?sole_id=${id}`)
+
     }
 
     const {
@@ -84,7 +83,7 @@ const VIDTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOp
             {
                 rows.map(row => {
                     prepareRow(row)
-                    // console.log('royce',row.original)
+
                     // let rowId = row.original.id;
                     return (
 

@@ -13,7 +13,7 @@ import { getVerificationIdDetail } from '../../../redux/actions/userActions';
 const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
     // const location = useLocation()
     // const [selectedProfileImg, setSelectedProfileImg] = useState('')
-    const [dummyUnVerified, setDummyUnVerified] = useState(true);
+    // const [dummyUnVerified, setDummyUnVerified] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -21,19 +21,22 @@ const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
     const {singleVerIdLoading, singleVerId, singleVerIdError} = verificationIdDetail
     // console.log('locationnnn', location.search.split('=')[1])
 
-    
+    useEffect(()=>{
+        if(verId){
+            dispatch(getVerificationIdDetail(verId));
+        }
+
+    },[dispatch, verId])
+
     useEffect(()=>{
         if(open)
         document.body.style.overflow = 'hidden'
         else{
             document.body.style.overflow = 'scroll'
         }
-    },[])
+    },[open])
 
-    useEffect(()=>{
-        dispatch(getVerificationIdDetail(verId));
 
-    },[dispatch, verId])
     // location.search ? Number(location.search.split('=')[1]) : 1;
 
 
@@ -44,7 +47,6 @@ const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
         <>
             <div onClick={onClose} className="v-id-container">
                 <div onClick={(event)=> event.stopPropagation()} className="v-id-input-wrapper">
-                    {console.log('verrr detailss modal', singleVerId)}
                     <div className="v-id-heading">
                         <div></div>
                         <img src={close_icon} alt="close" onClick={onClose} />

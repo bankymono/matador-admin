@@ -34,7 +34,9 @@ import {
     VERIFICATION_ID_VERIFY_REQUEST,
     VERIFICATION_ID_VERIFY_SUCCESS,
     VERIFICATION_ID_VERIFY_COMPLETE,
-    VERIFICATION_ID_DETAIL_FAIL
+    VERIFICATION_ID_DETAIL_FAIL,
+    VERIFICATION_ID_DETAIL_REQUEST,
+    VERIFICATION_ID_DETAIL_CLEAR
 } from "../constants/userConstants";
 
 export const adminLoginReducer = (state={}, action) => {
@@ -184,12 +186,14 @@ export const verificationIdListReducer = (state={verificationIds:{}, verifyIdLoa
 
 export const verificationIdDetailReducer = (state={singleVerId:{}, singleVerIdLoading:true}, action) => {
     switch(action.type){
-        case VERIFICATION_ID_LIST_REQUEST:
+        case VERIFICATION_ID_DETAIL_REQUEST:
             return { singleVerIdLoading:true, singleVerId:{} }
         case VERIFICATION_ID_DETAIL_SUCCESS:
             return { singleVerIdLoading: false, singleVerId: action.payload}
-        case VERIFICATION_ID_LIST_FAIL:
+        case VERIFICATION_ID_DETAIL_FAIL:
             return { singleVerIdLoading:false, singleVerIdError: action.payload}
+        case VERIFICATION_ID_DETAIL_CLEAR:
+            return { singleVerIdLoading:false, singleVerId:{}}
         default:
             return state;
     }
