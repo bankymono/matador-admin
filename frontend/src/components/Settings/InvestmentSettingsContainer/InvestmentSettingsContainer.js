@@ -4,13 +4,18 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { BeatLoader, ClipLoader } from 'react-spinners';
 import { useDispatch, useSelector } from 'react-redux';
-import {getSettings} from '../../../redux/actions/investmentsActions';
+import {getSettings, updateSettingsReward} from '../../../redux/actions/investmentsActions';
+import Swal from 'sweetalert2';
 
 const InvestmentSettingsContainer = () => {
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
+    const [submissionLoading, setSubmissionLoading] = useState(false);
     const adminSettings = useSelector(state => state.adminSettings);
     const [investmentData, setinvestmentData] = useState(null);
+
+    const adminRewardSettingsUpdate = useSelector(state=> state.adminRewardSettingsUpdate)
+    const {rewardUpdateSuccess, rewardUpdateFail} = adminRewardSettingsUpdate;
+    
 
     useEffect(() => {
         const getSettingsData=()=>{
@@ -18,6 +23,26 @@ const InvestmentSettingsContainer = () => {
         }
         getSettingsData();
     }, []);
+    useEffect(()=>{
+        if(rewardUpdateFail && submissionLoading){
+            Swal.fire({
+                icon: 'error',
+                title: 'Unable to update settings',
+                showConfirmButton: false,
+                timer: 2000
+              });
+            setSubmissionLoading(false);
+        }else if(rewardUpdateSuccess && submissionLoading){
+            Swal.fire({
+                icon: 'success',
+                title: 'Rewards settings updated successfully',
+                showConfirmButton: false,
+                timer: 2000
+              });
+            setSubmissionLoading(false);
+        }
+    }, [dispatch, rewardUpdateFail, rewardUpdateSuccess, submissionLoading]);
+
     const setData = ()=>{
         if(!investmentData && adminSettings.settingsData){   
             setinvestmentData({...adminSettings.settingsData.investment});
@@ -32,6 +57,14 @@ const InvestmentSettingsContainer = () => {
             prev[`${name}`] = parseInt(value);
             return {...prev};
         })
+    }
+    const handleRewardsUpdate = () =>{
+        //Request api update to market period
+        let update = {
+            ...investmentData,
+        }
+        dispatch(updateSettingsReward(update));
+        setSubmissionLoading(true);
     }
     return (
         <div>
@@ -101,7 +134,7 @@ const InvestmentSettingsContainer = () => {
                 </div>
                 <div className="section-divider"></div>
                 <div className="interest-btn">
-                    <button className="update-adm-save-btn">{loading ? <ClipLoader size={12} /> : 'Save Changes'}</button>
+                    <button className="update-adm-save-btn" onClick={handleRewardsUpdate}>{submissionLoading? <span><ClipLoader size={12} /> please wait</span> :'Save Changes'}</button>
                 </div>
             </div>
             : (
