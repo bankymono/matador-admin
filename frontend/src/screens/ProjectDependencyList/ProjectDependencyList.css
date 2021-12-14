@@ -1,0 +1,25 @@
+.p-d-list-stat-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    /* background-color: green; */
+    margin-bottom: 24px;
+}
+
+.p-d-list-center-content-wrapper{
+    padding: 24px;
+    min-height: 100vh;
+    /* background-color: pink; */
+}
+
+.p-d-list-new-btn {
+    margin-right: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    padding: 10px 16px;
+    color: white;
+    background-color: #03A678;
+    border: none;
+    border-radius: 4px;
+}

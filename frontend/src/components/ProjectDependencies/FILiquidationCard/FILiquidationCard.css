@@ -1,0 +1,26 @@
+.dashboard-investments-heading-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-investments-heading-container {
+    margin-bottom: 24px;
+}
+
+.dashboard-investments-card-heading{
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+    color: #404244;
+}
+
+.dashboard-investments-card .desc{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.dashboard-investments-card .value{
+    font-size: 24px;
+    line-height: 31.2px;
+    font-weight: 600;
+}

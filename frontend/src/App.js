@@ -26,6 +26,8 @@ import FixedIncomeInvestment from './screens/FixedIncomeInvestment/FixedIncomeIn
 import EquityInvestment from './screens/EquityInvestment/EquityInvestment';
 import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 import VerificationIdList from './screens/VerificationIdList/VerificationIdList';
+import ProjectDependencyList from './screens/ProjectDependencyList/ProjectDependencyList';
+import ProjectDependencies from './screens/ProjectDependencies/ProjectDependencies';
 
 
 function App() {
@@ -151,7 +153,36 @@ function App() {
                          />)
                       }
                   />
-              <Route 
+
+                  <Route 
+                    exact 
+                    path='/project-dependencies'
+                    render={(props)=>
+                      adminInfo ?
+                      (<ProjectDependencies
+                        {...props} 
+                        arrLinks={['home','project dependencies']}
+                         />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                        }
+                    />
+                      <Route 
+                    exact 
+                    path='/project-dependencies/:id'
+                    render={(props)=>
+                      adminInfo ?
+                      (<ProjectDependencyList
+                        {...props} 
+                        arrLinks={['home','project dependencies']}
+                         />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                        }
+                    />
+                <Route 
                   exact 
                   path='/projects/new'
                   render={(props)=>
