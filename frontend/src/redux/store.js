@@ -1,8 +1,24 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {adminCreateReducer, adminListReducer, adminLoginReducer, countryListReducer, superAdminCreateReducer, superAdminListReducer, investorsList} from './reducers/userReducers'
-import { amenityListReducer, buildingTypeListReducer, equityInvestmentListReducer, landTitleListReducer, projectCategoryListReducer, projectStatusListReducer } from './reducers/projectReducers';
+import {
+        adminCreateReducer, 
+        adminListReducer, 
+        adminLoginReducer, 
+        countryListReducer, 
+        superAdminCreateReducer, 
+        superAdminListReducer,
+        investorsList
+    } from './reducers/userReducers'
+import { 
+        amenityListReducer, 
+        buildingTypeListReducer, 
+        equityInvestmentListReducer, 
+        landTitleListReducer, 
+        projectCategoryListReducer, 
+        projectStatusListReducer, 
+        projectCreateReducer 
+    } from './reducers/projectReducers';
 import { equityInvestmentStatReducer } from './reducers/investmentsReducer';
 // import { getEquityInvestmentStat } from './actions/investmentsActions';
 
@@ -22,6 +38,7 @@ const reducer = combineReducers({
     projectCategoryList:projectCategoryListReducer,
     projectStatusList:projectStatusListReducer,
     amenityList:amenityListReducer,
+    projectCreate:projectCreateReducer,
     equityInvestmentList:equityInvestmentListReducer,
     equityInvestmentStatData: equityInvestmentStatReducer
 });

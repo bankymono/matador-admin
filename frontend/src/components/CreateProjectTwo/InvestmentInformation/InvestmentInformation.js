@@ -1,49 +1,51 @@
-import React, { useState } from 'react';
-import {RiCalendarEventFill, RiUploadCloudFill} from 'react-icons/ri';
-import {MdAddBox} from 'react-icons/md'
+import React from 'react';
+import { MdAddBox } from 'react-icons/md'
 import './InvestmentInformation.css';
 
 
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 
 
 
-import rand from '../../../assets/random_img.jpg';
 
-import Amenities from '../Amenities/Amenities';
 import Bundle from '../Bundle/Bundle';
 import PaymentPlan from '../PaymentPlan/PaymentPlan';
-import { validateBundleAmenities, validateBundleInfoFields, validatePaymentPlanInfoFields } from '../validationFunctions';
+import { validatePaymentPlanInfoFields } from '../validationFunctions';
+import { ClipLoader } from 'react-spinners';
 
 const InvestmentInformation = ({
     projectPaymentPlansInfo,
     setProjectPaymentPlansInfo,
     selectedBundleImagesError,
-    setSelectedBundleImagesError,
-    selectedFile,
-    setSelectedFile,
-    setFileName,
     selectedFileError,
-    setSelectedFileError,
     projectBundlesInfo,
     setProjectBundlesInfo,
     handleSubmit,
     projectInvestmentInfo,
     handleProjectInvestmentInfoFieldChange,
-    handleDeleteBundleImage,fileName,handleFileChange, handleBundleImageChange, 
-    selectedBundleImages, 
-    setSelectedBundleImages,
-    handleProceedToPrevPage, setIncludeBundle, setIncludePaymentPlan, includeBundle, includePaymentPlan}) => {
+    fileName,
+    selectedBundleImages,
+    handleAddBundle,
+    bundleAmenities,
+    setBundleAmenities,
+    bundleAmenitiesErrors,
+    setBundleAmenitiesErrors,
+    backToPrevPage, 
+    setIncludeBundle, 
+    setIncludePaymentPlan, 
+    includeBundle, 
+    includePaymentPlan,
+    loading
+ }) => {
 
 
-    const [bundleAmenities, setBundleAmenities] = useState([])
-    const [bundleAmenitiesErrors, setBundleAmenitiesErrors] = useState([])
+    // const [bundleAmenities, setBundleAmenities] = useState([])
 
     const handleDisplayBundleForm = (e) => {
-        if(e.target.checked === false){
+        if (e.target.checked === false) {
             setIncludePaymentPlan(false);
             handleBundleImageChange()
+            setProjectBundlesInfo([]);
         }
 
         setIncludeBundle(e.target.checked)
@@ -55,161 +57,84 @@ const InvestmentInformation = ({
         setIncludePaymentPlan(e.target.checked)
     }
 
-    const goBackToPrevPage = (e) => {
-        e.preventDefault();
-        handleProceedToPrevPage();
-    }
-
-    // const handleBundleAmenitiesFieldChange = () => {
-
-    // }
     const handleBundleAmenitiesFieldChange = (e, index) => {
-        setProjectBundlesInfo(prev=>{
-            return prev.map((item,id)=>{
-                if(id !== index){
+        
+        setProjectBundlesInfo(prev => {
+            return prev.map((item, id) => {
+                if (id !== index) {
                     return item;
                 }
-
                 return {
                     ...item,
-                    amenitiesSelect:'',
-                    amenitiesSelectError:''
+                    amenitiesSelect: item.amenitiesSelect? [ ...item.amenitiesSelect, {name: e.target.value ,value: ''}] : [{name: e.target.value ,value: ''}],
+                    amenitiesSelectError: ''
                 }
             })
         })
-            
-
-
-        const amenitiesFormState = {
-            [e.target.value]:"",
-        }
-
-        const amenitiesErrors = {
-            [e.target.value]:null
-        }
-
-        setBundleAmenities(prev => ([...prev, amenitiesFormState]));
-        setBundleAmenitiesErrors(prev => ([...prev, amenitiesErrors]));
-
-
     }
-
-    const handleAddBundle = (e) => {
-        e.preventDefault();
-        const initialBundleState = {
-            title:"",
-            size:"",
-            deedTitle:"",
-            price:"",
-            amenitiesSelect:"",
-
-            
-            titleError:"",
-            sizeError:"",
-            deedTitleError:"",
-            priceError:"",
-            amenitiesSelectError:""
-        }
-
-
-
-        if(projectBundlesInfo.length === 0){
-            setProjectBundlesInfo(prev=> [...prev, initialBundleState])
-        }else{
-            let isValidated = validateBundleInfoFields(
-                bundleAmenities,
-                projectBundlesInfo,
-                setProjectBundlesInfo,
-                selectedFile,
-                setSelectedFileError,
-                selectedBundleImages,
-
-                setSelectedBundleImagesError
-                );
-
-            let isBundleAmenitiesValid = validateBundleAmenities(
-                bundleAmenities,
-                bundleAmenitiesErrors,
-                setBundleAmenitiesErrors
-                )
-
-            if(isValidated && isBundleAmenitiesValid){
-                // initialBundleState.deedFile = selectedFile;
-                // initialBundleState.selectedBundleImages = [...selectedBundleImages]
-                setSelectedFile('')
-                setFileName('')
-                setSelectedBundleImages([])
-                setProjectBundlesInfo(prev=> {
-                    return prev.map((item, id)=>{
-                        if(prev.length !== 1 && id !== prev.length - 1){
-                            return item
+    const handleBundleAmenitiesValueChange = (bundleIndex, amenityIndex, eventValue) => {
+        setProjectBundlesInfo(prev => {
+            return prev.map((item, id) => {
+                if (id !== bundleIndex) {
+                    return item;
+                }else{
+                    item.amenitiesSelect.map((amenity, index)=>{
+                        if(index !== amenityIndex){
+                            return amenity;
                         }
-
-                        return {
-                            ...item,
-                            deedFile: selectedFile,
-                            bundlePhotos:[...selectedBundleImages]
-                        }
+                        return amenity.value = eventValue;
                     })
-                })
-                setProjectBundlesInfo(prev=> [...prev, initialBundleState])
-            }
-
-        }
-
+                
+                }
+                return item;
+            })
+        })
     }
-
+    const handleRemoveBundleAmenitiesInput = (bundleIndex, amenityIndex) => {
+        setProjectBundlesInfo(prev => {
+            return prev.map((item, id) => {
+                if (id !== bundleIndex) {
+                    return item;
+                }else{
+                    return {
+                        ...item, 
+                        amenitiesSelect: item.amenitiesSelect.filter((amenity, index) => index !== amenityIndex)
+                    }
+                }
+                // return item;
+            })
+        })
+    }
     const handleRemoveBundle = (event, index) => {
         event.preventDefault();
-         setProjectBundlesInfo(prev => {
-             return prev.filter((item) =>item !== prev[index] )
-         })
+        setProjectBundlesInfo(prev => {
+            return prev.filter((item) => item !== prev[index])
+        })
     }
 
     const handleAddPaymentPlan = (e) => {
         e.preventDefault();
         const initialPaymentPlanState = {
-            initialDepositPercent:"",
-            initialDepositAmount:"",
-            availablePaymentPeriod:"",
-            monthlyPayment:"",
-
-            
-            initialDepositPercentError:"",
-            initialDepositAmountError:"",
-            availablePaymentPeriodError:"",
-            monthlyPaymentError:"",
+            initialDepositPercent: "",
+            initialDepositAmount: "",
+            availablePaymentPeriod: "",
+            monthlyPayment: "",
+            initialDepositPercentError: "",
+            initialDepositAmountError: "",
+            availablePaymentPeriodError: "",
+            monthlyPaymentError: "",
         }
 
-
-
-        if(projectPaymentPlansInfo.length === 0){
-            setProjectPaymentPlansInfo(prev=> [...prev, initialPaymentPlanState])
-        }else{
+        if (projectPaymentPlansInfo.length === 0) {
+            setProjectPaymentPlansInfo(prev => [...prev, initialPaymentPlanState])
+        } else {
             let isValidated = validatePaymentPlanInfoFields(
                 projectPaymentPlansInfo,
                 setProjectPaymentPlansInfo
-                );
+            );
 
-
-            if(isValidated){
-                // initialBundleState.deedFile = selectedFile;
-                // initialBundleState.selectedBundleImages = [...selectedBundleImages]
-               
-                // setProjectPaymentPlansInfo(prev=> {
-                //     return prev.map((item, id)=>{
-                //         if(prev.length !== 1 && id !== prev.length - 1){
-                //             return item
-                //         }
-
-                //         return {
-                //             ...item,
-                //             deedFile: selectedFile,
-                //             bundlePhotos:[...selectedBundleImages]
-                //         }
-                //     })
-                // })
-                setProjectPaymentPlansInfo(prev=> [...prev, initialPaymentPlanState])
+            if (isValidated) {
+                setProjectPaymentPlansInfo(prev => [...prev, initialPaymentPlanState])
             }
 
         }
@@ -218,46 +143,126 @@ const InvestmentInformation = ({
 
     const handleRemovePaymentPlan = (event, index) => {
         event.preventDefault();
-         setProjectPaymentPlansInfo(prev => {
-             return prev.filter((item) =>item !== prev[index] )
-         })
+        setProjectPaymentPlansInfo(prev => {
+            return prev.filter((item) => item !== prev[index])
+        })
     }
-
-    const handleBundleInputChange = (index,event) => {
-        event.preventDefault();
-        event.persist();
-
+    const encodeFileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            var reader = new FileReader();
+            reader.readAsDataURL(file)
+            reader.onload = () => resolve(reader.result)
+            reader.onerror = error => reject(error)
+        })
+    }
+    const handleFileChange = async (index, event) => {
+        if (event && event.target.files) {
+            encodeFileToBase64(event.target.files[0])
+                .then(result => {
+                    setProjectBundlesInfo(prev => {
+                        return prev.map((item, idx) => {
+                            if (idx !== index) {
+                                return item
+                            }
+                            return {
+                                ...item,
+                                deedFile: result,
+                                deedFileError: ''
+                            }
+                        })
+                    })
+                })
+        }
+    }
+    const handleDeleteBundleImage = (bundleId, imageId) => {
+        let result = projectBundlesInfo[bundleId].bundlePhotos.filter((image, index) => index !== imageId);
         setProjectBundlesInfo(prev => {
-            return prev.map((item, i) =>{
-                if(i !== index){
+            return prev.map((item, idx) => {
+                if (idx !== bundleId) {
                     return item
                 }
-
                 return {
                     ...item,
-                    [event.target.name]:event.target.value,
-                    [`${event.target.name}Error`]:""
+                    bundlePhotos: result,
+                    bundlePhotosError: result.length !== 0 ? '' : 'Field is required'
                 }
-            } )
+            })
         })
     }
 
-    const handlePaymentPlanInputChange = (index,event) => {
+    const handleBundleImageChange = (index, event) => {
+        if (event && event.target.files) {
+            for (let file of event.target.files) {
+                encodeFileToBase64(file)
+                    .then(result => {
+                        setProjectBundlesInfo(prev => {
+                            return prev.map((item, idx) => {
+                                if (index !== idx) {
+                                    return item
+                                }
+                                return {
+                                    ...item,
+                                    bundlePhotos: item.bundlePhotos ? [...item.bundlePhotos, result] : [result],
+                                    bundlePhotosError: ''
+                                }
+                            })
+                        })
+                    })
+            }
+
+        }
+        else {
+            setProjectBundlesInfo(prev => {
+                return prev.map((item, idx) => {
+                    if (prev.length !== 1 && idx !== prev.length - 1) {
+                        return item
+                    }
+                    return {
+                        ...item,
+                        bundlePhotos: [],
+                        bundlePhotosError: 'Field is required'
+                    }
+                })
+            })
+        }
+
+    }
+
+    const handleBundleInputChange = (index, event) => {
         event.preventDefault();
         event.persist();
-
-        setProjectPaymentPlansInfo(prev => {
-            return prev.map((item, i) =>{
-                if(i !== index){
+        setProjectBundlesInfo(prev => {
+            return prev.map((item, i) => {
+                if (i !== index) {
                     return item
                 }
 
                 return {
                     ...item,
-                    [event.target.name]:event.target.value,
-                    [`${event.target.name}Error`]:""
+                    [event.target.name]: event.target.value,
+                    [`${event.target.name}Error`]: ""
                 }
-            } )
+            })
+        })
+
+
+    }
+
+    const handlePaymentPlanInputChange = (index, event) => {
+        event.preventDefault();
+        event.persist();
+        setProjectPaymentPlansInfo(prev => {
+            return prev.map((item, i) => {
+                if (i !== index) {
+                    return item
+                }
+
+                return {
+                    ...item,
+                    [event.target.name]: event.target.value,
+                    [`${event.target.name}Error`]: ""
+                }
+            })
         })
     }
 
@@ -267,16 +272,16 @@ const InvestmentInformation = ({
 
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
-                    <label className="create-proj-input-label" htmlFor="proj-name">Dividend maturity</label>
-                    <input className={projectInvestmentInfo.dividendMaturityInputError?"error-border":""} 
-                    type="text" name="dividendMaturity" value={projectInvestmentInfo.dividendMaturity}
-                    onChange={handleProjectInvestmentInfoFieldChange} />
+                    <label className="create-proj-input-label" htmlFor="proj-name">Dividend maturity (in months)</label>
+                    <input className={projectInvestmentInfo.dividendMaturityInputError ? "error-border" : ""}
+                        type="number" name="dividendMaturity" value={projectInvestmentInfo.dividendMaturity}
+                        onChange={handleProjectInvestmentInfoFieldChange} />
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Funding end timestamp</label>
-                    <input type="text"
-                        className={projectInvestmentInfo.fundingEndTimestampInputError?"error-border":""}
+                    <input type="datetime-local"
+                        className={projectInvestmentInfo.fundingEndTimestampInputError ? "error-border" : ""}
                         name="fundingEndTimestamp"
                         value={projectInvestmentInfo.fundingEndTimestamp}
                         onChange={handleProjectInvestmentInfoFieldChange}
@@ -287,23 +292,23 @@ const InvestmentInformation = ({
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Hard cap</label>
-                    <input type="text" 
-                    className={projectInvestmentInfo.hardCapInputError?"error-border":""}
-                    
-                    name="hardCap"
-                    value={projectInvestmentInfo.hardCap}
-                    onChange={handleProjectInvestmentInfoFieldChange}
+                    <input type="number"
+                        className={projectInvestmentInfo.hardCapInputError ? "error-border" : ""}
+
+                        name="hardCap"
+                        value={projectInvestmentInfo.hardCap}
+                        onChange={handleProjectInvestmentInfoFieldChange}
                     />
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Soft cap</label>
-                    <input type="text" 
-                    className={projectInvestmentInfo.softCapInputError?"error-border":""}
-                    
-                    name="softCap"
-                    value={projectInvestmentInfo.softCap}
-                    onChange={handleProjectInvestmentInfoFieldChange}
+                    <input type="number"
+                        className={projectInvestmentInfo.softCapInputError ? "error-border" : ""}
+
+                        name="softCap"
+                        value={projectInvestmentInfo.softCap}
+                        onChange={handleProjectInvestmentInfoFieldChange}
                     />
                 </div>
             </div>
@@ -311,23 +316,35 @@ const InvestmentInformation = ({
             <div className="create-proj-two-fields-row">
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Holding period</label>
-                    <input type='date'
-                    className={projectInvestmentInfo.holdingPeriodInputError?"error-border":""}
-
-                    name="holdingPeriod"
-                    value={projectInvestmentInfo.holdingPeriod}
-                    onChange={handleProjectInvestmentInfoFieldChange}
-                    />
+                    <select
+                        className={projectInvestmentInfo.holdingPeriodInputError ? "error-border" : ""}
+                        name="holdingPeriod"
+                        value={projectInvestmentInfo.holdingPeriod}
+                        onChange={handleProjectInvestmentInfoFieldChange}
+                    >   <option >Select number of months for holding</option>
+                        <option value = {1}>1</option>
+                        <option value = {2}>2</option>
+                        <option value = {3}>3</option>
+                        <option value = {4}>4</option>
+                        <option value = {5}>5</option>
+                        <option value = {6}>6</option>
+                        <option value = {7}>7</option>
+                        <option value = {8}>8</option>
+                        <option value = {9}>9</option>
+                        <option value = {10}>10</option>
+                        <option value = {11}>11</option>
+                        <option value = {12}>12</option>
+                    </select>
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Income start timestamp</label>
-                    <input type='date' 
-                    className={projectInvestmentInfo.incomeTimestampInputError?"error-border":""}
+                    <input type="datetime-local"
+                        className={projectInvestmentInfo.incomeTimestampInputError ? "error-border" : ""}
 
-                    name="incomeTimestamp"
-                    value={projectInvestmentInfo.incomeTimestamp}
-                    onChange={handleProjectInvestmentInfoFieldChange}
+                        name="incomeTimestamp"
+                        value={projectInvestmentInfo.incomeTimestamp}
+                        onChange={handleProjectInvestmentInfoFieldChange}
                     />
                 </div>
             </div>
@@ -337,12 +354,12 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Interest rate per week</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">%</span>
-                        <input type="text"
-                        className={projectInvestmentInfo.interestRatePerWeekInputError?"error-border":""}
-                        
-                        name="interestRatePerWeek"
-                        value={projectInvestmentInfo.interestRatePerWeek}
-                        onChange={handleProjectInvestmentInfoFieldChange}
+                        <input type="number"
+                            className={projectInvestmentInfo.interestRatePerWeekInputError ? "error-border" : ""}
+
+                            name="interestRatePerWeek"
+                            value={projectInvestmentInfo.interestRatePerWeek}
+                            onChange={handleProjectInvestmentInfoFieldChange}
                         /></div>
                 </div>
 
@@ -350,12 +367,12 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Rental yield</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">N</span>
-                        <input type="text" 
-                        className={projectInvestmentInfo.rentalYieldInputError?"error-border":""}
+                        <input type="number"
+                            className={projectInvestmentInfo.rentalYieldInputError ? "error-border" : ""}
 
-                        name="rentalYield"
-                        value={projectInvestmentInfo.rentalYield}
-                        onChange={handleProjectInvestmentInfoFieldChange}
+                            name="rentalYield"
+                            value={projectInvestmentInfo.rentalYield}
+                            onChange={handleProjectInvestmentInfoFieldChange}
                         /></div>
                 </div>
             </div>
@@ -365,23 +382,23 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Cash on cash yield</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">N</span>
-                        <input type="text" 
-                        className={projectInvestmentInfo.cashOnCashYieldInputError?"error-border":""}
+                        <input type="number"
+                            className={projectInvestmentInfo.cashOnCashYieldInputError ? "error-border" : ""}
 
-                        name="cashOnCashYield"
-                        value={projectInvestmentInfo.cashOnCashYield}
-                        onChange={handleProjectInvestmentInfoFieldChange}
+                            name="cashOnCashYield"
+                            value={projectInvestmentInfo.cashOnCashYield}
+                            onChange={handleProjectInvestmentInfoFieldChange}
                         /></div>
                 </div>
 
                 <div className="create-proj-input-container">
                     <label className="create-proj-input-label" htmlFor="proj-name">Total fractions</label>
-                    <input type="text" 
-                    className={projectInvestmentInfo.totalFractionsInputError?"error-border":""}
+                    <input type="number"
+                        className={projectInvestmentInfo.totalFractionsInputError ? "error-border" : ""}
 
-                    name="totalFractions"
-                    value={projectInvestmentInfo.totalFractions}
-                    onChange={handleProjectInvestmentInfoFieldChange}
+                        name="totalFractions"
+                        value={projectInvestmentInfo.totalFractions}
+                        onChange={handleProjectInvestmentInfoFieldChange}
                     />
                 </div>
             </div>
@@ -391,12 +408,11 @@ const InvestmentInformation = ({
                     <label className="create-proj-input-label" htmlFor="proj-img-name">Price per fraction</label>
                     <div className="create-proj-input-with-prefix">
                         <span className="create-proj-input-prefix">N</span>
-                        <input type="text" 
-                        className={projectInvestmentInfo.pricePerFractionInputError?"error-border":""}
-
-                        name="pricePerFraction"
-                        value={projectInvestmentInfo.pricePerFraction}
-                        onChange={handleProjectInvestmentInfoFieldChange}
+                        <input type="number"
+                            className={projectInvestmentInfo.pricePerFractionInputError ? "error-border" : ""}
+                            name="pricePerFraction"
+                            value={projectInvestmentInfo.pricePerFraction}
+                            onChange={handleProjectInvestmentInfoFieldChange}
                         /></div>
                 </div>
 
@@ -412,62 +428,61 @@ const InvestmentInformation = ({
                     <label htmlFor="create-proj-bundle-select">Include bundle</label>
                 </div>
             </div>
-            {JSON.stringify(projectBundlesInfo)}
             {
-                
-                includeBundle ? 
+
+                includeBundle ?
 
                     <div className="bundle-main-container">
                         {
-                            projectBundlesInfo.map((item, index)=>(                        
-                             <Bundle
-                                handleRemoveBundle={handleRemoveBundle}
-                                key={`item-${index}`}
-                                theIndex={index}
-                                item={item}
-                                handleBundleInputChange={handleBundleInputChange}
-                                bundleLength={projectBundlesInfo.length}
-                                handleDeleteBundleImage={handleDeleteBundleImage}
-                                fileName={fileName} 
-                                handleFileChange={handleFileChange}
-                                handleBundleImageChange={handleBundleImageChange}
-                                selectedBundleImages={selectedBundleImages}      
-                                selectedFileError={selectedFileError}     
-                                selectedBundleImagesError={selectedBundleImagesError}        
-                                handleBundleAmenitiesFieldChange={handleBundleAmenitiesFieldChange} 
-                                bundleAmenities={bundleAmenities}
-                                bundleAmenitiesErrors={bundleAmenitiesErrors}
-                                setBundleAmenitiesErrors={setBundleAmenitiesErrors}
-                                setBundleAmenities={setBundleAmenities}       
-                            />))
+                            projectBundlesInfo.map((item, index) => (
+                                <Bundle
+                                    handleRemoveBundle={handleRemoveBundle}
+                                    key={`item-${index}`}
+                                    theIndex={index}
+                                    item={item}
+                                    handleBundleInputChange={handleBundleInputChange}
+                                    bundleLength={projectBundlesInfo.length}
+                                    projectBundlesInfo={projectBundlesInfo}
+                                    handleDeleteBundleImage={handleDeleteBundleImage}
+                                    fileName={fileName}
+                                    handleFileChange={handleFileChange}
+                                    handleBundleImageChange={handleBundleImageChange}
+                                    selectedBundleImages={selectedBundleImages}
+                                    selectedFileError={selectedFileError}
+                                    selectedBundleImagesError={selectedBundleImagesError}
+                                    handleBundleAmenitiesFieldChange={handleBundleAmenitiesFieldChange}
+                                    handleBundleAmenitiesValueChange={handleBundleAmenitiesValueChange}
+                                    handleRemoveBundleAmenitiesInput={handleRemoveBundleAmenitiesInput}
+                                    bundleAmenities={bundleAmenities}
+                                    bundleAmenitiesErrors={bundleAmenitiesErrors}
+                                    setBundleAmenitiesErrors={setBundleAmenitiesErrors}
+                                    setBundleAmenities={setBundleAmenities}
+                                />))
                         }
-
-
                         <button onClick={handleAddBundle} className="create-proj-add-more-buton"><span>Add Bundle</span><MdAddBox className="add-more-icon" /></button>
-                    </div>     
-                : null
+                    </div>
+                    : null
             }
             {
                 projectBundlesInfo.length >= 1 ?
-                (
-                    <div className="create-proj-one-field-row">
-                    <div className="create-proj-input-container create-proj-bundle-select-wrapper">
-                        <input onChange={handleDisplayPaymentPlanForm} type="checkbox"  className="create-proj-bundle-select" id="create-proj-bundle-payplan-select" />
-                        <label htmlFor="create-proj-bundle-payplan-select">Include payment plan</label>
-                    </div>
-                </div>
-    
-                ):
-                null
+                    (
+                        <div className="create-proj-one-field-row">
+                            <div className="create-proj-input-container create-proj-bundle-select-wrapper">
+                                <input onChange={handleDisplayPaymentPlanForm} type="checkbox" className="create-proj-bundle-select" id="create-proj-bundle-payplan-select" />
+                                <label htmlFor="create-proj-bundle-payplan-select">Include payment plan</label>
+                            </div>
+                        </div>
+
+                    ) :
+                    null
             }
 
             {
-                includePaymentPlan ? 
-                        <div className="payment-plan-main-container">
-                            {
-                                projectPaymentPlansInfo.map((item, index)=>(
-                                    <PaymentPlan
-                                    
+                includePaymentPlan ?
+                    <div className="payment-plan-main-container">
+                        {
+                            projectPaymentPlansInfo.map((item, index) => (
+                                <PaymentPlan
                                     handleRemovePaymentPlan={handleRemovePaymentPlan}
                                     key={`item-${index}`}
                                     theIndex={index}
@@ -475,27 +490,27 @@ const InvestmentInformation = ({
                                     handlePaymentPlanInputChange={handlePaymentPlanInputChange}
                                     paymentPlanLength={projectPaymentPlansInfo.length}
 
-                                    />                                    
-                                ))
-                            }
-                            {/* <PaymentPlan />
+                                />
+                            ))
+                        }
+                        {/* <PaymentPlan />
                             <PaymentPlan /> */}
-                            <button onClick={handleAddPaymentPlan} className="create-proj-add-more-buton"><span>Add Payment plan</span><MdAddBox className="add-more-icon" /></button>
-                        </div> 
-                : null
+                        <button onClick={handleAddPaymentPlan} className="create-proj-add-more-buton"><span>Add Payment plan</span><MdAddBox className="add-more-icon" /></button>
+                    </div>
+                    : null
             }
 
 
 
 
             <div className="create-proj-two-fields-row proj-new-create-btn-container">
-                
+
                 <div className="create-proj-input-container">
                 </div>
 
                 <div className="create-proj-input-container create-proj-btn-container">
-                    <button className="create-outline-green">Cancel</button>
-                    <button onClick={handleSubmit} className="create-fill-green">Create</button>
+                    <button className="create-outline-green" onClick={backToPrevPage}>Cancel</button>
+                    <button onClick={handleSubmit} className="create-fill-green">{loading ? <ClipLoader size={12} />: 'Create'}</button>
                 </div>
 
             </div>
