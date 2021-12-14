@@ -16,8 +16,12 @@ import CreateProject from './screens/CreateProject/CreateProject';
 import CreateProjectTwo from './screens/CreateProjectTwo/CreateProjectTwo';
 import CreateAdmin from './screens/CreateAdmin/CreateAdmin';
 import AdminList from './screens/AdminList/AdminList';
+import MarketPlace from './screens/MarketPlace/MarketPlace';
+import Rewards from './screens/Rewards/Rewards';
+import InterestRate from './screens/InterestRate/InterestRate';
 import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
-import { useDispatch, useSelector } from 'react-redux';
+import UpdatePassword from './screens/UpdatePassword/UpdatePassword';
+import { useSelector } from 'react-redux';
 import Accounts from './screens/Accounts/Accounts';
 
 import { ToastContainer } from "react-toastify";
@@ -29,16 +33,15 @@ import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 
 
 function App() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const adminLogin = useSelector(state => state.adminLogin);
-  const { loading, error, adminInfo } = adminLogin;
+  const { adminInfo } = adminLogin;
 
   return (
     <div className="App">
       <ToastContainer />
       <Router>
         <Switch>
-
           <Route
             exact path="/login"
             render={(props) =>
@@ -60,7 +63,6 @@ function App() {
               adminInfo ?
                 (<Dashboard
                   {...props}
-                  adminInfo={adminInfo}
                   arrLinks={['home']}
                 />)
                 : (<Redirect
@@ -137,7 +139,6 @@ function App() {
                 />)
             }
           />
-
           <Route
             exact
             path='/investors/info'
@@ -226,20 +227,71 @@ function App() {
             exact
             path='/settings'
             render={(props) =>
-            (<Settings
+              adminInfo ?
+                (<Settings
+                  {...props}
+                  arrLinks={['home', 'settings', 'investment']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
+          />
+
+          <Route
+            exact
+            path='/settings/market-place'
+            render={(props) =>
+            (adminInfo?
+            <MarketPlace
               {...props}
-              arrLinks={['home', 'settings', 'investments']}
-            />)}
+              arrLinks={['home', 'settings', 'market place']}
+            /> :
+            <Redirect to="/login" />)}
+          />
+          <Route
+            exact
+            path='/settings/rewards'
+            render={(props) =>
+              adminInfo ?
+                (<Rewards
+                  {...props}
+                  arrLinks={['home', 'settings', 'reward']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
+          />
+
+          <Route
+            exact
+            path='/settings/interest-rate'
+            render={(props) =>
+              adminInfo ?
+                (<InterestRate
+                  {...props}
+                  arrLinks={['home', 'settings', 'interest rate']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route
             exact
             path='/settings/admin-manager'
             render={(props) =>
-            (<AdminList
-              {...props}
-              arrLinks={['home', 'settings', 'admin manager']}
-            />)}
+              adminInfo ?
+                (<AdminList
+                  {...props}
+                  arrLinks={['home', 'settings', 'admin manager']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route
@@ -248,7 +300,7 @@ function App() {
             render={(props) =>
             (<CreateAdmin
               {...props}
-              arrLinks={['home', 'settings', 'admin manager']}
+              arrLinks={['home', 'settings', 'admin-manager', 'create']}
             />)}
           />
 
@@ -256,10 +308,29 @@ function App() {
             exact
             path='/settings/admin-manager/update-admin'
             render={(props) =>
-            (<UpdateAdmin
-              {...props}
-              arrLinks={['home', 'settings', 'admin manager']}
-            />)}
+              adminInfo ?
+                (<UpdateAdmin
+                  {...props}
+                  arrLinks={['home', 'settings', 'admin manager', 'update']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
+          />
+          <Route
+            exact
+            path='/settings/update-password'
+            render={(props) =>
+              adminInfo ?
+                (<UpdatePassword
+                  {...props}
+                  arrLinks={['home', 'settings', 'update password']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
           />
 
           <Route
@@ -273,7 +344,7 @@ function App() {
           />
         </Switch>
       </Router>
-    </div >
+    </div>
   );
 }
 

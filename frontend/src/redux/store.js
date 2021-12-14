@@ -19,8 +19,11 @@ import {
         projectStatusListReducer, 
         projectCreateReducer 
     } from './reducers/projectReducers';
-import { equityInvestmentStatReducer } from './reducers/investmentsReducer';
-// import { getEquityInvestmentStat } from './actions/investmentsActions';
+import { 
+        equityInvestmentStatReducer,
+        adminSettingsReducer,
+        adminSettingsRewardUpdateReducer,
+    } from './reducers/investmentsReducer';
 
 
 const reducer = combineReducers({
@@ -40,7 +43,11 @@ const reducer = combineReducers({
     amenityList:amenityListReducer,
     projectCreate:projectCreateReducer,
     equityInvestmentList:equityInvestmentListReducer,
-    equityInvestmentStatData: equityInvestmentStatReducer
+
+    //investment-related-reducers
+    equityInvestmentStatData: equityInvestmentStatReducer,
+    adminSettings: adminSettingsReducer,
+    adminRewardSettingsUpdate: adminSettingsRewardUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;

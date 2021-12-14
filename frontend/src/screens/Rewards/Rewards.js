@@ -1,29 +1,32 @@
 import React from 'react';
 import { useState } from 'react';
 import Header from '../../components/Header/Header';
+
 import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
-import './AdminList.css';
 
-import AdminListComp from '../../components/Settings/AdminList/AdminListComponent';
 import SettingsSidenavComponent from '../../components/Settings/SettingsSidenavComponent';
+import RewardsComponent from '../../components/Settings/RewardsComponent/RewardsComponent';
 
 
-const AdminListTemp = ({arrLinks}) => {
+const Rewards = ({ arrLinks }) => {
     const [currentPage, setCurrentPage] = useState("Settings");
+
     return (
         <div>
             <SideBar setCurrentPage={setCurrentPage} />
 
             <div className="header-and-center-container">
                 <Header />
-                <SubNav currentPage={currentPage} arrLinks={arrLinks}  />
+                <SubNav currentPage={currentPage} arrLinks={arrLinks} />
                 <div className="settings-container">
 
                     <div className="settings-input-wrapper">
-                        <SettingsSidenavComponent activeLink={5} />
+                        <SettingsSidenavComponent activeLink={3} />
                         <div className="settings-pages-content">
-                            <AdminListComp />
+                            <div className="settings-content-wrapper settings-content-active">
+                                <RewardsComponent />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -32,4 +35,4 @@ const AdminListTemp = ({arrLinks}) => {
     )
 }
 
-export default AdminListTemp
+export default Rewards;
