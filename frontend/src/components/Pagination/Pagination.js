@@ -1,14 +1,33 @@
 import React from 'react'
 import './Pagination.css'
 
-const Pagination = () => {
+const Pagination = ({usersPerPage, listLength, paginate, currentPage}) => {
+    const getPageNumbersArray = ()=>{
+        let pageNumbers = [];
+        for ( let i = 1; i <= Math.ceil(listLength / usersPerPage); ++i ) {
+            pageNumbers.push(i);
+        }
+        return pageNumbers;
+    }   
     return (
         <div className="pagination-container">
-            <div className="pagination-item">Previous</div>
-            <div className="pagination-item pagi-active">1</div>
-            <div className="pagination-item">2</div>
-            <div className="pagination-item">3</div>
-            <div className="pagination-item">Next</div>
+            <div 
+                className="pagination-item" 
+                onClick={()=> 
+                currentPage > 1? paginate(currentPage - 1): null}>
+                    Previous
+            </div>
+                {getPageNumbersArray().map((number, index)=>
+            <div
+                key={index} 
+                className={`pagination-item ${currentPage===number? 'pagi-active': ''}`} 
+                onClick={()=> 
+                paginate(number)}>{number}</div>)}
+            <div 
+                className="pagination-item" onClick={()=> 
+                Math.ceil(listLength / usersPerPage) !== currentPage ? paginate(currentPage + 1): null}>
+                     Next
+            </div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-.user-investments-select {
+.general-table-select {
     padding: 9px;
 
 
@@ -9,17 +9,17 @@
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none;
-            background-image: url('../../../assets/icons/dropdown-arrow-2.svg');
+            background-image: url('../../assets/icons/dropdown-arrow-2.svg');
             background-repeat: no-repeat;
             background-position: right 0px top 51% ;
 }
 
-.user-investments-select option:hover{
+.general-table-select option:hover{
     background-color: #03A678;
     font-size: 17px;
 }
 
-.user-investments-search-header{
+.general-table-search-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,7 +33,7 @@
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
 }
 
-.user-investments-search-header .search-input-container{
+.general-table-search-header .search-input-container{
     display: flex;
     padding: 10px;
     border-radius: 8px;
@@ -41,7 +41,7 @@
     border: 1px solid #E0E0E0;
 }
 
-.user-investments-search-header .search-input-container input {
+.general-table-search-header .search-input-container input {
     padding: 5px  15px;
     margin-left: 10px;
     font-size: 14px;
@@ -50,14 +50,14 @@
 
 }
 
-.user-investments-info-heading{
+.general-table-info-heading{
     padding: 16px;
     display: flex;
     align-items: center;
     background-color: #F6F7F8;
 }
 
-.user-investments-info-body-list{
+.general-table-info-body-list{
     /* border: 1px solid #DEE2E6; */
 
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
@@ -65,41 +65,41 @@
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
 }
 
-.user-investments-info-body{
+.general-table-info-body{
     position: relative;
     padding: 16px;
     display: flex;
     align-items: center;
     background-color: #fff;
-    
+    cursor: pointer;
 }
 
-.user-investments-info-heading input {
+.general-table-info-heading input {
     margin-right: 16px;
 }
 
-.user-investments-info-body input {
+.general-table-info-body input {
     margin-right: 16px;
 }
 
-.user-investments-info-body .menu-dots {
+.general-table-info-body .menu-dots {
     position: absolute;
     right: 16px;
 }
 
-.user-investments-info-heading-wrapper {
+.general-table-info-heading-wrapper {
     display: grid;
     grid-template-columns: repeat(5,1fr);
     width: 100%;
 }
 
-.user-investments-info-body-wrapper {
+.general-table-info-body-wrapper {
     display: grid;
     grid-template-columns: repeat(5,1fr);
     width: 100%;
 }
 
-.user-investments-info-heading-item {
+.general-table-info-heading-item {
     color: #8D8F91;
     text-transform: uppercase;
     font-size: 14px;
@@ -107,7 +107,7 @@
     font-weight: 600;
 }
 
-.user-investments-bottom-pagination-container{
+.general-table-bottom-pagination-container{
     padding: 16px;
     display: flex;
     justify-content: space-between;
@@ -115,6 +115,6 @@
     font-size: 16px;
 }
 
-.user-investments-bottom-pagination-container .val{
+.general-table-bottom-pagination-container .val{
     color: #03A678;
 }

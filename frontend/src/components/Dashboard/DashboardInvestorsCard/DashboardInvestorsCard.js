@@ -2,8 +2,9 @@ import React from 'react'
 import './DashboardInvestorsCard.css'
 import arrow_up_icon from '../../../assets/icons/arrow-up.png'
 import right_arrow_icon from '../../../assets/icons/comma-right-arrow-icon.png'
+import { numberWithComma } from '../../../redux/numberFormatter'
 
-const DashboardInvestorsCard = () => {
+const DashboardInvestorsCard = ({investorData}) => {
     return (
             <div className="dashboard-top-item">
                 <div className="dashboard-investors-heading-container">
@@ -12,7 +13,7 @@ const DashboardInvestorsCard = () => {
                 </div>
 
                 <div>
-                    <div className="dashboard-investors-value">12,254</div>
+                    <div className="dashboard-investors-value">{numberWithComma(investorData)}</div>
                     <div className="dashboard-investors-growth-rate-container">
                         <div className="investors-grwth-percent increase-color">
                             <img src={arrow_up_icon} alt="arrow up"/>

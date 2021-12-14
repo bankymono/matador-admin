@@ -1,9 +1,9 @@
 import React from 'react'
 import './DashboardTransactionsCard.css';
-
+import { numberWithComma } from '../../../redux/numberFormatter';
 import right_arrow_icon from '../../../assets/icons/comma-right-arrow-icon.png'
 
-const DashboardTransactionsCard = () => {
+const DashboardTransactionsCard = ({transactionsData}) => {
     return (
         <div className="dashboard-top-item">
             <div className="dashboard-transactions-heading-container">
@@ -15,12 +15,12 @@ const DashboardTransactionsCard = () => {
                 <div className="dashboard-transactions-card-numbers">
                     <div className="transactions-value-container">
                         <div className="desc">Total Number</div>
-                        <div className="value">8,042</div>
+                        <div className="value">{transactionsData.count}</div>
                     </div>
 
                     <div className="transactions-value-container">
                         <div className="desc">Total Value</div>
-                        <div className="value">₦36,254,302<sup>.00</sup></div>
+                        <div className="value">₦{numberWithComma(transactionsData.value)}<sup>.00</sup></div>
                     </div>
                 </div>
             </div>
