@@ -7,7 +7,8 @@ import {
         adminLoginReducer, 
         countryListReducer, 
         superAdminCreateReducer, 
-        superAdminListReducer
+        superAdminListReducer,
+        investorsList
     } from './reducers/userReducers'
 import { 
         amenityListReducer, 
@@ -31,6 +32,7 @@ const reducer = combineReducers({
     superAdminCreate:superAdminCreateReducer,
     adminCreate:adminCreateReducer,
     countryList:countryListReducer,
+    investorsList: investorsList,
     
     //project-related-reducers
     landTitleList:landTitleListReducer,

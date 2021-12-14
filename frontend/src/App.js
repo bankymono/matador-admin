@@ -6,6 +6,7 @@ import TransactionsList from './screens/TransactionsList/TransactionsList';
 import ProjectsList from './screens/ProjectsList/ProjectsList';
 import ProjectDetails from './screens/ProjectDetails/ProjectDetails';
 import UserInfo from './screens/UserInfo/UserInfo';
+import User from './screens/Users/User';
 
 import Login from './screens/AuthScreens/Login/Login';
 import ChangePassword from './screens/AuthScreens/ChangePassword/ChangePassword';
@@ -34,7 +35,7 @@ import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 function App() {
   // const dispatch = useDispatch()
   const adminLogin = useSelector(state => state.adminLogin);
-  const { adminInfo } = adminLogin;
+  const { loading, error, adminInfo } = adminLogin;
 
   return (
     <div className="App">
@@ -330,7 +331,7 @@ function App() {
           />
         </Switch>
       </Router>
-    </div>
+    </div >
   );
 }
 

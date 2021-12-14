@@ -26,7 +26,8 @@ import {
     PROJECT_CREATE_COMPLETE,
     PROJECT_CREATE_REQUEST,
     PROJECT_CREATE_FAIL,
-    PROJECT_CREATE_SUCCESS
+    PROJECT_CREATE_SUCCESS,
+    INVESTORS_LIST
 } from "../constants/userConstants";
 
 export const adminLoginReducer = (state={}, action) => {
@@ -57,7 +58,6 @@ export const adminLoginReducer = (state={}, action) => {
 
         case ADMIN_LOGOUT:
             return {}
-            
         default:
                 return state;
 
@@ -158,4 +158,9 @@ export const adminCreateReducer = (state={admSuccess:false}, action) => {
         default:
             return state
     }
+}
+
+export const investorsList = (state={}, action) => {
+    return action.type === 'INVESTORS_LIST'?
+    {investorsList: action.payload} : 'error fetching list';
 }
