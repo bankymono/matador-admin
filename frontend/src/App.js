@@ -35,7 +35,7 @@ import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 function App() {
   // const dispatch = useDispatch()
   const adminLogin = useSelector(state => state.adminLogin);
-  const { loading, error, adminInfo } = adminLogin;
+  const { adminInfo } = adminLogin;
 
   return (
     <div className="App">
@@ -125,7 +125,20 @@ function App() {
                 />)
             }
           />
-
+          <Route
+            exact
+            path='/investors'
+            render={(props) =>
+              adminInfo ?
+                (<User
+                  {...props}
+                  arrLinks={['home', 'investors']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
+          />
           <Route
             exact
             path='/investors/info'
@@ -331,7 +344,7 @@ function App() {
           />
         </Switch>
       </Router>
-    </div >
+    </div>
   );
 }
 
