@@ -46,19 +46,18 @@ export const validateProjectInfoFields = (projectInfo, setProjectInfo , projectA
             descriptionInputError = 'Field is required'
         }
 
-        if(landTitle.trim() === ''){
+        if(!landTitle || landTitle.trim() === ''){
             landTitleInputError = 'Field is required'
         }
 
-        if(buildingType.trim() === ''){
+        if(!buildingType || !buildingType){
             buildingTypeInputError = 'Field is required'
         }
-
-        if(projectCategory.trim() === ''){
+        if(!projectCategory || !projectCategory.name.trim() === ''){
             projectCategoryInputError = 'Field is required'
         }
 
-        if(projectStatus.trim() === ''){
+        if(!projectStatus || !projectStatus.trim() === ''){
             projectStatusInputError = 'Field is required'
         }
 
@@ -123,21 +122,25 @@ export const validateProjectInfoFields = (projectInfo, setProjectInfo , projectA
 
 export const validateProjectAmenities = (projectAmenitiesForm, projectAmenitiesFormErrors, setProjectAmenitiesFormErrors) => {
     let amenitiesErrors = [...projectAmenitiesFormErrors];
+    let raiseFlag = false;
+    if(projectAmenitiesForm){
+        projectAmenitiesForm.forEach((amenity, index)=>{
+            if(!amenity.value){
+                console.log('in here')
+                
+                amenitiesErrors[index] = 'Field is required';
+                setProjectAmenitiesFormErrors(amenitiesErrors)
+                return raiseFlag=true;
+            }
 
-    for(let i = 0; i < projectAmenitiesForm.length; ++i){
-        if(Object.values(projectAmenitiesForm[i])[0] === ""){
-            amenitiesErrors[i][Object.keys(projectAmenitiesForm[i])] = "Field is required"
-        }
+        })
+        if(raiseFlag){
+            return false
+        }else{
+            return true
+        } 
     }
 
-    if(amenitiesErrors.some((item)=>{
-        return (Object.values(item)[0] !== null);
-    })){
-        setProjectAmenitiesFormErrors(amenitiesErrors)
-        return false;
-    }
-
-    return true;
 }
 
 
@@ -231,45 +234,59 @@ export const validateProjectInvestmentInfoFields = (projectInvestmentInfo, setPr
 }
 
 export const validateBundleInfoFields = (
-    bundleAmenities,
-    projectBundlesInfo, setProjectBundlesInfo, selectedFile, setSelectedFileError,
-    selectedBundleImages, setSelectedBundleImagesError) => {
+    projectBundlesInfo, setProjectBundlesInfo
+    ) => {
     let titleError = '';
     let sizeError = '';
     let deedTitleError = '';
+    let deedFileError = '';
+    let bundlePhotosError = '';
     let priceError = '';
     let fileError = '';
     let bundleImagesError = '';
     let amenitiesSelectError = '';
+    let {title, 
+        size, 
+        deedTitle, 
+        deedFile, 
+        price, 
+        amenitiesSelect, 
+        bundlePhotos} = projectBundlesInfo[projectBundlesInfo.length - 1]
 
-    let {title, size, deedTitle, price, amenitiesSelect} = projectBundlesInfo[projectBundlesInfo.length - 1]
-
-    if(title.trim() === ''){
+    if(!title || title.trim()===''){
         titleError = "Field is required"
     }
 
-    if(size.trim() === ''){
+    if(!size || size.trim() === ''){
         sizeError = "Field is required"
     }
 
-    if(deedTitle.trim() === ''){
+    if(!deedTitle || deedTitle.trim() === ''){
         deedTitleError = 'Field is required'
     }
 
-    if(price.trim() === ''){
+    if(!deedFile || deedFile.trim() === '' ){
+        deedFileError = 'Field is required'
+    }
+
+    if(!bundlePhotos || (bundlePhotos && bundlePhotos.length === 0)){
+        bundlePhotosError = 'Field is required'
+    }
+
+    if(!price || price.trim() === ''){
         priceError = "Field is required"
     }
 
-    if(selectedFile.trim() === ""){
-        fileError = 'Field is required'
-    }
+    
 
-    if(selectedBundleImages.length === 0){
-        bundleImagesError = 'At least one image is required';
-    }
-
-    if(bundleAmenities.length === 0 && amenitiesSelect.trim() === ""){
+    if( amenitiesSelect && amenitiesSelect.length === 0 ){
         amenitiesSelectError= "Field is required"
+    }else if(amenitiesSelect && amenitiesSelect.length > 0){
+        amenitiesSelect.forEach((amenity) => {
+            if(!amenity.value || amenity.value.trim() === ''){
+            return amenitiesSelectError= "Field is required"
+            }
+        })
     }
 
     if(titleError || sizeError || deedTitleError || priceError || fileError || bundleImagesError || amenitiesSelectError){
@@ -285,14 +302,15 @@ export const validateBundleInfoFields = (
                     sizeError,
                     titleError,
                     deedTitleError,
+                    deedFileError,
                     priceError,
-                    amenitiesSelectError
+                    amenitiesSelectError,
+                    bundlePhotosError
                 }
             })
         })
 
-        setSelectedFileError(fileError)
-        setSelectedBundleImagesError(bundleImagesError)
+        
 
         return false;
     }
@@ -317,7 +335,7 @@ export const validatePaymentPlanInfoFields = (
     }
 
     if(initialDepositAmount.trim() === ''){
-        initialDepositAmount = "Field is required"
+        initialDepositAmountError = "Field is required"
     }
 
     if(availablePaymentPeriod.trim() === ''){
@@ -373,3 +391,15 @@ export const validateBundleAmenities = (bundleAmenities, bundleAmenitiesErrors, 
 
     return true;
 }
+
+export const validateArrayOfObjects = (arrayToBeValidated) => {
+    let valid = []
+    arrayToBeValidated.forEach((obj)=>{
+        Object.keys(obj).forEach((field)=>{
+            return obj[`${field}`] === '' || !obj[`${field}`] ?
+            valid.push(obj[`${field}`]) : null;
+        });
+        return valid;
+    });
+    return valid;
+}  

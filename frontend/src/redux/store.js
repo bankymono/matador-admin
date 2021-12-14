@@ -16,7 +16,8 @@ import {
         equityInvestmentListReducer, 
         landTitleListReducer, 
         projectCategoryListReducer, 
-        projectStatusListReducer 
+        projectStatusListReducer, 
+        projectCreateReducer 
     } from './reducers/projectReducers';
 import { 
         equityInvestmentStatReducer,
@@ -40,6 +41,7 @@ const reducer = combineReducers({
     projectCategoryList:projectCategoryListReducer,
     projectStatusList:projectStatusListReducer,
     amenityList:amenityListReducer,
+    projectCreate:projectCreateReducer,
     equityInvestmentList:equityInvestmentListReducer,
 
     //investment-related-reducers
