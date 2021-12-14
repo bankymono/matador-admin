@@ -29,7 +29,7 @@ export const SideBarData = [
     {
         title:"Investors",
         icon:investors_icon,
-        link:'/investors/info',
+        link:'/investors',
     },
 
     {

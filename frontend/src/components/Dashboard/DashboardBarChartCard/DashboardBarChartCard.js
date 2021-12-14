@@ -5,10 +5,10 @@ import './DashboardBarChartCard.css';
 const DashboardBarChartCard = ({id}) => {
 
     const data =  {
-            labels:['one', 'two', 'three', 'four', 'five','six', 'seven', 'eight', 'nine'],
+            labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets:[{
                 label:"Total Deposits('000)",
-                data:[3, 2, 3, 5, 1,3, 5, 1,6],
+                data:[3, 2, 3, 5, 1,3, 5, 1,6,10, 11, 12],
                 borderColor: 'rgba(73, 163, 123, 1)',
                 backgroundColor: 'rgba(73, 163, 123, 1)',
                 pointBackgroundColor: 'rgba(200, 189, 32, 0.2)',

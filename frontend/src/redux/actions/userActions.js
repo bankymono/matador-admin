@@ -12,6 +12,7 @@ import {
     ADMIN_LOGIN_REQUEST,
     ADMIN_LOGIN_SUCCESS,
     ADMIN_LOGOUT,
+    INVESTORS_LIST,
     ADMIN_REFRESH_TOKEN_FAIL,
     ADMIN_REFRESH_TOKEN_REQUEST,
     ADMIN_REFRESH_TOKEN_SUCCESS,
@@ -89,6 +90,19 @@ export const logout = () => async (dispatch) => {
     dispatch({
         type:ADMIN_LOGOUT
     })
+}
+
+export const getInvestors = () => async (dispatch) => {
+    try{
+        console.log('about to make call')
+        const data = await api.get('/user/investor');
+        dispatch({
+            type:INVESTORS_LIST,
+            payload:data.data.results
+        })
+    }catch(error){
+        console.log(error);
+    }
 }
 
 export const listCountries = () => async (dispatch) => {
