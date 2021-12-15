@@ -1,0 +1,26 @@
+.update-input-btns-wrapper{
+    flex: 1;
+    /* background: red; */
+    display: flex;
+    justify-content: space-between;
+}
+.marketplace-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60vh;
+}
+.marketplace-select-field{
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 530px;
+    height: 40px;
+    outline: none;
+    padding: 8px;
+}
+.divide{
+    border-top: 2px solid #E0E0E0
+}
+.marketplace-btn{
+    justify-content: right;
+}

@@ -1,7 +1,9 @@
 import React from 'react'
+import { numberWithComma } from '../../../../redux/numberFormatter'
 import DoughnutChartTableRow from './DoughnutChartTableRow/DoughnutChartTableRow'
 
-const DoughnutChartTable = () => {
+const DoughnutChartTable = ({assetAllocationData}) => {
+
     return (
             <div className="doughnut-data-container">
                 <div className="doughnut-data-table-heading">
@@ -10,10 +12,10 @@ const DoughnutChartTable = () => {
                     <div className="text-right-align">Value</div>
                 </div>
                 <div className="doughnut-data-table-body">
-                    <DoughnutChartTableRow dotColor={"dot-color-blue"} description={"Fixed Income"} count={4} value={"1,254,302"} />
-                    <DoughnutChartTableRow dotColor={"dot-color-light-blue"} description={"Equity"} count={2} value={"6,000,001"} />
-                    <DoughnutChartTableRow dotColor={"dot-color-light-green"} description={"Cash"} count={10} value={"4,254,302"} />
-                    <DoughnutChartTableRow dotColor={"dot-color-green"} description={"Rewards"} count={4} value={"26,154,302"} />
+                    <DoughnutChartTableRow dotColor={"dot-color-blue"} description={"Fixed Income"} count={assetAllocationData.fixed_income.count} value={assetAllocationData.fixed_income.value} />
+                    <DoughnutChartTableRow dotColor={"dot-color-light-blue"} description={"Equity"} count={assetAllocationData.equity.count} value={numberWithComma(assetAllocationData.equity.value)} />
+                    <DoughnutChartTableRow dotColor={"dot-color-light-green"} description={"Cash"} count={assetAllocationData.cash.count} value={numberWithComma(assetAllocationData.cash.value)} />
+                    <DoughnutChartTableRow dotColor={"dot-color-green"} description={"Rewards"} count={assetAllocationData.rewards.count} value={numberWithComma(assetAllocationData.rewards.value)} />
                 </div>
             </div>
     )
