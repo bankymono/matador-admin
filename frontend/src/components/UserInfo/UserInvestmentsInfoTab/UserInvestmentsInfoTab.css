@@ -24,7 +24,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px;
-
+    background: #fff;
+    border-radius: 10px 10px 0 0;
     /* border: 1px solid #DEE2E6; */
 
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);

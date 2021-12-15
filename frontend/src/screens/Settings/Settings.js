@@ -25,6 +25,7 @@ import InvestmentSettingsContainer from '../../components/Settings/InvestmentSet
 // import UpdatePassword from '../../components/Settings/UpdatePassword/UpdatePassword';
 // import CreateAdminComponent from '../../components/Settings/CreateAdminComponent/CreateAdminComponent';
 import { Link } from 'react-router-dom';
+import SettingsSidenavComponent from '../../components/Settings/SettingsSidenavComponent';
 
 
 const Settings = ({arrLinks}) => {
@@ -45,26 +46,7 @@ const Settings = ({arrLinks}) => {
                 <div className="settings-container">
 
                     <div className="settings-input-wrapper">
-
-                        <div className="settings-buttons-tab-container">
-
-                            <Link to="/settings" className={switchTab === 1 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"}>
-                                <img src={investment_icon} alt="investment" />
-                                <div>Investments</div>
-                            </Link>
-
-                            <Link to="/settings/admin-manager" className={switchTab === 2 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
-                                <img src={admin_icon} alt="admin" />
-                                <div>Admin Manager</div>
-                            </Link>
-
-                            <Link to="/settings/update-password" className={switchTab === 3 ? "settings-tab-btn settings-tab-btn-active":"settings-tab-btn"} >
-                                <img src={update_password_icon} alt="update password" />
-                                <div>Update Password</div>
-                            </Link>
-
-                        </div>
-
+                        <SettingsSidenavComponent activeLink={1} />
                         <div className="settings-pages-content">
                             <div className={switchTab === 1 ? "settings-content-wrapper settings-content-active" : "settings-content-wrapper"}>
                                 <InvestmentSettingsContainer />

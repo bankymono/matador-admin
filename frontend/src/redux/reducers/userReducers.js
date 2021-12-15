@@ -36,7 +36,8 @@ import {
     VERIFICATION_ID_VERIFY_COMPLETE,
     VERIFICATION_ID_DETAIL_FAIL,
     VERIFICATION_ID_DETAIL_REQUEST,
-    VERIFICATION_ID_DETAIL_CLEAR
+    VERIFICATION_ID_DETAIL_CLEAR,
+    INVESTORS_LIST
 } from "../constants/userConstants";
 
 export const adminLoginReducer = (state={}, action) => {
@@ -67,7 +68,6 @@ export const adminLoginReducer = (state={}, action) => {
 
         case ADMIN_LOGOUT:
             return {}
-            
         default:
                 return state;
 
@@ -225,4 +225,9 @@ export const verifyVerificationIdReducer = (state={verifyVerIdSuccess:false}, ac
         default:
             return state
     }
+}
+
+export const investorsListReducer = (state={}, action) => {
+    return action.type === 'INVESTORS_LIST'?
+    {investorsList: action.payload} : 'error fetching list';
 }

@@ -1,10 +1,36 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {adminCreateReducer, adminListReducer, adminLoginReducer, countryListReducer, superAdminCreateReducer, superAdminListReducer, verificationIdDetailReducer, verificationIdListReducer, verifyVerificationIdReducer} from './reducers/userReducers'
-import { amenityListReducer, buildingTypeListReducer, equityInvestmentListReducer, landTitleListReducer, projectCategoryListReducer, projectStatusListReducer } from './reducers/projectReducers';
-import { equityInvestmentStatReducer } from './reducers/investmentsReducer';
+
 // import { getEquityInvestmentStat } from './actions/investmentsActions';
+
+import {
+        adminCreateReducer, 
+        adminListReducer, 
+        adminLoginReducer, 
+        countryListReducer, 
+        superAdminCreateReducer, 
+        superAdminListReducer,
+        verificationIdDetailReducer, 
+        verificationIdListReducer, 
+        verifyVerificationIdReducer,
+        investorsListReducer
+} from './reducers/userReducers'
+
+import { 
+        amenityListReducer, 
+        buildingTypeListReducer, 
+        equityInvestmentListReducer, 
+        landTitleListReducer, 
+        projectCategoryListReducer, 
+        projectStatusListReducer, 
+        projectCreateReducer 
+    } from './reducers/projectReducers';
+import { 
+        equityInvestmentStatReducer,
+        adminSettingsReducer,
+        adminSettingsRewardUpdateReducer,
+    } from './reducers/investmentsReducer';
 
 
 const reducer = combineReducers({
@@ -14,6 +40,7 @@ const reducer = combineReducers({
     superAdminCreate:superAdminCreateReducer,
     adminCreate:adminCreateReducer,
     countryList:countryListReducer,
+    investorsList: investorsListReducer,
     
     //project-related-reducers
     landTitleList:landTitleListReducer,
@@ -21,12 +48,17 @@ const reducer = combineReducers({
     projectCategoryList:projectCategoryListReducer,
     projectStatusList:projectStatusListReducer,
     amenityList:amenityListReducer,
+    projectCreate:projectCreateReducer,
     equityInvestmentList:equityInvestmentListReducer,
-    equityInvestmentStatData: equityInvestmentStatReducer,
 
     verificationIdList: verificationIdListReducer,
     verificationIdDetail: verificationIdDetailReducer,
     verifyVerificationId: verifyVerificationIdReducer,
+
+    //investment-related-reducers
+    equityInvestmentStatData: equityInvestmentStatReducer,
+    adminSettings: adminSettingsReducer,
+    adminRewardSettingsUpdate: adminSettingsRewardUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;
