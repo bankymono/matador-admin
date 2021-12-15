@@ -16,17 +16,26 @@ import FixedIncomeTypeCard from '../../components/ProjectDependencies/ProjDepTyp
 // import FIBarChartCard from '../../components/ProjectDependencies/FIBarChartCard/FIBarChartCard';
 // import FILiquidationCard from '../../components/ProjectDependencies/FILiquidationCard/FILiquidationCard';
 import { Link } from 'react-router-dom';
+// import CreateProjectDependency from '../../components/modals/CreateProjectDependency/CreateProjectDependency';
+// import CreateProjectDependency from '../../../'
+import CreateProjectDependency from '../../components/modals/CreateProjectDependency/CreateProjectDependency'
 
-const NewProjDepBtn = () => {
+const NewProjDepBtn = ({setIsOpen}) => {
+    
     return (
         <div className="txn-lists-new-btn-container">
-            <button className="p-d-list-new-btn">Create Project Dependency</button>
+            <button onClick={() => {setIsOpen(true)}} className="p-d-list-new-btn">Create Project Dependency</button>
         </div>
     )
 }
 
 const ProjectDependencies = ({arrLinks}) => {
     const [currentPage, setCurrentPage] = useState("Project Dependencies");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const closeModal = () =>{
+        setIsOpen(false);
+    }
 
 
     return (
@@ -35,7 +44,7 @@ const ProjectDependencies = ({arrLinks}) => {
 
             <div className="header-and-center-container">
                 <Header />
-                <SubNav currentPage={currentPage} arrLinks={arrLinks} rightButtons={<NewProjDepBtn />}  />
+                <SubNav currentPage={currentPage} arrLinks={arrLinks} rightButtons={<NewProjDepBtn  setIsOpen={setIsOpen}/>}  />
                 <div className="proj-deps-container">
                     <div className="proj-deps-wrapper">
                         <Link className="f-i-link" to='/project-dependencies/4'>
@@ -81,6 +90,9 @@ const ProjectDependencies = ({arrLinks}) => {
                     {/* </div> */}
                 </div>
             </div>
+            {/* <CreateProjectDependency  /> */}
+            <CreateProjectDependency open={isOpen} onClose={closeModal} />
+            {/* <CreateProjectDepen */}
         </div>
     )
 }

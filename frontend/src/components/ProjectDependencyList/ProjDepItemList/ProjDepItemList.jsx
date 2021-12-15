@@ -11,6 +11,8 @@ import VIDDetails from '../../modals/VIDDetails/VIDDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { listVerificationId } from '../../../redux/actions/userActions';
+import ProjDepDetailModal from '../../modals/ProjDepDetailModal/ProjDepDetailModal';
+import EquityInvestmentDetail from '../../modals/EquityInvestmentDetail/EquityInvestmentDetail';
 
 const ProjDepItemList = ({veriType}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -76,13 +78,16 @@ const ProjDepItemList = ({veriType}) => {
                     setIsOpen={setIsOpen}
                     setVerId={setVerId}
                     verId={verId}
+                    // setIsOpen={setIsOpen}
                 />
 
             <div className="s-i-ongoing-bottom-pagination-container">
                 <div>Showing: <span className="val">100</span></div>
                 <div><Pagination /></div>
             </div>
-            <VIDDetails verId={verId} setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} />
+            {/* <VIDDetails verId={verId} setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} /> */}
+            {/* <ProjDepDetailModal setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} /> */}
+            <EquityInvestmentDetail  setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} />
         </div>
 
         </>

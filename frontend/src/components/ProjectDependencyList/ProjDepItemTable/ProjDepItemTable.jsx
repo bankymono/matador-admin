@@ -16,8 +16,8 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
     const data2 = useMemo(() => dataConfig2, [dataConfig2]);
     const [verified, setVerified] = useState(false);
 
-    const handleViewClick = (id) => {
-        setVerId(id);
+    const handleClick = (id) => {
+        // setVerId(id);
         setIsOpen(true);
 
     }
@@ -88,7 +88,7 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
                     // let rowId = row.original.id;
                     return (
 
-                        <tr {...row.getRowProps()}>
+                        <tr {...row.getRowProps()} onClick={() => handleClick(row.original.id)}>
                         {/* <Link to={row.original.link} className="p-d-i-table-link"> */}
 
                             {
