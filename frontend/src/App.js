@@ -67,6 +67,7 @@ function App() {
                 (<Dashboard
                   {...props}
                   arrLinks={['home']}
+                  adminInfo={adminInfo}
                 />)
                 : (<Redirect
                   to="/login"
