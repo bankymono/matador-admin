@@ -11,6 +11,9 @@ import project_dep_icon from '../../assets/icons/group_5419.svg';
 // import id_verification_icon from '../../assets/icons/id_verification.png';
 
 // import {BiBookAlt} from 'react-icons/bi'
+import id_verification_icon from '../../assets/icons/id_verification.png';
+
+
 export const SideBarData = [
     {
         title:"Dashboard",

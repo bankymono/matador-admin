@@ -33,6 +33,7 @@ import {
     } from './reducers/investmentsReducer';
 
 
+
 const reducer = combineReducers({
     adminLogin:adminLoginReducer,
     superAdminList:superAdminListReducer,

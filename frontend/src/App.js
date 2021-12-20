@@ -23,6 +23,7 @@ import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
 import UpdatePassword from './screens/UpdatePassword/UpdatePassword';
 import { useSelector } from 'react-redux';
 import Accounts from './screens/Accounts/Accounts';
+import InfoTest from './screens/InfoTest';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,6 +34,7 @@ import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 import VerificationIdList from './screens/VerificationIdList/VerificationIdList';
 import ProjectDependencyList from './screens/ProjectDependencyList/ProjectDependencyList';
 import ProjectDependencies from './screens/ProjectDependencies/ProjectDependencies';
+
 
 
 function App() {
@@ -296,7 +298,6 @@ function App() {
                          />)
                       }
                   />
-
                   <Route 
                     exact 
                     path='/project-dependencies'
@@ -326,6 +327,7 @@ function App() {
                         }
                     />
                 <Route 
+              <Route 
                   exact 
                   path='/projects/new'
                   render={(props)=>
@@ -481,6 +483,15 @@ function App() {
             (<Accounts
               {...props}
               arrLinks={['home', 'Accounts / Deposit Method']}
+            />)}
+          />
+          <Route
+            exact
+            path='/info-test'
+            render={(props) =>
+            (<InfoTest
+              {...props}
+              arrLinks={['home', 'investment info']}
             />)}
           />
         </Switch>
