@@ -6,9 +6,14 @@ import rewards_icon from '../../assets/icons/rewards-icon.png';
 import transactions_icon from '../../assets/icons/transactions-icon.png';
 import accounts_icon from '../../assets/icons/accounts_icon.png';
 import settings_icon from '../../assets/icons/settings-icon.png';
+import verification_id_icon from '../../assets/icons/group_5488.svg';
+import project_dep_icon from '../../assets/icons/group_5419.svg';
+// import id_verification_icon from '../../assets/icons/id_verification.png';
+
+// import {BiBookAlt} from 'react-icons/bi'
 import id_verification_icon from '../../assets/icons/id_verification.png';
 
-import {BiBookAlt} from 'react-icons/bi'
+
 export const SideBarData = [
     {
         title:"Dashboard",
@@ -29,6 +34,12 @@ export const SideBarData = [
     },
 
     {
+        title:"Project Dependencies",
+        icon:project_dep_icon,
+        link:'/project-dependencies',
+    },
+
+    {
         title:"Investors",
         icon:investors_icon,
         link:'/investors',
@@ -45,6 +56,7 @@ export const SideBarData = [
         icon:transactions_icon,
         link:'/transactions',
     },
+    
     {
         title:"Accounts",
         icon:accounts_icon,
@@ -53,7 +65,7 @@ export const SideBarData = [
 
     {
         title:"ID Verification",
-        icon: transactions_icon,
+        icon: verification_id_icon,
         link:'/id-verification',
     },
 

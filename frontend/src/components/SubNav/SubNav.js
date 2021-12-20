@@ -14,7 +14,7 @@ const SubNav = ({currentPage, arrLinks, rightButtons}) => {
                         <li key={index} className="nav-breadcrumbs-item">
                             <NavLink 
                                 onClick={(event)=>{if(array.length - 1 === index) event.preventDefault()} } 
-                                to={`/${el}`} 
+                                to={el === 'home'? '/' : el.trim().split(' ').length ===2 ? `/${el.replace(' ', '-')}`:`/${el}` } 
                                 className="nav-breadcrumb-link">{el}
                             </NavLink>
                         </li>))}

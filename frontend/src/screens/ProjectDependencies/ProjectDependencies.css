@@ -1,0 +1,112 @@
+.proj-deps-container{
+    padding: 24px;
+    /* margin-bottom: 24px; */
+}
+
+.proj-deps-wrapper {
+
+    border-radius: 8px;
+
+    display: grid;
+    gap: 24px;
+    grid-template-columns:repeat(2, 1fr);
+    margin-bottom: 24px;
+}
+
+.proj-deps-wrapper .proj-deps-type-card{
+    background-color: #fff;
+    height: 150px;
+    border-radius: 8px;
+    border: 1px solid #DEE2E6;
+    
+    box-shadow: 0px 1px 4px 0px rgba(222, 226, 230,1);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.proj-deps-wrapper .proj-deps-type-card:hover{
+    /* background-color: #03A678; */
+    cursor: pointer;
+}
+
+.proj-deps-wrapper .proj-deps-type-card .text-and-icon{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    color: #404244;
+    padding: 5px 10px;
+}
+
+.proj-deps-wrapper .proj-deps-type-card .text-and-icon:hover{
+    background-color: #EEF5F3;
+}
+
+/* .proj-deps-wrapper .proj-deps-type-card:hover .text-and-icon{
+    color: #fff;
+} */
+
+.proj-deps-wrapper .proj-deps-type-card .main-text{
+    font-weight: 600;
+    font-size: 18px;
+    /* line-height: 21px; */
+}
+
+.proj-deps-wrapper .proj-deps-type-card .sub-text{
+    /* font-weight: 600; */
+    font-size: 14px;
+    color: #8D8F91;
+}
+
+/* .proj-deps-wrapper .proj-deps-type-card:hover .sub-text{
+    /* font-weight: 600; */
+    /* font-size: 14px; 
+    color: #fff;
+} */
+
+.proj-deps-wrapper .proj-deps-type-card .text-and-icon .iv-icon{
+    color: #03A678;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+/* .proj-deps-wrapper .proj-deps-type-card:hover .text-and-icon .iv-icon{
+    color: #fff;
+} */
+
+.proj-deps-container .f-i-graph-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-rows: repeat(6,1fr); */
+    gap: 20px;
+
+}
+
+
+.fi-bottom-item {
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #DEE2E6;
+    padding:16px;
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+
+.fi-bottom-item:nth-child(2){
+    grid-column: 2 / span 2;
+    
+}
+
+
+.proj-deps-container .f-i-link{
+    text-decoration: none;
+}

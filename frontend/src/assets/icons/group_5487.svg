@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 62 62">
+  <g id="Group_5487" data-name="Group 5487" transform="translate(-904 -286)">
+    <g id="Group_4416" data-name="Group 4416" transform="translate(904 286)">
+      <g id="Group_4415" data-name="Group 4415" transform="translate(0)">
+        <g id="Avatar_md" data-name="Avatar/md">
+          <rect id="Avatar_xl" data-name="Avatar/xl" width="62" height="62" rx="31" fill="#eef5f3"/>
+        </g>
+      </g>
+    </g>
+    <g id="Group_4430" data-name="Group 4430" transform="translate(919.248 301.449)">
+      <path id="Path_22936" data-name="Path 22936" d="M0,0H31.2V31.2H0Z" fill="none"/>
+      <path id="Path_22937" data-name="Path 22937" d="M14.581,21.5a13.883,13.883,0,0,1,11.188,5.1l-2.394,1.132A11.527,11.527,0,0,0,14.581,24.1a11.527,11.527,0,0,0-8.794,3.635L3.394,26.6A13.879,13.879,0,0,1,14.581,21.5Zm0-19.5a6.5,6.5,0,0,1,6.5,6.5v3.9a6.5,6.5,0,0,1-6.217,6.493l-.282.007a6.5,6.5,0,0,1-6.5-6.5V8.5A6.5,6.5,0,0,1,14.3,2.007Zm0,2.6a3.9,3.9,0,0,0-3.893,3.671l-.006.229v3.9a3.9,3.9,0,0,0,7.793.229l.007-.229V8.5a3.9,3.9,0,0,0-3.9-3.9Z" transform="translate(1.018 0.6)" fill="#b6dbd0"/>
+    </g>
+  </g>
+</svg>

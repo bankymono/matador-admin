@@ -2,6 +2,8 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+// import { getEquityInvestmentStat } from './actions/investmentsActions';
+
 import {
         adminCreateReducer, 
         adminListReducer, 
@@ -9,8 +11,12 @@ import {
         countryListReducer, 
         superAdminCreateReducer, 
         superAdminListReducer,
-        investorsList
-    } from './reducers/userReducers'
+        verificationIdDetailReducer, 
+        verificationIdListReducer, 
+        verifyVerificationIdReducer,
+        investorsListReducer
+} from './reducers/userReducers'
+
 import { 
         amenityListReducer, 
         buildingTypeListReducer, 
@@ -35,7 +41,7 @@ const reducer = combineReducers({
     superAdminCreate:superAdminCreateReducer,
     adminCreate:adminCreateReducer,
     countryList:countryListReducer,
-    investorsList: investorsList,
+    investorsList: investorsListReducer,
     
     //project-related-reducers
     landTitleList:landTitleListReducer,

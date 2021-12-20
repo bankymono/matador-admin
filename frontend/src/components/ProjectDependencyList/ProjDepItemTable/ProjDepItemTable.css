@@ -1,0 +1,129 @@
+.p-d-i-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.p-d-i-heading-wrapper{
+    background-color: #F6F7F8;
+    padding: 10px;
+}
+
+
+.p-d-i-table th{
+    /* background-color: green; */
+    padding: 10px;
+    color: #8D8F91;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.p-d-i-table-body  tr:hover {
+    background-color: #F6F7F8;
+    /* cursor: pointer; */
+}
+
+
+.p-d-i-table td{
+
+    padding: 10px;
+}
+.p-d-i-table .more-menu-button{
+    text-align: right;
+}
+
+.p-d-i-table-search-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.p-d-i-table-search-header .search-input-container{
+    display: flex;
+    padding: 10px;
+    border-radius: 8px;
+    align-items: center;
+    border: 1px solid #E0E0E0;
+}
+
+.p-d-i-table-search-header .search-input-container input {
+    padding: 5px  15px;
+    margin-left: 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+}
+
+.p-d-i-table-select {
+    padding: 9px;
+
+    color: #03A678;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+
+            background-image: url('../../../assets/icons/dropdown-arrow-2.svg');
+            background-repeat: no-repeat;
+            background-position: right 0px top 51% ;
+}
+
+.p-d-i-table-link{
+    text-decoration: none;
+    width: 100%;
+    background-color: red;
+}
+
+/* .p-d-i-table tr td:nth-child(3) span.verified{
+    background-color: rgba(3, 166, 120, .2) ;
+    color: #03a678;
+    padding: 3px 12px;
+    margin: 10px 0;
+    border-radius: 24px;
+    font-size: 14px;
+}
+
+.p-d-i-table tr td:nth-child(3) span{
+    background-color: rgba(88, 170, 255, .2) ;
+    color: #58AAFF;
+    padding: 3px 12px;
+    margin: 10px 0;
+    border-radius: 24px;
+    font-size: 14px;
+} */
+
+.p-d-i-table .view-btn{
+    color: #03A678;
+    background: none;
+    padding: 10px 16px;
+    border: 1px solid #03A678;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.p-d-i-table .verify-btn{
+    color: #fff;
+    background: #03A678;
+    padding: 10px 16px;
+    border: 1px solid #03A678;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.p-d-i-table .unverify-btn{
+    color: #fff;
+    background: #ECA64A;
+    padding: 10px 16px;
+    border: 1px solid #ECA64A;
+    border-radius: 4px;
+    cursor: pointer;
+}
