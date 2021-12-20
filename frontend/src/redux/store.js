@@ -1,6 +1,7 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+
 import {
         adminCreateReducer, 
         adminListReducer, 
@@ -26,6 +27,7 @@ import {
     } from './reducers/investmentsReducer';
 
 
+
 const reducer = combineReducers({
     adminLogin:adminLoginReducer,
     superAdminList:superAdminListReducer,
@@ -43,6 +45,10 @@ const reducer = combineReducers({
     amenityList:amenityListReducer,
     projectCreate:projectCreateReducer,
     equityInvestmentList:equityInvestmentListReducer,
+
+    verificationIdList: verificationIdListReducer,
+    verificationIdDetail: verificationIdDetailReducer,
+    verifyVerificationId: verifyVerificationIdReducer,
 
     //investment-related-reducers
     equityInvestmentStatData: equityInvestmentStatReducer,

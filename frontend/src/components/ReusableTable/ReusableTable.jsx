@@ -5,11 +5,17 @@ import search_icon from '../../assets/icons/search-icon-img.png'
 // import MOCK_DATA from './MOCK_DATA.json';
 // import {COLUMNS} from './columns';
 import './ReusableTable.css';
+import { Link, useHistory } from 'react-router-dom';
 
-const ReusableTable = ({columnsConfig, dataConfig}) => {
-
+const ReusableTable = ({columnsConfig, dataConfig, setIsOpen}) => {
+    const history = useHistory()
     const columns = useMemo(() => columnsConfig, [columnsConfig]);
     const data = useMemo(() => dataConfig, [dataConfig]);
+    // const [open, setIsOpen]
+    const handleClick = (id) => {
+        setIsOpen(true)
+        history.push(`/investments/fixed-income/sole?sole_id=${id}`)
+    }
 
     const {
         getTableProps, 
@@ -74,7 +80,9 @@ const ReusableTable = ({columnsConfig, dataConfig}) => {
                     prepareRow(row)
                     // console.log('royce',row.original)
                     return (
-                        <tr {...row.getRowProps()}>
+
+                        <tr {...row.getRowProps()} onClick={() => handleClick(row.original.id)}>
+                        {/* <Link to={row.original.link} className="reusable-table-link"> */}
                             {
 
                                 row.cells.map((cell)=>{
@@ -82,7 +90,10 @@ const ReusableTable = ({columnsConfig, dataConfig}) => {
                                 })
                             }
                             <td className="more-menu-button"><MoreOptionsMenu /></td>
+                            {/* </Link>                             */}
                         </tr>
+
+
                     )
                 })
             }

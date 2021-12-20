@@ -27,6 +27,16 @@ import {
     PROJECT_CREATE_REQUEST,
     PROJECT_CREATE_FAIL,
     PROJECT_CREATE_SUCCESS,
+    VERIFICATION_ID_LIST_REQUEST,
+    VERIFICATION_ID_DETAIL_SUCCESS,
+    VERIFICATION_ID_LIST_FAIL,
+    VERIFICATION_ID_LIST_SUCCESS,
+    VERIFICATION_ID_VERIFY_REQUEST,
+    VERIFICATION_ID_VERIFY_SUCCESS,
+    VERIFICATION_ID_VERIFY_COMPLETE,
+    VERIFICATION_ID_DETAIL_FAIL,
+    VERIFICATION_ID_DETAIL_REQUEST,
+    VERIFICATION_ID_DETAIL_CLEAR
     INVESTORS_LIST
 } from "../constants/userConstants";
 
@@ -160,6 +170,61 @@ export const adminCreateReducer = (state={admSuccess:false}, action) => {
     }
 }
 
+
+export const verificationIdListReducer = (state={verificationIds:{}, verifyIdLoading:true}, action) => {
+    switch(action.type){
+        case VERIFICATION_ID_LIST_REQUEST:
+            return { verifyIdLoading:true, verificationIds:{} }
+        case VERIFICATION_ID_LIST_SUCCESS:
+            return { verifyIdLoading: false, verificationIds: action.payload}
+        case VERIFICATION_ID_LIST_FAIL:
+            return { verifyIdLoading:false, verificationIdError: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const verificationIdDetailReducer = (state={singleVerId:{}, singleVerIdLoading:true}, action) => {
+    switch(action.type){
+        case VERIFICATION_ID_DETAIL_REQUEST:
+            return { singleVerIdLoading:true, singleVerId:{} }
+        case VERIFICATION_ID_DETAIL_SUCCESS:
+            return { singleVerIdLoading: false, singleVerId: action.payload}
+        case VERIFICATION_ID_DETAIL_FAIL:
+            return { singleVerIdLoading:false, singleVerIdError: action.payload}
+        case VERIFICATION_ID_DETAIL_CLEAR:
+            return { singleVerIdLoading:false, singleVerId:{}}
+        default:
+            return state;
+    }
+}
+
+export const verifyVerificationIdReducer = (state={verifyVerIdSuccess:false}, action) => {
+    switch(action.type){
+        case VERIFICATION_ID_VERIFY_REQUEST:
+            return {
+                verifyVerIdLoading:true
+            }
+        case VERIFICATION_ID_VERIFY_SUCCESS:
+            return {
+                verifyVerIdLoading:false,
+                verifyVerIdSuccess:true,
+                verifyVerId:action.payload
+            }
+        case VERIFICATION_ID_VERIFY_COMPLETE:
+            return {
+                verifyVerIdLoading:false,
+                verifyVerIdSuccess:false,
+            }
+        case VERIFICATION_ID_DETAIL_FAIL:
+            return {
+                verifyVerIdLoading:false,
+                verifyVerIdError:action.payload,
+            }
+
+        default:
+            return state
+    }
 export const investorsList = (state={}, action) => {
     return action.type === 'INVESTORS_LIST'?
     {investorsList: action.payload} : 'error fetching list';

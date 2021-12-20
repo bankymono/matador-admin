@@ -29,6 +29,17 @@ import {
     PROJECT_CREATE_FAIL,
     PROJECT_CREATE_REQUEST,
     PROJECT_CREATE_SUCCESS,
+    VERIFICATION_ID_DETAIL_REQUEST,
+    VERIFICATION_ID_DETAIL_SUCCESS,
+    VERIFICATION_ID_DETAIL_FAIL,
+    VERIFICATION_ID_LIST_REQUEST,
+    VERIFICATION_ID_LIST_SUCCESS,
+    VERIFICATION_ID_LIST_FAIL,
+    VERIFICATION_ID_VERIFY_REQUEST,
+    VERIFICATION_ID_VERIFY_SUCCESS,
+    VERIFICATION_ID_VERIFY_COMPLETE,
+    VERIFICATION_ID_VERIFY_FAIL,
+    VERIFICATION_ID_DETAIL_CLEAR,
     } from "../constants/userConstants";
 dotenv.config();
 
@@ -274,5 +285,86 @@ export const createProject = (project) => async (dispatch) => {
     } catch (error) {
         console.log('create project error', error.response);
         return 'Error';
+    }
+}
+
+
+export const listVerificationId = (status) => async (dispatch) => {
+    try {
+        dispatch({
+            type: VERIFICATION_ID_LIST_REQUEST
+        })
+        console.log('status', status)
+        const {data} = await api.get(`/user/verify-verification_id?status=${status}`)
+
+        dispatch({
+            type:VERIFICATION_ID_LIST_SUCCESS,
+            payload:data
+        })
+
+        console.log('ver-id-list list', data)
+
+    } catch (error) {
+        dispatch({
+            type: VERIFICATION_ID_LIST_FAIL,
+            payload: error.response
+        })
+        console.log('VER-id list err',error.response);
+    }
+}
+
+export const getVerificationIdDetail = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: VERIFICATION_ID_DETAIL_REQUEST
+        })
+
+        const {data} = await api.get(`/user/verify-verification_id/${id}`)
+
+        dispatch({
+            type:VERIFICATION_ID_DETAIL_SUCCESS,
+            payload:data
+        })
+
+        console.log('ver-id- DETAIL', data)
+
+    } catch (error) {
+        dispatch({
+            type: VERIFICATION_ID_DETAIL_FAIL,
+            payload: error.response
+        })
+        console.log('VER-id DETAIL err',error.response);
+    }
+}
+
+export const clearVerificationIdDetail = () => async (dispatch) => {
+    dispatch({
+        type: VERIFICATION_ID_DETAIL_CLEAR
+    })
+}
+
+export const verifyVerificationId = (id,verifyData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: VERIFICATION_ID_VERIFY_REQUEST
+        })
+
+        const {data} = await api.patch(`/user/verify-verification_id/${id}`, verifyData);
+
+        dispatch({
+            type:VERIFICATION_ID_VERIFY_SUCCESS,
+            payload:data
+        })
+
+        dispatch({
+            type:VERIFICATION_ID_VERIFY_COMPLETE
+        })
+
+    } catch (error) {
+        console.log('ver id error', error.response);
+        dispatch({
+            type:VERIFICATION_ID_VERIFY_FAIL,
+            payload:error.response
+        })
     }
 }

@@ -30,6 +30,7 @@ import Investments from './screens/Investments/Investments';
 import FixedIncomeInvestment from './screens/FixedIncomeInvestment/FixedIncomeInvestments';
 import EquityInvestment from './screens/EquityInvestment/EquityInvestment';
 import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
+import VerificationIdList from './screens/VerificationIdList/VerificationIdList';
 
 
 function App() {
@@ -264,6 +265,114 @@ function App() {
             }
           />
 
+              <Route 
+                exact 
+                path='/investors/info'
+                render={(props)=>
+                  adminInfo ?
+                  (<UserInfo 
+                    {...props} 
+                      arrLinks={['home','investors','info']}
+                    />)
+                    :(<Redirect
+                      to="/login"
+                     />)
+                  } 
+              />
+              <Route 
+                  exact 
+                  path='/projects'
+                  render={(props)=>
+                    adminInfo ?
+                    (<ProjectsList 
+                      {...props} 
+                        arrLinks={['home','projects']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+              <Route 
+                  exact 
+                  path='/projects/new'
+                  render={(props)=>
+                    adminInfo ?
+                    (<CreateProjectTwo 
+                      {...props} 
+                        arrLinks={['home','projects', 'new']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+                <Route 
+                  exact 
+                  path='/projects/new-2'
+                  render={(props)=>
+                    adminInfo ?
+                    (<CreateProject
+                      {...props} 
+                        arrLinks={['home','projects', 'new']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+              <Route 
+                  exact 
+                  path='/projects/id'
+                  render={(props)=>
+                    adminInfo ?
+                    (<ProjectDetails
+                      {...props} 
+                        arrLinks={['home','projects','project name']}
+                      />)
+                      :(<Redirect
+                        to="/login"
+                       />)
+                    } 
+                />
+                <Route 
+                  exact 
+                  path='/transactions'
+                  render={(props)=>
+                    adminInfo ?
+                    (<TransactionsList 
+                      {...props} 
+                        arrLinks={['home','transactions']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+
+                <Route 
+                  exact 
+                  path='/id-verification'
+                  render={(props)=>
+                    adminInfo ?
+                    (<VerificationIdList  
+                      {...props} 
+                        arrLinks={['home','ID verification']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+                <Route 
+                  exact 
+                  path='/settings'
+                  render={(props)=>
+                    (<Settings
+                      {...props} 
+                        arrLinks={['home','settings','investments']}
+                      />)} 
+                  />  
           <Route
             exact
             path='/settings/interest-rate'

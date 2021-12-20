@@ -10,13 +10,20 @@ import {COLUMNS, COLUMNS2} from './columns';
 // import ReusableTable from '../../../ReusableTable/ReusableTable';
 import Pagination from '../../Pagination/Pagination';
 import ReusableTable from '../../ReusableTable/ReusableTable';
+import SoleFI from '../../modals/SoleFIModal/SoleFI';
+import { useHistory } from 'react-router-dom';
 
 const SIOngoingTab = ({eqLoading, eqError, equityInvestments}) => {
-
+    const [isOpen, setIsOpen] = useState(false);
+    const history = useHistory()
 
     const columns = useMemo(() => COLUMNS, []);
     const data = useMemo(() => MOCK_DATA, []);
 
+    const closeModal = () =>{
+        setIsOpen(false);
+        history.push(`/investments/fixed-income/sole`)
+    }
 
     return (
         <>
@@ -26,13 +33,15 @@ const SIOngoingTab = ({eqLoading, eqError, equityInvestments}) => {
                     columnsConfig2={COLUMNS2} 
                     dataConfig={MOCK_DATA} 
                     dataConfig2={equityInvestments} 
+                    // isOpen={isOpen}
+                    setIsOpen={setIsOpen}
                 />}  
 
             <div className="s-i-ongoing-bottom-pagination-container">
                 <div>Showing: <span className="val">100</span></div>
                 <div><Pagination /></div>
             </div>
-            
+            <SoleFI setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} />
         </div>
 
 {/* ####################################################################################### */}
