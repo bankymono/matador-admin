@@ -47,8 +47,7 @@ function App() {
       <ToastContainer />
       <Router>
         <Switch>
-          <Route
-            exact path="/login"
+          <Route exact path="/login"
             render={(props) =>
               !adminInfo ?
                 (<Login
@@ -59,11 +58,9 @@ function App() {
                 />)
             }
           />
-
           <Route exact path="/change-password" component={ChangePassword} />
           <Route exact path="/recover-password" component={RecoverPassword} />
-          <Route
-            exact path="/"
+          <Route exact path="/"
             render={(props) =>
               adminInfo ?
                 (<Dashboard
@@ -77,8 +74,7 @@ function App() {
             }
           />
 
-          <Route
-            exact path="/investments"
+          <Route exact path="/investments"
             render={(props) =>
               adminInfo ?
                 (<Investments
@@ -91,8 +87,7 @@ function App() {
             }
           />
 
-          <Route
-            exact path="/investments/equity"
+          <Route exact path="/investments/equity"
             render={(props) =>
               adminInfo ?
                 (<EquityInvestment
@@ -104,8 +99,7 @@ function App() {
                 />)
             }
           />
-          <Route
-            exact path="/investments/fixed-income"
+          <Route exact path="/investments/fixed-income"
             render={(props) =>
               adminInfo ?
                 (<FixedIncomeInvestment
@@ -117,9 +111,7 @@ function App() {
                 />)
             }
           />
-
-          <Route
-            exact path="/investments/fixed-income/sole"
+          <Route exact path="/investments/fixed-income/sole"
             render={(props) =>
               adminInfo ?
                 (<SoleInvestment
@@ -131,9 +123,7 @@ function App() {
                 />)
             }
           />
-          <Route
-            exact
-            path='/investors'
+          <Route exact path='/investors'
             render={(props) =>
               adminInfo ?
                 (<User
@@ -145,9 +135,7 @@ function App() {
                 />)
             }
           />
-          <Route
-            exact
-            path='/investors/info'
+          <Route exact path='/investors/info'
             render={(props) =>
               adminInfo ?
                 (<UserInfo
@@ -159,9 +147,8 @@ function App() {
                 />)
             }
           />
-          <Route
-            exact
-            path='/projects'
+
+          <Route exact path='/projects'
             render={(props) =>
               adminInfo ?
                 (<ProjectsList
@@ -173,37 +160,32 @@ function App() {
                 />)
             }
           />
-          <Route
-            exact
-            path='/projects/new'
+
+          <Route exact path='/project-dependencies'
             render={(props) =>
               adminInfo ?
-                (<CreateProjectTwo
+                (<ProjectDependencies
                   {...props}
-                  arrLinks={['home', 'projects', 'new']}
+                  arrLinks={['home', 'project dependencies']}
                 />)
                 : (<Redirect
                   to="/login"
                 />)
             }
           />
-          <Route
-            exact
-            path='/projects/new-2'
+          <Route exact path='/project-dependencies/:id'
             render={(props) =>
               adminInfo ?
-                (<CreateProject
+                (<ProjectDependencyList
                   {...props}
-                  arrLinks={['home', 'projects', 'new']}
+                  arrLinks={['home', 'project dependencies']}
                 />)
                 : (<Redirect
                   to="/login"
                 />)
             }
           />
-          <Route
-            exact
-            path='/projects/id'
+          <Route exact path='/projects/id'
             render={(props) =>
               adminInfo ?
                 (<ProjectDetails
@@ -215,9 +197,31 @@ function App() {
                 />)
             }
           />
-          <Route
-            exact
-            path='/transactions'
+          <Route exact path='/projects/new'
+            render={(props) =>
+              adminInfo ?
+                (<CreateProjectTwo
+                  {...props}
+                  arrLinks={['home', 'projects', 'new']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
+          />
+          <Route exact path='/projects/new-2'
+            render={(props) =>
+              adminInfo ?
+                (<CreateProject
+                  {...props}
+                  arrLinks={['home', 'projects', 'new']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
+          />
+          <Route exact path='/transactions'
             render={(props) =>
               adminInfo ?
                 (<TransactionsList
@@ -229,187 +233,27 @@ function App() {
                 />)
             }
           />
-          <Route
-            exact
-            path='/settings'
+
+          <Route exact path='/id-verification'
             render={(props) =>
               adminInfo ?
-                (<Settings
+                (<VerificationIdList
                   {...props}
-                  arrLinks={['home', 'settings', 'investment']}
+                  arrLinks={['home', 'ID verification']}
                 />)
                 : (<Redirect
                   to="/login"
                 />)
             }
           />
-
-          <Route
-            exact
-            path='/settings/market-place'
+          <Route exact path='/settings'
             render={(props) =>
-            (adminInfo?
-            <MarketPlace
+            (<Settings
               {...props}
-              arrLinks={['home', 'settings', 'market place']}
-            /> :
-            <Redirect to="/login" />)}
+              arrLinks={['home', 'settings', 'investments']}
+            />)}
           />
-          <Route
-            exact
-            path='/settings/rewards'
-            render={(props) =>
-              adminInfo ?
-                (<Rewards
-                  {...props}
-                  arrLinks={['home', 'settings', 'reward']}
-                />)
-                : (<Redirect
-                  to="/login"
-                />)
-            }
-          />
-
-              <Route 
-                exact 
-                path='/investors/info'
-                render={(props)=>
-                  adminInfo ?
-                  (<UserInfo 
-                    {...props} 
-                      arrLinks={['home','investors','info']}
-                    />)
-                    :(<Redirect
-                      to="/login"
-                     />)
-                  } 
-              />
-              <Route 
-                  exact 
-                  path='/projects'
-                  render={(props)=>
-                    adminInfo ?
-                    (<ProjectsList 
-                      {...props} 
-                        arrLinks={['home','projects']}
-                        />)
-                        :(<Redirect
-                          to="/login"
-                         />)
-                      }
-                  />
-                  <Route 
-                    exact 
-                    path='/project-dependencies'
-                    render={(props)=>
-                      adminInfo ?
-                      (<ProjectDependencies
-                        {...props} 
-                        arrLinks={['home','project dependencies']}
-                         />)
-                        :(<Redirect
-                          to="/login"
-                         />)
-                        }
-                    />
-                      <Route 
-                    exact 
-                    path='/project-dependencies/:id'
-                    render={(props)=>
-                      adminInfo ?
-                      (<ProjectDependencyList
-                        {...props} 
-                        arrLinks={['home','project dependencies']}
-                         />)
-                        :(<Redirect
-                          to="/login"
-                         />)
-                        }
-                    />
-                <Route 
-              <Route 
-                  exact 
-                  path='/projects/new'
-                  render={(props)=>
-                    adminInfo ?
-                    (<CreateProjectTwo 
-                      {...props} 
-                        arrLinks={['home','projects', 'new']}
-                        />)
-                        :(<Redirect
-                          to="/login"
-                         />)
-                      }
-                  />
-                <Route 
-                  exact 
-                  path='/projects/new-2'
-                  render={(props)=>
-                    adminInfo ?
-                    (<CreateProject
-                      {...props} 
-                        arrLinks={['home','projects', 'new']}
-                        />)
-                        :(<Redirect
-                          to="/login"
-                         />)
-                      }
-                  />
-              <Route 
-                  exact 
-                  path='/projects/id'
-                  render={(props)=>
-                    adminInfo ?
-                    (<ProjectDetails
-                      {...props} 
-                        arrLinks={['home','projects','project name']}
-                      />)
-                      :(<Redirect
-                        to="/login"
-                       />)
-                    } 
-                />
-                <Route 
-                  exact 
-                  path='/transactions'
-                  render={(props)=>
-                    adminInfo ?
-                    (<TransactionsList 
-                      {...props} 
-                        arrLinks={['home','transactions']}
-                        />)
-                        :(<Redirect
-                          to="/login"
-                         />)
-                      }
-                  />
-
-                <Route 
-                  exact 
-                  path='/id-verification'
-                  render={(props)=>
-                    adminInfo ?
-                    (<VerificationIdList  
-                      {...props} 
-                        arrLinks={['home','ID verification']}
-                        />)
-                        :(<Redirect
-                          to="/login"
-                         />)
-                      }
-                  />
-                <Route 
-                  exact 
-                  path='/settings'
-                  render={(props)=>
-                    (<Settings
-                      {...props} 
-                        arrLinks={['home','settings','investments']}
-                      />)} 
-                  />  
-          <Route
-            exact
-            path='/settings/interest-rate'
+          <Route exact path='/settings/interest-rate'
             render={(props) =>
               adminInfo ?
                 (<InterestRate
@@ -421,10 +265,7 @@ function App() {
                 />)
             }
           />
-
-          <Route
-            exact
-            path='/settings/admin-manager'
+          <Route exact path='/settings/admin-manager'
             render={(props) =>
               adminInfo ?
                 (<AdminList
@@ -434,22 +275,15 @@ function App() {
                 : (<Redirect
                   to="/login"
                 />)
-            }
-          />
-
-          <Route
-            exact
-            path='/settings/admin-manager/create-admin'
+            } />
+          <Route exact path='/settings/admin-manager/create-admin'
             render={(props) =>
             (<CreateAdmin
               {...props}
               arrLinks={['home', 'settings', 'admin-manager', 'create']}
-            />)}
-          />
-
-          <Route
-            exact
-            path='/settings/admin-manager/update-admin'
+            />)
+            } />
+          <Route exact path='/settings/admin-manager/update-admin'
             render={(props) =>
               adminInfo ?
                 (<UpdateAdmin
@@ -459,11 +293,8 @@ function App() {
                 : (<Redirect
                   to="/login"
                 />)
-            }
-          />
-          <Route
-            exact
-            path='/settings/update-password'
+            } />
+          <Route exact path='/settings/update-password'
             render={(props) =>
               adminInfo ?
                 (<UpdatePassword
@@ -473,21 +304,48 @@ function App() {
                 : (<Redirect
                   to="/login"
                 />)
+            } />
+          <Route exact path='/settings'
+            render={(props) =>
+              adminInfo ?
+                (<Settings
+                  {...props}
+                  arrLinks={['home', 'settings', 'investment']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
             }
           />
-
-          <Route
-            exact
-            path='/accounts'
+          <Route exact path='/settings/market-place'
+            render={(props) =>
+            (adminInfo ?
+              <MarketPlace
+                {...props}
+                arrLinks={['home', 'settings', 'market place']}
+              /> :
+              <Redirect to="/login" />)}
+          />
+          <Route exact path='/settings/rewards'
+            render={(props) =>
+              adminInfo ?
+                (<Rewards
+                  {...props}
+                  arrLinks={['home', 'settings', 'reward']}
+                />)
+                : (<Redirect
+                  to="/login"
+                />)
+            }
+          />
+          <Route exact path='/accounts'
             render={(props) =>
             (<Accounts
               {...props}
               arrLinks={['home', 'Accounts / Deposit Method']}
-            />)}
-          />
-          <Route
-            exact
-            path='/info-test'
+            />)
+            } />
+          <Route exact path='/info-test'
             render={(props) =>
             (<InfoTest
               {...props}
