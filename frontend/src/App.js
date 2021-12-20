@@ -23,6 +23,7 @@ import UpdateAdmin from './screens/UpdateAdmin/UpdateAdmin';
 import UpdatePassword from './screens/UpdatePassword/UpdatePassword';
 import { useSelector } from 'react-redux';
 import Accounts from './screens/Accounts/Accounts';
+import InfoTest from './screens/InfoTest';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -449,6 +450,15 @@ function App() {
             (<Accounts
               {...props}
               arrLinks={['home', 'Accounts / Deposit Method']}
+            />)}
+          />
+          <Route
+            exact
+            path='/info-test'
+            render={(props) =>
+            (<InfoTest
+              {...props}
+              arrLinks={['home', 'investment info']}
             />)}
           />
         </Switch>
