@@ -5,25 +5,29 @@ export const COLUMNS = [
     // },
     {
         Header:'Name',
-        accessor:"first_name"
+        accessor:"name"
     },
 
     {
         Header: "Description",
-        accessor:"email"
+        accessor:"description"
     },
 
     {
         Header:'Created By',
-        accessor:"last_name"
+        accessor:"created_by"
     },
 
     {
         Header:'Last Updated By',
-        accessor:"date_of_birth"
+        accessor:"updated_by"
+    },
+
+    {
+        Header:'Created At',
+        accessor:"created_at"
     },
     
-
 
     // {
     //     Header:'Yet Another One',

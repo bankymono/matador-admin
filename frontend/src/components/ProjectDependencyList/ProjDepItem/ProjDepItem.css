@@ -1,9 +1,9 @@
 .p-d-i-tabs-container .content{
-    display: none;
+    display: block;
 }
 
 .p-d-i-tabs-container .active-content {
-    display: block;
+    /* display: block; */
 }
 .p-d-i-tabs-container{
     background-color: white;

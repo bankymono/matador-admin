@@ -314,7 +314,7 @@ function App() {
                     />
                       <Route 
                     exact 
-                    path='/project-dependencies/:id'
+                    path='/project-dependencies/:dep'
                     render={(props)=>
                       adminInfo ?
                       (<ProjectDependencyList
@@ -327,7 +327,7 @@ function App() {
                         }
                     />
                 <Route 
-              <Route 
+
                   exact 
                   path='/projects/new'
                   render={(props)=>

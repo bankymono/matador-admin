@@ -1,14 +1,36 @@
 import React, { useState } from 'react'
 import ReactDom from 'react-dom';
 import './CreateProjectDependency.css';
+import { useHistory } from 'react-router-dom';
+
+
+import * as Yup from 'yup';
+import { ClipLoader } from 'react-spinners'
+import Swal from 'sweetalert2';
 
 import close_icon from '../../../assets/icons/close-icon.png';
 import Group5487 from '../../../assets/icons/group_5487.svg';
 import upload_icon from '../../../assets/icons/create-deposit-img-upload.png'
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, useFormik } from 'formik';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createAmenity, createBuildingType, createCategory, createLandTitle, createProjectStatus } from '../../../redux/actions/projDepActions';
 
-const CreateProjectDependency = ({open,onClose}) => {
+const validationSchema = Yup.object({
+    name:Yup.string().required('required'),
+    description:Yup.string().required('required'),
+})
+
+const CreateProjectDependency = ({open,onClose, dependencyType}) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const depProjStatusCreate = useSelector(state => state.depProjStatusCreate);
+    const depLandTitleCreate = useSelector(state => state.depLandTitleCreate);
+    const depAmenitiesCreate = useSelector(state => state.depAmenitiesCreate);
+    const depBuildingTypeCreate = useSelector(state => state.depBuildingTypeCreate);
+    const depCategoryCreate = useSelector(state => state.depCategoryCreate);
+
     const [selectedProfileImg, setSelectedProfileImg] = useState('')
 
     useEffect(()=> {
@@ -18,6 +40,76 @@ const CreateProjectDependency = ({open,onClose}) => {
             document.body.style.overflow = 'scroll'
         }
     })
+
+    useEffect(()=> {
+        if(dependencyType === 'project-status'){
+            if(depProjStatusCreate.success && open){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Dependency Created Successfully',
+                    showConfirmButton: false,
+                    timer: 2000
+                  }).then(()=>{
+                      history.push('/project-dependencies/project-status');
+                      onClose();
+                  })
+            }
+        } else if(dependencyType === 'land-title'){
+            if(depLandTitleCreate.success && open){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Dependency Created Successfully',
+                    showConfirmButton: false,
+                    timer: 2000
+                  }).then(()=>{
+                      history.push('/project-dependencies/land-title');
+                      onClose();
+                  })
+            }
+        } else if(dependencyType === 'amenity'){
+            if(depAmenitiesCreate.success){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Dependency Created Successfully',
+                    showConfirmButton: false,
+                    timer: 2000
+                  }).then(()=>{
+                      history.push('/project-dependencies/amenity');
+                      onClose();
+                  })
+            }
+        } else if(dependencyType === 'building-type'){
+            if(depBuildingTypeCreate.success && open){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Dependency Created Successfully',
+                    showConfirmButton: false,
+                    timer: 2000
+                  }).then(()=>{
+                      history.push('/project-dependencies/building-type');
+                      onClose();
+                  })
+            }
+
+        } else if(dependencyType === 'categorys'){
+            if(depCategoryCreate.success && open){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Dependency Created Successfully',
+                    showConfirmButton: false,
+                    timer: 2000
+                  }).then(()=>{
+                      history.push('/project-dependencies/categorys');
+                      onClose();
+                  })
+            }
+        } 
+    },[dependencyType,history, depProjStatusCreate, 
+            depLandTitleCreate,
+            depAmenitiesCreate,
+            depBuildingTypeCreate,
+            depCategoryCreate,
+            onClose,open])
     
     const encodeFileToBase64 = (file) => {
         return new Promise((resolve, reject)=> {
@@ -37,6 +129,34 @@ const CreateProjectDependency = ({open,onClose}) => {
         }
     }
 
+    const formik = useFormik({
+        initialValues:{
+            name:'',
+            description:''
+        },
+        onSubmit: async values => {
+            if(dependencyType === 'project-status'){
+                await dispatch(createProjectStatus({name:values.name,description:values.description}))
+            } else if(dependencyType === 'land-title'){
+                await dispatch(createLandTitle({name:values.name,description:values.description}))
+            }
+            else if(dependencyType === 'amenity'){
+                await dispatch(createAmenity({name:values.name,description:values.description}))
+            }
+            else if(dependencyType === 'building-type'){
+                await dispatch(createBuildingType({name:values.name,description:values.description}))
+            }
+            else if(dependencyType === 'categorys'){
+                await dispatch(createCategory({name:values.name,description:values.description}))
+            }
+
+
+
+        },
+
+        validationSchema,
+    })
+
     if(!open) return null;
     return ReactDom.createPortal(
         <>
@@ -46,9 +166,11 @@ const CreateProjectDependency = ({open,onClose}) => {
                         <div>Create Project Dependency</div>
                         <img src={close_icon} alt="close" onClick={onClose} />
                     </div>
+                    <form onSubmit={formik.handleSubmit}>
                     <div className="c-p-d-form-wrapper">
-                        <Formik>
-                            <Form>
+                        {/* <Formik> */}
+                            {/* <Form> */}
+                            
                                 <div className='c-p-d-form-content'>
 
                                 <div className="c-p-d-top-image-upload-wrapper">
@@ -67,17 +189,30 @@ const CreateProjectDependency = ({open,onClose}) => {
                                     <div className='actual-input-main-wrap'>
                                         <div className="c-p-d-input-wrapper-2">
                                             <label className="c-p-d-label" htmlFor="dep-name">Name</label>
-                                            <Field id="dep-name" name="name" className="c-p-d-input" />
+                                            <input id="dep-name" name="name" 
+                                            className={formik.touched.name && formik.errors.name?"c-p-d-input c-p-d-input-error":"c-p-d-input"} 
+                                                value={formik.values.name} 
+                                                onChange={formik.handleChange} 
+                                                onBlur={formik.handleBlur}
+                                            />
                                         </div>
 
                                         <div className="c-p-d-input-wrapper-2">
                                             <label className="c-p-d-label" htmlFor="dep-description">Description</label>
-                                            <Field id="dep-description" as="textarea" name="description" className="c-p-d-input" />
+                                            <textarea id="dep-description" 
+                                                rows='4' 
+                                                cols='50' 
+                                                name="description" 
+                                                className={formik.touched.description && formik.errors.description? "c-p-d-input c-p-d-input-error" : "c-p-d-input"}
+                                                value={formik.values.description} 
+                                                onChange={formik.handleChange} 
+                                                onBlur={formik.handleBlur}
+                                                ></textarea>
                                         </div>
 
 
                                 
-                                        <div className='c-p-d-radio-container'>
+                                        {/* <div className='c-p-d-radio-container'>
                                             <div className='c-p-d-radio-desc'>Image Upload</div>
                                             <div className='rads-wrapper'>
                                                 <div className='rad-and-lab'>
@@ -89,7 +224,7 @@ const CreateProjectDependency = ({open,onClose}) => {
                                                 </div>
 
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="c-p-d-bottom-image-upload-wrapper">
                                         {
                                             selectedProfileImg !== '' 
@@ -108,12 +243,13 @@ const CreateProjectDependency = ({open,onClose}) => {
                                             <Field id="dep-powered" name="powered" className="c-p-d-input" />
                                         </div> */}
                                     </div>
-                                    <button className="c-p-d-modal-btn">Create Dependency</button>
+                                    <button type='submit' className="c-p-d-modal-btn">Create Dependency</button>
                                 </div>
-                            </Form>
+                            {/* </Form> */}
 
-                        </Formik>
+                        {/* </Formik> */}
                     </div>
+                    </form>
                 </div>
             </div>        
         </>,

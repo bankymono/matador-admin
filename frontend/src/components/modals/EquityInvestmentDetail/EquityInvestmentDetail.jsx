@@ -29,14 +29,14 @@ const EquityInvestmentDetail = ({setIsOpen, open, onClose}) => {
     if(!open) return null;
     return ReactDom.createPortal(
         <>
-            <div onClick={onClose} className="p-d-d-m-container">
+            <div onClick={onClose} className="e-i-d-m-container">
                 
-                <div className='p-d-d-m-input-wrapper-main'>
-                <div onClick={(event)=> event.stopPropagation()} className="p-d-d-m-input-wrapper">
+                <div className='e-i-d-m-input-wrapper-main'>
+                <div onClick={(event)=> event.stopPropagation()} className="e-i-d-m-input-wrapper">
                     <AiOutlineClose className="close-icon" onClick={onClose} />
-                    <div className="p-d-d-m-heading">
+                    <div className="e-i-d-m-heading">
                         
-                        <div className='p-d-d-m-inner-wrapper'>
+                        <div className='e-i-d-m-inner-wrapper'>
                             <div className='info'>
                                 {/* <div className='desc'>Name</div> */}
                                 <div className='act-name'>Ahmed Taraj</div>
@@ -50,7 +50,7 @@ const EquityInvestmentDetail = ({setIsOpen, open, onClose}) => {
 
                             <img src={profile_img} className='profile-img' alt="prof" />
                         </div>
-                        <div className='p-d-d-m-heading-bottom-content'>
+                        <div className='e-i-d-m-heading-bottom-content'>
                             
                             <div className='left-content'>
                                 <div className='desc'>Equity Type</div>
@@ -65,36 +65,36 @@ const EquityInvestmentDetail = ({setIsOpen, open, onClose}) => {
                         </div>
                     </div>
 
-                    <div className="p-d-d-m-detail-wrapper">
+                    <div className="e-i-d-m-detail-wrapper">
 
-                        <div className='p-d-d-m-body-wrapper p-d-d-m-third-wrapper-2'>
+                        <div className='e-i-d-m-body-wrapper e-i-d-m-third-wrapper-2'>
                             {/* <div className='desc'>Description</div>
-                            <div className='p-d-d-m-content'>
+                            <div className='e-i-d-m-content'>
                                 Curabitur faucibus laoreet egestas. Quisque at pretium urna. Quisque eget sem rhoncus, 
                                 sodales massa at, dapibus urna. Mauris tempus ullamcorper ipsum, sed viverra dolor eleifend ut. 
                                 Vestibulum id erat ut arcu vestibulum ultrices et vitae leo.
                             </div> */}
 
 
-                            <div className='p-d-d-m-item'>
+                            <div className='e-i-d-m-item'>
                                 <div className='desc'>Number of Fractions</div>
                                 <div className='val'>4,000</div>
                             </div>
 
-                            <div className='p-d-d-m-item'>
+                            <div className='e-i-d-m-item'>
                                 <div className='desc'>Quarterly Income</div>
                                 <div className='val'>₦150,000</div>
                             </div>
 
                         </div>
 
-                        <div className='p-d-d-m-third-wrapper'>
-                            <div className='p-d-d-m-item'>
+                        <div className='e-i-d-m-third-wrapper'>
+                            <div className='e-i-d-m-item'>
                                 <div className='desc'>Investment Date</div>
                                 <div className='val'>24 November 2021</div>
                             </div>
 
-                            <div className='p-d-d-m-item'>
+                            <div className='e-i-d-m-item'>
                                 <div className='desc'>Fraction Value</div>
                                 <div className='val'>4,800</div>
                             </div>

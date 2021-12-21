@@ -31,6 +31,7 @@ import {
         adminSettingsReducer,
         adminSettingsRewardUpdateReducer,
     } from './reducers/investmentsReducer';
+import { amenitiesCreateReducer, buildingTypeCreateReducer, categoryCreateReducer, landTitleCreateReducer, projDepAmenityDetailReducer, projDepAmenityListReducer, projDepBuildingTypeDetailReducer, projDepBuildingTypeListReducer, projDepCategoryDetailReducer, projDepCategoryListReducer, projDepLandTitleDetailReducer, projDepLandTitleListReducer, projDepStatusDetailReducer, projDepStatusListReducer, projStatusCreateReducer } from './reducers/projDepReducers';
 
 
 
@@ -60,6 +61,25 @@ const reducer = combineReducers({
     equityInvestmentStatData: equityInvestmentStatReducer,
     adminSettings: adminSettingsReducer,
     adminRewardSettingsUpdate: adminSettingsRewardUpdateReducer,
+
+    // project-dependency-related reducers
+    depProjStatusList:projDepStatusListReducer,
+    depLandTitleList:projDepLandTitleListReducer,
+    depAmenityList:projDepAmenityListReducer,
+    depBuildingTypeList:projDepBuildingTypeListReducer,
+    depCategoryList:projDepCategoryListReducer,
+
+    depProjStatusDetail:projDepStatusDetailReducer,
+    depLandTitleDetail:projDepLandTitleDetailReducer,
+    depAmenityDetail:projDepAmenityDetailReducer,
+    depBuildingTypeDetail:projDepBuildingTypeDetailReducer,
+    depCategoryDetail:projDepCategoryDetailReducer,
+
+    depProjStatusCreate:projStatusCreateReducer,
+    depLandTitleCreate:landTitleCreateReducer,
+    depAmenitiesCreate:amenitiesCreateReducer,
+    depBuildingTypeCreate:buildingTypeCreateReducer,
+    depCategoryCreate:categoryCreateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;

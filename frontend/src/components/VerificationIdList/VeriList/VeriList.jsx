@@ -46,8 +46,7 @@ const VeriList = ({veriType}) => {
 
     const constructObject = (verificationIds) => {
 
-        // let unVerified = verificationIds.results.filter(verid => verid.status === false);
-        // let verified = verificationIds.results.filter(verid => verid.status === true);
+
 
         let newArr = verificationIds.results.map(verid => {
             return({
