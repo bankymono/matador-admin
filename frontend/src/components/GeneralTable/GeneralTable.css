@@ -18,21 +18,32 @@
     background-color: #03A678;
     font-size: 17px;
 }
-
+.general-tabs-controls{
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+    display:flex;
+    border-bottom: 1px solid #DEE2E6;
+}
+.general-tabs-controls .tabs{
+    margin-right: 15px;
+    line-height: 100%;
+    padding: 14px;
+}
 .general-table-search-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 14px;
     background: #fff;
-    border-radius: 10px 10px 0 0;
     /* border: 1px solid #DEE2E6; */
 
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
 }
-
+.borederRad{
+    border-radius: 10px 10px 0 0;
+}
 .general-table-search-header .search-input-container{
     display: flex;
     padding: 10px;
