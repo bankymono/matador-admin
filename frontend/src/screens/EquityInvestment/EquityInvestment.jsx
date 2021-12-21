@@ -28,7 +28,7 @@ const EquityInvestment = ({ arrLinks }) => {
     const headList = ['investor name', 'Amount Invested', 'Investment Date', 'Number of Fractions', 'Equity Type'];
     const [allowSearch, setAllowSearch] = useState({ condition: false, search: '' });
     const [dupBodyList, setDupList] = useState([]);
-    const [signleData, setSingleData] = useState({});
+    const [singleData, setSingleData] = useState({});
     const [showSingleModal, setShowSingleModal] = useState(false);
 
     useEffect(() => {
@@ -52,13 +52,17 @@ const EquityInvestment = ({ arrLinks }) => {
     const formattedEquityData = (eData) => {
         let formattedData = [];
         if (eData)
+        console.log(eData);
             eData.forEach(obj => {
                 let data = {
-                    data_one: `${obj.user.first_name} ${obj.user.last_name}`,
+                    data_one: `${obj.user.first_name.toLowerCase()} ${obj.user.last_name.toLowerCase()}`,
                     data_two: `₦${numberWithComma(obj.amount_invested)}`,
                     data_three: new Date().toDateString(`${obj.created_at}`),
                     data_four: `${obj.number_of_fractions}`,
-                    data_five: `${obj.bundle ? 'bundle' : 'fraction'}`
+                    data_five: `${obj.bundle ? 'bundles' : 'fractions'}`,
+                    data_six: `${obj.project.name}`,
+                    data_seven: `₦${numberWithComma(obj.quarterly_income)}`,
+                    data_eight: `${numberWithComma(obj.fraction_value)}`
                 }
                 formattedData.push(data);
             });
@@ -80,7 +84,6 @@ const EquityInvestment = ({ arrLinks }) => {
         }
     }
     const handleSearch = (event) => {
-        console.log(event.target.value);
         let value = event.target.value.toLowerCase();
         let result = [];
         result = eqData.data.filter((data) => {
@@ -139,7 +142,7 @@ const EquityInvestment = ({ arrLinks }) => {
             </div>
             {
                 showSingleModal ?
-                    <UserInvestmentModal />
+                    <UserInvestmentModal user={singleData} closeModal={()=>setShowSingleModal(false)} />
                     : null
             }
         </div>
