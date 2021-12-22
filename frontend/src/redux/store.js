@@ -26,6 +26,7 @@ import {
         projectStatusListReducer, 
         projectCreateReducer,
         projectsStatReducer,
+        projectsDataReducer,
     } from './reducers/projectReducers';
 import { 
         equityInvestmentStatReducer,
@@ -51,6 +52,7 @@ const reducer = combineReducers({
     amenityList:amenityListReducer,
     projectCreate:projectCreateReducer,
     projectsStat: projectsStatReducer,
+    projectsData: projectsDataReducer,
     equityInvestmentList:equityInvestmentListReducer,
 
     verificationIdList: verificationIdListReducer,

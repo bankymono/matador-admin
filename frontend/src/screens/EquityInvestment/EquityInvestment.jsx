@@ -1,9 +1,7 @@
-import { Modal } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
 import CurrencyOptionsBtn from '../../components/CurrencyOptionsBtn/CurrencyOptionsBtn';
-import EIOngoingAndSoldTab from '../../components/EquityInvestment/EIOngoingAndSoldTab/EIOngoingAndSoldTab';
 import EquityInvestmentListOverviewCard from '../../components/EquityInvestment/EquityInvestmentListOverviewCard/EquityInvestmentListOverviewCard';
 import GeneralTable from '../../components/GeneralTable/GeneralTable';
 import Header from '../../components/Header/Header';
@@ -52,7 +50,6 @@ const EquityInvestment = ({ arrLinks }) => {
     const formattedEquityData = (eData) => {
         let formattedData = [];
         if (eData)
-        console.log(eData);
             eData.forEach(obj => {
                 let data = {
                     data_one: `${obj.user.first_name.toLowerCase()} ${obj.user.last_name.toLowerCase()}`,
