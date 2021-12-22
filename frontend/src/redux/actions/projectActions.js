@@ -25,6 +25,11 @@ import {
     PROJECT_CREATE_FAIL,
     PROJECT_CREATE_REQUEST,
     PROJECT_CREATE_SUCCESS,
+
+    
+    PROJECTS_STAT_REQUEST,
+    PROJECTS_STAT_SUCCESS,
+    PROJECTS_STAT_FAIL,
 } from "../constants/projectConstants"
 
 export const listLandTitles = () => async (dispatch) => {
@@ -180,6 +185,24 @@ export const listEquityInvestment = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: EQUITY_INVESTMENT_LIST_FAIL,
+            payload: error.response
+        })
+    }
+}
+export const getProjectsStat =()=> async(dispatch)=>{
+    try{
+        dispatch({
+            type: PROJECTS_STAT_REQUEST,
+        })
+        const {data} = await api.get(`/admin/get-project-data`);
+        dispatch({
+            type: PROJECTS_STAT_SUCCESS,
+            payload: data
+        })
+        console.log(data);
+    }catch(error){
+        dispatch({
+            type: PROJECTS_STAT_FAIL,
             payload: error.response
         })
     }

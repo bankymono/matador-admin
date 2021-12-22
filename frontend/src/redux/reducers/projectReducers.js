@@ -22,6 +22,10 @@ import {
     PROJECT_STATUS_LIST_REQUEST,
     PROJECT_STATUS_LIST_SUCCESS,
 
+    PROJECTS_STAT_REQUEST,
+    PROJECTS_STAT_SUCCESS,
+    PROJECTS_STAT_FAIL,
+
 } from "../constants/projectConstants";
 
 export const landTitleListReducer = (state = { landTitles: {}, landTitleLoading: true }, action) => {
@@ -130,6 +134,18 @@ export const equityInvestmentListReducer = (state = { equityInvestments: {}, eqL
             return { eqLoading: false, equityInvestments: action.payload }
         case EQUITY_INVESTMENT_LIST_FAIL:
             return { eqLoading: false, eqError: action.payload }
+        default:
+            return state;
+    }
+}
+export const projectsStatReducer = (state = { projectsStat: null, projectStatRequest: false, projectsError: false }, action) => {
+    switch (action.type) {
+        case PROJECTS_STAT_REQUEST:
+            return { projectsStat: null, projectStatRequest: true, projectsError: false }
+        case PROJECTS_STAT_SUCCESS:
+            return { projectsStat: action.payload, projectStatRequest: true, projectsError: false }
+        case PROJECTS_STAT_FAIL:
+            return { projectsStat: null, projectStatRequest: true, projectsError: true }
         default:
             return state;
     }

@@ -24,7 +24,8 @@ import {
         landTitleListReducer, 
         projectCategoryListReducer, 
         projectStatusListReducer, 
-        projectCreateReducer 
+        projectCreateReducer,
+        projectsStatReducer,
     } from './reducers/projectReducers';
 import { 
         equityInvestmentStatReducer,
@@ -32,8 +33,6 @@ import {
         adminSettingsReducer,
         adminSettingsRewardUpdateReducer,
     } from './reducers/investmentsReducer';
-
-
 
 const reducer = combineReducers({
     adminLogin:adminLoginReducer,
@@ -51,6 +50,7 @@ const reducer = combineReducers({
     projectStatusList:projectStatusListReducer,
     amenityList:amenityListReducer,
     projectCreate:projectCreateReducer,
+    projectsStat: projectsStatReducer,
     equityInvestmentList:equityInvestmentListReducer,
 
     verificationIdList: verificationIdListReducer,
