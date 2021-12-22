@@ -18,6 +18,7 @@ const ProjectsList = ({ match, arrLinks }) => {
     const [selectedProj, setSelectedProj] = useState('all');
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
     const [isPublished, setIsPublished] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
     
     const projectsStatData = useSelector(state=> state.projectsStat);
     const projectsDataState = useSelector(state => state.projectsData);
@@ -30,11 +31,11 @@ const ProjectsList = ({ match, arrLinks }) => {
         dispatch(getProjectsData({search: '', page: 1, published: true}));
     }, [dispatch]);
     useEffect(() => {
-        dispatch(getProjectsData({search: '', page: currentPageNumber, published: isPublished}));
+        dispatch(getProjectsData({search: searchTerm, page: currentPageNumber, published: isPublished}));
         if (projectsListData) {
             formattedTableData(projectsListData.data);
         };
-    }, [currentPageNumber, isPublished]);
+    }, [currentPageNumber, isPublished, searchTerm]);
 
     const handleTabControl = (data) => {
         console.log('CALLED', data)
@@ -55,7 +56,7 @@ const ProjectsList = ({ match, arrLinks }) => {
     };
     const handleSearch = (event) => {
         let value = event.target.value.toLowerCase();
-        console.log(value);
+        setSearchTerm(value);
     }
     const formattedTableData = (data) =>{
         let formattedData = []

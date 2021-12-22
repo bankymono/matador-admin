@@ -3,6 +3,7 @@ import './GeneralTable.css';
 import search_icon from '../../assets/icons/search-icon-img.png'
 import Pagination from '../Pagination/Pagination';
 import MoreOptionsMenu from '../MoreOptionsMenu/MoreOptionsMenu';
+import { BeatLoader } from 'react-spinners';
 
 const GeneralTable = ({
     headList,
@@ -70,7 +71,7 @@ const GeneralTable = ({
                                     <div>{body.data_five ? body.data_five : 'N/A'}</div>
                                 </div>
                                 <MoreOptionsMenu />
-                            </div>) : <div className="general-table-info-body-wrapper">Empty List</div>}
+                            </div>) : <div className="general-table-info-body-wrapper"><BeatLoader loading={true} color="#03A678" /></div>}
             </div>
 
             <div className="general-table-bottom-pagination-container">
