@@ -1,11 +1,20 @@
 import React from 'react';
 import { numberWithComma } from '../../../redux/numberFormatter';
-import OngoingAndSoldTab from '../OngoingAndSoldTab/OngoingAndSoldTab';
+import GeneralTable from '../../GeneralTable/GeneralTable';
 import ProjectListOverviewCard from '../ProjectsListOverviewCard/ProjectsListOverviewCard';
 import './AllProjects.css'
 import ProjectListOverviewCardTwo from './ProjectsListOverviewCardTwo/ProjectsListOverviewCardTwo';
 
-const AllProjects = ({stat}) => {
+const AllProjects = ({
+        stat, 
+        handleTabControl, 
+        setCurrentPageNumber, 
+        currentPageNumber,
+        handleCellClick,
+        paginate,
+        headList,
+        handleSearch
+    }) => {
     return (
         <>
             <div className="all-projects-stat-wrapper">
@@ -23,8 +32,22 @@ const AllProjects = ({stat}) => {
                      }/>
             </div>
 
-            <OngoingAndSoldTab />
-
+            {/* <OngoingAndSoldTab 
+            /> */}
+            <GeneralTable 
+                showTabControls={true}
+                tabControlsButtonText={{ buttonOne: 'Ongoing', buttonTwo: 'Sold' }}
+                handleTabControl={handleTabControl}
+                bodyList={[]}
+                total_count={stat.number_of_projects}
+                usersPerPage={10}
+                paginate={paginate}
+                setCurrentPageNumber={setCurrentPageNumber}
+                currentPageNumber={currentPageNumber}
+                handleCellClick={handleCellClick}
+                handleSearch={handleSearch}
+                headList={headList}
+            />
         </>
     )
 }

@@ -14,17 +14,40 @@ import { BeatLoader } from 'react-spinners';
 
 
 const ProjectsList = ({ match, arrLinks }) => {
-    const [currentPage, setCurrentPage] = useState("Projects");
-    const [selectedProj, setSelectedProj] = useState('all');
     const dispatch = useDispatch();
-
-    const {projectsStat} = useSelector(state=> state.projectsStat);
-
     useEffect(()=>{
         dispatch(getProjectsStat());
         // dispatch(getProjectsData());
     }, [dispatch]);
-    // console.log(projectsStat.data)
+
+    const [currentPage, setCurrentPage] = useState("Projects");
+    const [selectedProj, setSelectedProj] = useState('all');
+    const [currentPageNumber, setCurrentPageNumber] = useState(1);
+    const [isSold, setIsSold] = useState(false);
+    
+    const {projectsStat} = useSelector(state=> state.projectsStat);
+
+    
+    const handleTabControl = (data) => {
+        if (data === 'Sold') {
+            setCurrentPageNumber(1);
+            setIsSold(true);
+        } else {
+            setCurrentPageNumber(1);
+            setIsSold(false);
+        }
+    }
+    const handleCellClick = (data) => {
+        console.log(data);
+    }
+    const paginate = (pageNumber) => {
+        setCurrentPageNumber(pageNumber);
+    };
+    const handleSearch = (event) => {
+        let value = event.target.value.toLowerCase();
+        console.log(value);
+    }
+    const headList = ['project name', 'Completion Date', 'Totla Fractions', 'Fractions Available', 'Amount Invested'];
     return (
         <div>
             <SideBar setCurrentPage={setCurrentPage} />
@@ -37,7 +60,17 @@ const ProjectsList = ({ match, arrLinks }) => {
 
                 {   projectsStat !== null?
                     <div className="projects-center-content-wrapper">
-                        {selectedProj === 'all' ? <AllProjects stat={projectsStat.data} /> : null}
+                        {selectedProj === 'all' ? 
+                        <AllProjects 
+                            stat={projectsStat.data} 
+                            handleTabControl={handleTabControl}
+                            setCurrentPageNumber={setCurrentPageNumber}
+                            currentPageNumber={currentPageNumber}
+                            handleCellClick={handleCellClick}
+                            paginate={paginate}
+                            headList={headList}
+                            handleSearch={handleSearch}
+                        /> : null}
                         {selectedProj === 'equity_based' ? <EquityBasedProjects /> : null}
                         {selectedProj === 'loan_based' ? "Loan Based Based" : null}
                     </div>

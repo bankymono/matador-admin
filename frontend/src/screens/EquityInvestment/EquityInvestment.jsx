@@ -70,7 +70,6 @@ const EquityInvestment = ({ arrLinks }) => {
         return formattedData;
     }
     const handleCellClick = (data) => {
-        console.log(data);
         setSingleData(data);
         setShowSingleModal(true);
     }
