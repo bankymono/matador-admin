@@ -185,7 +185,7 @@ function App() {
                 />)
             }
           />
-          <Route exact path='/projects/id'
+          <Route exact path='/projects/:id'
             render={(props) =>
               adminInfo ?
                 (<ProjectDetails

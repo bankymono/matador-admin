@@ -11,9 +11,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProjectsStat, getProjectsData } from '../../redux/actions/projectActions';
 import { BeatLoader } from 'react-spinners';
 import { numberWithComma } from '../../redux/numberFormatter';
+import { useHistory } from 'react-router-dom';
 
 const ProjectsList = ({ match, arrLinks }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [currentPage, setCurrentPage] = useState("Projects");
     const [selectedProj, setSelectedProj] = useState('all');
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
@@ -38,7 +40,6 @@ const ProjectsList = ({ match, arrLinks }) => {
     }, [currentPageNumber, isPublished, searchTerm]);
 
     const handleTabControl = (data) => {
-        console.log('CALLED', data)
         if (data === 'Published') {
             setCurrentPageNumber(1);
             setIsPublished(true);
@@ -48,7 +49,7 @@ const ProjectsList = ({ match, arrLinks }) => {
         }
     }
     const handleCellClick = (data) => {
-        console.log(data);
+        history.push(`/projects/${data.body.data_six}`);
     }
     const paginate = (pageNumber) => {
 
@@ -68,7 +69,7 @@ const ProjectsList = ({ match, arrLinks }) => {
                     data_three: `${numberWithComma(element.total_fractions)}`,
                     data_four: `${numberWithComma(element.total_fractions - element.total_purchased_fractions)}`,
                     data_five: `₦${numberWithComma(element.evaluation)}`,
-                    data_six: ''
+                    data_six: `${element.id}`
                 }
                 formattedData.push(data);
             });

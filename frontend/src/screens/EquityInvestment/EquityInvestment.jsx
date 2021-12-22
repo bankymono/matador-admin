@@ -24,29 +24,21 @@ const EquityInvestment = ({ arrLinks }) => {
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
     const [isSold, setIsSold] = useState(false);
     const headList = ['investor name', 'Amount Invested', 'Investment Date', 'Number of Fractions', 'Equity Type'];
-    const [allowSearch, setAllowSearch] = useState({ condition: false, search: '' });
-    const [dupBodyList, setDupList] = useState([]);
     const [singleData, setSingleData] = useState({});
     const [showSingleModal, setShowSingleModal] = useState(false);
-
+    const [searchTerm, setSearchTerm] = useState('');
     useEffect(() => {
         dispatch(getEquityInvestmentStat());
         dispatch(getEquityInvestmentData({ investment_type_id: 1, page: 1, is_sold: false }));
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getEquityInvestmentData({ investment_type_id: 1, page: currentPageNumber, is_sold: isSold }));
+        dispatch(getEquityInvestmentData({ investment_type_id: 1, page: currentPageNumber, is_sold: isSold, search: searchTerm }));
         if (eqData) {
             formattedEquityData(eqData.data);
         };
-    }, [currentPageNumber, isSold]);
+    }, [currentPageNumber, isSold, searchTerm]);
 
-    useEffect(() => {
-        if (allowSearch.condition) {
-            console.log(allowSearch.search);
-            return formattedEquityData(allowSearch.search);
-        }
-    }, [allowSearch]);
     const formattedEquityData = (eData) => {
         let formattedData = [];
         if (eData)
@@ -81,11 +73,7 @@ const EquityInvestment = ({ arrLinks }) => {
     }
     const handleSearch = (event) => {
         let value = event.target.value.toLowerCase();
-        let result = [];
-        result = eqData.data.filter((data) => {
-            return data.user.first_name.toLowerCase().search(value) !== -1 || data.user.last_name.toLowerCase().search(value) !== -1;
-        });
-        setAllowSearch({ condition: true, search: result });
+        setSearchTerm(value);
     }
     const paginate = (pageNumber) => {
         setCurrentPageNumber(pageNumber);
