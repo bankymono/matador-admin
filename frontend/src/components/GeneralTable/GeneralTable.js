@@ -20,7 +20,7 @@ const GeneralTable = ({
     handleTabControl
 }) => {
     // const [duplicatedList, setDuplicatedList] = useState(bodyList);
-    const [activeTab, setActiveTab] = useState(tabControlsButtonText.buttonOne);
+    const [activeTab, setActiveTab] = useState(tabControlsButtonText?.buttonOne);
     
     return (
         <div>
