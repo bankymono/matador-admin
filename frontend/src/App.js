@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import './App.css';
 import Settings from './screens/Settings/Settings';
-import TransactionsList from './screens/TransactionsList/TransactionsList';
+
 import ProjectsList from './screens/ProjectsList/ProjectsList';
 import ProjectDetails from './screens/ProjectDetails/ProjectDetails';
 import UserInfo from './screens/UserInfo/UserInfo';
@@ -34,6 +34,7 @@ import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 import VerificationIdList from './screens/VerificationIdList/VerificationIdList';
 import ProjectDependencyList from './screens/ProjectDependencyList/ProjectDependencyList';
 import ProjectDependencies from './screens/ProjectDependencies/ProjectDependencies';
+import TransactionsList from './screens/TransactionsList/TransactionsList';
 
 
 

@@ -3,9 +3,8 @@ import ReactDom from 'react-dom';
 import './ProjDepDetailModal.css';
 
 import close_icon from '../../../assets/icons/close-icon.png';
-// import profile_img from '../../../assets/images/profile-img.png';
 
-// import { useLocation } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getAmenityDetail, getBuildingTypeDetail, getCategoryDetail, getLandTitleDetail, getProjStatusDetail } from '../../../redux/actions/projDepActions';
 import { useState } from 'react';
@@ -35,10 +34,8 @@ const ProjDepDetailModal = ({setIsOpen, open, onClose, depId, depType}) => {
 
     useEffect(()=>{
         if(depId){
-            // console.log('ygi',depType)
             if(depType==='project-status'){
                 dispatch(getProjStatusDetail(depId));
-                // console.log('got here')
             } else if(depType==='land-title'){
                 dispatch(getLandTitleDetail(depId))
             } else if(depType==='amenity'){ 
@@ -55,7 +52,7 @@ const ProjDepDetailModal = ({setIsOpen, open, onClose, depId, depType}) => {
 
     useEffect(()=>{
         if(depProjStatusDetail.projDepStatusDetailLoading === false){
-            console.log('what is here',depProjStatusDetail.projDepStatusDetail)
+
             let dt = new Date(depProjStatusDetail.projDepStatusDetail.data.created_at)
             setProjDepDetail({
                 name: depProjStatusDetail.projDepStatusDetail.data?.name,               

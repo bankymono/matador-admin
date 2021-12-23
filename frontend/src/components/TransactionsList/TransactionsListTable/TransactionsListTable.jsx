@@ -4,27 +4,21 @@ import { useTable, useGlobalFilter, useAsyncDebounce }from 'react-table';
 import search_icon from '../../../assets/icons/search-icon-img.png'
 // import MOCK_DATA from './MOCK_DATA.json';
 // import {COLUMNS} from './columns';
-import './ProjDepItemTable.css';
+import './TransactionsListTable.css';
 import MoreOptionsMenu from '../../MoreOptionsMenu/MoreOptionsMenu';
 import EditProjectDependency from '../../modals/EditProjectDependency/EditProjectDependency';
 
-const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOpen, setDepId, depId,depType}) => {
+const TransactionsListTable = ({columnsConfig, dataConfig, setIsOpen, setTxnId}) => {
     
     const columns = useMemo(() => columnsConfig, [columnsConfig]);
+
     const data = useMemo(() => dataConfig, [dataConfig]);
-    const [isOpenEdit, setIsOpenEdit] = useState(false);
-    const [editDepId, setEditDepId] = useState('')
+
+
 
     const handleClick = (id) => {
-        setDepId(id);
+        setTxnId(id);
         setIsOpen(true);
-
-    }
-
-    const closeModal = () =>{        
-        // history.push(`/investments/fixed-income/sole`)
-        setEditDepId("");
-        setIsOpenEdit(false);
     }
 
     const {
@@ -48,14 +42,11 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
         setGlobalFilter(value)
     },400)
 
-    const handleEdit = (id) => {
-        setEditDepId(id)
-        setIsOpenEdit(true)
-    }
+
 
     return (
         <>
-        <div className="p-d-i-table-search-header">
+        <div className="user-txns-table-search-header">
                 <div className="search-input-container">
                     <img src={search_icon} alt="search" />
                     <input value={value || ""} 
@@ -66,18 +57,18 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
                     placeholder="Search" />
                 </div>
 
-                <select className="p-d-i-table-select">
+                <select className="user-txns-table-select">
                     <option>All Status</option>
                     <option>status one</option>
                     <option>status two</option>
                 </select>
             </div>
         
-        <table {...getTableProps()} className="p-d-i-table">
+        <table {...getTableProps()} className="user-txns-table">
         <thead>
             {
                 headerGroups.map(headerGroup => (
-                    <tr className="p-d-i-heading-wrapper" {...headerGroup.getHeaderGroupProps()}>
+                    <tr className="user-txns-heading-wrapper" {...headerGroup.getHeaderGroupProps()}>
                         {
                             headerGroup.headers.map(column =>(
                                 <th {...column.getHeaderProps()}>{column.render('Header')}</th>
@@ -90,7 +81,7 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
             }
 
         </thead>
-        <tbody className="p-d-i-table-body" {...getTableBodyProps()}>
+        <tbody className="user-txns-table-body" {...getTableBodyProps()}>
             {
                 rows.map(row => {
                     prepareRow(row)
@@ -99,7 +90,7 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
                     return (
 
                         <tr {...row.getRowProps()} onClick={() => handleClick(row.original.id)}>
-                        {/* <Link to={row.original.link} className="p-d-i-table-link"> */}
+                        {/* <Link to={row.original.link} className="user-txns-table-link"> */}
 
                             {
 
@@ -108,14 +99,10 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
                                 })
                             }
                             <td onClick={(event)=> event.stopPropagation()} className="more-menu-button">
-                                <button onClick={() => handleEdit(row.original.id)} className='edit-proj-dep-btn'>Edit</button>
-                                {/* <MoreOptionsMenu /> */}
+
+                                <MoreOptionsMenu />
                                 </td>
-                            {/* <td className="control-buttons-container"> */}
-                                {/* <button onClick={ () => handleViewClick(row.original.id)} className="view-btn">View</button> */}
-                                {/* <button className="verify-btn">Verify</button> */}
-                                {/* <button className="unverify-btn">Mark Unverified</button> */}
-                            {/* </td> */}
+
 
                         </tr>
 
@@ -123,10 +110,10 @@ const ProjDepItemTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2,
                 })
             }
         </tbody>
-        <EditProjectDependency open={isOpenEdit} onClose={closeModal} dependencyType={depType} depId={editDepId} />
+
     </table>
     </>
     )
 }
 
-export default ProjDepItemTable
+export default TransactionsListTable

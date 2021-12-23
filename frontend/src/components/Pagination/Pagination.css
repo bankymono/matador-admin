@@ -12,6 +12,19 @@
     border: 1px solid #DEE2E6;
 }
 
+.pagination-item-li{
+    /* text-decoration: none; */
+    list-style: none;
+    padding: 16px;
+    /* background-color: red; */
+    border: 1px solid #DEE2E6;
+    cursor: pointer;
+}
+
+.pagination-item-li-link{
+    cursor: pointer;
+}
+
 .pagi-active {
     background-color: #03A678;
     color: white;

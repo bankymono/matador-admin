@@ -9,13 +9,13 @@ import Pagination from '../../Pagination/Pagination';
 import ProjDepItemTable from '../ProjDepItemTable/ProjDepItemTable';
 import { useDispatch, useSelector } from 'react-redux';
 
-import EquityInvestmentDetail from '../../modals/EquityInvestmentDetail/EquityInvestmentDetail';
+
 import { getAmenities, getBuildingTypes, getCategories, getLandTitles, getProjStatus } from '../../../redux/actions/projDepActions';
 import ProjDepDetailModal from '../../modals/ProjDepDetailModal/ProjDepDetailModal';
 
 const ProjDepItemList = ({match}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [veriIdsList, setveriIdsList] = useState([])
+
     const [projDepObj, setProjDepObj] = useState([])
     const [depId, setDepId] = useState('');
     const [pagiOffset, setPagiOffset] = useState(0);
@@ -123,16 +123,16 @@ const ProjDepItemList = ({match}) => {
                     setDepId={setDepId}
                     depId={depId}
                     depType={match.params.dep}
-                    // setIsOpen={setIsOpen}
+
                 />
 
             <div className="s-i-ongoing-bottom-pagination-container">
                 <div>Showing: <span className="val">100</span></div>
                 <div><Pagination /></div>
             </div>
-            {/* <VIDDetails verId={verId} setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} /> */}
+
             <ProjDepDetailModal depType={match.params.dep} depId={depId} setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} />
-            {/* <EquityInvestmentDetail  setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} /> */}
+
         </div>
 
         </>
