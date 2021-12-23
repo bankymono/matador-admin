@@ -46,7 +46,7 @@ const EquityInvestment = ({ arrLinks }) => {
                 let data = {
                     data_one: `${obj.user.first_name.toLowerCase()} ${obj.user.last_name.toLowerCase()}`,
                     data_two: `₦${numberWithComma(obj.amount_invested)}`,
-                    data_three: new Date().toDateString(`${obj.created_at}`),
+                    data_three: new Date(`${obj.created_at}`).toDateString(),
                     data_four: `${obj.number_of_fractions}`,
                     data_five: `${obj.bundle ? 'bundles' : 'fractions'}`,
                     data_six: `${obj.project.name}`,

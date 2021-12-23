@@ -35,6 +35,9 @@ import {
     PROJECTS_DATA_FAIL,
     PROJECTS_DATA_SUCCESS,
     PROJECTS_DATA_REQUEST,
+    PROJECT_DATA_FAIL,
+    PROJECT_DATA_SUCCESS,
+    PROJECT_DATA_REQUEST,
 
 } from "../constants/projectConstants";
 
@@ -168,6 +171,18 @@ export const projectsDataReducer = (state = { projectsListData: null, projectDat
             return { projectsListData: action.payload, projectsDataRequest: true, projectsError: false }
         case PROJECTS_DATA_FAIL:
             return { projectsListData: null, projectsDataRequest: true, projectsError: true }
+        default:
+            return state;
+    }
+}
+export const singleProjectReducer = (state = { projectData: null, projectDataRequest: false, projectError: false }, action) => {
+    switch (action.type) {
+        case PROJECT_DATA_REQUEST:
+            return { projectData: null, projectDataRequest: true, projectError: false }
+        case PROJECT_DATA_SUCCESS:
+            return { projectData: action.payload, projectDataRequest: true, projectError: false }
+        case PROJECT_DATA_FAIL:
+            return { projectData: null, projectDataRequest: true, projectError: true }
         default:
             return state;
     }

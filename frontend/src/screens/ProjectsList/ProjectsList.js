@@ -26,7 +26,6 @@ const ProjectsList = ({ match, arrLinks }) => {
     const projectsDataState = useSelector(state => state.projectsData);
     const {projectsStat} = projectsStatData;
     const {projectsListData} = projectsDataState 
-    const [tableData, setTableData] = useState();
 
     useEffect(()=>{
         dispatch(getProjectsStat());
@@ -65,7 +64,7 @@ const ProjectsList = ({ match, arrLinks }) => {
             data.forEach(element => {
                 let data = {
                     data_one: `${element.name}`,
-                    data_two: new Date().toDateString(`${element.completed_timestamp}`),
+                    data_two: new Date(`${element.completed_timestamp}`).toDateString(),
                     data_three: `${numberWithComma(element.total_fractions)}`,
                     data_four: `${numberWithComma(element.total_fractions - element.total_purchased_fractions)}`,
                     data_five: `₦${numberWithComma(element.evaluation)}`,

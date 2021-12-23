@@ -190,7 +190,6 @@ function App() {
               adminInfo ?
                 (<ProjectDetails
                   {...props}
-                  arrLinks={['home', 'projects', 'project name']}
                 />)
                 : (<Redirect
                   to="/login"
