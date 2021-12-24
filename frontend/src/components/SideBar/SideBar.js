@@ -17,7 +17,7 @@ const SideBar = ({location,match, setCurrentPage}) => {
             <ul className="sidebar-nav-item-container">
                 {SideBarData.map((val, key)=>{
                     return (<NavLink className="sidebar-nav-link" to={val.link} key={key} onClick={()=>setCurrentPage(val.title)}>
-                                <li id={location.pathname===val.link || location.pathname===val.link +`/${match.params.id}` ? 'sidebar-item-active': ""} className="sidebar-item sidebar-item-active">
+                                <li id={location.pathname===val.link || location.pathname===val.link +`/${match.params.dep}` ? 'sidebar-item-active': ""} className="sidebar-item sidebar-item-active">
                                     <img className="sidebar-item-icon" src={val.icon} alt="sidebar-icon" />
                                     <div className="sidebar-desc">{val.title}</div>
                                 </li>

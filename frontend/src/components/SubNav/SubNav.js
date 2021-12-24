@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom';
 import './SubNav.css';
 
 const SubNav = ({currentPage, arrLinks, rightButtons}) => {
+    console.log('arr links', arrLinks)
     return (
         <div className="subnav-container">
             <div className="subnav-heading">{currentPage}</div>

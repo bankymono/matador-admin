@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import './App.css';
 import Settings from './screens/Settings/Settings';
-import TransactionsList from './screens/TransactionsList/TransactionsList';
+
 import ProjectsList from './screens/ProjectsList/ProjectsList';
 import ProjectDetails from './screens/ProjectDetails/ProjectDetails';
 import UserInfo from './screens/UserInfo/UserInfo';
@@ -34,6 +34,7 @@ import SoleInvestment from './screens/SoleInvestment/SoleInvestment';
 import VerificationIdList from './screens/VerificationIdList/VerificationIdList';
 import ProjectDependencyList from './screens/ProjectDependencyList/ProjectDependencyList';
 import ProjectDependencies from './screens/ProjectDependencies/ProjectDependencies';
+import TransactionsList from './screens/TransactionsList/TransactionsList';
 
 
 
@@ -246,14 +247,147 @@ function App() {
                 />)
             }
           />
-          <Route exact path='/settings'
-            render={(props) =>
-            (<Settings
-              {...props}
-              arrLinks={['home', 'settings', 'investments']}
-            />)}
-          />
-          <Route exact path='/settings/interest-rate'
+
+              <Route 
+                exact 
+                path='/investors/info'
+                render={(props)=>
+                  adminInfo ?
+                  (<UserInfo 
+                    {...props} 
+                      arrLinks={['home','investors','info']}
+                    />)
+                    :(<Redirect
+                      to="/login"
+                     />)
+                  } 
+              />
+              <Route 
+                  exact 
+                  path='/projects'
+                  render={(props)=>
+                    adminInfo ?
+                    (<ProjectsList 
+                      {...props} 
+                        arrLinks={['home','projects']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+                  <Route 
+                    exact 
+                    path='/project-dependencies'
+                    render={(props)=>
+                      adminInfo ?
+                      (<ProjectDependencies
+                        {...props} 
+                        arrLinks={['home','project dependencies']}
+                         />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                        }
+                    />
+                      <Route 
+                    exact 
+                    path='/project-dependencies/:dep'
+                    render={(props)=>
+                      adminInfo ?
+                      (<ProjectDependencyList
+                        {...props} 
+                        arrLinks={['home','project dependencies']}
+                         />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                        }
+                    />
+                <Route 
+
+                  exact 
+                  path='/projects/new'
+                  render={(props)=>
+                    adminInfo ?
+                    (<CreateProjectTwo 
+                      {...props} 
+                        arrLinks={['home','projects', 'new']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+                <Route 
+                  exact 
+                  path='/projects/new-2'
+                  render={(props)=>
+                    adminInfo ?
+                    (<CreateProject
+                      {...props} 
+                        arrLinks={['home','projects', 'new']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+              <Route 
+                  exact 
+                  path='/projects/id'
+                  render={(props)=>
+                    adminInfo ?
+                    (<ProjectDetails
+                      {...props} 
+                        arrLinks={['home','projects','project name']}
+                      />)
+                      :(<Redirect
+                        to="/login"
+                       />)
+                    } 
+                />
+                <Route 
+                  exact 
+                  path='/transactions'
+                  render={(props)=>
+                    adminInfo ?
+                    (<TransactionsList 
+                      {...props} 
+                        arrLinks={['home','transactions']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+
+                <Route 
+                  exact 
+                  path='/id-verification'
+                  render={(props)=>
+                    adminInfo ?
+                    (<VerificationIdList  
+                      {...props} 
+                        arrLinks={['home','ID verification']}
+                        />)
+                        :(<Redirect
+                          to="/login"
+                         />)
+                      }
+                  />
+                <Route 
+                  exact 
+                  path='/settings'
+                  render={(props)=>
+                    (<Settings
+                      {...props} 
+                        arrLinks={['home','settings','investments']}
+                      />)} 
+                  />  
+          <Route
+            exact
+            path='/settings/interest-rate'
             render={(props) =>
               adminInfo ?
                 (<InterestRate

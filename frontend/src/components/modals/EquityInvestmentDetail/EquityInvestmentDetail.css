@@ -1,4 +1,4 @@
-.p-d-d-m-container{
+.e-i-d-m-container{
     cursor: pointer;
     position: fixed;
     top: 0;
@@ -13,7 +13,7 @@
     padding-bottom: 100px;
 }
 
-.p-d-d-m-input-wrapper-main{
+.e-i-d-m-input-wrapper-main{
     /* position: relative; */
     position: absolute;
 
@@ -21,7 +21,7 @@
     top: 0;
 }
 
-.p-d-d-m-input-wrapper-main .close-icon{
+.e-i-d-m-input-wrapper-main .close-icon{
     position: absolute;
     right: 15px;
     margin-top: 10px;
@@ -30,7 +30,7 @@
     cursor: pointer;
 }
 
-.p-d-d-m-input-wrapper{
+.e-i-d-m-input-wrapper{
     background: white;
     border-radius: 8px;
     width: 40vw;
@@ -44,13 +44,13 @@
     cursor: default;
 }
 
-.p-d-d-m-heading{
+.e-i-d-m-heading{
     /* background-color: pink; */
     display: flex;
     flex-direction: column;
 }
 
-.p-d-d-m-heading .p-d-d-m-inner-wrapper{
+.e-i-d-m-heading .e-i-d-m-inner-wrapper{
     /* background-color: green; */
     display: flex;
     justify-content: space-between;
@@ -67,25 +67,25 @@
     width: 100%;
 }
 
-.p-d-d-m-heading .p-d-d-m-heading-bottom-content{
+.e-i-d-m-heading .e-i-d-m-heading-bottom-content{
     /* background-color: black; */
     width: 100%;
     display: flex;
     /* justify  -content: space-between; */
 }
 
-.p-d-d-m-heading .p-d-d-m-heading-bottom-content .left-content,
-.p-d-d-m-heading .p-d-d-m-heading-bottom-content .right-content{
+.e-i-d-m-heading .e-i-d-m-heading-bottom-content .left-content,
+.e-i-d-m-heading .e-i-d-m-heading-bottom-content .right-content{
     flex: 1;
 }
 
-.p-d-d-m-heading .p-d-d-m-heading-bottom-content .left-content .desc,
-.p-d-d-m-heading .p-d-d-m-heading-bottom-content .right-content .desc{
+.e-i-d-m-heading .e-i-d-m-heading-bottom-content .left-content .desc,
+.e-i-d-m-heading .e-i-d-m-heading-bottom-content .right-content .desc{
      color: #8D8F91;
      font-size: 14px;
 }
 
-.p-d-d-m-heading .p-d-d-m-heading-bottom-content .left-content .val{
+.e-i-d-m-heading .e-i-d-m-heading-bottom-content .left-content .val{
      color: #58AAFF;
      font-size: 14px;
      background-color: rgba(88, 170, 255,.2);
@@ -94,39 +94,39 @@
      padding: 5px 10px;
 }
 
-.p-d-d-m-heading .p-d-d-m-heading-bottom-content .right-content .val{
+.e-i-d-m-heading .e-i-d-m-heading-bottom-content .right-content .val{
     font-weight: 600;
 }
 
-.p-d-d-m-heading .heading-val-detail-container {
+.e-i-d-m-heading .heading-val-detail-container {
     /* background-color: red; */
 }
 
-.p-d-d-m-heading .info {
+.e-i-d-m-heading .info {
     display: flex;
     flex-direction: column;
     
 }
 
-.p-d-d-m-heading .info .desc{
+.e-i-d-m-heading .info .desc{
     color: #8D8F91;
     font-size: 14px;
     line-height: 14px;
     
 }
 
-.p-d-d-m-heading .info .act-name{
+.e-i-d-m-heading .info .act-name{
     
     font-weight: 600;
     margin-bottom: 10px;
 }
 
-.p-d-d-m-heading .profile-img {
+.e-i-d-m-heading .profile-img {
     /* cursor: pointer; */
 width: 100px;
 }
 
-.p-d-d-m-detail-wrapper{
+.e-i-d-m-detail-wrapper{
     margin: 0 auto;
     /* width: 80%; */
     /* display: flex; */
@@ -137,7 +137,7 @@ width: 100px;
     padding-bottom: 40px;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-body-wrapper {
+.e-i-d-m-detail-wrapper .e-i-d-m-body-wrapper {
     padding: 0 24px;
     /* background-color: red; */
     /* color: #8D8F91; */
@@ -145,7 +145,7 @@ width: 100px;
 }
 
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper-2{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper-2{
     padding:  0px 24px 0 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -153,34 +153,34 @@ width: 100px;
 }
 
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper-2 .p-d-d-m-item{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper-2 .e-i-d-m-item{
     margin-bottom: 5px;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper .p-d-d-m-item:last-child{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper .e-i-d-m-item:last-child{
     margin-bottom: 0px;
 }
 
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper-2 .p-d-d-m-item .desc{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper-2 .e-i-d-m-item .desc{
     color: #8D8F91;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper-2 .p-d-d-m-item .val{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper-2 .e-i-d-m-item .val{
     /* color: #8D8F91; */
     font-weight: 600;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-body-wrapper .desc{
+.e-i-d-m-detail-wrapper .e-i-d-m-body-wrapper .desc{
     color: #8D8F91;
     font-size: 14px;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-body-wrapper .p-d-d-m-content{
+.e-i-d-m-detail-wrapper .e-i-d-m-body-wrapper .e-i-d-m-content{
     margin-bottom: 10px;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper{
     padding:  5px 24px 0 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -188,20 +188,20 @@ width: 100px;
 }
 
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper .p-d-d-m-item{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper .e-i-d-m-item{
     margin-bottom: 0px;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper .p-d-d-m-item:last-child{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper .e-i-d-m-item:last-child{
     margin-bottom: 0px;
 }
 
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper .p-d-d-m-item .desc{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper .e-i-d-m-item .desc{
     color: #8D8F91;
 }
 
-.p-d-d-m-detail-wrapper .p-d-d-m-third-wrapper .p-d-d-m-item .val{
+.e-i-d-m-detail-wrapper .e-i-d-m-third-wrapper .e-i-d-m-item .val{
     /* color: #8D8F91; */
     font-weight: 600;
 }
@@ -217,19 +217,19 @@ width: 100px;
 
 
 
-.p-d-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item .info-container .name-details .name{
+.e-i-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item .info-container .name-details .name{
     font-weight: 600;
 }
 
-.p-d-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item .info-container .name-details .role{
+.e-i-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item .info-container .name-details .role{
     color: #404244;
     font-size: 14px;
 }
 
-.p-d-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item  .value{
+.e-i-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item  .value{
     font-weight: 600;
 }
 
-.p-d-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item:last-child{
+.e-i-d-m-detail-wrapper .detail-card-two .card-two-body-wrapper .card-item:last-child{
     border-bottom: none;
 }

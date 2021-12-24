@@ -1,6 +1,6 @@
 .v-id-container{
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: rgba(14, 36, 26, 0.7);
     display: flex;

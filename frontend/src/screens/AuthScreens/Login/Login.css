@@ -73,6 +73,7 @@
     border: none;
     background-color: #03A678;
     color: white;
+    cursor: pointer;
 }
 
 .auth-matador-logo {
