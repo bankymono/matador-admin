@@ -28,6 +28,7 @@ import {
     } from './reducers/projectReducers';
 import { 
         equityInvestmentStatReducer,
+        equityInvestmentDataReducer,
         adminSettingsReducer,
         adminSettingsRewardUpdateReducer,
     } from './reducers/investmentsReducer';
@@ -58,6 +59,7 @@ const reducer = combineReducers({
 
     //investment-related-reducers
     equityInvestmentStatData: equityInvestmentStatReducer,
+    equityInvestmentData: equityInvestmentDataReducer,
     adminSettings: adminSettingsReducer,
     adminRewardSettingsUpdate: adminSettingsRewardUpdateReducer,
 });
