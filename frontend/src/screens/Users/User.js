@@ -8,10 +8,10 @@ import './User.css';
 import { useHistory } from 'react-router-dom';
 import {getInvestors} from '../../redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { BeatLoader } from 'react-spinners';
 const User = ({match, arrLinks}) => {
     const dispatch = useDispatch();
     const investorsList = useSelector(state => {
-        console.log(state.investorsList);
         return state.investorsList !== 'error fetching list'?
          [
         ...state.investorsList.investorsList
@@ -40,8 +40,14 @@ const User = ({match, arrLinks}) => {
                 <SubNav currentPage={currentPage} arrLinks={arrLinks} />
                 <div className="user-info-container">
                     {investorsList.length > 0?
-                    <GeneralTable headList={headList} bodyList={investorsList} handleCellClick={handleCellClick} />
-                    : <p>Data sets not available</p>}
+                    <GeneralTable 
+                        headList={headList} 
+                        bodyList={investorsList} 
+                        handleCellClick={handleCellClick} 
+                        showTabControls={false}
+                    />
+                    : <BeatLoader loading={true} color="#03A678" />
+                    }
                 </div>
             </div>
         </div>

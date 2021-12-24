@@ -24,7 +24,10 @@ import {
         landTitleListReducer, 
         projectCategoryListReducer, 
         projectStatusListReducer, 
-        projectCreateReducer 
+        projectCreateReducer,
+        projectsStatReducer,
+        projectsDataReducer,
+        singleProjectReducer,
     } from './reducers/projectReducers';
 import { 
         equityInvestmentStatReducer,
@@ -34,8 +37,6 @@ import {
     } from './reducers/investmentsReducer';
 import { amenitiesCreateReducer, buildingTypeCreateReducer, categoryCreateReducer, landTitleCreateReducer, projDepAmenityDetailReducer, projDepAmenityListReducer, projDepBuildingTypeDetailReducer, projDepBuildingTypeListReducer, projDepCategoryDetailReducer, projDepCategoryListReducer, projDepLandTitleDetailReducer, projDepLandTitleListReducer, projDepStatusDetailReducer, projDepStatusListReducer, projStatusCreateReducer } from './reducers/projDepReducers';
 import { transactionsDetailReducer, transactionsListReducer } from './reducers/transactionsReducer';
-
-
 
 const reducer = combineReducers({
     adminLogin:adminLoginReducer,
@@ -53,6 +54,9 @@ const reducer = combineReducers({
     projectStatusList:projectStatusListReducer,
     amenityList:amenityListReducer,
     projectCreate:projectCreateReducer,
+    projectsStat: projectsStatReducer,
+    projectsData: projectsDataReducer,
+    singleProjectData: singleProjectReducer,
     equityInvestmentList:equityInvestmentListReducer,
 
     verificationIdList: verificationIdListReducer,

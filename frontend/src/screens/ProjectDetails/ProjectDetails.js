@@ -7,6 +7,11 @@ import ProjectDetailsInfoCard from '../../components/ProjectDetail/ProjectDetail
 import SideBar from '../../components/SideBar/SideBar';
 import Header from '../../components/Header/Header';
 import SubNav from '../../components/SubNav/SubNav';
+import { useDispatch, useSelector } from 'react-redux';
+import {getSingleProject } from '../../redux/actions/projectActions';
+import { useHistory } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners';
+
 
 const EditBtn = () => {
     return (
@@ -17,12 +22,20 @@ const EditBtn = () => {
     )
 }
 
-const ProjectDetails = ({match, arrLinks}) => {
+const ProjectDetails = () => {
     const [currentPage, setCurrentPage] = useState("Projects")
     const [isOpen, setIsOpen] = useState(false);
     const sliderRef = useRef(null);
     const innerSliderRef = useRef(null);
-
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const singleProjectData = useSelector(state => state.singleProjectData);
+    const {projectData} = singleProjectData;
+    useEffect(()=>{
+        let id = history.location.pathname.split('/')[2];
+        console.log(id);
+        dispatch(getSingleProject(id));
+    }, []);
 
     const [pressed, setPressed] = useState(false);
     const [startx, setStartx] = useState(null);
@@ -68,6 +81,10 @@ const ProjectDetails = ({match, arrLinks}) => {
     const closeModal = () =>{
         setIsOpen(false);
     }
+    const getArrayLinks= ()=>{
+
+        return ['home', 'projects', projectData?.project?.name];
+    }
     return (
         <div>
             <SideBar setCurrentPage={setCurrentPage} />
@@ -76,41 +93,48 @@ const ProjectDetails = ({match, arrLinks}) => {
                 <Header />
                 <div className="project-detail-container">    
                     
-                    <SubNav currentPage={currentPage} arrLinks={arrLinks} rightButtons={<EditBtn />}/>
+                    {
+                    projectData?
+                    <SubNav currentPage={currentPage} arrLinks={getArrayLinks()} rightButtons={<EditBtn />}/>
+                    : null}
 
-                    <div className="project-center-content-wrapper">
+                    {
+                    projectData?
+                    <div>
+                        <div className="project-center-content-wrapper">
                         <div className="project-center-content">
                             <div className="project-title-container">
-                                <div className="project-name">Astrid 2.0</div>
-                                <div className="project-status">Active</div>
+                                <div className="project-name">{projectData?.project?.name}</div>
+                                <div className="project-status">{projectData?.project?.publish? 'Active':'Inactive'}</div>
                             </div>
 
                             <div className="project-detail-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                Curabitur consequat vestibulum lacus id porta. Morbi efficitur rhoncus bibendum. 
-                                Vivamus ipsum nisi
+                                {projectData?.project?.description? projectData?.project?.description : 'N/A'}
                             </div>
 
                             <div ref={sliderRef} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} className="slider">
                                 <div ref={innerSliderRef} className="project-images-container">
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
-                                    <div onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                                    {
+                                        projectData?.project?.photos.length > 0?
+                                        projectData?.project?.photos.map((photo =>{
+                                            return (
+                                                <div key={photo.id} onDoubleClick={(e)=>{e.preventDefault();setIsOpen(true)}} className="project-image-wrapper"><img className="project-image" src={office_building} alt="building" /></div>
+                                            )
+                                        }))
+                                        : null
+                                    }                               
                                 </div>
                             </div>
                             
 
                             <div className="project-detail-info-wrapper">
-                                <ProjectDetailsInfoCard />
+                                <ProjectDetailsInfoCard projectData={projectData?.project} />
                             </div>
                         </div>
                     </div>
                     <ImageViewModal open={isOpen} onClose={closeModal} />
+                    </div>:
+                    <BeatLoader loading={true} color="#03A678" />}
                 </div>
             </div>
 
