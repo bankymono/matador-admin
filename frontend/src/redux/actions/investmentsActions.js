@@ -4,6 +4,10 @@ import {
         EQUITY_INVESTMENT_STAT_REQUEST, 
         EQUITY_INVESTMENT_STAT_SUCCESS,
 
+        EQUITY_INVESTMENT_DATA_FAIL, 
+        EQUITY_INVESTMENT_DATA_REQUEST, 
+        EQUITY_INVESTMENT_DATA_SUCCESS,
+
         ADMIN_SETTINGS_REQUEST,
         ADMIN_SETTINGS_FAIL,
         ADMIN_SETTINGS_SUCCESS,
@@ -27,11 +31,32 @@ export const getEquityInvestmentStat = () => async (dispatch) => {
             payload: data
         })
 
-        console.log('stat data', data)
 
     } catch (error) {
         dispatch({
             type: EQUITY_INVESTMENT_STAT_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+export const getEquityInvestmentData = (queryParams) => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: EQUITY_INVESTMENT_DATA_REQUEST
+        })
+
+        const {data} = await api.get(`/investment/user-investment?investment_type_id=${queryParams.investment_type_id}&page=${queryParams.page}&is_sold=${queryParams.is_sold}`)
+
+        dispatch({
+            type: EQUITY_INVESTMENT_DATA_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: EQUITY_INVESTMENT_DATA_FAIL,
             payload: error.response
         })
     }
