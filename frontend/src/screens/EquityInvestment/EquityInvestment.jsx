@@ -1,9 +1,7 @@
-import { Modal } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
 import CurrencyOptionsBtn from '../../components/CurrencyOptionsBtn/CurrencyOptionsBtn';
-import EIOngoingAndSoldTab from '../../components/EquityInvestment/EIOngoingAndSoldTab/EIOngoingAndSoldTab';
 import EquityInvestmentListOverviewCard from '../../components/EquityInvestment/EquityInvestmentListOverviewCard/EquityInvestmentListOverviewCard';
 import GeneralTable from '../../components/GeneralTable/GeneralTable';
 import Header from '../../components/Header/Header';
@@ -26,38 +24,29 @@ const EquityInvestment = ({ arrLinks }) => {
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
     const [isSold, setIsSold] = useState(false);
     const headList = ['investor name', 'Amount Invested', 'Investment Date', 'Number of Fractions', 'Equity Type'];
-    const [allowSearch, setAllowSearch] = useState({ condition: false, search: '' });
-    const [dupBodyList, setDupList] = useState([]);
     const [singleData, setSingleData] = useState({});
     const [showSingleModal, setShowSingleModal] = useState(false);
-
+    const [searchTerm, setSearchTerm] = useState('');
     useEffect(() => {
         dispatch(getEquityInvestmentStat());
         dispatch(getEquityInvestmentData({ investment_type_id: 1, page: 1, is_sold: false }));
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getEquityInvestmentData({ investment_type_id: 1, page: currentPageNumber, is_sold: isSold }));
+        dispatch(getEquityInvestmentData({ investment_type_id: 1, page: currentPageNumber, is_sold: isSold, search: searchTerm }));
         if (eqData) {
             formattedEquityData(eqData.data);
         };
-    }, [currentPageNumber, isSold]);
+    }, [currentPageNumber, isSold, searchTerm]);
 
-    useEffect(() => {
-        if (allowSearch.condition) {
-            console.log(allowSearch.search);
-            return formattedEquityData(allowSearch.search);
-        }
-    }, [allowSearch]);
     const formattedEquityData = (eData) => {
         let formattedData = [];
         if (eData)
-        console.log(eData);
             eData.forEach(obj => {
                 let data = {
                     data_one: `${obj.user.first_name.toLowerCase()} ${obj.user.last_name.toLowerCase()}`,
                     data_two: `₦${numberWithComma(obj.amount_invested)}`,
-                    data_three: new Date().toDateString(`${obj.created_at}`),
+                    data_three: new Date(`${obj.created_at}`).toDateString(),
                     data_four: `${obj.number_of_fractions}`,
                     data_five: `${obj.bundle ? 'bundles' : 'fractions'}`,
                     data_six: `${obj.project.name}`,
@@ -70,7 +59,6 @@ const EquityInvestment = ({ arrLinks }) => {
         return formattedData;
     }
     const handleCellClick = (data) => {
-        console.log(data);
         setSingleData(data);
         setShowSingleModal(true);
     }
@@ -85,11 +73,7 @@ const EquityInvestment = ({ arrLinks }) => {
     }
     const handleSearch = (event) => {
         let value = event.target.value.toLowerCase();
-        let result = [];
-        result = eqData.data.filter((data) => {
-            return data.user.first_name.toLowerCase().search(value) !== -1 || data.user.last_name.toLowerCase().search(value) !== -1;
-        });
-        setAllowSearch({ condition: true, search: result });
+        setSearchTerm(value);
     }
     const paginate = (pageNumber) => {
         setCurrentPageNumber(pageNumber);

@@ -2,25 +2,42 @@ import {
     AMENITY_LIST_FAIL,
     AMENITY_LIST_REQUEST,
     AMENITY_LIST_SUCCESS,
+
     BUILDING_TYPE_LIST_FAIL,
     BUILDING_TYPE_LIST_REQUEST,
     BUILDING_TYPE_LIST_SUCCESS,
+
     PROJECT_CREATE_COMPLETE,
     PROJECT_CREATE_FAIL,
     PROJECT_CREATE_REQUEST,
     PROJECT_CREATE_SUCCESS,
+
     EQUITY_INVESTMENT_LIST_FAIL,
     EQUITY_INVESTMENT_LIST_REQUEST,
     EQUITY_INVESTMENT_LIST_SUCCESS,
+
     LAND_TITLE_LIST_FAIL,
     LAND_TITLE_LIST_REQUEST,
     LAND_TITLE_LIST_SUCCESS,
+
     PROJECT_CATEGORY_LIST_FAIL,
     PROJECT_CATEGORY_LIST_REQUEST,
     PROJECT_CATEGORY_LIST_SUCCESS,
+
     PROJECT_STATUS_LIST_FAIL,
     PROJECT_STATUS_LIST_REQUEST,
     PROJECT_STATUS_LIST_SUCCESS,
+
+    PROJECTS_STAT_REQUEST,
+    PROJECTS_STAT_SUCCESS,
+    PROJECTS_STAT_FAIL,
+
+    PROJECTS_DATA_FAIL,
+    PROJECTS_DATA_SUCCESS,
+    PROJECTS_DATA_REQUEST,
+    PROJECT_DATA_FAIL,
+    PROJECT_DATA_SUCCESS,
+    PROJECT_DATA_REQUEST,
 
 } from "../constants/projectConstants";
 
@@ -130,6 +147,42 @@ export const equityInvestmentListReducer = (state = { equityInvestments: {}, eqL
             return { eqLoading: false, equityInvestments: action.payload }
         case EQUITY_INVESTMENT_LIST_FAIL:
             return { eqLoading: false, eqError: action.payload }
+        default:
+            return state;
+    }
+}
+export const projectsStatReducer = (state = { projectsStat: null, projectStatRequest: false, projectsError: false }, action) => {
+    switch (action.type) {
+        case PROJECTS_STAT_REQUEST:
+            return { projectsStat: null, projectStatRequest: true, projectsError: false }
+        case PROJECTS_STAT_SUCCESS:
+            return { projectsStat: action.payload, projectStatRequest: true, projectsError: false }
+        case PROJECTS_STAT_FAIL:
+            return { projectsStat: null, projectStatRequest: true, projectsError: true }
+        default:
+            return state;
+    }
+}
+export const projectsDataReducer = (state = { projectsListData: null, projectDataRequest: false, projectsError: false }, action) => {
+    switch (action.type) {
+        case PROJECTS_DATA_REQUEST:
+            return { projectsListData: null, projectsDataRequest: true, projectsError: false }
+        case PROJECTS_DATA_SUCCESS:
+            return { projectsListData: action.payload, projectsDataRequest: true, projectsError: false }
+        case PROJECTS_DATA_FAIL:
+            return { projectsListData: null, projectsDataRequest: true, projectsError: true }
+        default:
+            return state;
+    }
+}
+export const singleProjectReducer = (state = { projectData: null, projectDataRequest: false, projectError: false }, action) => {
+    switch (action.type) {
+        case PROJECT_DATA_REQUEST:
+            return { projectData: null, projectDataRequest: true, projectError: false }
+        case PROJECT_DATA_SUCCESS:
+            return { projectData: action.payload, projectDataRequest: true, projectError: false }
+        case PROJECT_DATA_FAIL:
+            return { projectData: null, projectDataRequest: true, projectError: true }
         default:
             return state;
     }
