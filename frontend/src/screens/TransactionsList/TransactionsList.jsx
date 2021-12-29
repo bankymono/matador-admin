@@ -32,7 +32,9 @@ const TransactionsList = ({match, arrLinks}) => {
 
     const [txns, setTxns] = useState([]);
 
-    const [txnId, setTxnId] = useState('')
+    const [txnId, setTxnId] = useState('');
+
+    const [pageCount, setPageCount] = useState(0);
 
     const dispatch = useDispatch();
     const transactionsList = useSelector(state => state.transactionsList);
@@ -50,6 +52,7 @@ const TransactionsList = ({match, arrLinks}) => {
 
         const constructObject = (receivedObj) => {
 
+            setPageCount(receivedObj.count)
         console.log('reeeeceeeved',receivedObj);
 
         let newArr = receivedObj.results.map(obj => {
@@ -69,6 +72,7 @@ const TransactionsList = ({match, arrLinks}) => {
 
     const handlePageClick=(data) => {
         console.log('dataaa', data.selected)
+        dispatch(getTransactions(data.selected))
     }
 
 
@@ -89,19 +93,27 @@ const TransactionsList = ({match, arrLinks}) => {
                     />
 
                     <div className="user-transactions-bottom-pagination-container">
-                        <div>Showing: <span className="val">100</span></div>
-                        <div><Pagination /></div>
-                        {/* <div><ReactPaginate
+                        <div>Showing: <span className="val">{pageCount}</span></div>
+                        {/* <div><Pagination /></div> */}
+                        <div><ReactPaginate
                             previousLabel={"Previous"}
                             nextLabel={"Next"}
                             breakLabel={"..."}
-                            pageCount={25}
+                            pageCount={pageCount/10}
                             marginPagesDisplayed={2}
                             pageRangeDisplayed={2}
                             onPageChange={handlePageClick}
                             containerClassName={'pagination-container'}
                             pageClassName={'pagination-item-li'}
-                        /></div> */}
+                            pageLinkClassName={'pagination-item-li-link'}
+                            previousClassName={'pagination-item-li'}
+                            previousLinkClassName={'pagination-item-li-link'}
+                            nextClassName={'pagination-item-li'}
+                            nextLinkClassName={'pagination-item-li-link'}
+                            breakClassName={'pagination-item-li'}
+                            breakLinkClassName={'pagination-item-li-link'}
+                            activeClassName={'pagi-active'}
+                        /></div>
                     </div>
                 </div>
             </div>

@@ -10,14 +10,14 @@ import {
 } from "../constants/transactionsConstants"
 
 
-export const getTransactions = () => async (dispatch) => {
+export const getTransactions = (pageIndex=0) => async (dispatch) => {
 
     try {
         dispatch({
             type: TRANSACTIONS_LIST_REQUEST
         })
 
-        const { data } = await api.get('/transaction/txns')
+        const { data } = await api.get(`/transaction/txns?limit=10&&offset=${pageIndex * 10}`)
 
         dispatch({
             type: TRANSACTIONS_LIST_SUCCESS,

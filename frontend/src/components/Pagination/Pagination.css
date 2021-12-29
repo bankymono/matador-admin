@@ -15,14 +15,18 @@
 .pagination-item-li{
     /* text-decoration: none; */
     list-style: none;
-    padding: 16px;
+
     /* background-color: red; */
-    border: 1px solid #DEE2E6;
+
     cursor: pointer;
 }
 
 .pagination-item-li-link{
     cursor: pointer;
+    display: block;
+    /* background-color: red; */
+    padding: 16px;
+    border: 1px solid #DEE2E6;
 }
 
 .pagi-active {
