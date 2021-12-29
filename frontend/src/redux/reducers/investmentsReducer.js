@@ -6,7 +6,12 @@ import {
     ADMIN_SETTINGS_SUCCESS, 
     EQUITY_INVESTMENT_STAT_FAIL, 
     EQUITY_INVESTMENT_STAT_REQUEST, 
-    EQUITY_INVESTMENT_STAT_SUCCESS } from "../constants/investmentsContants";
+    EQUITY_INVESTMENT_STAT_SUCCESS,
+    EQUITY_INVESTMENT_DATA_FAIL, 
+    EQUITY_INVESTMENT_DATA_REQUEST, 
+    EQUITY_INVESTMENT_DATA_SUCCESS,
+     
+} from "../constants/investmentsContants";
 
 
 export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, eqInvStatLoading:true}, action) => {
@@ -17,6 +22,18 @@ export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, eqIn
             return { eqInvStatLoading: false, equityInvestmentStat: action.payload}
         case EQUITY_INVESTMENT_STAT_FAIL:
             return { eqInvStatLoading:false, eqInvStatError: action.payload}
+        default:
+            return state;
+    }
+}
+export const equityInvestmentDataReducer = (state={eqData: false, eqRequest: null, eqFail: false}, action)=>{
+    switch(action.type){
+        case EQUITY_INVESTMENT_DATA_REQUEST:
+            return {...state, eqRequest: action.payload,};
+        case EQUITY_INVESTMENT_DATA_SUCCESS:
+            return {...state, eqData: action.payload,};
+        case EQUITY_INVESTMENT_DATA_FAIL:
+            return {...state, eqFail: true};
         default:
             return state;
     }

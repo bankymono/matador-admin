@@ -4,31 +4,36 @@ import search_icon from '../../assets/icons/search-icon-img.png'
 import Pagination from '../Pagination/Pagination';
 import MoreOptionsMenu from '../MoreOptionsMenu/MoreOptionsMenu';
 
-const GeneralTable = ({ headList, bodyList, handleCellClick }) => {
-    const [currentPageNumber, setCurrentPageNumber] = useState(1);
-    const [usersPerPage] = useState(5);
+const GeneralTable = ({
+    headList,
+    bodyList,
+    handleCellClick,
+    usersPerPage,
+    currentPageNumber,
+    setCurrentPageNumber,
+    handleSearch,  
+    paginate,
+    total_count,
+    showTabControls,
+    tabControlsButtonText,
+    handleTabControl
+}) => {
     const [duplicatedList, setDuplicatedList] = useState(bodyList);
-    const paginate = (pageNumber) => setCurrentPageNumber(pageNumber);
-
-    const indexOfLastUser = currentPageNumber * usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers =()=>{
-        const list = duplicatedList.length ? 
-                duplicatedList.slice(indexOfFirstUser, indexOfLastUser) : 
-                [''].slice(indexOfFirstUser, indexOfLastUser);
-                return list
-    }
-    const handleSearch=(event)=>{
-        let value = event.target.value.toLowerCase();
-        let result = [];
-        result = bodyList.filter((data) => {
-            return data.first_name.toLowerCase().search(value) !== -1 || data.last_name.toLowerCase().search(value) !== -1;
-            });
-        setDuplicatedList(result);
-    }
+    const [activeTab, setActiveTab] = useState(tabControlsButtonText.buttonOne);
+    
     return (
         <div>
-            <div className="general-table-search-header">
+            {   
+            showTabControls?
+                <div className="general-tabs-controls">
+                    <div className={activeTab===tabControlsButtonText.buttonOne? "tabs active-tabs": "tabs"} onClick={()=> {setActiveTab(tabControlsButtonText.buttonOne); handleTabControl(tabControlsButtonText.buttonOne);}}>{tabControlsButtonText.buttonOne}</div>
+                    <div className={activeTab===tabControlsButtonText.buttonTwo? "tabs active-tabs": "tabs"} onClick={()=> {setActiveTab(tabControlsButtonText.buttonTwo); handleTabControl(tabControlsButtonText.buttonTwo);}}>{tabControlsButtonText.buttonTwo}</div>
+                </div>
+                :null
+            }
+
+            <div className={!showTabControls? "general-table-search-header borederRad": "general-table-search-header"} >
+
                 <div className="search-input-container">
                     <img src={search_icon} alt="search" />
                     <input placeholder="Search" onChange={handleSearch} />
@@ -52,31 +57,30 @@ const GeneralTable = ({ headList, bodyList, handleCellClick }) => {
             </div>
 
             <div className="general-table-info-body-list">
-
                 {
-                    duplicatedList ?
-                        currentUsers().map((body, index) => 
-                        <div key={index} className="general-table-info-body" onClick={()=>{handleCellClick(body)}}>
-                            <input type="checkbox" />
-                            <div className="general-table-info-body-wrapper">
-                                <div>{`${body.first_name? body.first_name : ''} ${body.last_name? body.last_name : ''}`}</div>
-                                <div>{body.amount? body.amount : 'N/A'}</div>
-                                <div>{body.duration? body.duration : 'N/A'}</div>
-                                <div>{body.durationLeft? body.durationLeft : 'N/A'}</div>
-                                <div>{body.startDate? body.startDate : 'N/A'}</div>
-                            </div>
-                            <MoreOptionsMenu />
-                        </div>) : <div className="general-table-info-body-wrapper">Empty List</div>}
+                    bodyList ?
+                        bodyList.map((body, index) =>
+                            <div key={index} className="general-table-info-body" onClick={() => { handleCellClick({ body, index }) }}>
+                                <input type="checkbox" />
+                                <div className="general-table-info-body-wrapper">
+                                    <div>{`${body.data_one ? body.data_one : 'N/A'} ${body.last_name ? body.last_name : ''}`}</div>
+                                    <div>{body.data_two ? body.data_two : 'N/A'}</div>
+                                    <div>{body.data_three ? body.data_three : 'N/A'}</div>
+                                    <div>{body.data_four ? body.data_four : 'N/A'}</div>
+                                    <div>{body.data_five ? body.data_five : 'N/A'}</div>
+                                </div>
+                                <MoreOptionsMenu />
+                            </div>) : <div className="general-table-info-body-wrapper">Empty List</div>}
             </div>
 
             <div className="general-table-bottom-pagination-container">
-                <div>Showing: <span className="val">{currentPageNumber}/{Math.ceil(duplicatedList.length / usersPerPage)}</span></div>
+                <div>Showing: <span className="val">{total_count}</span></div>
                 <div>
-                    <Pagination 
+                    <Pagination
                         usersPerPage={usersPerPage}
                         currentPage={currentPageNumber}
-                        listLength={duplicatedList.length} 
-                        paginate={paginate} 
+                        listLength={total_count}
+                        paginate={paginate}
                     />
                 </div>
             </div>
