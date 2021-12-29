@@ -16,6 +16,7 @@ import MOCK_DATA from './MOCK_DATA.json';
 import TransactionsDetail from '../../components/modals/TransactionsDetail/TransactionsDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactions } from '../../redux/actions/transactionsActions';
+import PaginationVerTwo from '../../components/PaginationVerTwo/PaginationVerTwo';
 
 const NewInvBtn = () => {
     return (
@@ -53,7 +54,6 @@ const TransactionsList = ({match, arrLinks}) => {
         const constructObject = (receivedObj) => {
 
             setPageCount(receivedObj.count)
-        console.log('reeeeceeeved',receivedObj);
 
         let newArr = receivedObj.results.map(obj => {
             let dt = new Date(obj.created_at)
@@ -71,7 +71,6 @@ const TransactionsList = ({match, arrLinks}) => {
     }
 
     const handlePageClick=(data) => {
-        console.log('dataaa', data.selected)
         dispatch(getTransactions(data.selected))
     }
 
@@ -93,9 +92,9 @@ const TransactionsList = ({match, arrLinks}) => {
                     />
 
                     <div className="user-transactions-bottom-pagination-container">
-                        <div>Showing: <span className="val">{pageCount}</span></div>
+                        <div>Showing: <span className="val">{Math.ceil(pageCount/10)}</span></div>
                         {/* <div><Pagination /></div> */}
-                        <div><ReactPaginate
+                        {/* <div><ReactPaginate
                             previousLabel={"Previous"}
                             nextLabel={"Next"}
                             breakLabel={"..."}
@@ -113,7 +112,8 @@ const TransactionsList = ({match, arrLinks}) => {
                             breakClassName={'pagination-item-li'}
                             breakLinkClassName={'pagination-item-li-link'}
                             activeClassName={'pagi-active'}
-                        /></div>
+                        /></div> */}
+                        <PaginationVerTwo pageCount={pageCount} handlePageClick={handlePageClick} />
                     </div>
                 </div>
             </div>

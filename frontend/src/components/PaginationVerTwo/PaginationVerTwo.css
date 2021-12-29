@@ -1,0 +1,35 @@
+.pagination-container{
+    display: flex;
+    border: 1px solid #DEE2E6;
+    border-radius: 8px;
+    color: #03A678;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.pagination-item{
+    padding: 16px;
+    border: 1px solid #DEE2E6;
+}
+
+.pagination-item-li{
+    /* text-decoration: none; */
+    list-style: none;
+
+    /* background-color: red; */
+
+    cursor: pointer;
+}
+
+.pagination-item-li-link{
+    cursor: pointer;
+    display: block;
+    /* background-color: red; */
+    padding: 16px;
+    border: 1px solid #DEE2E6;
+}
+
+.pagi-active {
+    background-color: #03A678;
+    color: white;
+}

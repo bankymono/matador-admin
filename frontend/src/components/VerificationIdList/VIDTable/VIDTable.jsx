@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useTable, useGlobalFilter, useAsyncDebounce }from 'react-table';
 // import MoreOptionsMenu from '../../MoreOptionsMenu/MoreOptionsMenu';
 import search_icon from '../../../assets/icons/search-icon-img.png'
@@ -6,8 +6,14 @@ import search_icon from '../../../assets/icons/search-icon-img.png'
 // import {COLUMNS} from './columns';
 import './VIDTable.css';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { verifyVerificationId } from '../../../redux/actions/userActions';
 
-const VIDTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOpen, setVerId, verId}) => {
+const VIDTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOpen, setVerId, verId, veriType}) => {
+    const dispatch = useDispatch();
+    const verifyVerificationIdData = useSelector(state => state.verifyVerificationIdData)
+    // verifyVerId verifyVerIdSuccess verifyVerIdLoading verifyVerIdError
+    // console.log(verifyVerificationIdData, 'rrr')
     const history = useHistory()
     const columns2 = useMemo(() => columnsConfig, [columnsConfig]);
     const columns = useMemo(() => columnsConfig2, [columnsConfig2]);
@@ -35,6 +41,18 @@ const VIDTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOp
     },useGlobalFilter) 
 
     const {globalFilter} = state;
+
+    const handleVerifyId = (id,status) => {
+        dispatch(verifyVerificationId(id,{status}))
+    }
+
+    useEffect(() => {
+        if(verifyVerificationIdData.verifyVerIdLoading === false && verifyVerificationIdData?.verifyVerId){
+            history.push('/id-verification')
+        }
+    }, [
+        verifyVerificationIdData, 
+         history])
 
     const [value, setValue] = useState(globalFilter)
 
@@ -99,8 +117,8 @@ const VIDTable = ({columnsConfig,columnsConfig2, dataConfig,dataConfig2, setIsOp
                             {/* <td className="more-menu-button"><MoreOptionsMenu /></td> */}
                             <td className="control-buttons-container">
                                 <button onClick={ () => handleViewClick(row.original.id)} className="view-btn">View</button>
-                                <button className="verify-btn">Verify</button>
-                                {/* <button className="unverify-btn">Mark Unverified</button> */}
+                                {!veriType ? <button onClick={() => handleVerifyId(row.original.id, true)} className="verify-btn">Verify</button>
+                                :<button onClick={() => handleVerifyId(row.original.id, false)} className="unverify-btn">Mark Unverified</button>}
                             </td>
 
                         </tr>

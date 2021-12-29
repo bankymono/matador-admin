@@ -200,7 +200,7 @@ export const verificationIdDetailReducer = (state={singleVerId:{}, singleVerIdLo
     }
 }
 
-export const verifyVerificationIdReducer = (state={verifyVerIdSuccess:false}, action) => {
+export const verifyVerificationIdReducer = (state={verifyVerIdLoading:true,verifyVerIdSuccess:false}, action) => {
     switch(action.type){
         case VERIFICATION_ID_VERIFY_REQUEST:
             return {

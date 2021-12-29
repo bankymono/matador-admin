@@ -8,7 +8,7 @@ import close_icon from '../../../assets/icons/close-icon.png';
 import ver_detail_img from '../../../assets/images/verification_detail_img.png'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVerificationIdDetail } from '../../../redux/actions/userActions';
+import { getVerificationIdDetail, verifyVerificationId } from '../../../redux/actions/userActions';
 
 const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
     // const location = useLocation()
@@ -36,6 +36,11 @@ const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
         }
     },[open])
 
+    const handleVerifyId = async (id,status) => {
+        await dispatch(verifyVerificationId(id,{status}))
+         onClose()
+    }
+
 
     // location.search ? Number(location.search.split('=')[1]) : 1;
 
@@ -60,8 +65,8 @@ const VIDDetails = ({verId, setIsOpen, open, onClose}) => {
                             </div>
 
                             <div>
-                                {singleVerId.data.status === false ? <button className="verify-btn">Verify</button>:
-                                <button className="unverify-btn">Mark Unverified</button>}
+                                {singleVerId.data.status === false ? <button onClick={() => handleVerifyId(verId, true)} className="verify-btn">Verify</button>:
+                                <button onClick={() => handleVerifyId(verId, false)} className="unverify-btn">Mark Unverified</button>}
                             </div>
                         </div>
 

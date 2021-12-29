@@ -26,7 +26,7 @@ const VeriList = ({veriType}) => {
 
     const verificationIdList = useSelector(state => state.verificationIdList);
     const {verifyIdLoading, verificationIds, verificationIdError} = verificationIdList;
-
+    const verifyVerificationIdData = useSelector(state => state.verifyVerificationIdData)
 
     useEffect(()=>{
         if(veriType){
@@ -36,7 +36,7 @@ const VeriList = ({veriType}) => {
         }
 
 
-    }, [dispatch, veriType])
+    }, [dispatch, veriType, verifyVerificationIdData.verifyVerId])
 
     useEffect(()=>{
         if(verifyIdLoading === false && !verificationIdError){
@@ -78,6 +78,7 @@ const VeriList = ({veriType}) => {
                     setIsOpen={setIsOpen}
                     setVerId={setVerId}
                     verId={verId}
+                    veriType={veriType}
                 />}  
 
             <div className="s-i-ongoing-bottom-pagination-container">

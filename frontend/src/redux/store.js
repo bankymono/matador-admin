@@ -56,7 +56,7 @@ const reducer = combineReducers({
 
     verificationIdList: verificationIdListReducer,
     verificationIdDetail: verificationIdDetailReducer,
-    verifyVerificationId: verifyVerificationIdReducer,
+    verifyVerificationIdData: verifyVerificationIdReducer,
 
     //investment-related-reducers
     equityInvestmentStatData: equityInvestmentStatReducer,
