@@ -38,7 +38,14 @@ import {
     VERIFICATION_ID_DETAIL_REQUEST,
 
     VERIFICATION_ID_DETAIL_CLEAR,
-    INVESTORS_LIST
+    INVESTORS_LIST,
+    INVESTORS_LIST_REQUEST,
+    INVESTORS_LIST_SUCCESS,
+    INVESTORS_LIST_FAIL,
+    INVESTORS_DETAIL_REQUEST,
+    INVESTORS_DETAIL_SUCCESS,
+    INVESTORS_DETAIL_FAIL,
+    INVESTORS_DETAIL_RESET
 } from "../constants/userConstants";
 
 export const adminLoginReducer = (state={}, action) => {
@@ -228,8 +235,31 @@ export const verifyVerificationIdReducer = (state={verifyVerIdLoading:true,verif
     }
 }
 
-export const investorsListReducer = (state={}, action) => {
+export const investorsListReducer = (state = { investors: [], loading: true }, action) => {
 
-    return action.type === 'INVESTORS_LIST'?
-    {investorsList: action.payload} : 'error fetching list';
+    switch (action.type) {
+        case INVESTORS_LIST_REQUEST:
+            return { loading: true, investors: [] }
+        case INVESTORS_LIST_SUCCESS:
+            return { loading: false, investors: action.payload }
+        case INVESTORS_LIST_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
+export const investorsDetailReducer = (state = { investorsDetail: {}, loading: true }, action) => {
+    switch (action.type) {
+        case INVESTORS_DETAIL_REQUEST:
+            return { loading: true, investorsDetail: {} }
+        case INVESTORS_DETAIL_SUCCESS:
+            return { loading: false, investorsDetail: action.payload }
+        case INVESTORS_DETAIL_FAIL:
+            return { loading: false, error: action.payload }
+        case INVESTORS_DETAIL_RESET:
+            return { investorsDetail: {}, loading: true }
+        default:
+            return state;
+    }
 }

@@ -22,8 +22,9 @@ img.profile-image  {
 
 .user-details-container{
     display: grid;
-    grid-template-columns: 1fr 8fr 4fr;
+    grid-template-columns: 1fr 8fr;
     gap: 32px;
+    /* background-color: red; */
 }
 
 .user-details-wrapper{
@@ -35,17 +36,19 @@ img.profile-image  {
     display: grid;
     gap: 24px;
     margin-bottom: 24px;
+    /* background-color: red; */
 }
 
 .user-details .user-details-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
+    /* background-color: red; */
 }
 
 .user-details-bank-card-container{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
 }
 
@@ -59,6 +62,15 @@ img.profile-image  {
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
+}
+
+.user-details-item-cell button{
+    background: none;
+    border: none;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #03A678;
 }
 
 .bank-card-heading{

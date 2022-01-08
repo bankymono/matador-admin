@@ -7,15 +7,12 @@ import search_icon from '../../assets/icons/search-icon-img.png'
 import './ReusableTable.css';
 import { Link, useHistory } from 'react-router-dom';
 
-const ReusableTable = ({columnsConfig, dataConfig, setIsOpen}) => {
+const ReusableTable = ({columnsConfig, dataConfig, handleClick}) => {
     const history = useHistory()
     const columns = useMemo(() => columnsConfig, [columnsConfig]);
     const data = useMemo(() => dataConfig, [dataConfig]);
     // const [open, setIsOpen]
-    const handleClick = (id) => {
-        setIsOpen(true)
-        history.push(`/investments/fixed-income/sole?sole_id=${id}`)
-    }
+
 
     const {
         getTableProps, 
@@ -51,11 +48,26 @@ const ReusableTable = ({columnsConfig, dataConfig, setIsOpen}) => {
                     placeholder="Search" />
                 </div>
 
+                <div>
+
+
                 <select className="reusable-table-select">
-                    <option>All investment</option>
-                    <option>investment 2</option>
-                    <option>investment 3</option>
+                    <option>Filter</option>
+                    <option>Verified</option>
+                    <option>Unverified</option>
                 </select>
+                <select className="reusable-table-select">
+                    <option>Filter</option>
+                    <option>Verified</option>
+                    <option>Unverified</option>
+                </select>
+
+                <select className="reusable-table-select">
+                    <option>Filter</option>
+                    <option>Verified</option>
+                    <option>Unverified</option>
+                </select>
+                </div>
             </div>
         
         <table {...getTableProps()} className="reusable-table">
@@ -86,7 +98,8 @@ const ReusableTable = ({columnsConfig, dataConfig, setIsOpen}) => {
                             {
 
                                 row.cells.map((cell)=>{
-                                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                    console.log(cell,'eee')
+                                    return <td {...cell.getCellProps()}><span className={cell.column.Header === 'Verification Status'? "user-table-status":""}>{cell.render('Cell')}</span></td>
                                 })
                             }
                             <td className="more-menu-button"><MoreOptionsMenu /></td>

@@ -1,0 +1,122 @@
+.u-i-tab-select {
+    padding: 9px;
+
+
+    color: #03A678;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+            background-image: url('../../../assets/icons/dropdown-arrow-2.svg');
+            background-repeat: no-repeat;
+            background-position: right 0px top 51% ;
+}
+
+.u-i-tab-select option:hover{
+    background-color: #03A678;
+    font-size: 17px;
+}
+
+.u-i-tab-search-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+
+    /* border: 1px solid #DEE2E6; */
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.u-i-tab-search-header .search-input-container{
+    display: flex;
+    padding: 10px;
+    border-radius: 8px;
+    align-items: center;
+    border: 1px solid #E0E0E0;
+}
+
+.u-i-tab-search-header .search-input-container input {
+    padding: 5px  15px;
+    margin-left: 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+
+}
+
+.u-i-tab-info-heading{
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    background-color: #F6F7F8;
+}
+
+.u-i-tab-info-body-list{
+    /* border: 1px solid #DEE2E6; */
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.u-i-tab-info-body{
+    position: relative;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    
+}
+
+.u-i-tab-info-heading input {
+    margin-right: 16px;
+}
+
+.u-i-tab-info-body input {
+    margin-right: 16px;
+}
+
+.u-i-tab-info-body .menu-dots {
+    position: absolute;
+    right: 16px;
+}
+
+.u-i-tab-info-heading-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    width: 100%;
+}
+
+.u-i-tab-info-body-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    width: 100%;
+}
+
+.u-i-tab-info-heading-item {
+    color: #8D8F91;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 600;
+}
+
+.u-i-tab-bottom-pagination-container{
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+}
+
+.u-i-tab-bottom-pagination-container .val{
+    color: #03A678;
+}
+
+
+

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import close_icon from '../../../assets/icons/close-icon.png';
 import { getTransactionsDetail } from '../../../redux/actions/transactionsActions';
 import './TransactionsDetail.css';
+import UserInvImg from '../../../assets/images/user-inv-mg.png'
 
 const TransactionsDetail = ({ open, closeModal, txnId }) => {
 
@@ -26,7 +27,7 @@ const TransactionsDetail = ({ open, closeModal, txnId }) => {
     },[txnId, dispatch])
 
     useEffect(() => {
-        console.log(transactionsDetailItem.transactionsDetail,'errrmmm');
+        // console.log(transactionsDetailItem.transactionsDetail,'errrmmm');
         if(transactionsDetailItem.transactionsDetailLoading === false){
             let dt = new Date(transactionsDetailItem.transactionsDetail.data.created_at)
 
@@ -56,6 +57,7 @@ const TransactionsDetail = ({ open, closeModal, txnId }) => {
                         <p className="status">status</p>
                     </div> */}
 
+                    <img src={UserInvImg} alt="dd" />
                     <div  className="holder">
                         <p className="header">Investor Name</p>
                         <p className="context">{singleTxn.name}</p>

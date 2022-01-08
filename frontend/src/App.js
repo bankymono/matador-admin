@@ -136,7 +136,7 @@ function App() {
                 />)
             }
           />
-          <Route exact path='/investors/info'
+          <Route exact path='/investors/:id'
             render={(props) =>
               adminInfo ?
                 (<UserInfo
@@ -174,7 +174,7 @@ function App() {
                 />)
             }
           />
-          <Route exact path='/project-dependencies/:id'
+          <Route exact path='/project-dependencies/:dep'
             render={(props) =>
               adminInfo ?
                 (<ProjectDependencyList

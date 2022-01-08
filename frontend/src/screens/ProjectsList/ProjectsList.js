@@ -36,7 +36,7 @@ const ProjectsList = ({ match, arrLinks }) => {
         if (projectsListData) {
             formattedTableData(projectsListData.data);
         };
-    }, [currentPageNumber, isPublished, searchTerm]);
+    }, [dispatch, currentPageNumber, isPublished, searchTerm, projectsListData]);
 
     const handleTabControl = (data) => {
         if (data === 'Published') {

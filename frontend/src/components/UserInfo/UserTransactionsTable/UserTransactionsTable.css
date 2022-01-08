@@ -1,16 +1,16 @@
-.reusable-table{
+.u-txns-table{
     width: 100%;
     border-collapse: collapse;
 }
 
 
-.e-b-heading-wrapper{
+.u-txns-heading-wrapper{
     background-color: #F6F7F8;
     padding: 10px;
 }
 
 
-.reusable-table th{
+.u-txns-table th{
     /* background-color: green; */
     padding: 10px;
     color: #8D8F91;
@@ -18,21 +18,23 @@
     text-transform: uppercase;
 }
 
-.e-b-table-body  tr:hover {
+.u-txns-table-body  tr:hover {
     background-color: #F6F7F8;
     cursor: pointer;
+
 }
 
 
-.reusable-table td{
+.u-txns-table td{
 
     padding: 10px;
+    text-transform: capitalize;
 }
-.reusable-table .more-menu-button{
+.u-txns-table .more-menu-button{
     text-align: right;
 }
 
-.reusable-table-search-header{
+.u-txns-table-search-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,9 +45,10 @@
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    /* background-color: red;/ */
 }
 
-.reusable-table-search-header .search-input-container{
+.u-txns-table-search-header .search-input-container{
     display: flex;
     padding: 10px;
     border-radius: 8px;
@@ -53,7 +56,7 @@
     border: 1px solid #E0E0E0;
 }
 
-.reusable-table-search-header .search-input-container input {
+.u-txns-table-search-header .search-input-container input {
     padding: 5px  15px;
     margin-left: 10px;
     font-size: 14px;
@@ -62,38 +65,36 @@
 
 }
 
-.reusable-table-select {
+.u-txns-table-select {
     padding: 9px;
-
-
     color: #03A678;
     /* background-color: red; */
-    text-align: center;
+    /* text-align: center; */
     margin-right: 10px;
     border: none;
     font-size: 16px;
     outline: none;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    /* -webkit-appearance: none; */
+       /* -moz-appearance: none; */
+            /* appearance: none; */
             /* background-image: url(../../assets/); */
-            background-image: url('../../assets/icons/dropdown-arrow-2.svg');
-            background-repeat: no-repeat;
-            background-position: right 20px top 51% ;
+            /* background-image: url('../../../assets/icons/dropdown-arrow-2.svg'); */
+            /* background-repeat: no-repeat; */
+            /* background-position: right 20px top 51% ; */
 }
 
-.reusable-table-select option{
+.u-txns-table-select option{
     /* text-align: left; */
 }
 
-.reusable-table-link{
+.u-txns-table-link{
     text-decoration: none;
     width: 100%;
     background-color: red;
 }
 
 
-/* .user-table-status{
+.u-txns-table-status{
     background-color: rgba(3, 166, 120,.4);
     color: #03A678;
     font-size: 14px;
@@ -101,45 +102,47 @@
     border-radius: 8px;
 }
 
-.user-table-status-verified{
+
+.u-txns-table-body tr td:nth-child(5) span.u-txns-table-status-success{
     background-color: rgba(3, 166, 120,.4);
     color: #03A678;
     font-size: 14px;
-    padding: 4px;
+    padding: 4px 8px;
     border-radius: 8px;
 }
 
-.user-table-status-unverified{
+.u-txns-table-body tr td:nth-child(5) span.u-txns-table-status-failed{
     color: rgb(222, 79, 79);
     background-color: rgba(222, 79, 79,.4);
-
+    /* color: #03A678; */
     font-size: 14px;
-    padding: 4px;
+    padding: 4px 8px;
     border-radius: 8px;
 }
 
-.user-table-status-pending{
+.u-txns-table-body tr td:nth-child(5) span.u-txns-table-status-pending{
     color: rgb(236, 166, 74);
     background-color: rgba(236, 166, 74,.4);
-
+    /* color: #03A678; */
     font-size: 14px;
     padding: 4px;
     border-radius: 8px;
 }
 
-.user-table-status-closed{
+.u-txns-table-status-closed{
     color: rgb(116, 116, 116);
     background-color: rgba(116, 116, 116,.4);
-
+    /* color: #03A678; */
     font-size: 14px;
     padding: 4px;
     border-radius: 8px;
 }
 
-.user-table-status-active{
+.u-txns-table-status-active{
     color: rgb(3, 166, 120);
     background-color: rgba(3, 166, 120,.4);
+    /* color: #03A678; */
     font-size: 14px;
     padding: 4px;
     border-radius: 8px;
-} */
+}

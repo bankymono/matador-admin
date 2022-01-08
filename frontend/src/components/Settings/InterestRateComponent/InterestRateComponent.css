@@ -31,7 +31,7 @@
     margin-right: 18px;
     text-align: right;
 }
-.section-content input, select{
+.section-content input{
     width: 113px;
     height: 40px;
     background: #FFFFFF;

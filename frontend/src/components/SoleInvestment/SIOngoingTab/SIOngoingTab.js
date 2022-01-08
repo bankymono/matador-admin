@@ -25,6 +25,11 @@ const SIOngoingTab = ({eqLoading, eqError, equityInvestments}) => {
         history.push(`/investments/fixed-income/sole`)
     }
 
+    const handleClick = (id) => {
+        setIsOpen(true)
+        history.push(`/investments/fixed-income/sole?sole_id=${id}`)
+    }
+
     return (
         <>
             <div>
@@ -34,7 +39,7 @@ const SIOngoingTab = ({eqLoading, eqError, equityInvestments}) => {
                     dataConfig={MOCK_DATA} 
                     dataConfig2={equityInvestments} 
                     // isOpen={isOpen}
-                    setIsOpen={setIsOpen}
+                    handleClick={handleClick}
                 />}  
 
             <div className="s-i-ongoing-bottom-pagination-container">

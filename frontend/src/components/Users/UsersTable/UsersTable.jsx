@@ -1,28 +1,19 @@
 import React, { useMemo, useState } from 'react'
 import { useTable, useGlobalFilter, useAsyncDebounce }from 'react-table';
-// import MoreOptionsMenu from '../../MoreOptionsMenu/MoreOptionsMenu';
+import MoreOptionsMenu from '../../MoreOptionsMenu/MoreOptionsMenu';
+// import search_icon from '../../../assets'
 import search_icon from '../../../assets/icons/search-icon-img.png'
 // import MOCK_DATA from './MOCK_DATA.json';
 // import {COLUMNS} from './columns';
-import './TransactionsListTable.css';
-import MoreOptionsMenu from '../../MoreOptionsMenu/MoreOptionsMenu';
-import EditProjectDependency from '../../modals/EditProjectDependency/EditProjectDependency';
-import { useDispatch, useSelector } from 'react-redux';
+import './UsersTable.css';
+import { Link, useHistory } from 'react-router-dom';
 
-const TransactionsListTable = ({columnsConfig, dataConfig, setIsOpen, setTxnId}) => {
-
-
-    
+const UsersTable = ({columnsConfig, dataConfig, handleClick, filterOpt, setFilterOpt}) => {
+    const history = useHistory()
     const columns = useMemo(() => columnsConfig, [columnsConfig]);
-
     const data = useMemo(() => dataConfig, [dataConfig]);
+    // const [open, setIsOpen]
 
-
-
-    const handleClick = (id) => {
-        setTxnId(id);
-        setIsOpen(true);
-    }
 
     const {
         getTableProps, 
@@ -45,11 +36,15 @@ const TransactionsListTable = ({columnsConfig, dataConfig, setIsOpen, setTxnId})
         setGlobalFilter(value)
     },400)
 
-
+    const handleFilterChange = (e) => {
+        e.preventDefault();
+        setFilterOpt(e.target.value);
+        console.log('ddd', filterOpt)
+    }
 
     return (
         <>
-        <div className="user-txns-table-search-header">
+        <div className="users-table-search-header">
                 <div className="search-input-container">
                     <img src={search_icon} alt="search" />
                     <input value={value || ""} 
@@ -60,63 +55,63 @@ const TransactionsListTable = ({columnsConfig, dataConfig, setIsOpen, setTxnId})
                     placeholder="Search" />
                 </div>
 
-                <select className="user-txns-table-select">
-                    <option>All Status</option>
-                    <option>status one</option>
-                    <option>status two</option>
+                <div>
+
+                <select
+                    name="users-list"
+                    value={filterOpt}
+                    onChange={handleFilterChange}
+                    className="users-table-select">
+                    <option value="all">Filter</option>
+                    <option value="verified">Verified</option>
+                    <option value="unverified">Not verified</option>
                 </select>
+                </div>
             </div>
         
-        <table {...getTableProps()} className="user-txns-table">
+        <table {...getTableProps()} className="users-table">
         <thead>
             {
                 headerGroups.map(headerGroup => (
-                    <tr className="user-txns-heading-wrapper" {...headerGroup.getHeaderGroupProps()}>
+                    <tr className="u-t-heading-wrapper" {...headerGroup.getHeaderGroupProps()}>
                         {
                             headerGroup.headers.map(column =>(
                                 <th {...column.getHeaderProps()}>{column.render('Header')}</th>
                             ))
                         }
-
                         <th></th>
                     </tr>
                 ))
             }
 
         </thead>
-        <tbody className="user-txns-table-body" {...getTableBodyProps()}>
+        <tbody className="u-t-table-body" {...getTableBodyProps()}>
             {
                 rows.map(row => {
                     prepareRow(row)
-
-                    // let rowId = row.original.id;
+                    console.log('royce',row.original)
                     return (
 
                         <tr {...row.getRowProps()} onClick={() => handleClick(row.original.id)}>
-                        {/* <Link to={row.original.link} className="user-txns-table-link"> */}
-
+                        {/* <Link to={row.original.link} className="users-table-link"> */}
                             {
 
                                 row.cells.map((cell)=>{
-                                    return <td {...cell.getCellProps()}><span className={row.original.status === "verified" ? "verified" : ""}>{cell.render('Cell')}</span></td>
-                                })
+                                    return <td {...cell.getCellProps()}><span className={row.original.verification_status === "Verified" ? "user-table-status-verified":"user-table-status-unverified"}>{cell.render('Cell')}</span></td>
+                                    })
                             }
-                            <td onClick={(event)=> event.stopPropagation()} className="more-menu-button">
-
-                                <MoreOptionsMenu />
-                                </td>
-
-
+                            <td className="more-menu-button"><MoreOptionsMenu /></td>
+                            {/* </Link>                             */}
                         </tr>
+
 
                     )
                 })
             }
         </tbody>
-
     </table>
     </>
     )
 }
 
-export default TransactionsListTable
+export default UsersTable

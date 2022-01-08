@@ -14,7 +14,8 @@ import {
         verificationIdDetailReducer, 
         verificationIdListReducer, 
         verifyVerificationIdReducer,
-        investorsListReducer
+        investorsListReducer,
+        investorsDetailReducer
 } from './reducers/userReducers'
 
 import { 
@@ -34,6 +35,9 @@ import {
         equityInvestmentDataReducer,
         adminSettingsReducer,
         adminSettingsRewardUpdateReducer,
+        investmentsListReducer,
+        investmentsDetailReducer,
+        investmentsTypeListReducer,
     } from './reducers/investmentsReducer';
 import { amenitiesCreateReducer, buildingTypeCreateReducer, categoryCreateReducer, landTitleCreateReducer, projDepAmenityDetailReducer, projDepAmenityListReducer, projDepBuildingTypeDetailReducer, projDepBuildingTypeListReducer, projDepCategoryDetailReducer, projDepCategoryListReducer, projDepLandTitleDetailReducer, projDepLandTitleListReducer, projDepStatusDetailReducer, projDepStatusListReducer, projStatusCreateReducer } from './reducers/projDepReducers';
 import { transactionsDetailReducer, transactionsListReducer } from './reducers/transactionsReducer';
@@ -46,6 +50,7 @@ const reducer = combineReducers({
     adminCreate:adminCreateReducer,
     countryList:countryListReducer,
     investorsList: investorsListReducer,
+    investorsDetailItem:investorsDetailReducer,
     
     //project-related-reducers
     landTitleList:landTitleListReducer,
@@ -91,6 +96,10 @@ const reducer = combineReducers({
     // transactions-related reucers
     transactionsList:transactionsListReducer,
     transactionsDetailItem:transactionsDetailReducer,
+
+    investmentsList:investmentsListReducer,
+    investmentsDetailItem:investmentsDetailReducer,
+    investmentsTypeList:investmentsTypeListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;

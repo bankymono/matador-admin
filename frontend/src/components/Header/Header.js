@@ -7,6 +7,7 @@ import profile_img from '../../assets/images/profile-img.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import jwtDecode from 'jwt-decode';
+import { logout } from '../../redux/actions/userActions';
 
 const Header = () => {
     const location = useLocation();
@@ -20,12 +21,12 @@ const Header = () => {
             const decodedToken = jwtDecode(adminInfo.token);
 
             if(decodedToken.exp * 1000 < new Date().getTime()){
-                // dispatch(logout())
-                localStorage.removeItem('mtdX');
+                dispatch(logout())
+                // localStorage.removeItem('mtdX');
                 history.push('/login');
             }
         }
-    },[adminInfo, history])
+    },[adminInfo, dispatch, history])
 
 
     return (

@@ -32,7 +32,6 @@ const TransactionsList = ({match, arrLinks}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const [txns, setTxns] = useState([]);
-
     const [txnId, setTxnId] = useState('');
 
     const [pageCount, setPageCount] = useState(0);
@@ -43,6 +42,7 @@ const TransactionsList = ({match, arrLinks}) => {
     useEffect(()=>{
         dispatch(getTransactions())
     },[dispatch])
+    
 
     useEffect(()=>{
 

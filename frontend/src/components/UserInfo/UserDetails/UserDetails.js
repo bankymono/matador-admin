@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './UserDetails.css';
 import profile_img from '../../../assets/images/profile-image-random-2.jpg';
+import VIDDetails from '../../modals/VIDDetails/VIDDetails';
 
 const UserDetails = ({userInfo}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const closeModal = () =>{        
+        // history.push(`/investments/fixed-income/sole`)
+        setIsOpen(false);
+    }
     return (
         <div className="user-details-container">
 
@@ -16,45 +22,66 @@ const UserDetails = ({userInfo}) => {
 
                     <div className="user-details-item">
                         <div className="user-details-item-cell">
-                            <div className="detail-type">First name</div>
-                            <div className="detail-text">{userInfo.firstname}</div>
+                            <div className="detail-type">Legal First name</div>
+                            <div className="detail-text">{userInfo.first_name}</div>
                         </div>
                         <div className="user-details-item-cell">
-                            <div className="detail-type">Last name</div>
-                            <div className="detail-text">{userInfo.lastname}</div>
+                            <div className="detail-type">Legal Last name</div>
+                            <div className="detail-text">{userInfo.last_name}</div>
+                        </div>
+                        <div className="user-details-item-cell">
+                            <div className="detail-type">Legal Middle name</div>
+                            <div className="detail-text">{userInfo.middle_name}</div>
                         </div>
                     </div>
 
                     <div className="user-details-item">
                         <div className="user-details-item-cell">
-                            <div className="detail-type">Nick name</div>
-                            <div className="detail-text">{userInfo.nick}</div>
+                            <div className="detail-type">Username</div>
+                            <div className="detail-text">{userInfo.username}</div>
                         </div>
                         <div className="user-details-item-cell">
-                            <div className="detail-type">Phone number</div>
-                            <div className="detail-text">{userInfo.number}</div>
+                            <div className="detail-type">Country</div>
+                            <div className="detail-text">Nigeria</div>
+                        </div>
+                        <div className="user-details-item-cell">
+                            <div className="detail-type">Gender</div>
+                            <div className="detail-text">{userInfo.gender || "Male"}</div>
                         </div>
                     </div>
 
                     <div className="user-details-item">
                         <div className="user-details-item-cell">
                             <div className="detail-type">Email Address</div>
-                            <div className="detail-text">email@email.com</div>
+                            <div className="detail-text">{userInfo.email}</div>
                         </div>
                         <div className="user-details-item-cell">
                             <div className="detail-type">Date of birth</div>
-                            <div className="detail-text">12/12/2000</div>
+                            <div className="detail-text">{userInfo.date_of_birth}</div>
+                        </div>
+                        <div className="user-details-item-cell">
+                            <div className="detail-type">Phone Number</div>
+                            <div className="detail-text">{userInfo.phone}</div>
                         </div>
                     </div>
 
                     <div className="user-details-item">
                         <div className="user-details-item-cell">
                             <div className="detail-type">BVN</div>
-                            <div className="detail-text">000000000000</div>
+                            <div className="detail-text">{userInfo.bvn || "00000000000"}</div>
                         </div>
                         <div className="user-details-item-cell">
-                            <div className="detail-type">Address</div>
-                            <div className="detail-text">213 Street name road, Lekki Phase 1, Lagos, Nigeria</div>
+                            <div className="detail-type">Home Address</div>
+                            <div className="detail-text">{userInfo.address}</div>
+                        </div>
+                        <div className="user-details-item-cell">
+                            <div className="detail-type">ID Document</div>
+                            <div className="detail-text">
+                                <span>
+                                    {userInfo?.verification_data?.document_type || "Driver's License"}
+                                </span>
+                                <button onClick={() => setIsOpen(true)}>View</button>
+                            </div>
                         </div>
                     </div>    
                 </div>
@@ -74,6 +101,7 @@ const UserDetails = ({userInfo}) => {
                 </div>
 
             </div>
+            <VIDDetails verId={userInfo?.verification_data?.id} setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} />
         </div>
     )
 }

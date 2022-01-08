@@ -10,6 +10,16 @@ import {
     EQUITY_INVESTMENT_DATA_FAIL, 
     EQUITY_INVESTMENT_DATA_REQUEST, 
     EQUITY_INVESTMENT_DATA_SUCCESS,
+    INVESTMENTS_DETAIL_REQUEST,
+    INVESTMENTS_DETAIL_SUCCESS,
+    INVESTMENTS_DETAIL_FAIL,
+    INVESTMENTS_DETAIL_RESET,
+    INVESTMENTS_LIST_REQUEST,
+    INVESTMENTS_LIST_SUCCESS,
+    INVESTMENTS_LIST_FAIL,
+    INVESTMENTS_TYPE_LIST_REQUEST,
+    INVESTMENTS_TYPE_LIST_SUCCESS,
+    INVESTMENTS_TYPE_LIST_FAIL,
      
 } from "../constants/investmentsContants";
 
@@ -60,5 +70,49 @@ export const adminSettingsRewardUpdateReducer = (state={}, action)=>{
             return {rewardUpdateSuccess: false, rewardUpdateFail: true}
         default:
             return state
+    }
+}
+
+
+export const investmentsListReducer = (state = { investments: {}, investmentsLoading: true }, action) => {
+    switch (action.type) {
+        case INVESTMENTS_LIST_REQUEST:
+            return { investmentsLoading: true, investments: {} }
+        case INVESTMENTS_LIST_SUCCESS:
+            return { investmentsLoading: false, investments: action.payload }
+        case INVESTMENTS_LIST_FAIL:
+            return { investmentsLoading: false, investmentsError: action.payload }
+        default:
+            return state;
+    }
+}
+
+
+export const investmentsDetailReducer = (state = { investmentsDetail: {}, investmentsDetailLoading: true }, action) => {
+    switch (action.type) {
+        case INVESTMENTS_DETAIL_REQUEST:
+            return { investmentsDetailLoading: true, investmentsDetail: {} }
+        case INVESTMENTS_DETAIL_SUCCESS:
+            return { investmentsDetailLoading: false, investmentsDetail: action.payload }
+        case INVESTMENTS_DETAIL_FAIL:
+            return { investmentsDetailLoading: false, investmentsDetailError: action.payload }
+        case INVESTMENTS_DETAIL_RESET:
+            return { investmentsDetail: {}, investmentsDetailLoading: true }
+        default:
+            return state;
+    }
+}
+
+
+export const investmentsTypeListReducer = (state={investmentsTypes:{}, loading:true}, action) => {
+    switch(action.type){
+        case INVESTMENTS_TYPE_LIST_REQUEST:
+            return { loading:true, investmentsTypes:{} }
+        case INVESTMENTS_TYPE_LIST_SUCCESS:
+            return { loading: false, investmentsTypes: action.payload}
+        case INVESTMENTS_TYPE_LIST_FAIL:
+            return { loading:false, error: action.payload}
+        default:
+            return state;
     }
 }

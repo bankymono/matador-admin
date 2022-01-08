@@ -40,6 +40,11 @@ import {
     VERIFICATION_ID_VERIFY_COMPLETE,
     VERIFICATION_ID_VERIFY_FAIL,
     VERIFICATION_ID_DETAIL_CLEAR,
+    INVESTORS_LIST_REQUEST,
+    INVESTORS_LIST_SUCCESS,
+    INVESTORS_DETAIL_REQUEST,
+    INVESTORS_DETAIL_SUCCESS,
+    INVESTORS_DETAIL_FAIL,
     } from "../constants/userConstants";
 dotenv.config();
 
@@ -103,16 +108,48 @@ export const logout = () => async (dispatch) => {
     })
 }
 
-export const getInvestors = () => async (dispatch) => {
+export const getInvestors = (pageIndex=0, filterOpt="all") => async (dispatch) => {
     try{
-        console.log('about to make call')
-        const data = await api.get('/user/investor');
         dispatch({
-            type:INVESTORS_LIST,
-            payload:data.data.results
+            type:INVESTORS_LIST_REQUEST
         })
+
+        const data = await api.get(`/user/investor?limit=10&&offset=${pageIndex * 10}${filterOpt!=="all"? (filterOpt === "verified"?"&&verified=True":"&&verified=False"):""}`);
+
+        dispatch({
+            type:INVESTORS_LIST_SUCCESS,
+            payload:data
+        })
+
+        // dispatch({
+        //     type:INVESTORS_LIST_SUCCESS,
+        //     payload:data
+        // })
     }catch(error){
         console.log(error);
+    }
+}
+
+export const getInvestorsDetail = (id) => async (dispatch) => {
+
+    try {
+
+        dispatch({
+            type: INVESTORS_DETAIL_REQUEST
+        })
+
+        const { data } = await api.get(`/user/investor/${id}`)
+
+        dispatch({
+            type: INVESTORS_DETAIL_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: INVESTORS_DETAIL_FAIL,
+            payload: error.response
+        })
     }
 }
 

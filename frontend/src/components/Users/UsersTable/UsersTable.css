@@ -1,16 +1,16 @@
-.reusable-table{
+.users-table{
     width: 100%;
     border-collapse: collapse;
 }
 
 
-.e-b-heading-wrapper{
+.u-t-heading-wrapper{
     background-color: #F6F7F8;
     padding: 10px;
 }
 
 
-.reusable-table th{
+.users-table th{
     /* background-color: green; */
     padding: 10px;
     color: #8D8F91;
@@ -18,21 +18,21 @@
     text-transform: uppercase;
 }
 
-.e-b-table-body  tr:hover {
+.u-t-table-body  tr:hover {
     background-color: #F6F7F8;
     cursor: pointer;
 }
 
 
-.reusable-table td{
+.users-table td{
 
     padding: 10px;
 }
-.reusable-table .more-menu-button{
+.users-table .more-menu-button{
     text-align: right;
 }
 
-.reusable-table-search-header{
+.users-table-search-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,9 +43,10 @@
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    /* background-color: red;/ */
 }
 
-.reusable-table-search-header .search-input-container{
+.users-table-search-header .search-input-container{
     display: flex;
     padding: 10px;
     border-radius: 8px;
@@ -53,7 +54,7 @@
     border: 1px solid #E0E0E0;
 }
 
-.reusable-table-search-header .search-input-container input {
+.users-table-search-header .search-input-container input {
     padding: 5px  15px;
     margin-left: 10px;
     font-size: 14px;
@@ -62,13 +63,11 @@
 
 }
 
-.reusable-table-select {
+.users-table-select {
     padding: 9px;
-
-
     color: #03A678;
     /* background-color: red; */
-    text-align: center;
+    /* text-align: center; */
     margin-right: 10px;
     border: none;
     font-size: 16px;
@@ -77,23 +76,23 @@
        -moz-appearance: none;
             appearance: none;
             /* background-image: url(../../assets/); */
-            background-image: url('../../assets/icons/dropdown-arrow-2.svg');
+            background-image: url('../../../assets/icons/dropdown-arrow-2.svg');
             background-repeat: no-repeat;
             background-position: right 20px top 51% ;
 }
 
-.reusable-table-select option{
+.users-table-select option{
     /* text-align: left; */
 }
 
-.reusable-table-link{
+.users-table-link{
     text-decoration: none;
     width: 100%;
     background-color: red;
 }
 
 
-/* .user-table-status{
+.user-table-status{
     background-color: rgba(3, 166, 120,.4);
     color: #03A678;
     font-size: 14px;
@@ -101,27 +100,28 @@
     border-radius: 8px;
 }
 
-.user-table-status-verified{
+
+.u-t-table-body tr td:nth-child(5) span.user-table-status-verified{
     background-color: rgba(3, 166, 120,.4);
     color: #03A678;
     font-size: 14px;
-    padding: 4px;
+    padding: 4px 8px;
     border-radius: 8px;
 }
 
-.user-table-status-unverified{
+.u-t-table-body tr td:nth-child(5) span.user-table-status-unverified{
     color: rgb(222, 79, 79);
     background-color: rgba(222, 79, 79,.4);
-
+    /* color: #03A678; */
     font-size: 14px;
-    padding: 4px;
+    padding: 4px 8px;
     border-radius: 8px;
 }
 
 .user-table-status-pending{
     color: rgb(236, 166, 74);
     background-color: rgba(236, 166, 74,.4);
-
+    /* color: #03A678; */
     font-size: 14px;
     padding: 4px;
     border-radius: 8px;
@@ -130,7 +130,7 @@
 .user-table-status-closed{
     color: rgb(116, 116, 116);
     background-color: rgba(116, 116, 116,.4);
-
+    /* color: #03A678; */
     font-size: 14px;
     padding: 4px;
     border-radius: 8px;
@@ -139,7 +139,8 @@
 .user-table-status-active{
     color: rgb(3, 166, 120);
     background-color: rgba(3, 166, 120,.4);
+    /* color: #03A678; */
     font-size: 14px;
     padding: 4px;
     border-radius: 8px;
-} */
+}

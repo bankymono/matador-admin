@@ -13,7 +13,15 @@ import {
         ADMIN_SETTINGS_SUCCESS,
 
         ADMIN_SETTINGS_REWARD_UPDATE_SUCCESS,
-        ADMIN_SETTINGS_REWARD_UPDATE_FAIL
+        ADMIN_SETTINGS_REWARD_UPDATE_FAIL,
+        INVESTMENTS_LIST_SUCCESS,
+        INVESTMENTS_LIST_FAIL,
+        INVESTMENTS_LIST_REQUEST,
+        INVESTMENTS_DETAIL_REQUEST,
+        INVESTMENTS_DETAIL_SUCCESS,
+        INVESTMENTS_DETAIL_FAIL,
+        INVESTMENTS_TYPE_LIST_REQUEST,
+        INVESTMENTS_TYPE_LIST_SUCCESS
     } from "../constants/investmentsContants"
 
 export const getEquityInvestmentStat = () => async (dispatch) => {
@@ -98,5 +106,84 @@ export const updateSettingsReward = (updateData)=> async(dispatch)=>{
             payload: error
         })
         console.log('settings data err', error);
+    }
+}
+
+
+export const getInvestments = (pageIndex=0,user=null, status="all", investment_type="0") => async (dispatch) => {
+
+    try {
+        dispatch({
+            type: INVESTMENTS_LIST_REQUEST
+        })
+
+        let invStatus = "";
+        invStatus = status==="all" ? "": "status=" + status;
+        let invType = ""
+        invType = investment_type==="0" ?"":"investment_type_id="+ investment_type
+
+        // const { data } = await api.get(`/investment/user-investment?${user===null?"":"user_id="+user}&&limit=10&&offset=${pageIndex * 10}&&${txnStatus}&&${txnType}`)
+        const { data } = await api.get(`/investment/user-investment?${user===null?"":"user_id="+user}&&limit=10&&page=${pageIndex + 1}&&${invStatus}&&${invType}`)
+        // const { data } = await api.get(`/transaction/txns?${user===null?"":"user="+user}&&limit=10&&offset=${pageIndex * 10}&&status=`)
+       
+
+        dispatch({
+            type: INVESTMENTS_LIST_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: INVESTMENTS_LIST_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+export const getInvestmentsDetail = (id) => async (dispatch) => {
+
+    try {
+
+        dispatch({
+            type: INVESTMENTS_DETAIL_REQUEST
+        })
+
+        const { data } = await api.get(`/investment/user-investment/${id}`)
+
+        dispatch({
+            type: INVESTMENTS_DETAIL_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: INVESTMENTS_DETAIL_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+
+export const listInvestmentsType = () => async (dispatch) => {
+    try {
+        dispatch({
+            type:INVESTMENTS_TYPE_LIST_REQUEST
+        })
+
+        const { data } = await api.get(`/investment/investment-type`)
+        dispatch({
+            type:INVESTMENTS_TYPE_LIST_SUCCESS,
+            payload:data
+        })
+        
+
+    } catch (error) {
+        // dispatch({
+        //     type:SUPER_ADMIN_LIST_FAIL,
+        //     payload:error.response && error.response.data.message
+        //     ? error.response.data.message
+        //     : error.message,
+        // })
+        console.log(error);
     }
 }
