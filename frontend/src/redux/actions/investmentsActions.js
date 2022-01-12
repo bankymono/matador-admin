@@ -54,8 +54,9 @@ export const getEquityInvestmentData = (queryParams) => async (dispatch) => {
         dispatch({
             type: EQUITY_INVESTMENT_DATA_REQUEST
         })
-
-        const {data} = await api.get(`/investment/user-investment?investment_type_id=${queryParams.investment_type_id}&page=${queryParams.page}&is_sold=${queryParams.is_sold}&search=${queryParams.search}`)
+        let pageNum = Number(queryParams.page) + 1;
+        let inv_comp = queryParams.investment_completed === 'all' ? "": "investment_completed="+queryParams.investment_completed;
+        const {data} = await api.get(`/investment/user-investment?investment_type_id=${queryParams.investment_type_id}&&page=${pageNum}&&is_sold=${queryParams.is_sold}&&${inv_comp}`)
 
         dispatch({
             type: EQUITY_INVESTMENT_DATA_SUCCESS,

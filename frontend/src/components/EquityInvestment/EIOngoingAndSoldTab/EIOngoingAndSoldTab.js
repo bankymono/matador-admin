@@ -3,9 +3,7 @@ import EIOngoingTab from '../EIOngoingTab/EIOngoingTab';
 import EquityBasedSoldTab from '../EquityBasedSoldTab/EquityBasedSoldTab';
 import './EIOngoingAndSoldTab.css';
 
-const EIOngoingAndSoldTab = ({
-    eqLoading, eqError, equityInvestments
-}) => {
+const EIOngoingAndSoldTab = () => {
     const [toggleState, setToggleState] = useState(1);
 
     const toggleTab = (tab) =>{
@@ -22,13 +20,13 @@ const EIOngoingAndSoldTab = ({
             <div className="tabs-content">
                 <div className={toggleState === 1 ? "content active-content" : "content"}>
                     <EIOngoingTab
-                        eqLoading={eqLoading}
-                        eqError={eqError}
-                        equityInvestments={equityInvestments}
+                        isSold={toggleState}
                     />
                 </div>
                 <div className={toggleState === 2 ? "content active-content" : "content"}>
-                    <EquityBasedSoldTab />
+                    <EIOngoingTab
+                        isSold={toggleState}
+                    />
                 </div>
             </div>
 

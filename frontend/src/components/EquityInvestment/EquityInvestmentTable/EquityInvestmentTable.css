@@ -1,0 +1,146 @@
+.equity-inv-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.equity-inv-table-heading-wrapper{
+    background-color: #F6F7F8;
+    padding: 10px;
+}
+
+
+.equity-inv-table th{
+    /* background-color: green; */
+    padding: 10px;
+    color: #8D8F91;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.equity-inv-table-table-body  tr:hover {
+    background-color: #F6F7F8;
+    cursor: pointer;
+}
+
+
+.equity-inv-table td{
+
+    padding: 10px;
+}
+.equity-inv-table .more-menu-button{
+    text-align: right;
+}
+
+.equity-inv-table-search-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+
+    /* border: 1px solid #DEE2E6; */
+
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+}
+
+.equity-inv-table-search-header .search-input-container{
+    display: flex;
+    padding: 10px;
+    border-radius: 8px;
+    align-items: center;
+    border: 1px solid #E0E0E0;
+}
+
+.equity-inv-table-search-header .search-input-container input {
+    padding: 5px  15px;
+    margin-left: 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+
+}
+
+.equity-inv-table-select {
+    padding: 9px;
+
+
+    color: #03A678;
+    /* background-color: red; */
+    /* text-align: center; */
+    margin-right: 10px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+            /* background-image: url(../../assets/); */
+            /* background-image: url('../../../'); */
+            background-image: url('../../../assets/icons/dropdown-arrow-2.svg');
+            background-repeat: no-repeat;
+            background-position: right 20px top 51% ;
+}
+
+.equity-inv-table-select option{
+    /* text-align: left; */
+}
+
+.equity-inv-table-link{
+    text-decoration: none;
+    width: 100%;
+    background-color: red;
+}
+
+
+/* .user-table-status{
+    background-color: rgba(3, 166, 120,.4);
+    color: #03A678;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.user-table-status-verified{
+    background-color: rgba(3, 166, 120,.4);
+    color: #03A678;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.user-table-status-unverified{
+    color: rgb(222, 79, 79);
+    background-color: rgba(222, 79, 79,.4);
+
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.user-table-status-pending{
+    color: rgb(236, 166, 74);
+    background-color: rgba(236, 166, 74,.4);
+
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.user-table-status-closed{
+    color: rgb(116, 116, 116);
+    background-color: rgba(116, 116, 116,.4);
+
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.user-table-status-active{
+    color: rgb(3, 166, 120);
+    background-color: rgba(3, 166, 120,.4);
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 8px;
+} */

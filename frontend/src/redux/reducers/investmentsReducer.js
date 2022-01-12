@@ -36,14 +36,14 @@ export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, eqIn
             return state;
     }
 }
-export const equityInvestmentDataReducer = (state={eqData: false, eqRequest: null, eqFail: false}, action)=>{
+export const equityInvestmentDataReducer = (state={eqData: {}, loading: true}, action)=>{
     switch(action.type){
         case EQUITY_INVESTMENT_DATA_REQUEST:
-            return {...state, eqRequest: action.payload,};
+            return { ...state,loading:true, eqData: {}};
         case EQUITY_INVESTMENT_DATA_SUCCESS:
-            return {...state, eqData: action.payload,};
+            return { ...state, eqData: action.payload, loading:false};
         case EQUITY_INVESTMENT_DATA_FAIL:
-            return {...state, eqFail: true};
+            return { ...state, error: action.payload, loading:false};
         default:
             return state;
     }

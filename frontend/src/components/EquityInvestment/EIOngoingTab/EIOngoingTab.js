@@ -1,36 +1,85 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import './EIOngoingTab.css';
-import search_icon from '../../../assets/icons/search-icon-img.png'
-// import search_icon from '../../../assets/icons/search-icon-img.png'
-// import Pagination from '../../../Pagination/Pagination';
-// import MoreOptionsMenu from '../../../MoreOptionsMenu/MoreOptionsMenu';
+
+
 import { useTable }from 'react-table';
 import MOCK_DATA from './MOCK_DATA.json';
 import {COLUMNS, COLUMNS2} from './columns';
 // import ReusableTable from '../../../ReusableTable/ReusableTable';
 import Pagination from '../../Pagination/Pagination';
 import ReusableTable from '../../ReusableTable/ReusableTable';
+import { useDispatch, useSelector } from 'react-redux';
+import { getEquityInvestmentData } from '../../../redux/actions/investmentsActions';
+import EquityInvestmentTable from '../EquityInvestmentTable/EquityInvestmentTable';
+import PaginationVerTwo from '../../PaginationVerTwo/PaginationVerTwo';
 
-const EIOngoingTab = ({eqLoading, eqError, equityInvestments}) => {
+const EIOngoingTab = ({isSold}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [eqInvList, setEqInvList] = useState([]);
+    const [eqInvId, setEqInvId] = useState('');
+    const [pagiOffset, setPagiOffset] = useState(0);
+    const [pageCount, setPageCount] = useState(0);
+    const [eqInvStatus, setEqInvStatus] = useState('all');
+
+    const dispatch = useDispatch();
+    const equityInvestmentData = useSelector(state => state.equityInvestmentData);
+    // const columns = useMemo(() => COLUMNS, []);
+    // const data = useMemo(() => MOCK_DATA, []);
+    useEffect(()=>{
+        if(isSold === 1){
+            dispatch(getEquityInvestmentData({investment_type_id: 1, page: 0, is_sold: false, investment_completed:eqInvStatus}));            
+        }else if (isSold === 2){
+            dispatch(getEquityInvestmentData({investment_type_id: 1, page: 0, is_sold: true, investment_completed:eqInvStatus}));          
+        }
+        
+    }, [dispatch,isSold, eqInvStatus])
+
+    useEffect(()=>{
+        if(equityInvestmentData.loading === false && !equityInvestmentData.error){
+
+            constructObject(equityInvestmentData.eqData)
+            setPageCount(equityInvestmentData.eqData.count)
+        }
+    },[equityInvestmentData])
+
+    const constructObject = (eqInvDataList) => {
+
+        let newArr = eqInvDataList?.data?.map(invData => {
+            let dt = new Date(invData.created_at)
+
+            return({
+                investor_name: invData.user.first_name + " " + invData.user.last_name,
+                amount_invested: invData.amount_invested.toLocaleString(),
+                investment_date: dt.toDateString(),
+                number_of_fractions: invData.number_of_fractions,
+                equity_type: invData.bundle ? "bundles": "fractions"
+            })
+        })
+        setEqInvList(newArr);
+    }
 
 
-    const columns = useMemo(() => COLUMNS, []);
-    const data = useMemo(() => MOCK_DATA, []);
+    const handlePageClick=(data) => {
+        dispatch(getEquityInvestmentData({investment_type_id:1, page:data.selected,is_sold:isSold, investment_completed:eqInvStatus}))
+    }
 
 
+    // eqInvList.length===0 && 
     return (
         <>
             <div>
-                {eqLoading ? null : <ReusableTable 
+                {eqInvList.length===0 &&  equityInvestmentData?.loading ? null : <EquityInvestmentTable
                     columnsConfig={COLUMNS} 
                     columnsConfig2={COLUMNS2} 
-                    dataConfig={MOCK_DATA} 
-                    dataConfig2={equityInvestments} 
+                    dataConfig={eqInvList} 
+                    dataConfig2={MOCK_DATA} 
+                    eqInvStatus={eqInvStatus}
+                    setEqInvStatus={setEqInvStatus}
                 />}  
 
             <div className="e-i-ongoing-bottom-pagination-container">
-                <div>Showing: <span className="val">100</span></div>
-                <div><Pagination /></div>
+                <div>Showing: <span className="val">{pageCount}</span></div>
+                <div><PaginationVerTwo pageCount={pageCount} handlePageClick={handlePageClick} /></div>
             </div>
             
         </div>

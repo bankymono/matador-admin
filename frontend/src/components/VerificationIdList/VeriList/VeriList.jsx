@@ -1,14 +1,12 @@
 import React, {useMemo, useState} from 'react';
 import './UnverifiedList.css';
-import search_icon from '../../../assets/icons/search-icon-img.png'
+
 import { useTable }from 'react-table';
 import MOCK_DATA from './MOCK_DATA.json';
 import {COLUMNS, COLUMNS2} from './columns';
-// import ReusableTable from '../../../ReusableTable/ReusableTable';
+
 import Pagination from '../../Pagination/Pagination';
-// import ReusableTable from '../../ReusableTable/ReusableTable';
-import SoleFI from '../../modals/SoleFIModal/SoleFI';
-import { useHistory } from 'react-router-dom';
+
 import VIDTable from '../VIDTable/VIDTable';
 import VIDDetails from '../../modals/VIDDetails/VIDDetails';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +15,7 @@ import { listVerificationId } from '../../../redux/actions/userActions';
 
 const VeriList = ({veriType}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [veriIdsList, setveriIdsList] = useState([])
+    const [veriIdsList, setveriIdsList] = useState([]);
     const [verId, setVerId] = useState('');
     const [pagiOffset, setPagiOffset] = useState(0);
 

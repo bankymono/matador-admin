@@ -47,7 +47,7 @@ const UserInvestmentsTab = ({ userId, setTotalInvCount}) => {
     const constructObject = (receivedObj) => {
 
     setPageCount(receivedObj.count)
-    console.log('herrrr', receivedObj.data[0])
+
 
     let newArr = receivedObj?.data?.map(obj => {
         let dt = new Date(obj.created_at)

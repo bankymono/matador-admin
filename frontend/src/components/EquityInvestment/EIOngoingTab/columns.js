@@ -5,22 +5,27 @@ export const COLUMNS = [
     // },
     {
         Header:'Investor Name',
-        accessor:"first_name"
+        accessor:"investor_name"
     },
 
     {
-        Header: "Equity Type",
-        accessor:"last_name"
-    },
-
-    {
-        Header:'Number of Fractions',
-        accessor:"date_of_birth"
+        Header: "amount_invested",
+        accessor:"amount_invested"
     },
     
     {
         Header:'Investment Date',
-        accessor:"country"
+        accessor:"investment_date"
+    },
+
+    {
+        Header:'Number of Fractions',
+        accessor:"number_of_fractions"
+    },
+
+    {
+        Header:'Equity Type',
+        accessor:"equity_type"
     },
 ]
 

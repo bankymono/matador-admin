@@ -1,7 +1,27 @@
 .e-i-stat-wrapper{
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.e-i-stat-wrapper-bottom{
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    margin-top: 25px;
+}
+
+.e-i-stat-carousel{
+    background-color: red;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* gap: 10px; */
+}
+.rec-carousel{
+    /* background-color: blue; */
+    /* display: grid; */
+    /* gap: 0; */
+    /* margin: 0 !important; */
 }
 
 .e-i-center-content-wrapper{
