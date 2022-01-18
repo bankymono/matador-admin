@@ -9,6 +9,7 @@ const UserDetails = ({userInfo}) => {
         // history.push(`/investments/fixed-income/sole`)
         setIsOpen(false);
     }
+    console.log(userInfo, 'e,eeee')
     return (
         <div className="user-details-container">
 
@@ -86,17 +87,34 @@ const UserDetails = ({userInfo}) => {
                     </div>    
                 </div>
 
-                <div className="user-bank-card-details">
-                    <div className="bank-card-heading">Account</div>
-                    <div className="user-details-bank-card-container">
-                        <div className="user-details-bank-card">
-                            <div>Zenith bank</div>
-                            <div>000000000000</div>
+                <div className='user-detail-bottom-container'>
+                    <div className="bank-card-heading">PERSONAL BANK DETAILS</div>
+
+                    <div className="user-bank-card-details">
+                        <div className="user-details-bank-card-container">
+                            <div className="user-details-bank-card">
+                                <div>Zenith bank</div>
+                                <div>000000000000</div>
+                            </div>
+                            <div className="user-details-bank-card">
+                                <div>Zenith bank</div>
+                                <div>000000000000</div>
+                            </div>
                         </div>
-                        <div className="user-details-bank-card">
-                            <div>Zenith bank</div>
-                            <div>000000000000</div>
+
+                        <div className='user-device-info-container'>                        
+                            <div className='device-info-with-button'>
+                                <div className='device-info'>
+                                    <div className='headn'>Device Login Activities</div>
+                                    <div className='info'>
+                                        <div className='desc'>Current Active Device</div>
+                                        <div className='val'>iPhone 11 Pro Max</div>
+                                    </div>
+                                </div>
+                                <button>View</button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 

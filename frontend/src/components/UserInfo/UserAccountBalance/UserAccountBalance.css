@@ -6,7 +6,7 @@
     padding:16px;
     margin-bottom: 16px;
     display: flex;
-
+    justify-content: space-between;
     box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
@@ -16,9 +16,55 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* background: red; */
-    margin-right: 100px;
     padding: 10px;
+}
+
+.user-account-balance-controls{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    /* background-color: red; */
+    padding: 10px;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #DEE2E6;
+}
+
+.user-account-balance-controls .text{
+    padding-right: 10px;
+    border-right: 1px solid #DEE2E6;
+    /* font-size: 18px; */
+    text-align: right;
+    font-weight: bold;
+}
+
+
+.user-account-balance-controls .control-buttons{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-account-balance-controls .control-buttons .top-btn{
+    padding: 5px;
+    border-radius: 4px;
+    color: #ECA64A;
+    background: none;
+    border: 1px solid #ECA64A;
+    margin-bottom: 12px;
+}
+
+.user-account-balance-controls .control-buttons .bottom-btn{
+    padding: 5px;
+    border-radius: 4px;
+    color: #DE4F4F;
+    background: none;
+    border: 1px solid #DE4F4F;
+    margin-bottom: 12px;
 }
 
 .user-account-balance-heading-container{

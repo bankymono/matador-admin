@@ -15,12 +15,12 @@ const DashboardTransactionsCard = ({transactionsData}) => {
                 <div className="dashboard-transactions-card-numbers">
                     <div className="transactions-value-container">
                         <div className="desc">Total Number</div>
-                        <div className="value">{transactionsData.count}</div>
+                        <div className="value">{transactionsData?.count}</div>
                     </div>
 
                     <div className="transactions-value-container">
                         <div className="desc">Total Value</div>
-                        <div className="value">₦{numberWithComma(transactionsData.value)}<sup>.00</sup></div>
+                        <div className="value">₦{numberWithComma(transactionsData?.value)}<sup>.00</sup></div>
                     </div>
                 </div>
             </div>

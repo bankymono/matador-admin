@@ -100,12 +100,7 @@ const handlePageClick=(data) => {
                 <div className="user-list-container">
                     {investors?.length > 0?
                     <>
-                    {/* <GeneralTable 
-                        headList={headList} 
-                        bodyList={duplicatedList} 
-                        handleCellClick={handleCellClick} 
-                        showTabControls={false}
-                    /> */}
+
                     <UsersTable
                         columnsConfig={COLUMNS} 
                         dataConfig={investors} 

@@ -82,6 +82,7 @@ const UserInfo = ({match, arrLinks}) => {
                 <div className="user-info-container">
                     <UserDetails userInfo={investorInfo} />
                     <UserAccountBalance investmentData={investmentData} />
+                    
                     <UserInvestmentAndTransactionTab userId={match.params.id}/>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import EIOngoingTab from '../EIOngoingTab/EIOngoingTab';
 import EquityBasedSoldTab from '../EquityBasedSoldTab/EquityBasedSoldTab';
 import './EIOngoingAndSoldTab.css';
 
-const EIOngoingAndSoldTab = () => {
+const EIOngoingAndSoldTab = ({setEqGraphData}) => {
     const [toggleState, setToggleState] = useState(1);
 
     const toggleTab = (tab) =>{

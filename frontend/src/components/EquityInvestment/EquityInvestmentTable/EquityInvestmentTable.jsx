@@ -7,7 +7,7 @@ import search_icon from '../../../assets/icons/search-icon-img.png'
 import './EquityInvestmentTable.css';
 import { Link, useHistory } from 'react-router-dom';
 
-const EquityInvestmentTable = ({columnsConfig, dataConfig, handleClick, eqInvStatus,setEqInvStatus}) => {
+const EquityInvestmentTable = ({columnsConfig, dataConfig, handleCellClick, eqInvStatus,setEqInvStatus}) => {
     const history = useHistory()
     const columns = useMemo(() => columnsConfig, [columnsConfig]);
     const data = useMemo(() => dataConfig, [dataConfig]);
@@ -93,7 +93,7 @@ const EquityInvestmentTable = ({columnsConfig, dataConfig, handleClick, eqInvSta
                     // console.log('royce',row.original)
                     return (
                         // onClick={() => handleClick(row.original.id)}
-                        <tr {...row.getRowProps()} >
+                        <tr {...row.getRowProps()} onClick={()=>handleCellClick(row.original)}>
                         {/* <Link to={row.original.link} className="equity-inv-table-link"> */}
                             {
 

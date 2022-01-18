@@ -16,12 +16,12 @@ const DashboardProjectsCard = ({projectsData}) => {
                 <div className="dashboard-projects-card-numbers">
                     <div className="projects-value-container">
                         <div className="desc">Total Number</div>
-                        <div className="value">{projectsData.count}</div>
+                        <div className="value">{projectsData?.count}</div>
                     </div>
 
                     <div className="projects-value-container">
                         <div className="desc">Total Value</div>
-                        <div className="value">₦{numberWithComma(projectsData.value)}<sup>.00</sup></div>
+                        <div className="value">₦{numberWithComma(projectsData?.value)}<sup>.00</sup></div>
                     </div>
                 </div>
             </div>

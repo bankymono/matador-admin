@@ -80,6 +80,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     /* grid-template-rows: repeat(6,1fr); */
     gap: 20px;
+    /* background-color: red; */
 
 }
 
@@ -104,4 +105,63 @@
 
 .f-i-i-container .f-i-link{
     text-decoration: none;
+}
+
+
+.f-i-i-container .colored-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    margin-right: 8px;
+}
+
+
+.f-i-i-container .dot-color-purple {
+    background-color: #8D30FF;
+}
+
+
+.f-i-i-container .dot-color-blue {
+    background-color: #1F78B4;
+}
+
+.f-i-i-container .dot-color-light-blue {
+    background-color: #A6CEE3;
+}
+
+.f-i-i-container .dot-color-other-green {
+    background-color: #1DC293;
+}
+
+.f-i-i-container .dot-color-light-green {
+    background-color: #B2DF8A;
+}
+
+.f-i-i-container .dot-color-green {
+    background-color: #33A02C;
+}
+
+.f-i-i-container .dot-color-pink {
+    background-color: #FB9A99;
+}
+
+
+.f-i-i-container .fi-doughnut-row-item{
+    font-size: 14px;
+}
+
+.f-i-stat-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    /* background-color: green; */
+    margin-bottom: 24px;
+}
+
+.f-i-stat-wrapper-bottom{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    /* background-color: green; */
+    margin-bottom: 24px;
 }

@@ -38,6 +38,8 @@ import {
         investmentsListReducer,
         investmentsDetailReducer,
         investmentsTypeListReducer,
+        equityInvestmentGraphDataReducer,
+        equityInvestmentDepositGraphDataReducer,
     } from './reducers/investmentsReducer';
 import { amenitiesCreateReducer, buildingTypeCreateReducer, categoryCreateReducer, landTitleCreateReducer, projDepAmenityDetailReducer, projDepAmenityListReducer, projDepBuildingTypeDetailReducer, projDepBuildingTypeListReducer, projDepCategoryDetailReducer, projDepCategoryListReducer, projDepLandTitleDetailReducer, projDepLandTitleListReducer, projDepStatusDetailReducer, projDepStatusListReducer, projStatusCreateReducer } from './reducers/projDepReducers';
 import { transactionsDetailReducer, transactionsListReducer } from './reducers/transactionsReducer';
@@ -100,6 +102,10 @@ const reducer = combineReducers({
     investmentsList:investmentsListReducer,
     investmentsDetailItem:investmentsDetailReducer,
     investmentsTypeList:investmentsTypeListReducer,
+
+    // graph data
+    equityInvestmentGraphData:equityInvestmentGraphDataReducer,
+    equityInvestmentDepositGraphData:equityInvestmentDepositGraphDataReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;

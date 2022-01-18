@@ -3,13 +3,14 @@ import DashboardLineChartCard from '../../Dashboard/DashboardLineChartCard/Dashb
 
 import './EquityLineGraphContainer.css';
 
-const EquityLineGraphContainer = ({heading}) => {
+const EquityLineGraphContainer = ({heading, values, totals,label}) => {
     return (
         <div className="e-i-l-g-item">
             <div className="e-i-l-g-heading">
                 <div className="e-i-l-g-value">
                     <div className="desc">{heading}</div>
-                    <div className="value">₦36,254<sup>.00</sup></div>
+                    {/* <div className="value">₦36,254<sup>.00</sup></div> */}
+                    <div className="value">{totals}</div>
                 </div>
                 <select className="e-i-l-g-select">
                         <option>All time</option>
@@ -18,7 +19,7 @@ const EquityLineGraphContainer = ({heading}) => {
                     </select>
             </div>
 
-            <DashboardLineChartCard label="Liquidated Value" />
+            <DashboardLineChartCard label={label} values={values} />
         </div>
     )
 }

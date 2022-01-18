@@ -50,10 +50,18 @@ const SoleInvestment = ({arrLinks}) => {
                             title_two={"Asset Under Management"}
                             value_two="₦36,254"
                         />
+                        <SoleInvestmentListOverviewCard                        
+                            title_one="Number of Active Equity Investments"
+                            value_one="54,000"
+                            title_two={""}
+                            value_two=""
+                        />
+                        </div>
+                        <div className="s-i-stat-wrapper-bottom">
                         <SILiquidatedInvestmentCard />
                         <SILiquidatedInvestmentCard />
 
-                    </div>
+                        </div>
 
 
                     <SIOngoingAndSoldTab />

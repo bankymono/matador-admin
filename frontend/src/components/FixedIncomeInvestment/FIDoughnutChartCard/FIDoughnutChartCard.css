@@ -40,4 +40,5 @@
 .fi-doughnut-row-first-col-item {
     display: flex;
     align-items: center;
+    font-size: 14px;
 }

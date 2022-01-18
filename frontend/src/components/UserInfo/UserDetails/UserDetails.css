@@ -9,6 +9,7 @@
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);
     margin-bottom: 16px;
+    /* background-color: pink; */
 }
 
 
@@ -36,22 +37,66 @@ img.profile-image  {
     display: grid;
     gap: 24px;
     margin-bottom: 24px;
-    /* background-color: red; */
 }
+
 
 .user-details .user-details-item {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    /* background-color: red; */
 }
+
+.user-bank-card-details{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+}
+
+
 
 .user-details-bank-card-container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
+.user-bank-card-details .user-device-info-container{
+    
+
+}
+
+.user-bank-card-details .user-device-info-container .device-info-with-button{
+    display: flex;
+    border: 1px solid #DEE2E6;
+    border-radius: 8px;
+    padding: 24px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.user-bank-card-details .user-device-info-container .device-info .headn{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.user-bank-card-details .user-device-info-container .device-info .desc{
+    color:#909896;
+}
+
+.user-bank-card-details .user-device-info-container .device-info .val{
+    color:#404244;
+}
+
+.user-bank-card-details .user-device-info-container button{
+    background: none;
+    border: 1px solid #03A678;
+    margin-left: 10px;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #03A678;
+}
 
 .user-details-container .detail-type {
     font-size: 16px;
@@ -64,6 +109,10 @@ img.profile-image  {
     line-height: 24px;
 }
 
+.user-details-item-cell{
+    /* background: red; */
+}
+
 .user-details-item-cell button{
     background: none;
     border: none;
@@ -73,11 +122,13 @@ img.profile-image  {
     color: #03A678;
 }
 
+
 .bank-card-heading{
     font-weight: 600;
     font-size: 12px;
     line-height: 21px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
+    color: #909896;
 }
 
 

@@ -21,7 +21,16 @@ import {
         INVESTMENTS_DETAIL_SUCCESS,
         INVESTMENTS_DETAIL_FAIL,
         INVESTMENTS_TYPE_LIST_REQUEST,
-        INVESTMENTS_TYPE_LIST_SUCCESS
+        INVESTMENTS_TYPE_LIST_SUCCESS,
+        INVESTMENT_GRAPH_STAT_FAIL,
+        INVESTMENT_GRAPH_STAT_REQUEST,
+        INVESTMENT_GRAPH_STAT_SUCCESS,
+        EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL,
+        EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST,
+        EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
+        EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+        EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
+        EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST
     } from "../constants/investmentsContants"
 
 export const getEquityInvestmentStat = () => async (dispatch) => {
@@ -56,14 +65,16 @@ export const getEquityInvestmentData = (queryParams) => async (dispatch) => {
         })
         let pageNum = Number(queryParams.page) + 1;
         let inv_comp = queryParams.investment_completed === 'all' ? "": "investment_completed="+queryParams.investment_completed;
+        // console.log('did i get here?')
         const {data} = await api.get(`/investment/user-investment?investment_type_id=${queryParams.investment_type_id}&&page=${pageNum}&&is_sold=${queryParams.is_sold}&&${inv_comp}`)
-
+        
         dispatch({
             type: EQUITY_INVESTMENT_DATA_SUCCESS,
             payload: data
         })
 
     } catch (error) {
+        // console.log('got here, err', error)
         dispatch({
             type: EQUITY_INVESTMENT_DATA_FAIL,
             payload: error.response
@@ -186,5 +197,54 @@ export const listInvestmentsType = () => async (dispatch) => {
         //     : error.message,
         // })
         console.log(error);
+    }
+}
+
+
+export const getEquityInvestmentGraphData = () => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST
+        })
+
+
+        const {data} = await api.get('/admin/get-investment-graph-stat?type=investment&&investment_type=equity-investment&&limit=100')
+
+        dispatch({
+            type: EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+export const getEquityInvestmentDepositGraphData = () => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST
+        })
+
+
+        const {data} = await api.get('/admin/get-investment-graph-stat?type=deposit&&investment_type=equity-investment&&limit=100')
+
+        dispatch({
+            type: EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+            payload: error.response
+        })
     }
 }

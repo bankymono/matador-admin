@@ -1,5 +1,13 @@
 .s-i-stat-wrapper{
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    /* background-color: green; */
+    margin-bottom: 24px;
+}
+
+.s-i-stat-wrapper-bottom{
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     /* background-color: green; */

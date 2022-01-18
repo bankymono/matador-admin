@@ -13,6 +13,9 @@ import FIDoughnutChartCard from '../../components/FixedIncomeInvestment/FIDoughn
 import FIBarChartCard from '../../components/FixedIncomeInvestment/FIBarChartCard/FIBarChartCard';
 import FILiquidationCard from '../../components/FixedIncomeInvestment/FILiquidationCard/FILiquidationCard';
 import { Link } from 'react-router-dom';
+import SoleInvestmentListOverviewCard from '../../components/SoleInvestment/SoleInvestmentOverviewCard/SoleInvestmentOverviewCard';
+import SILiquidatedInvestmentCard from '../../components/SoleInvestment/SILiquidatedInvestmentCard/SILiquidatedInvestmentCard';
+import FixedIncomeOverviewCard from '../../components/FixedIncomeInvestment/FixedIncomeOverviewCard/FixedIncomeOverviewCard';
 
 
 const FixedIncomeInvestment = ({arrLinks}) => {
@@ -53,7 +56,34 @@ const FixedIncomeInvestment = ({arrLinks}) => {
                     <div className="f-i-graph-container">
                         <FIDoughnutChartCard />
                         {/* <FIBarChartCard /> */}
-                        <FILiquidationCard />
+                        {/* <FILiquidationCard /> */}
+
+                        <div className=''>
+                            <div className="f-i-stat-wrapper">
+                                <FixedIncomeOverviewCard 
+                                    title_one="Liquidity Requirement Of Vault"
+                                    value_one="54,000"
+                                    title_two="Active Vault Users"
+                                    value_two="₦36,254"
+                                />
+                                <FixedIncomeOverviewCard                       
+                                    title_one="Total Number Of Vault Investments"
+                                    value_one="54,000"
+                                    title_two={"Active Vault Investment"}
+                                    value_two="₦36,254"
+                                />
+                                <FixedIncomeOverviewCard                        
+                                    title_one="Total Value Of Vault"
+                                    value_one="54,000"
+                                    title_two={""}
+                                    value_two=""
+                                />
+                            </div>
+                            <div className="f-i-stat-wrapper-bottom">
+                                <SILiquidatedInvestmentCard />
+                                <SILiquidatedInvestmentCard />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

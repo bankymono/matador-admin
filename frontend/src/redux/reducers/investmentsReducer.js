@@ -20,18 +20,24 @@ import {
     INVESTMENTS_TYPE_LIST_REQUEST,
     INVESTMENTS_TYPE_LIST_SUCCESS,
     INVESTMENTS_TYPE_LIST_FAIL,
+    EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
+    EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST,
+    EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL,
+    EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST,
+    EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+    EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
      
 } from "../constants/investmentsContants";
 
 
-export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, eqInvStatLoading:true}, action) => {
+export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, loading:true}, action) => {
     switch(action.type){
         case EQUITY_INVESTMENT_STAT_REQUEST:
-            return { equityInvestmentStat:{}, eqInvStatLoading:true }
+            return { ...state, equityInvestmentStat:{}, loading:true }
         case EQUITY_INVESTMENT_STAT_SUCCESS:
-            return { eqInvStatLoading: false, equityInvestmentStat: action.payload}
+            return { ...state, loading: false, equityInvestmentStat: action.payload}
         case EQUITY_INVESTMENT_STAT_FAIL:
-            return { eqInvStatLoading:false, eqInvStatError: action.payload}
+            return { ...state, loading:false, error: action.payload}
         default:
             return state;
     }
@@ -112,6 +118,35 @@ export const investmentsTypeListReducer = (state={investmentsTypes:{}, loading:t
             return { loading: false, investmentsTypes: action.payload}
         case INVESTMENTS_TYPE_LIST_FAIL:
             return { loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+
+
+
+export const equityInvestmentGraphDataReducer = (state={values:{}, loading:true}, action) => {
+    switch(action.type){
+        case EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST:
+            return { ...state, values:{}, loading:true }
+        case EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS:
+            return { ...state, loading: false, values: action.payload}
+        case EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL:
+            return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const equityInvestmentDepositGraphDataReducer = (state={values:{}, loading:true}, action) => {
+    switch(action.type){
+        case EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST:
+            return { ...state, values:{}, loading:true }
+        case EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS:
+            return { ...state, loading: false, values: action.payload}
+        case EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL:
+            return { ...state, loading:false, error: action.payload}
         default:
             return state;
     }
