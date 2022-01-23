@@ -98,7 +98,7 @@ const ReusableTable = ({columnsConfig, dataConfig, handleClick}) => {
                             {
 
                                 row.cells.map((cell)=>{
-                                    console.log(cell,'eee')
+                                    // console.log(cell,'eee')
                                     return <td {...cell.getCellProps()}><span className={cell.column.Header === 'Verification Status'? "user-table-status":""}>{cell.render('Cell')}</span></td>
                                 })
                             }

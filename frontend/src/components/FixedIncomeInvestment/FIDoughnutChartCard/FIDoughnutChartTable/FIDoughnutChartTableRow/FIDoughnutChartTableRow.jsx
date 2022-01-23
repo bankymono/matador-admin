@@ -13,7 +13,8 @@ const FIDoughnutChartTableRow = ({dotColor, description, count, value}) => {
                 </div>
 
                 <div className="text-right-align fi-doughnut-row-item">
-                    ₦{value}<sup>.00</sup>
+                    ₦ {value}
+                    {/* <sup>.00</sup> */}
                 </div>
             </div>
     )

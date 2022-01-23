@@ -1,0 +1,86 @@
+.flag-user-container{
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    background-color: rgba(14, 36, 26, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200%;
+    z-index: 1
+}
+
+.flag-user-input-wrapper{
+    cursor: default;
+    background: white;
+    border-radius: 8px;
+    min-width: 350px;
+    position: absolute;
+    top: 50vh;
+    transform: translateY(-50%);
+}
+
+.flag-user-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #DEE2E6;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 31px;
+    padding: 15px 15px 0 15px;
+    /* margin-bottom: 24px; */
+}
+
+.flag-user-input-wrapper .center-content{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    padding: 20px;
+}
+
+.flag-user-input-wrapper .center-content .close-image{
+    color: red;
+    font-size: 40px;
+    margin-bottom: 36px;
+}
+
+.flag-user-input-wrapper .center-content .boxed-text{
+    margin: 5px 0 10px 0;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 400px;
+    padding: 4px;
+}
+
+.flag-user-input-wrapper .center-content .text-bee{
+    margin-bottom: 10px ;
+}
+
+.flag-user-input-wrapper .center-content .buttons-container{
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.flag-user-input-wrapper .center-content .buttons-container .blk-btn{
+    margin-bottom: 10px;
+    padding: 10px 40px;
+    border-radius: 4px;
+    background-color: #DE4F4F;
+    color: #fff;
+    border: none;
+    max-width: 200px;
+}
+
+.flag-user-input-wrapper .center-content .buttons-container .cncel-btn{
+    margin-bottom: 10px;
+    padding: 10px 40px;
+    border-radius: 4px;
+    background-color: #fff;
+    color:#03A678;
+    border: 1px solid #03A678;
+    width: 200px;
+    margin-right: 10px;
+}

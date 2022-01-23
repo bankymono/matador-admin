@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react'
 import './UserAccountBalance.css'
 import arrow_up_icon from '../../../assets/icons/arrow-up.png'
 import BlockUserModal from '../../modals/BlockUserModal/BlockUserModal'
+import FlagUserAccount from '../../modals/FlagUserAccount/FlagUserAccount'
 
 const UserAccountBalance = ({investmentData}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenFlag, setIsOpenFlag] = useState(false);
 
     const closeModal = () => {
         setIsOpen(false);
+        setIsOpenFlag(false)
     }
 
     return (
@@ -69,12 +72,13 @@ const UserAccountBalance = ({investmentData}) => {
                 </div>
 
                 <div className='control-buttons'>
-                    <button className='top-btn'>Flag User Account</button>
+                    <button onClick={() => setIsOpenFlag(true)} className='top-btn'>Flag User Account</button>
                     <button onClick={() => setIsOpen(true)} className='bottom-btn'>Block User Account</button>
                 </div>
             </div>
 
             <BlockUserModal setIsOpen={setIsOpen} open={isOpen} onClose={closeModal} />
+            <FlagUserAccount setIsOpen={setIsOpenFlag} open={isOpenFlag} onClose={closeModal} />
         </div>
     )
 }

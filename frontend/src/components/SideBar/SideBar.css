@@ -54,10 +54,10 @@
 }
 
 .sidebar-item:hover .sidebar-desc {
-    color: white;
+    color: #fff;
 }
 
 #sidebar-item-active {
     border-left: 4px solid #03A678;
-    
+    color: #fff;
 }

@@ -30,7 +30,19 @@ import {
         EQUITY_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
         EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
         EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
-        EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST
+        EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST,
+        FIXED_INCOME_INVESTMENT_STAT_REQUEST,
+        FIXED_INCOME_INVESTMENT_STAT_SUCCESS,
+        FIXED_INCOME_INVESTMENT_STAT_FAIL,
+        FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST,
+        FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
+        FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL,
+        FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST,
+        FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
+        FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+        SOLE_INVESTMENT_STAT_REQUEST,
+        SOLE_INVESTMENT_STAT_SUCCESS,
+        SOLE_INVESTMENT_STAT_FAIL
     } from "../constants/investmentsContants"
 
 export const getEquityInvestmentStat = () => async (dispatch) => {
@@ -244,6 +256,105 @@ export const getEquityInvestmentDepositGraphData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+
+export const getFixedIncomeInvestmentStat = () => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_STAT_REQUEST
+        })
+
+        const {data} = await api.get('/admin/get-investment-stat?investment_type=fixed-income-investment')
+
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_STAT_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_STAT_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+
+
+export const getFixedIncomeInvestmentGraphData = () => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST
+        })
+
+
+        const {data} = await api.get('/admin/get-investment-graph-stat?type=investment&&investment_type=fixed-income-investment&&limit=100')
+
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+export const getFixedIncomeInvestmentDepositGraphData = () => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST
+        })
+
+
+        const {data} = await api.get('/admin/get-investment-graph-stat?type=deposit&&investment_type=fixed-income-investment&&limit=100')
+
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+            payload: error.response
+        })
+    }
+}
+
+
+export const getSoleInvestmentStat = () => async (dispatch) => {
+    
+    try {
+        dispatch({
+            type: SOLE_INVESTMENT_STAT_REQUEST    
+        })
+
+
+        const {data} = await api.get('/admin/get-investment-stat?investment_type=fixed-income-investment&&investment_sub_type=sole-investment')
+
+        dispatch({
+            type: SOLE_INVESTMENT_STAT_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: SOLE_INVESTMENT_STAT_FAIL,
             payload: error.response
         })
     }

@@ -40,7 +40,7 @@ export const SideBarData = [
     },
 
     {
-        title:"Investors",
+        title:"Users",
         icon:investors_icon,
         link:'/investors',
     },

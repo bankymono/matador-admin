@@ -40,6 +40,10 @@ import {
         investmentsTypeListReducer,
         equityInvestmentGraphDataReducer,
         equityInvestmentDepositGraphDataReducer,
+        fixedIncomeInvestmentStatReducer,
+        fixedIncomeInvestmentGraphDataReducer,
+        fixedIncomeInvestmentDepositGraphDataReducer,
+        soleInvestmentStatReducer,
     } from './reducers/investmentsReducer';
 import { amenitiesCreateReducer, buildingTypeCreateReducer, categoryCreateReducer, landTitleCreateReducer, projDepAmenityDetailReducer, projDepAmenityListReducer, projDepBuildingTypeDetailReducer, projDepBuildingTypeListReducer, projDepCategoryDetailReducer, projDepCategoryListReducer, projDepLandTitleDetailReducer, projDepLandTitleListReducer, projDepStatusDetailReducer, projDepStatusListReducer, projStatusCreateReducer } from './reducers/projDepReducers';
 import { transactionsDetailReducer, transactionsListReducer } from './reducers/transactionsReducer';
@@ -105,7 +109,16 @@ const reducer = combineReducers({
 
     // graph data
     equityInvestmentGraphData:equityInvestmentGraphDataReducer,
-    equityInvestmentDepositGraphData:equityInvestmentDepositGraphDataReducer
+    equityInvestmentDepositGraphData:equityInvestmentDepositGraphDataReducer,
+
+    fixedIncomeInvestmentGraphData:fixedIncomeInvestmentGraphDataReducer,
+    fixedIncomeInvestmentDepositGraphData:fixedIncomeInvestmentDepositGraphDataReducer,
+
+    //fixed income stat
+    fixedIncomeInvestmentStatData: fixedIncomeInvestmentStatReducer,
+
+    //sole investment stat
+    soleInvestmentStatData: soleInvestmentStatReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('mtdX') ? JSON.parse(localStorage.getItem('mtdX')):null;

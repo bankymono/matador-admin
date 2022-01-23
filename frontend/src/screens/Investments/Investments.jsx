@@ -43,7 +43,7 @@ const Investments = ({arrLinks}) => {
 
                             <div className="text-and-icon">
                                 <div className="">
-                                    <div className="main-text">Fixed Income</div>
+                                    <div className="main-text">Vault Investment</div>
                                     <div className="sub-text">4 Investments</div>
                                 </div>
                                 <BsChevronCompactRight className="iv-icon" />

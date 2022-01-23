@@ -8,7 +8,6 @@ import Header from '../../components/Header/Header';
 import SideBar from '../../components/SideBar/SideBar';
 import SubNav from '../../components/SubNav/SubNav';
 import { getEquityInvestmentStat, getEquityInvestmentData, getEquityInvestmentGraphData, getEquityInvestmentDepositGraphData } from '../../redux/actions/investmentsActions';
-import { numberWithComma } from '../../redux/numberFormatter';
 import EIOngoingAndSoldTab from '../../components/EquityInvestment/EIOngoingAndSoldTab/EIOngoingAndSoldTab';
 
 import './EquityInvestment.css'
@@ -19,6 +18,7 @@ const EquityInvestment = ({ arrLinks }) => {
 
     const dispatch = useDispatch()
     const equityInvestmentStatData = useSelector(state => state.equityInvestmentStatData);
+
     const equityInvestmentGraphData = useSelector(state => state.equityInvestmentGraphData);
     const equityInvestmentDepositGraphData = useSelector(state => state.equityInvestmentDepositGraphData);
 
@@ -29,12 +29,9 @@ const EquityInvestment = ({ arrLinks }) => {
     const [invGraphData, setInvGraphData] = useState({})
     const [depGraphData, setDepGraphData] = useState({})
 
-    const [depCountArray, setDepCountArray] = useState([]);
-    const [depDatesArray, setDepDatesArray] = useState([]);
+
     const [totalDep, setTotalDep] = useState(0);
 
-    const [invCountArray, setInvArray] = useState([])
-    const [invDatesArray, setInvDatesArray] = useState([])
     const [totalEqInv, setTotalEqInv] = useState(0);
 
     useEffect(()=>{
@@ -46,18 +43,16 @@ const EquityInvestment = ({ arrLinks }) => {
     }, [dispatch]);
 
     useEffect(()=>{
-        console.log(equityInvestmentStat, 'useEffed')
+
         dispatch(getEquityInvestmentGraphData())
         dispatch(getEquityInvestmentDepositGraphData());
-    },[equityInvestmentStat, dispatch])
+    },[dispatch])
 
 
     useEffect(()=>{
         if(equityInvestmentGraphData.loading === false){
             const received = createInvArray(equityInvestmentGraphData.values.data);
             
-            // setInvArray(received.values);
-            // setInvDatesArray(received.labels);
 
             setInvGraphData(received)
 
@@ -87,34 +82,12 @@ const EquityInvestment = ({ arrLinks }) => {
             invDateValues.push(obj.day)
         }
 
-        console.log('arrs', invValues,invDateValues)
         
         return {
             values: invValues,
             labels: invDateValues
         }
     }
-
-    const formattedEquityData = (eData) => {
-        let formattedData = [];
-        if (eData)
-            eData.forEach(obj => {
-                let data = {
-                    data_one: `${obj.user.first_name.toLowerCase()} ${obj.user.last_name.toLowerCase()}`,
-                    data_two: `₦${numberWithComma(obj.amount_invested)}`,
-                    data_three: new Date(`${obj.created_at}`).toDateString(),
-                    data_four: `${obj.number_of_fractions}`,
-                    data_five: `${obj.bundle ? 'bundles' : 'fractions'}`,
-                    data_six: `${obj.project.name}`,
-                    data_seven: `₦${numberWithComma(obj.quarterly_income)}`,
-                    data_eight: `${numberWithComma(obj.fraction_value)}`
-                }
-                formattedData.push(data);
-            });
-
-        return formattedData;
-    }
-
 
 
     return (
@@ -208,10 +181,8 @@ const EquityInvestment = ({ arrLinks }) => {
                         <BeatLoader color="#03A678" loading={true} />
                     }
                         <div className="e-i-stat-wrapper-bottom">
-                            {console.log(depGraphData,'ddd')}
                                 <EquityLineGraphContainer
-                                    heading={"Total Purchase Deposit"}
-                                    
+                                    heading={"Total Purchase Deposit"}                                    
                                     values={depGraphData}
                                     totals={totalDep}
                                     label={"Number of Deposits"}

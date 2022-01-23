@@ -26,6 +26,18 @@ import {
     EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST,
     EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
     EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
+    FIXED_INCOME_INVESTMENT_STAT_REQUEST,
+    FIXED_INCOME_INVESTMENT_STAT_SUCCESS,
+    FIXED_INCOME_INVESTMENT_STAT_FAIL,
+    FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST,
+    FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
+    FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL,
+    FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST,
+    FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
+    FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+    SOLE_INVESTMENT_STAT_REQUEST,
+    SOLE_INVESTMENT_STAT_SUCCESS,
+    SOLE_INVESTMENT_STAT_FAIL,
      
 } from "../constants/investmentsContants";
 
@@ -42,6 +54,7 @@ export const equityInvestmentStatReducer = (state={equityInvestmentStat:{}, load
             return state;
     }
 }
+
 export const equityInvestmentDataReducer = (state={eqData: {}, loading: true}, action)=>{
     switch(action.type){
         case EQUITY_INVESTMENT_DATA_REQUEST:
@@ -146,6 +159,61 @@ export const equityInvestmentDepositGraphDataReducer = (state={values:{}, loadin
         case EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS:
             return { ...state, loading: false, values: action.payload}
         case EQUITY_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL:
+            return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+
+export const fixedIncomeInvestmentStatReducer = (state={fixedIncomeInvestmentStat:{}, loading:true}, action) => {
+    switch(action.type){
+        case FIXED_INCOME_INVESTMENT_STAT_REQUEST:
+            return { ...state, fixedIncomeInvestmentStat:{}, loading:true }
+        case FIXED_INCOME_INVESTMENT_STAT_SUCCESS:
+            return { ...state, loading: false, fixedIncomeInvestmentStat: action.payload}
+        case FIXED_INCOME_INVESTMENT_STAT_FAIL:
+            return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+
+export const fixedIncomeInvestmentGraphDataReducer = (state={values:{}, loading:true}, action) => {
+    switch(action.type){
+        case FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST:
+            return { ...state, values:{}, loading:true }
+        case FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS:
+            return { ...state, loading: false, values: action.payload}
+        case FIXED_INCOME_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL:
+            return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const fixedIncomeInvestmentDepositGraphDataReducer = (state={values:{}, loading:true}, action) => {
+    switch(action.type){
+        case FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST:
+            return { ...state, values:{}, loading:true }
+        case FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS:
+            return { ...state, loading: false, values: action.payload}
+        case FIXED_INCOME_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL:
+            return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+
+export const soleInvestmentStatReducer = (state={soleInvestmentStat:{}, loading:true}, action) => {
+    switch(action.type){
+        case SOLE_INVESTMENT_STAT_REQUEST:
+            return { ...state, soleInvestmentStat:{}, loading:true }
+        case SOLE_INVESTMENT_STAT_SUCCESS:
+            return { ...state, loading: false, soleInvestmentStat: action.payload}
+        case SOLE_INVESTMENT_STAT_FAIL:
             return { ...state, loading:false, error: action.payload}
         default:
             return state;
