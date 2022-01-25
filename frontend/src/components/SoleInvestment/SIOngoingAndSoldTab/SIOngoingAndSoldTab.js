@@ -20,10 +20,13 @@ const SIOngoingAndSoldTab = () => {
             <div className="tabs-content">
                 <div className={toggleState === 1 ? "content active-content" : "content"}>
                     <SIOngoingTab
+                        isSold={toggleState}
                     />
                 </div>
                 <div className={toggleState === 2 ? "content active-content" : "content"}>
-                    <EquityBasedSoldTab />
+                    <SIOngoingTab
+                        isSold={toggleState}
+                    />
                 </div>
             </div>
 

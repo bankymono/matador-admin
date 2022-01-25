@@ -12,7 +12,8 @@ import './SoleInvestment.css'
 
 import SILiquidatedInvestmentCard from '../../components/SoleInvestment/SILiquidatedInvestmentCard/SILiquidatedInvestmentCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSoleInvestmentStat } from '../../redux/actions/investmentsActions';
+import { getSoleInvestmentDepositGraphData, getSoleInvestmentGraphData, getSoleInvestmentStat } from '../../redux/actions/investmentsActions';
+import EquityLineGraphContainer from '../../components/EquityInvestment/EquityLineGraphContainer/EquityLineGraphContainer';
 // import ProjectListOverviewCardTwo from './ProjectsListOverviewCardTwo/ProjectsListOverviewCardTwo';
 
 const SoleInvestment = ({arrLinks}) => {
@@ -23,13 +24,63 @@ const SoleInvestment = ({arrLinks}) => {
 
     const { soleInvestmentStat } = soleInvestmentStatData;
 
+    const soleInvestmentGraphData = useSelector(state => state.soleInvestmentGraphData);
+    const soleInvestmentDepositGraphData = useSelector(state => state.soleInvestmentDepositGraphData);
+
+    const [invGraphData, setInvGraphData] = useState({})
+    const [depGraphData, setDepGraphData] = useState({})
+
+    const [totalDep, setTotalDep] = useState(0);
+
+    const [totalSoleInv, setTotalSoleInv] = useState(0);
+
     useEffect(() => {
         dispatch(getSoleInvestmentStat());
     }, [dispatch])
 
-    useEffect(() => {
-        console.log('sole data', soleInvestmentStat)
-    }, [soleInvestmentStat])
+    useEffect(()=>{
+        dispatch(getSoleInvestmentGraphData())
+        dispatch(getSoleInvestmentDepositGraphData());
+    },[dispatch])
+
+    useEffect(()=>{
+        if(soleInvestmentGraphData.loading === false){
+            const received = createInvArray(soleInvestmentGraphData.values.data);
+            
+            setInvGraphData(received)
+
+            setTotalSoleInv(soleInvestmentGraphData.values.total_amount)
+        }
+    },[soleInvestmentGraphData])
+
+
+    useEffect(()=>{
+        if(soleInvestmentDepositGraphData.loading === false){
+            const received = createInvArray(soleInvestmentDepositGraphData.values.data);
+
+            setDepGraphData(received)
+
+            setTotalDep(soleInvestmentDepositGraphData.values.total_amount)
+        }
+    },[soleInvestmentDepositGraphData])
+
+
+    const createInvArray = (objReceived) => {
+        let invValues  = [];
+        let invDateValues  = [];
+
+        for (let obj of objReceived){
+            invValues.push(obj.count || obj.total_amount);
+            invDateValues.push(obj.day)
+        }
+
+        
+        return {
+            values: invValues,
+            labels: invDateValues
+        }
+    }
+
 
     return (
         <div>
@@ -64,8 +115,23 @@ const SoleInvestment = ({arrLinks}) => {
                         />
                         </div>
                         <div className="s-i-stat-wrapper-bottom">
-                        <SILiquidatedInvestmentCard />
-                        <SILiquidatedInvestmentCard />
+                        <EquityLineGraphContainer
+                                    heading={"Total Deposit"}                                    
+                                    values={depGraphData}
+                                    totals={totalDep.toLocaleString()}
+                                    label={"Number of Deposits"}
+                                    filter={""}
+                                />
+
+                        <EquityLineGraphContainer
+                                    heading={"Total Matured Investment"}                                    
+                                    values={invGraphData}
+                                    totals={totalSoleInv.toLocaleString()}
+                                    label={"Number of Deposits"}
+                                    filter={""}
+                                />
+                        {/* <SILiquidatedInvestmentCard />
+                        <SILiquidatedInvestmentCard /> */}
 
                         </div>
 

@@ -16,7 +16,9 @@ import UserInvestmentModal from '../../modals/UserInvestmentModal';
 
 const EIOngoingTab = ({isSold}) => {
     const [singleData, setSingleData] = useState({});
+
     const [isOpen, setIsOpen] = useState(false);
+    
     const [eqInvList, setEqInvList] = useState([]);
     const [eqInvId, setEqInvId] = useState('');
 
@@ -25,9 +27,7 @@ const EIOngoingTab = ({isSold}) => {
 
     const dispatch = useDispatch();
     const equityInvestmentData = useSelector(state => state.equityInvestmentData);
-    // const columns = useMemo(() => COLUMNS, []);
-    // const data = useMemo(() => MOCK_DATA, []);
-    
+        
     useEffect(()=>{
         if(isSold === 1){
             dispatch(getEquityInvestmentData({investment_type_id: 1, page: 0, is_sold: false, investment_completed:eqInvStatus}));            

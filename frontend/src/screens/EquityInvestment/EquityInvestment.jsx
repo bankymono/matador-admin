@@ -195,33 +195,11 @@ const EquityInvestment = ({ arrLinks }) => {
                                     label={"Number of Equity Investments"}
                                     filter={""}
                                 />
-                                {/* <EquityLineGraphContainer /> */}
-                                {/* <EquityInvestmentListOverviewCard
-                                    title_one={"Number of Equity Investments"}
-                                    value_one={equityInvestmentStat && equityInvestmentStat.data ? equityInvestmentStat?.data?.total_no : ""}
-                                    title_two={"Value of Equity Investments"}
-                                    value_two={equityInvestmentStat && equityInvestmentStat.data ? `₦ ${equityInvestmentStat?.data?.total_value.toLocaleString()}` : ""}
-                                />
-                                <EquityInvestmentListOverviewCard
-                                    title_one={"Number of Active Equity Investments"}
-                                    value_one={equityInvestmentStat && equityInvestmentStat.data ? equityInvestmentStat?.data?.active_no : ""}
-                                    title_two={"Asset Under Management"}
-                                    value_two={equityInvestmentStat && equityInvestmentStat.data ? `₦ ${equityInvestmentStat?.data?.asset_under_management.toLocaleString()}` : ""}
-                                />
-                                <EquityInvestmentListOverviewCard
-                                    title_one={"Number of Active Equity Investments"}
-                                    value_one={equityInvestmentStat && equityInvestmentStat.data ? equityInvestmentStat?.data?.active_no : ""}
-                                    title_two={"Asset Under Management"}
-                                    value_two={equityInvestmentStat && equityInvestmentStat.data ? `₦ ${equityInvestmentStat?.data?.asset_under_management.toLocaleString()}` : ""}
-                                /> */}
+                             
                     </div>
                 </div>
             </div>
-            {
-                // showSingleModal ?
-                    // <UserInvestmentModal user={singleData} closeModal={()=>setShowSingleModal(false)} />
-                    // : null
-            }
+
         </div>
     )
 }

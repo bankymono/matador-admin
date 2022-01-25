@@ -38,6 +38,15 @@ import {
     SOLE_INVESTMENT_STAT_REQUEST,
     SOLE_INVESTMENT_STAT_SUCCESS,
     SOLE_INVESTMENT_STAT_FAIL,
+    SOLE_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL,
+    SOLE_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS,
+    SOLE_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST,
+    SOLE_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL,
+    SOLE_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS,
+    SOLE_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST,
+    SOLE_INVESTMENT_DATA_FAIL,
+    SOLE_INVESTMENT_DATA_SUCCESS,
+    SOLE_INVESTMENT_DATA_REQUEST,
      
 } from "../constants/investmentsContants";
 
@@ -215,6 +224,48 @@ export const soleInvestmentStatReducer = (state={soleInvestmentStat:{}, loading:
             return { ...state, loading: false, soleInvestmentStat: action.payload}
         case SOLE_INVESTMENT_STAT_FAIL:
             return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+
+
+export const soleInvestmentGraphDataReducer = (state={values:{}, loading:true}, action) => {
+    switch(action.type){
+        case SOLE_INVESTMENT_INVESTMENT_GRAPH_DATA_REQUEST:
+            return { ...state, values:{}, loading:true }
+        case SOLE_INVESTMENT_INVESTMENT_GRAPH_DATA_SUCCESS:
+            return { ...state, loading: false, values: action.payload}
+        case SOLE_INVESTMENT_INVESTMENT_GRAPH_DATA_FAIL:
+            return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const soleInvestmentDepositGraphDataReducer = (state={values:{}, loading:true}, action) => {
+    switch(action.type){
+        case SOLE_INVESTMENT_DEPOSIT_GRAPH_DATA_REQUEST:
+            return { ...state, values:{}, loading:true }
+        case SOLE_INVESTMENT_DEPOSIT_GRAPH_DATA_SUCCESS:
+            return { ...state, loading: false, values: action.payload}
+        case SOLE_INVESTMENT_DEPOSIT_GRAPH_DATA_FAIL:
+            return { ...state, loading:false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+
+export const soleInvestmentDataReducer = (state={soleData: {}, loading: true}, action)=>{
+    switch(action.type){
+        case SOLE_INVESTMENT_DATA_REQUEST:
+            return { ...state,loading:true, soleData: {}};
+        case SOLE_INVESTMENT_DATA_SUCCESS:
+            return { ...state, soleData: action.payload, loading:false};
+        case SOLE_INVESTMENT_DATA_FAIL:
+            return { ...state, error: action.payload, loading:false};
         default:
             return state;
     }
