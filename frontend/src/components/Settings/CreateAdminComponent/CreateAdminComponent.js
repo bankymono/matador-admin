@@ -345,7 +345,7 @@ const CreateAdminComponent = ({history}) => {
                 
                 <div className="create-adm-upload-btn-wrapper">
                     <input onChange={handleProfileImgUpload} id="create-adm-upload-btn" className="create-adm-img-input" type="file" accept="image/png, image/jpeg, image/jpg" />
-                    <label className="create-adm-upload-btn" htmlFor="create-adm-upload-btn">Upload Avatar</label>
+                    <label className="create-adm-upload-btn" htmlFor="#create-adm-upload-btn">Upload Avatar</label>
                 </div>
             </div>
 
